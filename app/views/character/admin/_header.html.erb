@@ -1,0 +1,90 @@
+<header class='chr-header'>
+  <div class='fixed'>
+    <nav class='top-bar'>
+      <ul class='title-area show-for-small'>
+        <!-- Title Area -->
+        <li class='name'>
+          <h1><a href='#'><%= ENV['WEBSITE_NAME'] %></a></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class='toggle-topbar menu-icon'><a href='#'><span>Menu</span></a></li>
+      </ul>
+
+      <section class='top-bar-section'>
+        <!-- Left Nav Section -->
+        <ul class='left' id='main_menu'>
+          <li class='divider hide-for-small'></li>
+          
+          <li class='active hide-for-small'>
+            <a href='#' class='chr-home-link'><i class='icon-home'></i></a>
+          </li>
+
+          <li class='active show-for-small'>
+            <a href='#'>Dashboard</a>
+          </li>
+
+          <li class='divider'></li>
+        </ul>
+
+        <!-- Right Nav Section: Settings and Logout -->
+        <ul class='right'>
+          <li class='divider hide-for-small'></li>
+          <li class='has-dropdown'>
+            <a href='#'>Settings</a>
+
+            <ul class='dropdown'>
+              <li><a href='#/admins'>Admins</a></li>
+              <li><a href='#/assets'>Assets</a></li>
+            </ul>
+          </li>
+
+          <li class='divider'></li>
+          
+          <li>
+            <%= link_to browserid_config.logout.path, class: 'browserid_logout' do %>
+              <%= image_tag @character_admin_user.avatar_url(50) %> Logout
+            <% end %>
+          </li>
+
+          <li class='divider hide-for-small'></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+</header>
+
+
+
+    <!--
+    <nav class='top-bar'>
+      <section>
+        <ul class='left chr-main-menu' id='main_menu'>
+          <li class='active'>
+            <a class='chr-menu-home' href='#'><i class='icon-home'></i></a>
+          </li>
+        </ul>
+
+        <ul class='right'>
+          <li class='chr-menu-settings has-dropdown'>
+            <a href="#/admins">
+              <i class='icon-cog'></i> Settings
+            </a>
+
+            <ul class="dropdown">
+              <li><a href="#/admins">Admins</a></li>
+              <li><a href="#/assets">Assets</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <%= link_to browserid_config.logout.path, class: :browserid_logout do %>
+              <%= image_tag @character_admin_user.avatar_url(50) %> Logout
+            <% end %>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <div class='chr-top-bar-line'></div>
+    -->
+

@@ -1,0 +1,38 @@
+
+
+/*
+########  ##        #######   ######   
+##     ## ##       ##     ## ##    ##  
+##     ## ##       ##     ## ##        
+########  ##       ##     ## ##   #### 
+##     ## ##       ##     ## ##    ##  
+##     ## ##       ##     ## ##    ##  
+########  ########  #######   ######   
+*/
+
+
+.chr-blog-post-preview                { padding:.5em 1em 1em;
+                                        overflow:hidden;
+
+  &.scroll                            { overflow-y:scroll;
+                                        margin-right: 1px;
+  }
+
+  ul                                  { padding-left:30px;
+  }
+  
+  img                                 { width:100%;
+  }
+}
+
+
+.chr-editor-permalink                 { font-size:.85em;
+                                        color:$chr-txt-color2;
+}
+
+input[type=text].chr-editor-title     { margin-bottom:.4em;
+                                        font-weight:bold;
+                                        width:100%;
+                                        border:none;
+                                        @include shadow;
+}

@@ -1,0 +1,81 @@
+
+
+/*
+########     ###    ##    ## ######## ##       
+##     ##   ## ##   ###   ## ##       ##       
+##     ##  ##   ##  ####  ## ##       ##       
+########  ##     ## ## ## ## ######   ##       
+##        ######### ##  #### ##       ##       
+##        ##     ## ##   ### ##       ##       
+##        ##     ## ##    ## ######## ######## 
+*/
+
+
+// Mobile first
+.chr-panel                            { @include grid-column($columns:$total-columns,$collapse:null,$float:false);
+  
+  // panel
+  & > section                         { @include shadow;
+                                        background:#fff; // should be whiteColor var
+    // panel title
+    & > header                        { font-size:.85em;
+                                        color:$chr-txt-color2;                                        
+                                        text-transform:uppercase;
+                                        padding:1em 0 .8em;
+                                        margin:0 1em;
+                                        border-bottom:1px solid $chr-secondary-color;
+      // buttons
+      & > aside                       { float:right;
+        
+        // icons
+        & > a                         { color:$chr-icon-btn-color;
+                                        font-size:$chr-icon-btn-size;
+                                        top:-2px;
+                                        position:relative;
+                                        margin-right:.9em;
+          &:last-child                { margin-right:0;
+          }
+          &:hover                     { opacity:.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* Styles for screens that are atleast 768px; */
+@media #{$small}                      {
+  .chr-panel                          { @include grid-column($columns:$total-columns);
+    &.left, &.right                   { @include grid-column($total-columns/2);
+    }
+
+    &.left                            { padding-right:$column-gutter/4;
+    }
+
+    &.right                           { padding-left:$column-gutter/4;
+                                        float:right;
+    }
+
+    &.fixed                           { position:fixed;
+                                        bottom:0;
+                                        top:$topbar-height + $column-gutter / 2;
+                                        z-index:0;
+      
+      section                         { position:absolute;
+                                        left: $column-gutter / 2;
+                                        right: $column-gutter / 2;
+                                        bottom: 0px;
+                                        top: 0px;
+      }
+    }
+  }
+
+  .chr-panel                          { margin-bottom:$column-gutter/2;
+  }
+}
+
+
+
+
+
