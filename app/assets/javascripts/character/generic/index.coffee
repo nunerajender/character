@@ -3,8 +3,6 @@
 #= require_tree ./models
 #= require_tree ./views
 
-#= require jquery_nested_form
-
 
 Character.Generic = {}
 

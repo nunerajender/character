@@ -138,10 +138,6 @@ class IndexView extends Backbone.View
     else    
       @add_item(obj) for obj in objects
 
-      # Truncate lines
-      $('.chr-line-1 .chr-line-left').trunk8 { lines: 1 }
-      $('.chr-line-2 .chr-line-left').trunk8 { lines: 2 }
-
       # Sorting with drag'n'drop
       @enable_sorting() if @options.reorderable
 

@@ -1,17 +1,12 @@
 //= require_self
 //= require jquery.ui.datepicker
-//= require codemirror
 
 // Make sure the charset is set appropriately
 @charset "UTF-8";
 
-//@import "settings";
-//@import "admin";
-
-//@import "redactor";
-
 @import "foundation-icons";
 @import "font-awesome";
+
 @import "compass/css3";
 
 @import "character/foundation_and_overrides",
@@ -19,10 +14,7 @@
         "character/topbar",
         "character/panel",
         "character/index",
-        "character/blog",
-        "character/redactor",
         "character/login",
         "character/form",
-        "character/settings",
         "character/footer";
 
