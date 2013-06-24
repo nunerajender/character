@@ -30,7 +30,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'jquery-ui-rails'
   gem.add_runtime_dependency 'underscore-rails'
   gem.add_runtime_dependency 'marionette-rails'
-
+  gem.add_runtime_dependency 'eco'
+  
   # TODO: we just need to have one set of icons which are used
   #       in core to keep code small and fast
   gem.add_runtime_dependency 'foundation-icons-sass-rails'

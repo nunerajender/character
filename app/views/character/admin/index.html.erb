@@ -19,26 +19,20 @@
 
   <%#= setup_browserid %>
 
+  <% if @character_admin_user %>
+    <script type='text/javascript'>
+      window.user_avatar_url = '<%= @character_admin_user.avatar_url(30) %>';
+      $(function(){ character.start(); });
+    </script>
+  <% end %>
+
   <%= csrf_meta_tags %>
 </head>
 
 <body class='antialiased'> <!-- anitialiased used to make fonts smooth -->
 
-  <% if @character_admin_user %>
-    <%= render partial: 'character/admin/header' %>
-
-    <div id='character'></div>
-
-    <script type='text/javascript'>
-      $(function(){
-        window.character.start(window.CharacterOptions);
-      });
-    </script>
-
-  <% else %>
-
+  <% unless @character_admin_user %>
     <%= render 'character/admin/login' %>
-
   <% end %>
 
 </body>
