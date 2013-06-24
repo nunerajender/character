@@ -58,7 +58,7 @@ $row-width: 100%;
       img                             { width:36px;
                                         height:36px;
                                         margin:-4px .25em 0 -4px;
-                                        @include border-radius(4px);
+                                        @include border-radius(18px);
       }
     }
 }
