@@ -10,6 +10,7 @@
 #= require foundation
 #= require_tree ./templates
 #= require ./_model
+#= require ./_views
 #= require ./_application
 #= require_self
 

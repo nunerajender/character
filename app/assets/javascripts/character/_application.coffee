@@ -1,5 +1,4 @@
 
-
 class @CharacterApp
   constructor: (options_or_name) ->
 
@@ -45,10 +44,12 @@ class @CharacterAppController extends Marionette.Controller
   index: ->
     @collection.fetch()
 
-    unless @index_view
-      @index_view = new CharacterAppIndexView({ collection: @collection }).render()
-    
-    character.layout.main.show(@index_view)
+    @layout = new CharacterAppIndexLayout().render()
+    character.layout.main.show(@layout)
+
+    @collection_view = new CharacterAppIndexCollectionView({ collection: @collection }).render()
+    #@layout.title.show(@option.name)
+    @layout.view_collection.show(@collection_view)
 
 
   new: -> console.log "#{ @name } - new action."
@@ -56,18 +57,6 @@ class @CharacterAppController extends Marionette.Controller
   edit: -> console.log "#{ @name } - edit action."
 
   remove: -> console.log "#{ @name } - remove action."
-
-
-class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/index_item"]
-
-class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/index_empty"]
-
-class @CharacterAppIndexView extends Backbone.Marionette.CollectionView
-  itemView:  CharacterAppIndexItemView
-  emptyView: CharacterAppIndexNoItemsView
-
 
 
 

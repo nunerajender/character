@@ -1,0 +1,16 @@
+<div class='row'>
+  <div class='small-12 large-6 columns'>
+    <div class='panel'>
+      <header id='index_title'>Collection Title</header>
+      <section id='index_collection'>
+      </section>
+      <footer></footer>
+    </div>
+  </div>
+
+  <div class='small-12 large-6 columns'>
+    <div class='panel' id='right_panel' style='display:none;'>
+      Form goes here.
+    </div>
+  </div>  
+</div>

@@ -1,1 +1,4 @@
-My view.
+<a href='#' title='<%= @title %>'>
+  <% if @image: %><img src='<%= @image %>' /><% end %>
+  <span class='chr-title'><%= @title %></span>
+</a>

@@ -73,7 +73,25 @@ class Character::Admin::ApiController < Character::Admin::BaseController
     #       available, if some is not available provide an error
     #       handler.
 
-    render json: {  objects:       @objects,
+
+    # Until we don't have a format for requesting model attributes
+    # use the first attribute of the model.
+
+    # Here we exclude meta fields to have more chances to get
+    # descriptive field for the admin index
+    fields = @model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
+
+    title_field = fields[0]
+    image_field = :admin_thumb_url if @model_class.method_defined? :admin_thumb_url
+
+    
+    if @model_class.method_defined? :admin_thumb_url
+      mapped_objects = @objects.map {|o| {title:o.try(title_field),image:o.admin_thumb_url}}
+    else
+      mapped_objects = @objects.map {|o| {title:o.try(title_field)} }    
+    end
+
+    render json: {  objects:       mapped_objects,
                     total_pages:   @objects.total_pages(),
                     page:          page,
                     per_page:      per_page,
