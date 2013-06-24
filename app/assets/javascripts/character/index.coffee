@@ -13,6 +13,7 @@
 #= require ./_application
 #= require_self
 
+
 _.mixin(_.str.exports())
 
 
@@ -50,5 +51,10 @@ _.mixin(_.str.exports())
 
 
 new @CharacterApp("Project")
-new @CharacterApp("Admin")
+new @CharacterApp
+  name: "Admin"
+  api:  "/admin/api/Character-AdminUser"
+
+
+
 

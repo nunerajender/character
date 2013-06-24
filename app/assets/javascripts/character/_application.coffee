@@ -9,10 +9,10 @@ class @CharacterApp
       options.name = name
     else
       options = options_or_name
-      name    = options.name
+      name    = options.name if options
     
     if not name
-      console.error('Model name is required to create CharacterApp instance.')
+      console.error 'Model name is required to create CharacterApp instance.'
       return
 
     if not options.scope then options.scope = _.pluralize(_.slugify(name))
@@ -38,25 +38,17 @@ class @CharacterAppController extends Marionette.Controller
     @name = @options.name
 
     # Collection setup
-    model_slug = options.model_slug || name
     @collection     = new CharacterGenericCollection()
-    @collection.url = "/admin/api/#{ model_slug }"
+    @collection.url = @options.api || "/admin/api/#{ @options.name }"
 
 
   index: ->
-    console.log "#{ @options.name } - index action."
+    @collection.fetch()
 
-    MyItemView = Backbone.Marionette.ItemView.extend
-      template: JST["character/templates/index_item"]
-    NoItemsView = Backbone.Marionette.ItemView.extend
-      template: JST["character/templates/index_empty"]
-
-    character.layout.main.show(new MyItemView().render())
-
-    Backbone.Marionette.CollectionView.extend({
-      itemView:  MyItemView
-      emptyView: NoItemsView
-    })
+    unless @index_view
+      @index_view = new CharacterAppIndexView({ collection: @collection }).render()
+    
+    character.layout.main.show(@index_view)
 
 
   new: -> console.log "#{ @name } - new action."
@@ -64,6 +56,18 @@ class @CharacterAppController extends Marionette.Controller
   edit: -> console.log "#{ @name } - edit action."
 
   remove: -> console.log "#{ @name } - remove action."
+
+
+class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
+  template: JST["character/templates/index_item"]
+
+class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
+  template: JST["character/templates/index_empty"]
+
+class @CharacterAppIndexView extends Backbone.Marionette.CollectionView
+  itemView:  CharacterAppIndexItemView
+  emptyView: CharacterAppIndexNoItemsView
+
 
 
 
