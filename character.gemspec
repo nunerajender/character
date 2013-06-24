@@ -21,13 +21,15 @@ Gem::Specification.new do |gem|
   gem.rubyforge_project = 'nowarning'
 
   # assets
+
+  # stylesheets
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'zurb-foundation'
+
+  # javascript
   gem.add_runtime_dependency 'jquery-ui-rails'
-  
-  # TODO: revise and see if we can have only jquery dependency
-  gem.add_runtime_dependency 'lodash-rails', '~> 0.10.0'
-  gem.add_runtime_dependency 'underscore-string-rails'
+  gem.add_runtime_dependency 'underscore-rails'
+  gem.add_runtime_dependency 'marionette-rails'
 
   # TODO: we just need to have one set of icons which are used
   #       in core to keep code small and fast

@@ -1,91 +1,130 @@
+
 <header class='chr-header'>
   <div class='fixed'>
-    <nav class='top-bar'>
-      <ul class='title-area show-for-small'>
+    <nav class="top-bar">
+      <ul class="title-area">
         <!-- Title Area -->
-        <li class='name'>
-          <h1><a href='#'><%= ENV['WEBSITE_NAME'] %></a></h1>
+        
+        <li class="name">
+          <h1>
+            <a href="<%= ENV['WEBSITE_URL'] %>" target='_blank'>
+              <%= ENV['WEBSITE_NAME'] || 'Bingo!' %>
+            </a>
+          </h1>
         </li>
-        <li class='toggle-topbar menu-icon'><a href='#'><span>Menu</span></a></li>
+        
+        <li class="toggle-topbar menu-icon"><a href="#"><span><!-- Menu --></span></a></li>
       </ul>
 
-      <section class='top-bar-section'>
+      <section class="top-bar-section">
+        
         <!-- Left Nav Section -->
-        <ul class='left' id='main_menu'>
-
-<!-- 
-          <li class='divider hide-for-small'></li>
+        
+        <ul class="left">
+          <li class="divider"></li>
+          <li class="active"><a href="#/projects">Projects</a></li>
           
-          <li class='active hide-for-small'>
-            <a href='#' class='chr-home-link'><i class='icon-home'></i></a>
-          </li>
+<!--          
+          <li class="divider"></li>
+          <li><a href="#">Main Item 2</a></li>
 
-          <li class='active show-for-small'>
-            <a href='#'>Dashboard</a>
-          </li>
--->
+          <li class="divider"></li>
+          <li class="has-dropdown"><a href="#">Main Item 3</a>
 
-          <li class='divider'></li>
-        </ul>
+            <ul class="dropdown">
+              <li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
 
-        <!-- Right Nav Section: Settings and Logout -->
-        <ul class='right'>
-          <li class='divider hide-for-small'></li>
-          <li class='has-dropdown'>
-            <a href='#'>Settings</a>
+                <ul class="dropdown">
+                  <li><label>Dropdown Level 2 Label</label></li>
+                  <li><a href="#">Dropdown Level 2a</a></li>
+                  <li><a href="#">Dropdown Level 2b</a></li>
+                  <li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
 
-            <ul class='dropdown'>
-              <li><a href='#/admins'>Admins</a></li>
+                    <ul class="dropdown">
+                      <li><label>Dropdown Level 3 Label</label></li>
+                      <li><a href="#">Dropdown Level 3a</a></li>
+                      <li><a href="#">Dropdown Level 3b</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Dropdown Level 3c</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Dropdown Level 2d</a></li>
+                  <li><a href="#">Dropdown Level 2e</a></li>
+                  <li><a href="#">Dropdown Level 2f</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Level 1b</a></li>
+              <li><a href="#">Dropdown Level 1c</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Dropdown Level 1d</a></li>
+              <li><a href="#">Dropdown Level 1e</a></li>
+              <li><a href="#">Dropdown Level 1f</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
             </ul>
           </li>
+        -->
+          <li class="divider"></li>
+        </ul>
 
-          <li class='divider'></li>
+        <!-- Right Nav Section -->
+
+        <ul class="right">
+          
+          <!-- Settings Menu -->
+
+          <li class="divider hide-for-small"></li>
+
+          <li class="has-dropdown"><a href="#">Settings</a>
+
+            <ul class="dropdown">
+              <li><a href="#/admins">Admins</a></li>
+              <!--
+              <li><label>Dropdown Level 1 Label</label></li>
+              <li class="has-dropdown"><a href="#" class="">Dropdown Level 1a</a>
+
+                <ul class="dropdown">
+                  <li><a href="#">Dropdown Level 2a</a></li>
+                  <li><a href="#">Dropdown Level 2b</a></li>
+                  <li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
+
+                    <ul class="dropdown">
+                      <li><a href="#">Dropdown Level 3a</a></li>
+                      <li><a href="#">Dropdown Level 3b</a></li>
+                      <li><a href="#">Dropdown Level 3c</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Dropdown Level 2d</a></li>
+                  <li><a href="#">Dropdown Level 2e</a></li>
+                  <li><a href="#">Dropdown Level 2f</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Level 1b</a></li>
+              <li><a href="#">Dropdown Level 1c</a></li>
+              <li class="divider"></li>
+              <li><label>Dropdown Level 1 Label</label></li>
+              <li><a href="#">Dropdown Level 1d</a></li>
+              <li><a href="#">Dropdown Level 1e</a></li>
+              <li><a href="#">Dropdown Level 1f</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+              -->
+            </ul>
+          </li>
+          
+          <li class="divider"></li>
+
+          <!-- Logout button -->
           
           <li>
-            <%= link_to browserid_config.logout.path, class: 'browserid_logout' do %>
-              <%= image_tag @character_admin_user.avatar_url(50) %> Logout
+            <%= link_to browserid_config.logout.path, class: 'chr-logout' do %>
+              <%= image_tag @character_admin_user.avatar_url(30) %>
+              Logout
             <% end %>
           </li>
-
-          <li class='divider hide-for-small'></li>
         </ul>
       </section>
     </nav>
   </div>
-</header>
-
-
-
-    <!--
-    <nav class='top-bar'>
-      <section>
-        <ul class='left chr-main-menu' id='main_menu'>
-          <li class='active'>
-            <a class='chr-menu-home' href='#'><i class='icon-home'></i></a>
-          </li>
-        </ul>
-
-        <ul class='right'>
-          <li class='chr-menu-settings has-dropdown'>
-            <a href="#/admins">
-              <i class='icon-cog'></i> Settings
-            </a>
-
-            <ul class="dropdown">
-              <li><a href="#/admins">Admins</a></li>
-              <li><a href="#/assets">Assets</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <%= link_to browserid_config.logout.path, class: :browserid_logout do %>
-              <%= image_tag @character_admin_user.avatar_url(50) %> Logout
-            <% end %>
-          </li>
-        </ul>
-      </section>
-    </nav>
-
-    <div class='chr-top-bar-line'></div>
-    -->
+</header>  
 

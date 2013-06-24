@@ -9,12 +9,29 @@
 
 @import "compass/css3";
 
-@import "character/foundation_and_overrides",
-        "character/global",
-        "character/topbar",
-        "character/panel",
-        "character/index",
-        "character/login",
-        "character/form",
-        "character/footer";
+// $em-base: 14px;
+// $body-bg: #edeeef;
+// $body-font-color: #222;
+// $primary-color: #355d98;
+// $column-gutter: 28px; // 1.875em;
+// $topbar-bg: $primary-color;
+// $topbar-height: 40px; // 45px;
+
+@import "foundation";
+
+.chr-logout                           {
+  img                                 { margin: -.2em .5em 0 0;
+                                        @include border-radius(5px);
+  }
+}
+
+// @import "character/global",
+//         "character/topbar",
+//         "character/panel",
+//         "character/index",
+//         "character/login",
+//         "character/form",
+//         "character/footer";
+
+
 

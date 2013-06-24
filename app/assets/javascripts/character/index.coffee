@@ -2,60 +2,34 @@
 #= require jquery_ujs
 #= require jquery.ui.sortable
 #= require jquery.ui.datepicker
-
-#= require browserid
-#= require foundation
-
-#= require lodash
+#= require underscore
 #= require underscore.string
-
-#= require character/plugins/backbone
-#= require character/plugins/underscore.string.slugify
-#= require character/plugins/replace_nth_occurrence
-#  require character/plugins/jquery.smartresize
-#= require character/plugins/jquery.form
-
+#= require underscore.inflection
+#= require backbone
+#= require backbone.marionette
+#= require foundation
 #= require_self
-#= require character/generic
+#= require ./application
+
+_.mixin(_.str.exports())
+
+@CharacterOptions = {}
+
+class @CharacterGenericModel extends Backbone.Model
+  idAttribute: '_id'
 
 
-# ##      ##  #######  ########  ##    ##  ######  ########     ###     ######  ######## 
-# ##  ##  ## ##     ## ##     ## ##   ##  ##    ## ##     ##   ## ##   ##    ## ##       
-# ##  ##  ## ##     ## ##     ## ##  ##   ##       ##     ##  ##   ##  ##       ##       
-# ##  ##  ## ##     ## ########  #####     ######  ########  ##     ## ##       ######   
-# ##  ##  ## ##     ## ##   ##   ##  ##         ## ##        ######### ##       ##       
-# ##  ##  ## ##     ## ##    ##  ##   ##  ##    ## ##        ##     ## ##    ## ##       
-#  ###  ###   #######  ##     ## ##    ##  ######  ##        ##     ##  ######  ######## 
+class @CharacterGenericCollection extends Backbone.Collection
+  model: window.CharacterGenericModel
 
 
-
-class CharacterWorkspace
-  # allows Character apps to communicate between each other
-
-  constructor: ->
-    @current_view = null
-    @router       = new Backbone.Router()
-    @collections  = {}
-    @apps         = {}
-
+@character = new Backbone.Marionette.Application()
+@character.on "initialize:after", (options) ->
+  # backbone history
+  if Backbone.history then Backbone.history.start()
   
-  current_view_is: (scope, view_id) ->
-    (@current_view and @current_view.id == view_id and @current_view.options.scope == scope)
+  # foundation plugins
+  $(document).foundation('topbar section forms');
 
-
-  set_current_view: (view) ->
-    (@current_view.remove() ; delete @current_view) if @current_view
-    @current_view = view
-
-
-  launch: ->
-    if window.character_apps
-      _.each window.character_apps, (callback, app) =>
-        @apps[app] = callback()
-
-    Backbone.history.start()
-
-
-window.Character      = CharacterWorkspace
-
+  console.log('Character: Let\'s rock!');
 

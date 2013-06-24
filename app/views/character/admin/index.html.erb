@@ -10,25 +10,36 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
   <title><%= ENV['WEBSITE_NAME'] %> | Admin</title>
+  
   <%= stylesheet_link_tag 'admin', :media => 'all' %>
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
+  
   <%= javascript_include_tag 'admin' %>
-  <%= setup_browserid %>
+
+  <%#= setup_browserid %>
 
   <%= csrf_meta_tags %>
 </head>
 
-<body class='antialiased'>
-<% if @character_admin_user %>
-  <%= render partial: 'character/admin/header' %>
+<body class='antialiased'> <!-- anitialiased used to make fonts smooth -->
 
-  <div id='character'></div>
+  <% if @character_admin_user %>
+    <%= render partial: 'character/admin/header' %>
 
-  <%= render 'character/admin/javascript' %>
-<% else %>
-  <%= render 'character/admin/login' %>
-<% end %>
+    <div id='character'></div>
+
+    <script type='text/javascript'>
+      $(function(){
+        window.character.start(window.CharacterOptions);
+      });
+    </script>
+
+  <% else %>
+
+    <%= render 'character/admin/login' %>
+
+  <% end %>
 
 </body>
 </html>

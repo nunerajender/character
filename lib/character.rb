@@ -3,8 +3,8 @@ require 'compass-rails'
 require 'zurb-foundation'
 require 'jquery-ui-rails'
 
-require 'lodash-rails'
-require 'underscore-string-rails'
+require 'underscore-rails'
+require 'marionette-rails'
 
 require 'foundation-icons-sass-rails'
 require 'font-awesome-sass-rails'
