@@ -1,0 +1,98 @@
+
+body                                  { background: #fafafa;
+}
+
+@media #{$small}                      {
+
+  // Menu layout
+  .chr-header,
+  .top-bar                            { width:100px;
+                                        height:100%;
+  }
+  .title-area                         { width:100%;
+                                        height:76px;
+    .name h1                          { line-height:76px;
+                                        text-align:center;
+    }
+  }
+
+  .top-bar-section                    { height:100%;
+    .left,
+    .right                            { width:100%;
+    }
+    .right                            { position: absolute;
+                                        left: 0;
+                                        bottom: 0px;
+    }
+    ul li                             { width:100%;
+                                        text-align:center;
+                                        font-size:.85em;
+      & > a                           { font-weight:600;
+                                        color:#ccc;
+        &:hover                       { color:#fff;
+        }
+      }
+    }
+    ul > .divider                     { height:1px;
+    }
+  }
+
+  // Application layout
+  .chr-index-layout                   { position: absolute;
+                                        top: 0;
+                                        width: 100%;
+                                        padding-left: 100px;
+                                        margin-top:0;
+    & > .row > .columns               { padding:0;
+    }
+  }
+
+  .chr-index-panel header             { padding: 2.1em 1.5em 1.5em;
+  }
+}
+
+// Colors
+
+.chr-index-panel header               { background: #fff;
+                                        color: #828892;
+                                        box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                        // to have shadow for header
+                                        position: absolute;
+                                        width: 100%;
+}
+
+.chr-index-panel section              { margin-top:76px;
+}
+
+.chr-index-panel                      {
+  li                                  {
+    &:last-child                      { border-bottom: 1px solid #ddd;
+                                        box-shadow: 0 0 3px #ddd;
+    }
+    a                                 { background: #fafafa;
+                                        border-top: 1px solid #eee;
+                                        padding: 1em 1.3em;
+                                        color: #999;
+                                        position: relative;
+      strong                          { color:#666;
+      }
+    }
+
+    img                               { width:26px;
+                                        height:26px;
+                                        float:left;
+                                        @include border-radius(15px);
+    }
+
+    .chr-index-item-container         { padding: 0 0 0 2.5em;
+                                        font-size:.95em;
+    }
+  }
+}
+
+
+
+
+
+
+

@@ -1,17 +1,21 @@
 <div class='row'>
-  <div class='small-12 large-5 columns chr-index-view'>
-    <div class='panel chr-index-panel'>
-      <header id='index_header'>
-        <aside class='right'>
-          <a href='#/projects/new' class='general foundicon-add-doc'></a>
-        </aside>
-        <strong class='chr-index-title'>Projects</strong>
-      </header>
-      <section id='index_body'></section>
-      <footer></footer>
-    </div>
-  </div>
+
+  <section class='small-12 large-5 columns chr-index-panel'>
+    
+    <header id='index_header'>
+      <aside class='right'>
+        <a href='#/projects/new' class='general foundicon-add-doc'></a>
+      </aside>
+      <strong class='chr-index-title'>Projects</strong>
+    </header>
+    
+    <section id='index_body'></section>
+    
+    <footer></footer>
+  </section>
 
   <div class='small-12 large-7 columns' id='right_panel'>
+    <div id='content'>
+    </div>
   </div>  
 </div>

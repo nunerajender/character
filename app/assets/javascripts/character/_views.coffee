@@ -16,7 +16,7 @@ class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionVie
 
 class @CharacterAppIndexFormView extends Backbone.Marionette.ItemView
   template: JST["character/templates/form"]
-  className: 'panel chr-index-panel'
+  className: 'panel'
 
   ui:
     header: '#form_header'

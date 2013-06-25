@@ -1,13 +1,14 @@
 
-<header class='chr-header' id='menu'>
-  <div class='fixed'>
+<header class='chr-header fixed' id='menu'>
     <nav class="top-bar">
       <ul class="title-area">
         <!-- Title Area -->
         
         <li class="name">
           <h1>
-            <a href="#" target='_blank' id='project_title'>bingo!</a>
+            <a href="#" target='_blank'>
+              <img id='user_image' class='chr-user-image' />
+            </a>
           </h1>
         </li>
         
@@ -20,13 +21,17 @@
           <li class="divider"></li>
           <li class="active"><a href="#/projects">Projects</a></li>
           <li class="divider"></li>
+          <li class="active"><a href="#/admins">Admins</a></li>
+          <li class="divider"></li>
         </ul>
 
         <ul class="right">
           
-          <!-- Settings Menu -->
-
           <li class="divider hide-for-small"></li>
+
+          <!-- Settings Menu -->
+          
+          <!-- 
 
           <li class="has-dropdown"><a href="#">Settings</a>
 
@@ -34,20 +39,20 @@
               <li><a href="#/admins">Admins</a></li>
             </ul>
           </li>
-          
+
+
           <li class="divider"></li>
+
+          -->
 
           <!-- Logout button -->
           
           <li>
-            <a href='/admin/logout' class='chr-logout'>
-              <img id='user_image' /> Logout
-            </a>
+            <a href='/admin/logout' class='chr-logout'>Logout</a>
           </li>
         </ul>
       </section>
     </nav>
-  </div>
 </header>  
 
 <div id='main'></div>

@@ -48,7 +48,7 @@ _.mixin(_.str.exports())
   $(document).foundation('topbar section forms');
 
   # update external values defined in html layout
-  @layout.ui.title.html(window.website_name)
+  #@layout.ui.title.html(window.website_name)
   @layout.ui.user_image.attr( 'src', window.user_image_url)
 
   console.log('Character: Let\'s rock!');

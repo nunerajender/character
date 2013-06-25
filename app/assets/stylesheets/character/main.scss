@@ -27,10 +27,8 @@ html                                  { overflow: -moz-scrollbars-vertical;
 .top-bar                              { margin-bottom:0;
 }
 
-.chr-logout                           {
-  img                                 { margin: -.2em .5em 0 0;
-                                        @include border-radius(5px);
-  }
+.chr-user-image                       { margin-top:-0.3em;
+                                        @include border-radius(3px);
 }
 
 .chr-index-layout                     { margin-top:$column-gutter/2;
@@ -38,54 +36,23 @@ html                                  { overflow: -moz-scrollbars-vertical;
                                         max-width:100%;
   }
 
-  .chr-index-panel                    { height:100%;
-  }
 }
 
-
-@media #{$small}                      {
-  .chr-index-layout                   {
-    .row > .columns:last-child        { padding-left:$column-gutter/4;
-    }
-  }
-  .chr-index-view                     { padding-right:$column-gutter/4;
-  }
-}
-
-
-.chr-index-panel                      { margin-bottom:0;
+.chr-index-panel                      { height:100%;
+                                        margin-bottom:0;
                                         padding:0;
 
   header                              { padding:.5em;
+                                        background: #fff;
   }
 
   form                                { margin-bottom:0;
   }
-}
 
-
-.chr-index-view                       { position: fixed;
-                                        padding-bottom: 3.8em;
-                                        height:100%;
-      .panel                          { height:100%;
-      }
-
-      li                              { padding:0 .5em;
-                                        margin-bottom:1px;
-                                        background-color:white;
+      li                              { //padding:0 .5em;
         a                             { display:block;
         }
       }
-      
-      img                             { width:36px;
-                                        height:36px;
-                                        margin:-4px .25em 0 -4px;
-                                        @include border-radius(18px);
-      }
-}
-
-
-.chr-index-item-title                 { line-height:2.8;
 }
 
 
@@ -98,5 +65,5 @@ html                                  { overflow: -moz-scrollbars-vertical;
                                         margin-top: .2em;
 }
 
-
+@import "theme";
 
