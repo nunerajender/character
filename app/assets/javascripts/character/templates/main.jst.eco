@@ -7,7 +7,7 @@
         
         <li class="name">
           <h1>
-            <a href="#" target='_blank'>bingo!</a>
+            <a href="#" target='_blank' id='project_title'>bingo!</a>
           </h1>
         </li>
         
@@ -40,7 +40,9 @@
           <!-- Logout button -->
           
           <li>
-            <a href='/admin/logout' class='chr-logout'> Logout </a>
+            <a href='/admin/logout' class='chr-logout'>
+              <img id='user_image' /> Logout
+            </a>
           </li>
         </ul>
       </section>

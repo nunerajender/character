@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='small-12 large-6 columns'>
+  <div class='small-12 large-6 columns chr-index-view'>
     <div class='panel'>
       <header id='index_header' class='chr-index-header'>
         <aside class='right'>

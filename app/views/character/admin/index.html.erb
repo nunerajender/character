@@ -21,7 +21,9 @@
 
   <% if @character_admin_user %>
     <script type='text/javascript'>
-      window.user_avatar_url = '<%= @character_admin_user.avatar_url(30) %>';
+      window.website_name    = '<%= ENV["WEBSITE_NAME"] || "chr." %>';
+      window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
+      window.user_image_url = '<%= @character_admin_user.avatar_url(30) %>';
       $(function(){ character.start(); });
     </script>
   <% end %>

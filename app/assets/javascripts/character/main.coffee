@@ -24,6 +24,9 @@ _.mixin(_.str.exports())
   regions:
     menu: "#menu"
     main: "#main"
+  ui:
+    title:      '#project_title'
+    user_image: '#user_image'
 
 
 @character = new Backbone.Marionette.Application()
@@ -43,6 +46,10 @@ _.mixin(_.str.exports())
   
   # foundation plugins
   $(document).foundation('topbar section forms');
+
+  # update external values defined in html layout
+  @layout.ui.title.html(window.website_name)
+  @layout.ui.user_image.attr( 'src', window.user_image_url)
 
   console.log('Character: Let\'s rock!');
 

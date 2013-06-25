@@ -30,7 +30,9 @@ $row-width: 100%;
 }
 
 .chr-index-layout                     { margin-top:$column-gutter/2;
-  .row > .columns:first-child         { position: fixed;
+}
+
+.chr-index-view                       { position: fixed;
                                         padding-bottom: 3.8em;
                                         height:100%;
       .panel                          { height:100%;
@@ -38,39 +40,32 @@ $row-width: 100%;
       }
 
       header                          { padding:.5em;
-                                        font-size:.9em;
-                                        text-transform:uppercase;
-                                        font-weight:bold;
-                                        color:#888;
       }
 
-      li                              { background-color:white;
-                                        padding:0 .5em;
-                                        color:#333;
-                                        font-size:1em;
+      li                              { padding:0 .5em;
                                         margin-bottom:1px;
-        a                             { color:#222;
-                                        display:block;
+                                        background-color:white;
+        a                             { display:block;
         }
       }
       
-      .chr-title                      { line-height:2.8;
-      }
-
       img                             { width:36px;
                                         height:36px;
                                         margin:-4px .25em 0 -4px;
                                         @include border-radius(18px);
       }
-  }
 }
+
+.chr-index-item-title                 { line-height:2.8;
+}
+
 
 @media #{$small}                      {
   .chr-index-layout                   {
-    .row > .columns:first-child       { padding-right:$column-gutter/4;
-    }
     .row > .columns:last-child        { padding-left:$column-gutter/4;
     }
+  }
+  .chr-index-view                     { padding-right:$column-gutter/4;
   }
 }
 

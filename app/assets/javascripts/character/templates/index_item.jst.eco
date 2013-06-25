@@ -1,4 +1,4 @@
 <a href='#' title='<%= @title %>'>
   <% if @image: %><img src='<%= @image %>' /><% end %>
-  <span class='chr-title'><%= @title %></span>
+  <span class='chr-index-item-title'><%= @title %></span>
 </a>
