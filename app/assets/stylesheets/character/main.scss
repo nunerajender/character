@@ -16,9 +16,13 @@
 $column-gutter: 1em; // 1.875em;
 // $topbar-bg: $primary-color;
 // $topbar-height: 40px; // 45px;
-$row-width: 100%;
+// $row-width: 100%;
 
 @import "foundation";
+
+html                                  { overflow: -moz-scrollbars-vertical;
+                                        overflow-y: scroll;
+}
 
 .top-bar                              { margin-bottom:0;
 }
@@ -30,16 +34,25 @@ $row-width: 100%;
 }
 
 .chr-index-layout                     { margin-top:$column-gutter/2;
+  & > .row                            { width:100%;
+                                        max-width:100%;
+  }
+  .panel                              { height:100%;
+                                        padding:0;
+  }
+}
+
+.chr-index-panel                      { margin-bottom:0;
+  header                              { padding:.5em;
+  }
+  form                                { margin-bottom:0;
+  }
 }
 
 .chr-index-view                       { position: fixed;
                                         padding-bottom: 3.8em;
                                         height:100%;
       .panel                          { height:100%;
-                                        padding:0;
-      }
-
-      header                          { padding:.5em;
       }
 
       li                              { padding:0 .5em;
@@ -69,7 +82,8 @@ $row-width: 100%;
   }
 }
 
-
+.chr-form-body                        { padding: 0 .8em 0 1em;
+}
 
 
 

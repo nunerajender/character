@@ -1,4 +1,4 @@
-<a href='#' title='<%= @title %>'>
+<a href='#/projects/edit/<%= @_id %>' title='<%= @title %>'>
   <% if @image: %><img src='<%= @image %>' /><% end %>
   <span class='chr-index-item-title'><%= @title %></span>
 </a>

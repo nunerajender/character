@@ -86,9 +86,9 @@ class Character::Admin::ApiController < Character::Admin::BaseController
 
     
     if @model_class.method_defined? :admin_thumb_url
-      mapped_objects = @objects.map {|o| {title:o.try(title_field),image:o.admin_thumb_url}}
+      mapped_objects = @objects.map {|o| {_id:o.id,title:o.try(title_field),image:o.admin_thumb_url}}
     else
-      mapped_objects = @objects.map {|o| {title:o.try(title_field)} }    
+      mapped_objects = @objects.map {|o| {_id:o.id,title:o.try(title_field)} }    
     end
 
     render json: {  objects:       mapped_objects,

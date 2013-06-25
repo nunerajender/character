@@ -19,9 +19,9 @@ class @CharacterApp
     window.character.module name, ->
       scope  = options.scope
       routes = {}
-      routes["#{ scope }"]      = "index"
-      routes["#{ scope }/new"]  = "new"
-      routes["#{ scope }/edit"] = "edit"
+      routes["#{ scope }"]          = "index"
+      routes["#{ scope }/new"]      = "new"
+      routes["#{ scope }/edit/:id"] = "edit"
 
       AppRouter = Backbone.Marionette.AppRouter.extend
         appRoutes: routes
