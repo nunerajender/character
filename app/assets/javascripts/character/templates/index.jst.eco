@@ -1,0 +1,20 @@
+<div class='row'>
+  <div class='small-12 large-6 columns'>
+    <div class='panel'>
+      <header id='index_header' class='chr-index-header'>
+        <aside class='right'>
+          <a href='#/projects/new' class='general foundicon-add-doc'></a>
+        </aside>
+        <strong class='chr-index-title'>Projects</strong>
+      </header>
+      <section id='index_body'></section>
+      <footer></footer>
+    </div>
+  </div>
+
+  <div class='small-12 large-6 columns'>
+    <div class='panel' id='right_panel' style='display:none;'>
+      Form goes here.
+    </div>
+  </div>  
+</div>

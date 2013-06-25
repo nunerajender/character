@@ -1,0 +1,92 @@
+
+/*
+        ##        #######   ######   #### ##    ## 
+        ##       ##     ## ##    ##   ##  ###   ## 
+        ##       ##     ## ##         ##  ####  ## 
+        ##       ##     ## ##   ####  ##  ## ## ## 
+        ##       ##     ## ##    ##   ##  ##  #### 
+        ##       ##     ## ##    ##   ##  ##   ### 
+        ########  #######   ######   #### ##    ## 
+*/
+
+$white: #fff;
+$black: #000;
+
+.chr-login                            { background:$white;
+                                        padding:1em 1em 2em;
+                                        @include shadow;
+                                        @include grid-column(6);
+                                        float: none;
+                                        margin: 2em auto;
+}
+
+.chr-login-icon                       { width:2em;
+                                        height:2em;
+                                        margin: .3em auto;
+                                        font-size:3em;
+                                        @include border-radius(1em);
+
+                                        background:lighten($black, 10%);
+                                        color:darken($white, 10%);
+                                        text-align:center;
+                                        line-height: 2;
+
+                                        @include single-text-shadow(1px, 1px, 2px, false, rgba(0,0,0,0.2));
+                                        border:1px solid lighten($black, 8%);
+                                        @include shadow;
+}
+
+.chr-login-message                    { text-align:center;
+
+  h1                                  { margin-bottom:0;
+  }
+
+  .browserid_login                    { background:lighten($primary-color, 5%);
+                                        border:darken($primary-color, 5%);
+                                        font-size:1em;
+                                        display:block;
+                                        width:16em;
+                                        margin:0 auto;
+                                        margin-top: 1em;
+                                        text-align:left;
+                                        overflow:hidden;
+                                        @include shadow;
+                                        @include border-radius(10px);
+                                        @include single-text-shadow(1px, 1px, 2px, false, rgba(0,0,0,0.2));
+
+    strong                            { color:$white;
+                                        top: -.2em;
+                                        position: relative;
+                                        @include single-text-shadow(1px, 1px, 2px, false, rgba(0,0,0,0.2));
+    }
+
+    &:hover strong                    { text-decoration: underline;
+    }
+  }
+  i                                   { background:darken($primary-color, 5%);
+                                        color:$white;
+                                        line-height:2;
+                                        padding:0 .1em 0 .8em;
+                                        position:relative;
+                                        margin-right:1.3em;
+                                        font-size:1.8em;
+                                        @include border-top-left-radius(10px);
+                                        @include border-bottom-left-radius(10px);
+
+
+    &:after                           { left: 100%;
+                                        border: solid transparent;
+                                        content: " ";
+                                        height: 0;
+                                        width: 0;
+                                        position: absolute;
+                                        pointer-events: none;
+    }
+
+    &:after                           { border-left-color:darken($primary-color, 5%);
+                                        border-width: 1em;
+                                        top: 50%;
+                                        margin-top: -1em;
+    }  
+  }
+}

@@ -1,0 +1,51 @@
+
+<header class='chr-header' id='menu'>
+  <div class='fixed'>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <!-- Title Area -->
+        
+        <li class="name">
+          <h1>
+            <a href="#" target='_blank'>bingo!</a>
+          </h1>
+        </li>
+        
+        <li class="toggle-topbar menu-icon"><a href="#"><span><!-- Menu --></span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        
+        <ul class="left">
+          <li class="divider"></li>
+          <li class="active"><a href="#/projects">Projects</a></li>
+          <li class="divider"></li>
+        </ul>
+
+        <ul class="right">
+          
+          <!-- Settings Menu -->
+
+          <li class="divider hide-for-small"></li>
+
+          <li class="has-dropdown"><a href="#">Settings</a>
+
+            <ul class="dropdown">
+              <li><a href="#/admins">Admins</a></li>
+            </ul>
+          </li>
+          
+          <li class="divider"></li>
+
+          <!-- Logout button -->
+          
+          <li>
+            <a href='/admin/logout' class='chr-logout'> Logout </a>
+          </li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+</header>  
+
+<div id='main'></div>
