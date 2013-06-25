@@ -1,4 +1,3 @@
-
 class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
   template: JST["character/templates/index_item"]
   tagName: 'li'
@@ -9,17 +8,23 @@ class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
 
 
 class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionView
-  tagName: 'ul'
+  tagName:   'ul'
   className: 'no-bullet'
   itemView:  CharacterAppIndexItemView
   emptyView: CharacterAppIndexNoItemsView
 
 
 class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
-  template: JST["character/templates/index_layout"]
+  template: JST["character/templates/index"]
   className: 'chr-index-layout'
 
   regions:
-    view_title:       '#index_title'
-    view_collection:  '#index_collection'
-    view_right:       '#right_panel'
+    header:     '#index_header'
+    body:       '#index_body'
+    footer:     '#index_footer'
+    view_right: '#right_panel'
+
+  ui:
+    right_panel: '#right_panel'
+
+

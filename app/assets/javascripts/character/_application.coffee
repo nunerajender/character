@@ -1,4 +1,3 @@
-
 class @CharacterApp
   constructor: (options_or_name) ->
 
@@ -30,33 +29,4 @@ class @CharacterApp
       @controller = options.controller || new CharacterAppController(options)
       @router = new AppRouter
         controller: @controller
-
-
-class @CharacterAppController extends Marionette.Controller
-  initialize: (@options) ->
-    @name = @options.name
-
-    # Collection setup
-    @collection     = new CharacterGenericCollection()
-    @collection.url = @options.api || "/admin/api/#{ @options.name }"
-
-
-  index: ->
-    @collection.fetch()
-
-    @layout = new CharacterAppIndexLayout().render()
-    character.layout.main.show(@layout)
-
-    @collection_view = new CharacterAppIndexCollectionView({ collection: @collection }).render()
-    #@layout.title.show(@option.name)
-    @layout.view_collection.show(@collection_view)
-
-
-  new: -> console.log "#{ @name } - new action."
-
-  edit: -> console.log "#{ @name } - edit action."
-
-  remove: -> console.log "#{ @name } - remove action."
-
-
 

@@ -2,9 +2,6 @@
 class @CharacterGenericModel extends Backbone.Model
   idAttribute: '_id'
 
-  first_attribute: ->
-    'hello!'
-
 
 class @CharacterGenericCollection extends Backbone.Collection
   model: window.CharacterGenericModel
