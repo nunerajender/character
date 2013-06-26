@@ -2,11 +2,15 @@ module ActionDispatch::Routing
   class Mapper
 
     def mount_character_admin
+
+      devise_for :admin_users, :class_name => "Character::AdminUser"
+
       scope '/character', :module => "Character::Admin" do
         match '/',        to: 'admin#index'
+
         # TODO: two below should be replaced with devise auth methods
-        match '/login',   to: 'sessions#create'
-        match '/logout',  to: 'sessions#destroy'
+        # match '/login',   to: 'sessions#create'
+        # match '/logout',  to: 'sessions#destroy'
 
         scope 'api' do
           get     '/:model_slug(.:format)',         to: 'api#index'
