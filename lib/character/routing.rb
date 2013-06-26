@@ -5,7 +5,7 @@ module ActionDispatch::Routing
 
       devise_for :admin_users, :class_name => "Character::AdminUser"
 
-      scope '/character', :module => "Character::Admin" do
+      scope '/admin', :module => "Character::Admin" do
         match '/',        to: 'admin#index'
 
         # TODO: two below should be replaced with devise auth methods

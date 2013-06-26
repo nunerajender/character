@@ -2,7 +2,7 @@ class @CharacterAppController extends Marionette.Controller
   initialize: (@options) ->
 
     # Model api access url
-    @api_url = @options.api || "/character/api/#{ @options.name }"
+    @api_url = @options.api || "/admin/api/#{ @options.name }"
     
     # Collection setup
     @collection             = new CharacterGenericCollection()
@@ -29,10 +29,8 @@ class @CharacterAppController extends Marionette.Controller
         success: (collection, response, options) =>
           # add scope to every model so it knows where it belongs
           collection.each (model) => model.set({ __scope: @options.scope })
-
-          console.log collection
-          
           callback() if callback
+
     else
       callback() if callback
 

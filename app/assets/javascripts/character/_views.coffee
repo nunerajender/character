@@ -83,8 +83,8 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     if @model then @model.set(obj) else @collection.add(obj)
 
   on_delete: (e) ->
-    if confirm("Do you really want to remove: '#{ @model.get('title') }'?")
-      #@model.destroy()
+    if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")
+      @model.destroy()
       @close()
     else
       e.preventDefault() if e

@@ -36,7 +36,7 @@ class @CharacterGenericCollection extends Backbone.Collection
     @total_pages = 0
     @request_params =
       page:         1
-      per_page:     10
+      per_page:     50
       search_query: ''
 
 
