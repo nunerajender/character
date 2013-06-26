@@ -45,6 +45,8 @@ class Character::Admin::ApiController < Character::Admin::BaseController
   #   Not sure what this is used for.
 
   def set_admin_user_id
+    puts '>>>>>>>>>>>>>>>>>'
+    puts current_admin_user.email
     params[@namespace][:admin_user_id] = @character_admin_user.id
   end
 
@@ -140,7 +142,7 @@ class Character::Admin::ApiController < Character::Admin::BaseController
     # TODO: Add an option to render custom template if the one
     #       is defined in the app for the model.
     @object = @model_class.find(params[:id])
-    render json: @object    
+    render json: @object
   end
 
 
@@ -155,7 +157,7 @@ class Character::Admin::ApiController < Character::Admin::BaseController
     @form_action_url = "/character/api/#{ @model_slug }"
     @object = @model_class.new
     render @form_template, layout: false
-  end  
+  end
 
 
   # - new action comment relates to edit action as well.
@@ -182,7 +184,7 @@ class Character::Admin::ApiController < Character::Admin::BaseController
     # TODO: support of multiple object update
 
     @object = @model_class.find(params[:id])
-    
+
     if @object.update_attributes params[@namespace]
       render json: build_character_item(@object)
     else
@@ -206,7 +208,7 @@ class Character::Admin::ApiController < Character::Admin::BaseController
     # TODO: need to add reordarable check
     @model_class.reorder(params[:ids])
     render json: 'ok'
-  end  
+  end
 end
 
 

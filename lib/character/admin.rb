@@ -76,13 +76,13 @@ module Character::Admin
 
     def admin_item_options
       hash    = {}
-      
+
       fields  = admin_editable_fields
       hash[:line1_left]  = fields[0]
       hash[:line2_left]  = fields[1] if fields.size > 1
       hash[:line1_right] = fields[2] if fields.size > 2
 
-      hash[:line1_right] = :formatted_created_at if self.method_defined? :formatted_created_at 
+      hash[:line1_right] = :formatted_created_at if self.method_defined? :formatted_created_at
       hash[:image_url]   = :admin_thumb_url      if self.method_defined? :admin_thumb_url
 
       hash

@@ -12,7 +12,8 @@ require 'eco'
 
 # backend
 require 'mongoid/reorder'
-require 'browserid-rails'
+require 'devise'
+require 'devise-browserid'
 require 'simple_form'
 require 'kaminari'
 
