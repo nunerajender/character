@@ -1,8 +1,8 @@
 # encoding: UTF-8
-namespace :character do
+namespace :admin do
   
-  desc 'Add admin user: rake character::add_admin[admin@email.com]'
-  task :add_admin, [:email] => :environment do |task, args|
+  desc 'Add admin user: rake admin::add_user[admin@email.com]'
+  task :add_user, [:email] => :environment do |task, args|
     # TODO: add user name to this task
     #       revise this method after Devise is integrated
     email = args.email

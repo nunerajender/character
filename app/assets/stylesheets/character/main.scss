@@ -5,18 +5,8 @@
 @charset "UTF-8";
 
 @import "foundation-icons";
-@import "font-awesome";
 
 @import "compass/css3";
-
-// $em-base: 14px;
-// $body-bg: #edeeef;
-// $body-font-color: #222;
-// $primary-color: #355d98;
-// $column-gutter: 1em; // 1.875em;
-// $topbar-bg: $primary-color;
-// $topbar-height: 40px; // 45px;
-// $row-width: 100%;
 
 // THEME for forms
 
@@ -29,9 +19,9 @@ $form-label-font-color: #777;
 
 @import "foundation";
 
-// html                                  { overflow: -moz-scrollbars-vertical;
-//                                         overflow-y: scroll;
-// }
+body                                  { background: #fafafa;
+                                        position: inherit;
+}
 
 .top-bar                              { margin-bottom: 0;
 }
@@ -39,27 +29,6 @@ $form-label-font-color: #777;
 .chr-user-image                       { margin-top:-0.3em;
                                         @include border-radius(3px);
 }
-
-// .chr-index-layout                     { margin-top:$column-gutter/2;
-//   & > .row                            { width:100%;
-//                                         max-width:100%;
-//   }
-
-// }
-
-.chr-index-list                       {
-  header                              { padding:.5em;
-                                        background: #fff;
-  }
-
-  form                                { margin-bottom:0;
-  }
-}
-
-
-// .chr-form-body                        { padding: 0 .8em 0 1em;
-// }
-
 
 .custom label.boolean                 { display:inline-block;
                                         margin-left: .5em;

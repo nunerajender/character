@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.description   = ''
   gem.license       = ''
 
-  gem.authors       = ['Alexander Kravets']
+  gem.authors       = ['Alexander Kravets', 'Maxim Melnyk']
   gem.email         = 'alex@slatestudio.com'
   gem.homepage      = 'https://github.com/slate-studio/character'
 
@@ -25,6 +25,7 @@ Gem::Specification.new do |gem|
   # stylesheets
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'zurb-foundation'
+  gem.add_runtime_dependency 'foundation-icons-sass-rails'
 
   # javascript
   gem.add_runtime_dependency 'jquery-ui-rails'
@@ -32,10 +33,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'marionette-rails'
   gem.add_runtime_dependency 'eco'
 
-  # TODO: we just need to have one set of icons which are used
-  #       in core to keep code small and fast
-  gem.add_runtime_dependency 'foundation-icons-sass-rails'
-  gem.add_runtime_dependency 'font-awesome-sass-rails'
 
   # devise + browserid auth
   gem.add_runtime_dependency 'devise'
@@ -46,6 +43,7 @@ Gem::Specification.new do |gem|
 
   # index action pagination feature is implemented
   # using kaminari library
+  # TODO: check if we need this
   gem.add_runtime_dependency 'kaminari'
 end
 

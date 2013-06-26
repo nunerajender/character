@@ -1,21 +1,10 @@
 class Character::AdminUser
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Character::Admin
 
   field :name
 
-
-  #
-  # Relations
-  #
-
-  # has_many :posts, :class_name => 'Character::Post'
-
-
-  #
-  # Devise
-  #
+  # Devise ------------------------------------------------
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -60,10 +49,7 @@ class Character::AdminUser
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-
-  #
-  # Methods
-  #
+  # Methods -----------------------------------------------
 
   def self.find_by_email(email)
     Character::AdminUser.where(email:email).first()
@@ -76,9 +62,5 @@ class Character::AdminUser
 
   def character_thumb_url
     avatar_url(56)
-  end
-
-  def self.admin_title
-    "Admins"
   end
 end

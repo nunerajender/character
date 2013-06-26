@@ -1,9 +1,7 @@
-<% config = @object.admin_form_config %>
-
 <%= simple_form_for @object, url: @form_action_url do |f| %>
   <div class='row'>
     <div class='small-12 columns'>  
-      <% config[:fields].each do |name| %>
+      <% @form_fields.each do |name| %>
 
         <%= f.input name %>
 

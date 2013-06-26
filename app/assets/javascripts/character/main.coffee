@@ -58,7 +58,7 @@ _.mixin(_.str.exports())
 new @CharacterApp("Project")
 new @CharacterApp
   name: "Admin"
-  api:  "/admin/api/Character-AdminUser"
+  api:  "/admin/Character-AdminUser"
 
 
 

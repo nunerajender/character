@@ -2,7 +2,7 @@ class @CharacterAppController extends Marionette.Controller
   initialize: (@options) ->
 
     # Model api access url
-    @api_url = @options.api || "/admin/api/#{ @options.name }"
+    @api_url = @options.api || "/admin/#{ @options.name }"
     
     # Collection setup
     @collection             = new CharacterGenericCollection()
