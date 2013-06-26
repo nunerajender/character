@@ -15,6 +15,8 @@ class @CharacterApp
 
     if not options.scope then options.scope = _.pluralize(_.slugify(name))
 
+    if not options.collection_title then options.collection_title = _(name).pluralize()
+
     # Add module to the main application
     window.character.module name, ->
       scope  = options.scope

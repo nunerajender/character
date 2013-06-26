@@ -29,9 +29,12 @@ class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
     footer:  '#list_footer'
     details: '#details'
 
-  onRender: ->
-    console.log 'render layout'
+  ui:
+    title:   '#list_title'
 
+  onRender: ->
+    @ui.title.html @options.title
+    console.log 'render layout'
 
 
 class @CharacterAppDetailsHeaderView extends Backbone.Marionette.ItemView

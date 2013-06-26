@@ -10,7 +10,7 @@ class @CharacterAppController extends Marionette.Controller
     @collection.model_name  = @options.name # this is used to identify if collection is already shown as index view
 
     # Layout and views
-    @layout = new CharacterAppIndexLayout()
+    @layout = new CharacterAppIndexLayout({ title: @options.collection_title })
     @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
 
 
@@ -26,7 +26,12 @@ class @CharacterAppController extends Marionette.Controller
       @layout.content.show(@collection_view)
 
       @collection.fetch
-        success: =>
+        success: (collection, response, options) =>
+          # add scope to every model so it knows where it belongs
+          collection.each (model) => model.set({ __scope: @options.scope })
+
+          console.log collection
+          
           callback() if callback
     else
       callback() if callback

@@ -4,7 +4,7 @@
     <aside class='right'>
       <a href='#/projects/new' class='general foundicon-add-doc'></a>
     </aside>
-    <strong>Projects</strong>
+    <strong id='list_title'>Projects</strong>
   </header>
   
   <section id='list_content'></section>

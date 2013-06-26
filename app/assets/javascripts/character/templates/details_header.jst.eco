@@ -1,8 +1,8 @@
 <aside class='right'>
   <% if @_id: %>
-    <a href='#/projects' class='general foundicon-trash' id='action_delete'></a>
+    <a href='#/<%= @__scope %>' class='general foundicon-trash' id='action_delete'></a>
   <% end %>
-  <a href='#/projects' class='general foundicon-remove' id='action_close'></a>
+  <a href='#/<%= @__scope %>' class='general foundicon-remove' id='action_close'></a>
 </aside>
 
 <% if @__image: %>

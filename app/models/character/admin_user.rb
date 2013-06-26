@@ -74,7 +74,7 @@ class Character::AdminUser
     "http://www.gravatar.com/avatar/#{ hash}?s=#{ size }&d=mm"
   end
 
-  def admin_thumb_url
+  def character_thumb_url
     avatar_url(56)
   end
 
