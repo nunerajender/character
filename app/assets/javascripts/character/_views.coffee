@@ -80,6 +80,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     # when form is submitted but returns an error
     if typeof(obj) == 'string' then return @update_content(obj)
     # update model
+    obj['__scope'] = @collection.scope
     if @model then @model.set(obj) else @collection.add(obj)
 
   on_delete: (e) ->

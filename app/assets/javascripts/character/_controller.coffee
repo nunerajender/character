@@ -8,6 +8,7 @@ class @CharacterAppController extends Marionette.Controller
     @collection             = new CharacterGenericCollection()
     @collection.url         = @api_url
     @collection.model_name  = @options.name # this is used to identify if collection is already shown as index view
+    @collection.scope       = @options.scope
 
     # Layout and views
     @layout = new CharacterAppIndexLayout({ title: @options.collection_title })
