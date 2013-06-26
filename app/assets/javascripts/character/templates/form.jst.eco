@@ -3,7 +3,12 @@
     <a href='#' class='general foundicon-trash' id='action_delete'></a>
     <a href='#/projects' class='general foundicon-remove' id='action_close'></a>
   </aside>
-  <strong>Title</strong>
+
+  <img src='<%= @image %>' />
+  <div class='chr-container'>
+    <strong><%= @title %></strong>
+    <span><%= @meta %></span>
+  </div>
 </header>
 
 <section id='form_content'></section>
