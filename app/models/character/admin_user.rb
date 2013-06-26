@@ -10,7 +10,7 @@ class Character::AdminUser
   # Relations
   #
 
-  has_many :posts, :class_name => 'Character::Post'
+  # has_many :posts, :class_name => 'Character::Post'
 
 
   #

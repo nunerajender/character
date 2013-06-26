@@ -3,7 +3,7 @@
     <nav class="top-bar">
       <ul class="title-area">
         <!-- Title Area -->
-        
+
         <li class="name">
           <h1>
             <a href="#" target='_blank'>
@@ -11,12 +11,12 @@
             </a>
           </h1>
         </li>
-        
+
         <li class="toggle-topbar menu-icon"><a href="#"><span><!-- Menu --></span></a></li>
       </ul>
 
       <section class="top-bar-section">
-        
+
         <ul class="left">
           <li class="divider"></li>
           <li class="active"><a href="#/projects">Projects</a></li>
@@ -26,12 +26,12 @@
         </ul>
 
         <ul class="right">
-          
+
           <li class="divider hide-for-small"></li>
 
           <!-- Settings Menu -->
-          
-          <!-- 
+
+          <!--
 
           <li class="has-dropdown"><a href="#">Settings</a>
 
@@ -46,13 +46,13 @@
           -->
 
           <!-- Logout button -->
-          
+
           <li>
-            <a href='/admin/logout' class='chr-logout'>Logout</a>
+            <a href='/admin_users/sign_out' class='chr-logout'>Logout</a>
           </li>
         </ul>
       </section>
     </nav>
-</header>  
+</header>
 
 <div id='main' class='chr-main-layout'></div>

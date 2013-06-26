@@ -10,20 +10,19 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
   <title><%= ENV['WEBSITE_NAME'] %> | Admin</title>
-  
+
   <%= stylesheet_link_tag 'character', :media => 'all' %>
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
-  
+
   <%= javascript_include_tag 'character' %>
 
-  <%#= setup_browserid %>
-
-  <% if @character_admin_user %>
+  <% if admin_user_signed_in? %>
     <script type='text/javascript'>
+      console.log('Signed In')
       window.website_name    = '<%= ENV["WEBSITE_NAME"] || "chr." %>';
       window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
-      window.user_image_url = '<%= @character_admin_user.avatar_url(36) %>';
+      window.user_image_url = '<%= current_admin_user.avatar_url(36) %>';
       $(function(){ character.start(); });
     </script>
   <% end %>
@@ -33,7 +32,7 @@
 
 <body class='antialiased'> <!-- anitialiased used to make fonts smooth -->
 
-  <% unless @character_admin_user %>
+  <% unless admin_user_signed_in? %>
     <%= render 'character/admin/login' %>
   <% end %>
 
