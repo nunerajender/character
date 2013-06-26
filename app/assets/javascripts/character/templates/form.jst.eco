@@ -1,4 +1,4 @@
-<header id='form_header' class='chr-index-header'>
+<header id='form_header'>
   <aside class='right'>
     <a href='#' class='general foundicon-trash' id='action_delete'></a>
     <a href='#/projects' class='general foundicon-remove' id='action_close'></a>
@@ -6,6 +6,6 @@
   <strong>Title</strong>
 </header>
 
-<section id='form_body' class='chr-form-body'></section>
+<section id='form_content'></section>
 
 <footer id='form_footer'></footer>

@@ -1,10 +1,10 @@
 class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/index_item"]
+  template: JST["character/templates/list_item"]
   tagName: 'li'
 
 
 class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/index_empty"]
+  template: JST["character/templates/list_empty"]
 
 
 class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionView
@@ -16,25 +16,20 @@ class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionVie
 
 class @CharacterAppIndexFormView extends Backbone.Marionette.ItemView
   template: JST["character/templates/form"]
-  className: 'panel'
 
   ui:
-    header: '#form_header'
-    body:   '#form_body'
-    footer: '#form_footer'
+    header:  '#form_header'
+    content: '#form_content'
+    footer:  '#form_footer'
 
 
 class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
-  template: JST["character/templates/index"]
-  className: 'chr-index-layout'
+  template: JST["character/templates/list"]
 
   regions:
-    header:      '#index_header'
-    body:        '#index_body'
-    footer:      '#index_footer'
-    right_panel: '#right_panel'
-
-  ui:
-    right_panel: '#right_panel'
+    header:  '#list_header'
+    content: '#list_content'
+    footer:  '#list_footer'
+    details: '#details'
 
 

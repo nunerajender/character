@@ -1,0 +1,16 @@
+<section class='chr-index-list' id='list'>
+  
+  <header id='list_header'>
+    <aside class='right'>
+      <a href='#/projects/new' class='general foundicon-add-doc'></a>
+    </aside>
+    <strong>Projects</strong>
+  </header>
+  
+  <section id='list_content'></section>
+  
+  <footer id='list_footer'></footer>
+</section>
+
+<section class='chr-index-details' id='details'>
+</section>

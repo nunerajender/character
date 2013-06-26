@@ -82,13 +82,17 @@ class Character::Admin::ApiController < Character::Admin::BaseController
     fields = @model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
 
     title_field = fields[0]
+    meta_field  = fields[1]
     image_field = :admin_thumb_url if @model_class.method_defined? :admin_thumb_url
 
-    
-    if @model_class.method_defined? :admin_thumb_url
-      mapped_objects = @objects.map {|o| {_id:o.id,title:o.try(title_field),image:o.admin_thumb_url}}
-    else
-      mapped_objects = @objects.map {|o| {_id:o.id,title:o.try(title_field)} }    
+    mapped_objects = @objects.map do |o|
+      hash = {
+        _id:   o.id,
+        title: o.try(title_field),
+        meta:  o.try(meta_field)
+      }
+      hash[:image] = o.try(image_field) if image_field
+      hash
     end
 
     render json: {  objects:       mapped_objects,

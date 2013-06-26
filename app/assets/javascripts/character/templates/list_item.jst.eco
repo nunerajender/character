@@ -1,6 +1,7 @@
 <a href='#/projects/edit/<%= @_id %>' title='<%= @title %>'>
   <% if @image: %><img src='<%= @image %>' /><% end %>
-  <div class='chr-index-item-container'>
+  <div class='chr-container'>
     <strong><%= @title %></strong>
+    <span><%= @meta %></span>
   </div>
 </a>

@@ -1,10 +1,12 @@
 
 body                                  { background: #fafafa;
+                                        position: inherit;
 }
+
+// Menu layout
 
 @media #{$small}                      {
 
-  // Menu layout
   .chr-header,
   .top-bar                            { width:100px;
                                         height:100%;
@@ -36,36 +38,78 @@ body                                  { background: #fafafa;
     ul > .divider                     { height:1px;
     }
   }
+}
 
-  // Application layout
-  .chr-index-layout                   { position: absolute;
+
+// Application layout
+
+
+@media #{$small}                      {
+
+  .chr-main-layout                    { position: absolute;
+                                        left: 100px;
                                         top: 0;
-                                        width: 100%;
-                                        padding-left: 100px;
-                                        margin-top:0;
-    & > .row > .columns               { padding:0;
-    }
+                                        bottom: 0;
+                                        right: 0;
+                                        overflow: hidden;
   }
 
-  .chr-index-panel header             { padding: 2.1em 1.5em 1.5em;
+  // Index application
+
+  .chr-index-list                     { width: 40%;
+                                        position: absolute;
+                                        bottom: 0;
+                                        top: 0;
+                                        z-index: 2;
+  }
+
+  .chr-index-details                  { width: 60%;
+                                        position: absolute;
+                                        bottom: 0;
+                                        top: 0;
+                                        right:0;
+                                        z-index: 3;
+                                        position: absolute;
+                                        overflow: hidden;
+                                        overflow-y: auto;
+                                        
   }
 }
+
+
+
+
 
 // Colors
 
-.chr-index-panel header               { background: #fff;
+
+.chr-index-list                       {
+  header                              { padding: 2.1em 1.5em 1.5em;
+                                        background: #fff;
                                         color: #828892;
                                         box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                        height:76px;
                                         // to have shadow for header
                                         position: absolute;
                                         width: 100%;
-}
+                                        z-index:2;
+  }
 
-.chr-index-panel section              { margin-top:76px;
-}
+  section                             { overflow: hidden;
+                                        overflow-y: auto;
+                                        position: absolute;
+                                        top: 76px;
+                                        bottom: 0;
+                                        left: 0;
+                                        right: 0;
+                                        z-index: 1;
+  }
 
-.chr-index-panel                      {
+  ul                                  { margin-bottom:72px;
+  }
+  
   li                                  {
+    
     &:last-child                      { border-bottom: 1px solid #ddd;
                                         box-shadow: 0 0 3px #ddd;
     }
@@ -74,7 +118,21 @@ body                                  { background: #fafafa;
                                         padding: 1em 1.3em;
                                         color: #999;
                                         position: relative;
+                                        min-height: 72px;
+                                        display:block;
+      
+      span,
       strong                          { color:#666;
+                                        font-size:.9em;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        display: block;
+                                        line-height: 1.5;
+      }
+
+      span                            { color:#999;
+                                        font-size:.75em;
       }
     }
 
@@ -84,12 +142,26 @@ body                                  { background: #fafafa;
                                         @include border-radius(15px);
     }
 
-    .chr-index-item-container         { padding: 0 0 0 2.5em;
-                                        font-size:.95em;
+    .chr-container                    { padding: 0 0 0 2.5em;
     }
   }
 }
 
+.chr-index-details                    { background:#fff;
+                                        border-left:1px solid #e3e6e9;
+                                        box-shadow: 0 0 3px rgba(0,0,0,0.1);
+
+  header                              { padding: 2.1em 1.5em 1.5em;
+                                        background: #fff;
+                                        border-bottom: 1px solid #eee;
+                                        height:77px;
+                                        margin: 0 .5em;
+                                        padding: 2.5em 5%;
+  }
+
+  section form                        { margin: 2.5em 5%; // foundation has issues with padding
+  }
+}
 
 
 

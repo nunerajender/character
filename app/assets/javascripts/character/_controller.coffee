@@ -15,7 +15,7 @@ class @CharacterAppController extends Marionette.Controller
 
   index: ->
     character.layout.main.show(@layout)
-    @layout.body.show(@collection_view)
+    @layout.content.show(@collection_view)
 
     @collection.fetch()
     
@@ -31,7 +31,6 @@ class @CharacterAppController extends Marionette.Controller
 
   new: ->
     @index()
-    @layout.ui.right_panel.show()
 
 
   edit: (id) ->
@@ -42,13 +41,13 @@ class @CharacterAppController extends Marionette.Controller
     url = "#{ @api_url }/#{ id }/edit"
     $.get url, (form_html) =>
       @form_view = new CharacterAppIndexFormView(_.extend(@options, { model: doc }))
-      @layout.right_panel.show(@form_view)
+      @layout.details.show(@form_view)
 
-      @form_view.ui.body.html(form_html)
+      @form_view.ui.content.html(form_html)
       
-      @form_view.ui.body.find('form').addClass('custom')
-      @form_view.ui.body.foundation('section', 'resize')
-      @form_view.ui.body.foundation('forms', 'assemble')
+      @form_view.ui.content.find('form').addClass('custom')
+      @form_view.ui.content.foundation('section', 'resize')
+      @form_view.ui.content.foundation('forms', 'assemble')
 
 
   remove: ->

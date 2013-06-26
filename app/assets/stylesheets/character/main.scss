@@ -20,44 +20,36 @@ $column-gutter: 1em; // 1.875em;
 
 @import "foundation";
 
-html                                  { overflow: -moz-scrollbars-vertical;
-                                        overflow-y: scroll;
-}
+// html                                  { overflow: -moz-scrollbars-vertical;
+//                                         overflow-y: scroll;
+// }
 
-.top-bar                              { margin-bottom:0;
+.top-bar                              { margin-bottom: 0;
 }
 
 .chr-user-image                       { margin-top:-0.3em;
                                         @include border-radius(3px);
 }
 
-.chr-index-layout                     { margin-top:$column-gutter/2;
-  & > .row                            { width:100%;
-                                        max-width:100%;
-  }
+// .chr-index-layout                     { margin-top:$column-gutter/2;
+//   & > .row                            { width:100%;
+//                                         max-width:100%;
+//   }
 
-}
+// }
 
-.chr-index-panel                      { height:100%;
-                                        margin-bottom:0;
-                                        padding:0;
-
+.chr-index-list                       {
   header                              { padding:.5em;
                                         background: #fff;
   }
 
   form                                { margin-bottom:0;
   }
-
-      li                              { //padding:0 .5em;
-        a                             { display:block;
-        }
-      }
 }
 
 
-.chr-form-body                        { padding: 0 .8em 0 1em;
-}
+// .chr-form-body                        { padding: 0 .8em 0 1em;
+// }
 
 
 .custom label.boolean                 { display:inline-block;
