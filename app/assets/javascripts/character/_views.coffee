@@ -31,9 +31,11 @@ class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
 
   ui:
     title:   '#list_title'
+    new_btn: '#action_new'
 
   onRender: ->
     @ui.title.html @options.title
+    @ui.new_btn.attr 'href', "#/#{ @options.scope }/new"
     console.log 'render layout'
 
 

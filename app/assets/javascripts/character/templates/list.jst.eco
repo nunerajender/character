@@ -2,7 +2,7 @@
   
   <header id='list_header'>
     <aside class='right'>
-      <a href='#/projects/new' class='general foundicon-add-doc'></a>
+      <a href='#' class='general foundicon-add-doc' id='action_new'></a>
     </aside>
     <strong id='list_title'>Projects</strong>
   </header>

@@ -11,7 +11,7 @@ class @CharacterAppController extends Marionette.Controller
     @collection.scope       = @options.scope
 
     # Layout and views
-    @layout = new CharacterAppIndexLayout({ title: @options.collection_title })
+    @layout = new CharacterAppIndexLayout({ title: @options.collection_title, scope: @options.scope })
     @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
 
 
