@@ -13,10 +13,19 @@
 // $body-bg: #edeeef;
 // $body-font-color: #222;
 // $primary-color: #355d98;
-$column-gutter: 1em; // 1.875em;
+// $column-gutter: 1em; // 1.875em;
 // $topbar-bg: $primary-color;
 // $topbar-height: 40px; // 45px;
 // $row-width: 100%;
+
+// THEME for forms
+
+$input-border-color: #eee;//darken(#fff, 20%);
+$input-box-shadow: none;
+$panel-bg: #fff;
+$panel-border-color: #eee;
+$panel-border-style: dashed;
+$form-label-font-color: #777; 
 
 @import "foundation";
 

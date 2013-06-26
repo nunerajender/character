@@ -1,9 +1,27 @@
 <header id='form_header'>
   <aside class='right'>
-    <a href='#' class='general foundicon-trash' id='action_delete'></a>
+    <% if @_id: %>
+      <a href='#/projects' class='general foundicon-trash' id='action_delete'></a>
+    <% end %>
     <a href='#/projects' class='general foundicon-remove' id='action_close'></a>
   </aside>
-  <strong>Title</strong>
+
+  <% if @image: %>
+    <img src='<%= @image %>' />
+  <% end %>
+
+  <div class='chr-container'>
+    <% if @meta: %>
+      <strong><%= @title %></strong>
+      <span><%= @meta %></span>
+    <% else: %>
+      <% if @title: %>
+        <strong class='chr-no-meta'><%= @title %></strong>
+      <% else: %>
+        <strong class='chr-no-meta chr-single-title'>Create New</strong>
+      <% end %>
+    <% end %>
+  </div>
 </header>
 
 <section id='form_content'></section>

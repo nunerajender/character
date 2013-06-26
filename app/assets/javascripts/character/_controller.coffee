@@ -5,20 +5,32 @@ class @CharacterAppController extends Marionette.Controller
     @api_url = @options.api || "/character/api/#{ @options.name }"
     
     # Collection setup
-    @collection     = new CharacterGenericCollection()
-    @collection.url = @api_url
+    @collection             = new CharacterGenericCollection()
+    @collection.url         = @api_url
+    @collection.model_name  = @options.name # this is used to identify if collection is already shown as index view
 
     # Layout and views
     @layout = new CharacterAppIndexLayout()
     @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
 
 
-  index: ->
-    character.layout.main.show(@layout)
-    @layout.content.show(@collection_view)
+  index: (callback) ->
+    # this should also close details view if openned
 
-    @collection.fetch()
-    
+    # if we are in the same scope don't re-render index
+    if character.layout.scope != @options.scope
+
+      character.layout.scope = @options.scope
+      
+      character.layout.main.show(@layout)
+      @layout.content.show(@collection_view)
+
+      @collection.fetch
+        success: =>
+          callback() if callback
+    else
+      callback() if callback
+
     # Header
     #@layout.header.show(@options.name)
 
@@ -30,24 +42,21 @@ class @CharacterAppController extends Marionette.Controller
 
 
   new: ->
-    @index()
+    @index =>
+      form = new CharacterAppIndexFormView({ model: no })
+      @layout.details.show(form)
+
+      $.get "#{ @api_url }/new", (html) => form.update_content(html)
 
 
   edit: (id) ->
-    @index()
+    @index =>
+      doc = @collection.get(id)
 
-    doc = @collection.get(id)
+      form = new CharacterAppIndexFormView({ model: doc })
+      @layout.details.show(form)
 
-    url = "#{ @api_url }/#{ id }/edit"
-    $.get url, (form_html) =>
-      @form_view = new CharacterAppIndexFormView(_.extend(@options, { model: doc }))
-      @layout.details.show(@form_view)
-
-      @form_view.ui.content.html(form_html)
-      
-      @form_view.ui.content.find('form').addClass('custom')
-      @form_view.ui.content.foundation('section', 'resize')
-      @form_view.ui.content.foundation('forms', 'assemble')
+      $.get "#{ @api_url }/#{ id }/edit", (html) => form.update_content(html)
 
 
   remove: ->
