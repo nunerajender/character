@@ -1,7 +1,7 @@
-<a href='#/projects/edit/<%= @_id %>' title='<%= @title %>'>
-  <% if @image: %><img src='<%= @image %>' /><% end %>
+<a href='#/projects/edit/<%= @_id %>' title='<%= @__title %>'>
+  <% if @__image: %><img src='<%= @__image %>' /><% end %>
   <div class='chr-container'>
-    <strong><%= @title %></strong>
-    <span><%= @meta %></span>
+    <strong><%= @__title %></strong>
+    <span><%= @__meta %></span>
   </div>
 </a>

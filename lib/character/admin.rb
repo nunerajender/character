@@ -4,7 +4,7 @@ module Character::Admin
 
   def admin_form_config
     slug  = self.class.name.gsub('::', '-')
-    url   = "/admin/api/#{ slug }"
+    url   = "/character/api/#{ slug }"
 
     if self.persisted?
       url += "/#{ self.id }"

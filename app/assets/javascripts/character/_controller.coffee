@@ -31,36 +31,23 @@ class @CharacterAppController extends Marionette.Controller
     else
       callback() if callback
 
-    # Header
-    #@layout.header.show(@options.name)
-
-    # Add pagination
-    # Add saving last state
-    # Add search
-    # Add scopes
-    # Add batch actions
-
 
   new: ->
     @index =>
-      form = new CharacterAppIndexFormView({ model: no })
-      @layout.details.show(form)
+      details_view = new CharacterAppDetailsView({ model: no, collection: @collection })
+      @layout.details.show(details_view)
 
-      $.get "#{ @api_url }/new", (html) => form.update_content(html)
+      $.get "#{ @api_url }/new", (html) => details_view.update_content(html)
 
 
   edit: (id) ->
     @index =>
       doc = @collection.get(id)
 
-      form = new CharacterAppIndexFormView({ model: doc })
-      @layout.details.show(form)
+      details_view = new CharacterAppDetailsView({ model: doc, collection: @collection })
+      @layout.details.show(details_view)
 
-      $.get "#{ @api_url }/#{ id }/edit", (html) => form.update_content(html)
-
-
-  remove: ->
-    console.log "#{ @options.name } - remove action."
+      $.get "#{ @api_url }/#{ id }/edit", (html) => details_view.update_content(html)
 
 
 

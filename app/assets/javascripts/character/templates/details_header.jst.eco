@@ -1,0 +1,23 @@
+<aside class='right'>
+  <% if @_id: %>
+    <a href='#/projects' class='general foundicon-trash' id='action_delete'></a>
+  <% end %>
+  <a href='#/projects' class='general foundicon-remove' id='action_close'></a>
+</aside>
+
+<% if @__image: %>
+  <img src='<%= @__image %>' />
+<% end %>
+
+<div class='chr-container'>
+  <% if @__meta: %>
+    <strong><%= @__title %></strong>
+    <span><%= @__meta %></span>
+  <% else: %>
+    <% if @__title: %>
+      <strong class='chr-no-meta'><%= @__title %></strong>
+    <% else: %>
+      <strong class='chr-no-meta chr-single-title'>Create New</strong>
+    <% end %>
+  <% end %>
+</div>
