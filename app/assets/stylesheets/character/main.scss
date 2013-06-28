@@ -58,6 +58,10 @@ $form-label-font-color: #777;
     ul li                             { width:100%;
                                         text-align:center;
                                         font-size:.85em;
+      
+      &.active a                      { background:rgb(34, 34, 34);
+      }
+
       & > a                           { font-weight:600;
                                         color:#ccc;
         &:hover                       { color:#fff;

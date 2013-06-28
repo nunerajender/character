@@ -20,19 +20,6 @@
 _.mixin(_.str.exports())
 
 
-@CharacterLayout = Backbone.Marionette.Layout.extend
-  template: JST['character/templates/main']
-  regions:
-    menu: "#menu"
-    main: "#main"
-  ui:
-    title:           '#project_title'
-    user_image:      '#user_image'
-    top_menu:        '#menu .top-bar-section .left'
-    first_menu_item: '#menu .top-bar-section .left li a:eq(0)'
-    bottom_menu:     '#menu .top-bar-section .right'
-
-
 class @Character extends Backbone.Marionette.Application
   render: ->
     @layout = new CharacterLayout().render()
@@ -55,6 +42,7 @@ class @Character extends Backbone.Marionette.Application
 
   add_menu_items: ->
     _.each @submodules, (m) => @add_menu_item(m.options.pluralized_name, m.options.scope)
+    @layout.select_menu_item(@layout.scope)
 
 
   jump_to_first_app: ->

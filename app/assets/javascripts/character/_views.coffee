@@ -1,8 +1,42 @@
+class @CharacterLayout extends Backbone.Marionette.Layout
+  template: JST['character/templates/main']
+  regions:
+    menu: "#menu"
+    main: "#main"
+  ui:
+    title:           '#project_title'
+    user_image:      '#user_image'
+    top_menu:        '#menu .top-bar-section .left'
+    first_menu_item: '#menu .top-bar-section .left li a:eq(0)'
+    bottom_menu:     '#menu .top-bar-section .right'
+
+
+  unselect_menu_item: ->
+    if @selected_menu_item
+      @selected_menu_item.removeClass 'active' 
+      @selected_menu_item = no
+
+
+  select_menu_item: (scope) ->
+    @unselect_menu_item()
+    # TODO: should be in ui
+    link = $("#menu .top-bar-section li a[href='#/#{ scope }']:eq(0)")
+    if link
+      @selected_menu_item = link.parent()
+      @selected_menu_item.addClass 'active'   
+
+
+
+
+
+
+
 class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
   template: JST["character/templates/list_item"]
   tagName: 'li'
   modelEvents:
     'change': 'render'
+
 
 
 class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
@@ -16,8 +50,6 @@ class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionVie
   itemView:  CharacterAppIndexItemView
   emptyView: CharacterAppIndexNoItemsView
 
-  onRender: ->
-    console.log 'render collection'
 
 
 class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
@@ -36,7 +68,26 @@ class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
   onRender: ->
     @ui.title.html @options.title
     @ui.new_btn.attr 'href', "#/#{ @options.scope }/new"
-    console.log 'render layout'
+
+  unselect_item: ->
+    if @selected_item
+      @selected_item.removeClass 'active'
+      @selected_item = no
+
+  select_item: (id) ->
+    @unselect_item()
+    # TODO: should be in ui
+    link = $("#list_content li a[href='#/#{ @options.scope }/edit/#{ id }']:eq(0)")
+    if link
+      @selected_item = link.parent()
+      @selected_item.addClass 'active'
+
+
+
+
+
+
+
 
 
 class @CharacterAppDetailsHeaderView extends Backbone.Marionette.ItemView

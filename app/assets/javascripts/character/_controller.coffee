@@ -11,7 +11,7 @@ class @CharacterAppController extends Marionette.Controller
     @collection.scope       = @options.scope
 
     # Layout and views
-    @layout = new CharacterAppIndexLayout({ title: @options.collection_title, scope: @options.scope })
+    @index_layout = new CharacterAppIndexLayout({ title: @options.collection_title, scope: @options.scope })
     @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
 
 
@@ -22,9 +22,10 @@ class @CharacterAppController extends Marionette.Controller
     if character.layout.scope != @options.scope
 
       character.layout.scope = @options.scope
+      character.layout.select_menu_item(@options.scope)
       
-      character.layout.main.show(@layout)
-      @layout.content.show(@collection_view)
+      character.layout.main.show(@index_layout)
+      @index_layout.content.show(@collection_view)
 
       @collection.fetch
         success: (collection, response, options) =>
@@ -33,23 +34,28 @@ class @CharacterAppController extends Marionette.Controller
           callback() if callback
 
     else
+      @index_layout.unselect_item()
       callback() if callback
 
 
   new: ->
     @index =>
       details_view = new CharacterAppDetailsView({ model: no, collection: @collection })
-      @layout.details.show(details_view)
+      @index_layout.details.show(details_view)
 
       $.get "#{ @api_url }/new", (html) => details_view.update_content(html)
 
 
   edit: (id) ->
     @index =>
+      console.log $("#list_content li a:eq(0)")
+      
+      @index_layout.select_item(id)
+
       doc = @collection.get(id)
 
       details_view = new CharacterAppDetailsView({ model: doc, collection: @collection })
-      @layout.details.show(details_view)
+      @index_layout.details.show(details_view)
 
       $.get "#{ @api_url }/#{ id }/edit", (html) => details_view.update_content(html)
 

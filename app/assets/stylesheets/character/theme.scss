@@ -83,6 +83,16 @@ body                                  { background: #fafafa;
   }
   
   li                                  {
+
+    
+    &.active a                        { box-shadow: 0 1px 3px #ededed inset;
+                                        background: #f1f1f1;
+                                        border-color: #cfcfcf;
+                                        color: #555;
+
+      strong                          { color: #333;
+      }
+    }
     
     &:last-child                      { border-bottom: 1px solid #ddd;
                                         box-shadow: 0 0 3px #ddd;
@@ -90,13 +100,13 @@ body                                  { background: #fafafa;
     a                                 { background: #fafafa;
                                         border-top: 1px solid #eee;
                                         padding: 1em 1.3em;
-                                        color: #999;
                                         position: relative;
                                         min-height: 72px;
                                         display:block;
+                                        color:#999;
       
       span,
-      strong                          { color:#666;
+      strong                          { 
                                         font-size:.9em;
                                         white-space: nowrap;
                                         text-overflow: ellipsis;
@@ -105,9 +115,12 @@ body                                  { background: #fafafa;
                                         line-height: 1.2;
       }
 
-      span                            { color:#999;
-                                        font-size:.75em;
+      span                            { font-size:.75em;
                                         line-height: 1.8;
+      }
+
+      strong                          { color:#666;
+
       }
     }
 
