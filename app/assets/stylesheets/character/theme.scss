@@ -48,20 +48,31 @@ body                                  { background: #fafafa;
 
 
 
-
-
-// Colors
+$list-item-height: 66px;
 
 .chr-main-layout                      { box-shadow: -1px 0 10px 0 rgba(0,0,0,0.5);
                                         z-index: 2;
 }
 
+.chr-actions                          { padding-left: .7em;
+                                        display:inline;
+    &:before                          { content: '\00B7';
+                                        position: absolute;
+                                        margin: 1px 0 0 -.55em;
+                                        color:#888;
+    }
+  a                                   { color:#888;
+                                        font-size:.8em;
+    &:hover                           { text-decoration:underline;
+    }
+  }
+}
+
 .chr-index-list                       {
-  header                              { padding: 1.5em;
+  header                              { padding: 1.25em 1.5em 0em;
                                         background: #fff;
-                                        color: #828892;
                                         box-shadow: 0 0 2px rgba(0,0,0,0.2);
-                                        height:76px;
+                                        min-height:$list-item-height;
                                         // to have shadow for header
                                         position: absolute;
                                         width: 100%;
@@ -72,7 +83,7 @@ body                                  { background: #fafafa;
   section                             { overflow: hidden;
                                         overflow-y: auto;
                                         position: absolute;
-                                        top: 76px;
+                                        top: $list-item-height;
                                         bottom: 0;
                                         left: 0;
                                         right: 0;
@@ -99,9 +110,9 @@ body                                  { background: #fafafa;
     }
     a                                 { background: #fafafa;
                                         border-top: 1px solid #eee;
-                                        padding: 1em 1.3em;
+                                        padding: 1em 1.3em 0em;
                                         position: relative;
-                                        min-height: 72px;
+                                        min-height: $list-item-height;
                                         display:block;
                                         color:#999;
       
@@ -139,10 +150,10 @@ body                                  { background: #fafafa;
                                         border-left:1px solid #e3e6e9;
                                         box-shadow: 0 0 3px rgba(0,0,0,0.1);
 
-  header                              { padding: 1.25em 1.5em 0;
+  header                              { padding: .95em 1.5em 0;
                                         background: #fff;
                                         border-bottom: 1px solid #eee;
-                                        height:77px;
+                                        min-height:$list-item-height + 1;
                                         padding-left: 6%;
                                         padding-right: 6%;
 
@@ -160,18 +171,18 @@ body                                  { background: #fafafa;
 
     .chr-container                    { line-height: 1.3;
                                         font-size:.9em;
+                                        float:left;
 
-      strong                          { display:block;
-                                        color:#444;
-        &.chr-no-meta                 { line-height: 2.4;
-        }
-        &.chr-single-title            { color: #828892;
-                                        font-size:1.4em;
-                                        line-height: 1.6;
-        }
+      &.chr-no-meta                   { line-height: 2.4;
       }
 
-      span                            { color:#777;
+      strong                          { color:#444;
+      }
+
+      .chr-single-title               { font-size: 1.05em;
+      }
+
+      .chr-meta                       { color:#777;
                                         font-size:.9em;
       }
     }

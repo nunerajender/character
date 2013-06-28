@@ -48,8 +48,6 @@ class @CharacterAppController extends Marionette.Controller
 
   edit: (id) ->
     @index =>
-      console.log $("#list_content li a:eq(0)")
-      
       @index_layout.select_item(id)
 
       doc = @collection.get(id)

@@ -1,10 +1,10 @@
 <section class='chr-index-list' id='list'>
   
   <header id='list_header'>
-    <aside class='right'>
-      <a href='#' class='general foundicon-add-doc' id='action_new'></a>
-    </aside>
-    <strong id='list_title'>Projects</strong>
+    <span id='list_title' class='title'>Projects</span>
+    <span class='chr-actions'>
+      <a href='#' id='action_new'>New</a>
+    </span>
   </header>
   
   <section id='list_content'></section>

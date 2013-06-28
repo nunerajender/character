@@ -1,23 +1,40 @@
 <aside class='right'>
-  <% if @_id: %>
-    <a href='#/<%= @__scope %>' class='general foundicon-trash' id='action_delete'></a>
-  <% end %>
-  <a href='#/<%= @__scope %>' class='general foundicon-remove' id='action_close'></a>
+  <a href='#/<%= @__scope %>' class='icon-remove' id='action_close'></a>
 </aside>
 
 <% if @__image: %>
   <img src='<%= @__image %>' />
 <% end %>
 
-<div class='chr-container'>
+<div class='chr-container <% if not @__meta: %>chr-no-meta<% end %>'>
+
   <% if @__meta: %>
+  
     <strong><%= @__title %></strong>
-    <span><%= @__meta %></span>
+
+    <% if @_id: %>
+      <div class='chr-actions'><a href='#/<%= @__scope %>' id='action_delete'>Delete</a></div>
+    <% end %>
+    
+    <div class='chr-meta'><%= @__meta %></div>
+  
   <% else: %>
+  
     <% if @__title: %>
-      <strong class='chr-no-meta'><%= @__title %></strong>
+
+      <strong><%= @__title %></strong>
+
+      <% if @_id: %>
+        <div class='chr-actions'><a href='#/<%= @__scope %>' id='action_delete'>Delete</a></div>
+      <% end %>
+
     <% else: %>
-      <strong class='chr-no-meta chr-single-title'>Create New</strong>
+
+      <span class='chr-single-title'>Create New</span>
+
     <% end %>
   <% end %>
 </div>
+
+
+

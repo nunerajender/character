@@ -1,7 +1,7 @@
 # frontend & assets
 require 'compass-rails'
 require 'zurb-foundation'
-require 'foundation-icons-sass-rails'
+require 'font-awesome-sass-rails'
 require 'jquery-ui-rails'
 require 'underscore-rails'
 require 'marionette-rails'

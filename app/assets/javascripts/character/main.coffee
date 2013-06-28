@@ -10,8 +10,8 @@
 #= require backbone.marionette
 #= require foundation
 #= require_tree ./templates
+#= require_tree ./views
 #= require ./_model
-#= require ./_views
 #= require ./_controller
 #= require ./_application
 #= require_self

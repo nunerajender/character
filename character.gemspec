@@ -25,7 +25,7 @@ Gem::Specification.new do |gem|
   # stylesheets
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'zurb-foundation'
-  gem.add_runtime_dependency 'foundation-icons-sass-rails'
+  gem.add_runtime_dependency 'font-awesome-sass-rails'
 
   # javascript
   gem.add_runtime_dependency 'jquery-ui-rails'
