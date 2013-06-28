@@ -52,6 +52,11 @@ _.mixin(_.str.exports())
   #@layout.ui.title.html(window.website_name)
   @layout.ui.user_image.attr( 'src', window.user_image_url)
 
+  # jump to the first item in the menu
+  if window.location.hash == "" 
+    path = $('#menu .top-bar-section .left li a:eq(0)').attr 'href'
+    window.location.hash = path
+
   console.log('Character: Let\'s rock!');
 
 
