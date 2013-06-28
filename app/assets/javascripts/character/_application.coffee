@@ -18,6 +18,8 @@ class @CharacterApp
 
     if not options.collection_title then options.collection_title = _(name).pluralize()
 
+    if not options.icon then options.icon = 'bolt'
+
     character.module name, ->
       @options = options
       

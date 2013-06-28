@@ -35,13 +35,18 @@ class @Character extends Backbone.Marionette.Application
     @ui.user_image.attr('src', window.user_image_url)
 
 
-  add_menu_item: (title, scope) ->
-    html = """<li><a href="#/#{ scope }">#{ title }</a></li><li class="divider"></li>"""
+  add_menu_item: (title, scope, icon) ->
+    html = """<li>
+                <a href="#/#{ scope }">
+                  <i class="icon-#{ icon }"></i>#{ title }
+                </a>
+              </li>
+              <li class="divider"></li>"""
     @ui.top_menu.append(html)
 
 
   add_menu_items: ->
-    _.each @submodules, (m) => @add_menu_item(m.options.pluralized_name, m.options.scope)
+    _.each @submodules, (m) => @add_menu_item(m.options.pluralized_name, m.options.scope, m.options.icon)
     @layout.select_menu_item(@layout.scope)
 
 

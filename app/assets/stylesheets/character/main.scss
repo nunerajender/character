@@ -52,6 +52,16 @@ $form-label-bottom-margin: .5em;
     }
   }
 
+  .top-bar-section li a:not(.button)  { line-height:inherit;
+                                        padding:1.4em 0 1em;
+  }
+
+  .top-bar-section li a i             { font-size:2em;
+                                        opacity:0.4;
+                                        display:block;
+                                        margin-bottom:.3em;
+  }
+
   .top-bar-section                    { height:100%;
     .left,
     .right                            { width:100%;
@@ -65,11 +75,13 @@ $form-label-bottom-margin: .5em;
                                         font-size:.85em;
       
       &.active a                      { background:rgb(34, 34, 34);
+        i                             { opacity:1;
+        }
       }
 
       & > a                           { font-weight:600;
                                         color:#ccc;
-        &:hover                       { color:#fff;
+        &:hover i                     { opacity:1;
         }
       }
     }
