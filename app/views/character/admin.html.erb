@@ -21,7 +21,6 @@
     window.website_name    = '<%= ENV["WEBSITE_NAME"] || "chr." %>';
     window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
     window.user_image_url = '<%= Character::AdminUser.first.avatar_url(36) %>';
-    $(function(){ character.start(); });
   </script>
 
   <%= csrf_meta_tags %>

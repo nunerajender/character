@@ -64,6 +64,9 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     header_view = new CharacterAppDetailsHeaderView { model: @model }
     @header.show(header_view)
 
+  scope: ->
+    @collection.scope
+
   # this method updates forms html and
   # then start all related plugins
   update_content: (html) ->
@@ -78,11 +81,14 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
 
       @ui.form.ajaxForm { success: (response) => @save_model(response) }
 
+      # this allows to attach plugins when form is rendered
+      $(document).trigger "character.#{ @scope() }.details.form.rendered", [ @el ]
+
   save_model: (obj) ->
     # when form is submitted but returns an error
     if typeof(obj) == 'string' then return @update_content(obj)
     # update model
-    obj['__scope'] = @collection.scope
+    obj['__scope'] = @scope()
     if @model then @model.set(obj) else @collection.add(obj)
 
   on_delete: (e) ->

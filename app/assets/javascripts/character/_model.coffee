@@ -6,9 +6,16 @@ class @CharacterGenericModel extends Backbone.Model
 class @CharacterGenericCollection extends Backbone.Collection
   model: window.CharacterGenericModel
 
-  parse: (resp) ->
-    @total_pages = parseInt(resp.total_pages)
-    resp.objects
+  initialize: ->
+    @total_pages = 0
+    @request_params =
+      page:         1
+      per_page:     50
+      search_query: ''
+
+
+  current_page: ->
+    @request_params.page
 
 
   url_with_params: ->
@@ -23,22 +30,12 @@ class @CharacterGenericCollection extends Backbone.Collection
     return url
 
 
-  current_page: ->
-    @request_params.page
+  parse: (resp) ->
+    @total_pages = parseInt(resp.total_pages)
+    resp.objects
 
 
   fetch_with_params: (options={}) ->
     options.url = @url_with_params() unless options.url
     @fetch(options)
-
-
-  initialize: ->
-    @total_pages = 0
-    @request_params =
-      page:         1
-      per_page:     50
-      search_query: ''
-
-
-
 

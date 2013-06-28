@@ -59,12 +59,12 @@ class @Character extends Backbone.Marionette.Application
 
   jump_to_first_app: ->
     if window.location.hash == "" 
-      path = @layout.ui.first_menu_item.attr 'href'
+      path = $('#menu .top-bar-section .left li a:eq(0)').attr 'href'
       window.location.hash = path
 
 
-
-
+  add_module: (options) ->
+    new CharacterApp(options)
 
 
 
@@ -85,13 +85,6 @@ class @Character extends Backbone.Marionette.Application
   @jump_to_first_app()
 
   console.log('Character: Let\'s rock!')
-
-
-new @CharacterApp("Project")
-new @CharacterApp
-  name: "Admin"
-  api:  "/admin/Character-AdminUser"
-
 
 
 
