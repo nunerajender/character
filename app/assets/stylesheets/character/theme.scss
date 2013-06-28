@@ -1,43 +1,13 @@
 
-// Menu layout
+body                                  { background: #fafafa;
+                                        position: inherit;
+}
 
-@media #{$small}                      {
+.top-bar                              { margin-bottom: 0;
+}
 
-  .chr-header                         { z-index:1;
-                                        position:absolute;
-  }
-
-  .chr-header,
-  .top-bar                            { width:100px;
-                                        height:100%;
-  }
-  .title-area                         { width:100%;
-                                        height:76px;
-    .name h1                          { line-height:76px;
-                                        text-align:center;
-    }
-  }
-
-  .top-bar-section                    { height:100%;
-    .left,
-    .right                            { width:100%;
-    }
-    .right                            { position: absolute;
-                                        left: 0;
-                                        bottom: 0px;
-    }
-    ul li                             { width:100%;
-                                        text-align:center;
-                                        font-size:.85em;
-      & > a                           { font-weight:600;
-                                        color:#ccc;
-        &:hover                       { color:#fff;
-        }
-      }
-    }
-    ul > .divider                     { height:1px;
-    }
-  }
+.chr-user-image                       { margin-top:-0.3em;
+                                        @include border-radius(3px);
 }
 
 

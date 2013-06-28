@@ -26,8 +26,10 @@ _.mixin(_.str.exports())
     menu: "#menu"
     main: "#main"
   ui:
-    title:      '#project_title'
-    user_image: '#user_image'
+    title:       '#project_title'
+    user_image:  '#user_image'
+    top_menu:    '#menu .top-bar-section .left'
+    bottom_menu: '#menu .top-bar-section .right'
 
 
 @character = new Backbone.Marionette.Application()
