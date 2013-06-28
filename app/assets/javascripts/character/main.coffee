@@ -26,40 +26,65 @@ _.mixin(_.str.exports())
     menu: "#menu"
     main: "#main"
   ui:
-    title:       '#project_title'
-    user_image:  '#user_image'
-    top_menu:    '#menu .top-bar-section .left'
-    bottom_menu: '#menu .top-bar-section .right'
+    title:           '#project_title'
+    user_image:      '#user_image'
+    top_menu:        '#menu .top-bar-section .left'
+    first_menu_item: '#menu .top-bar-section .left li a:eq(0)'
+    bottom_menu:     '#menu .top-bar-section .right'
 
 
-@character = new Backbone.Marionette.Application()
+class @Character extends Backbone.Marionette.Application
+  render: ->
+    @layout = new CharacterLayout().render()
+    $('body').html(@layout.el)
+    @ui = @layout.ui
+
+
+  initialize_plugins: ->
+    $(document).foundation('topbar section forms')
+
+
+  update_user_image: ->
+    @ui.user_image.attr('src', window.user_image_url)
+
+
+  add_menu_item: (title, scope) ->
+    html = """<li><a href="#/#{ scope }">#{ title }</a></li><li class="divider"></li>"""
+    @ui.top_menu.append(html)
+
+
+  add_menu_items: ->
+    _.each @submodules, (m) => @add_menu_item(m.options.pluralized_name, m.options.scope)
+
+
+  jump_to_first_app: ->
+    if window.location.hash == "" 
+      path = @layout.ui.first_menu_item.attr 'href'
+      window.location.hash = path
+
+
+
+
+
+
+
+@character = new Character()
 
 
 @character.on "initialize:before", (options) ->
-
-  # render main layout
-  @layout = new CharacterLayout().render()
-  $('body').html(@layout.el)
+  @render()
 
 
 @character.on "initialize:after", (options) ->
-
   # backbone history
   if Backbone.history then Backbone.history.start()
   
-  # foundation plugins
-  $(document).foundation('topbar section forms');
+  @initialize_plugins()
+  @update_user_image()
+  @add_menu_items()
+  @jump_to_first_app()
 
-  # update external values defined in html layout
-  #@layout.ui.title.html(window.website_name)
-  @layout.ui.user_image.attr( 'src', window.user_image_url)
-
-  # jump to the first item in the menu
-  if window.location.hash == "" 
-    path = $('#menu .top-bar-section .left li a:eq(0)').attr 'href'
-    window.location.hash = path
-
-  console.log('Character: Let\'s rock!');
+  console.log('Character: Let\'s rock!')
 
 
 new @CharacterApp("Project")

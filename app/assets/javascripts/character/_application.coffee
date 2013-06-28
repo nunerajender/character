@@ -10,15 +10,17 @@ class @CharacterApp
       name    = options.name if options
     
     if not name
-      console.error 'Model name is required to create CharacterApp instance.'
-      return
+      console.error 'Model name is required to create CharacterApp instance.' ; return
+
+    if not options.pluralized_name then options.pluralized_name = _.pluralize(name)
 
     if not options.scope then options.scope = _.pluralize(_.slugify(name))
 
     if not options.collection_title then options.collection_title = _(name).pluralize()
 
-    # Add module to the main application
-    window.character.module name, ->
+    character.module name, ->
+      @options = options
+      
       scope  = options.scope
       routes = {}
       routes["#{ scope }"]          = "index"

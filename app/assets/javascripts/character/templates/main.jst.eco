@@ -2,8 +2,6 @@
 <header class='chr-header fixed' id='menu'>
     <nav class="top-bar">
       <ul class="title-area">
-        <!-- Title Area -->
-
         <li class="name">
           <h1>
             <a href="#" target='_blank'>
@@ -11,45 +9,16 @@
             </a>
           </h1>
         </li>
-
         <li class="toggle-topbar menu-icon"><a href="#"><span><!-- Menu --></span></a></li>
       </ul>
 
       <section class="top-bar-section">
-
         <ul class="left">
           <li class="divider"></li>
-          <li><a href="#/projects">Projects</a></li>
-          <li class="divider"></li>
-          <li><a href="#/admins">Admins</a></li>
-          <li class="divider"></li>
         </ul>
-
         <ul class="right">
-
           <li class="divider hide-for-small"></li>
-
-          <!-- Settings Menu -->
-
-          <!--
-
-          <li class="has-dropdown"><a href="#">Settings</a>
-
-            <ul class="dropdown">
-              <li><a href="#/admins">Admins</a></li>
-            </ul>
-          </li>
-
-
-          <li class="divider"></li>
-
-          -->
-
-          <!-- Logout button -->
-
-          <li>
-            <a href='/admin_users/sign_out' class='chr-logout'>Logout</a>
-          </li>
+          <li><a href='/admin_users/sign_out' class='chr-logout'>Logout</a></li>
         </ul>
       </section>
     </nav>
