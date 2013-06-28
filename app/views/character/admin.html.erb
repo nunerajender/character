@@ -9,7 +9,7 @@
 
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-  <title><%= ENV['WEBSITE_NAME'] %> | Admin</title>
+  <title><%= ENV['WEBSITE_NAME'] || "Character" %> | Admin</title>
 
   <%= stylesheet_link_tag 'character', :media => 'all' %>
 
@@ -18,7 +18,7 @@
   <%= javascript_include_tag 'character' %>
 
   <script type='text/javascript'>
-    window.website_name    = '<%= ENV["WEBSITE_NAME"] || "chr." %>';
+    window.website_name    = '<%= ENV["WEBSITE_NAME"] || "Character" %>';
     window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
     window.user_image_url = '<%= Character::AdminUser.first.avatar_url(36) %>';
   </script>
