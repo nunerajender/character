@@ -1,7 +1,15 @@
 class @CharacterAppDetailsHeaderView extends Backbone.Marionette.ItemView
   template: JST["character/templates/details_header"]
+  
   modelEvents:
     'change': 'render'
+
+  ui:
+    btn_close: '#action_close'
+
+  onRender: ->
+    @ui.btn_close.attr 'href', "#/#{ @collection.scope }"
+
 
 
 class @CharacterAppDetailsView extends Backbone.Marionette.Layout
@@ -11,8 +19,8 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     header:  '#details_header'
 
   ui:
-    content: '#details_content'
-    footer:  '#details_footer'
+    content:   '#details_content'
+    footer:    '#details_footer'
 
   events:
     'click #action_delete': 'on_delete'
@@ -20,7 +28,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
 
   # render header as view
   onRender: ->
-    header_view = new CharacterAppDetailsHeaderView { model: @model }
+    header_view = new CharacterAppDetailsHeaderView { model: @model, collection: @collection }
     @header.show(header_view)
 
   scope: ->
@@ -53,13 +61,14 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
   on_delete: (e) ->
     if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")
       @close()
+      console.log @model
+      window.temp = @model
       @model.destroy() # TODO: this event sometimes do now work, probably cause of the server response
     else
       e.preventDefault() if e
 
   on_close: (e) ->
     @close()
-
 
 
 

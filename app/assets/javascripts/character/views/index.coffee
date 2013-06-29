@@ -2,7 +2,8 @@ class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
   template: JST["character/templates/list_item"]
   tagName: 'li'
   modelEvents:
-    'change': 'render'
+    'change':  'render'
+    'destroy': 'remove'
 
 
 

@@ -1,5 +1,5 @@
 <aside class='right'>
-  <a href='#/<%= @__scope %>' class='icon-remove' id='action_close'></a>
+  <a href='#' class='icon-remove' id='action_close'></a>
 </aside>
 
 <% if @__image: %>
