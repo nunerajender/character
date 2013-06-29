@@ -27,9 +27,9 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 . replace topnav with original menu version
 . add default logo for details placeholder
-. return browserid
 . reorder items option
 . search option
 . scopes
 . make headers meta to show updated at value if available
 . update button style to be more clean
+. use some nice pictures for login screen
