@@ -32,4 +32,4 @@ At this point all basic layout is using custom style and colors. Foundation is u
 . search option
 . scopes
 . make headers meta to show updated at value if available
-. 
+. update button style to be more clean

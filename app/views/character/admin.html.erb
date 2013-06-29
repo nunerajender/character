@@ -16,16 +16,24 @@
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
   <%= javascript_include_tag 'character' %>
+  <%= setup_browserid %>
 
-  <script type='text/javascript'>
-    window.website_name    = '<%= ENV["WEBSITE_NAME"] || "Character" %>';
-    window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
-    window.user_image_url = '<%= Character::AdminUser.first.avatar_url(36) %>';
-  </script>
-
-  <%= csrf_meta_tags %>
+  <% if @admin_user %>
+    <script type='text/javascript'>
+      window.website_name    = '<%= ENV["WEBSITE_NAME"] || "Character" %>';
+      window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
+      window.user_image_url  = '<%= @admin_user.gravatar_url(36) %>';
+      $(function(){ character.start() });
+    </script>
+    <%= csrf_meta_tags %>
+  <% end %>
 </head>
 
-<body class='antialiased'> <!-- anitialiased used to make fonts smooth -->
+<body class='antialiased'>
+  <% unless @admin_user %>
+    <%= link_to browserid_config.login.path, class: 'browserid_login button', style: 'position: fixed; left: 50%; width: 300px; margin-left: -150px; top: 50%; line-height: 40px; margin-top: -20px;' do %>
+      Login with Persona
+    <% end %>
+  <% end %>
 </body>
 </html>

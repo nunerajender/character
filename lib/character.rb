@@ -8,9 +8,8 @@ require 'marionette-rails'
 require 'eco'
 
 # backend
+require 'browserid-rails'
 require 'mongoid/reorder'
-require 'devise'
-require 'devise-browserid'
 require 'simple_form'
 require 'kaminari'
 

@@ -18,7 +18,7 @@
         </ul>
         <ul class="right">
           <li class="divider hide-for-small"></li>
-          <li><a href='/admin_users/sign_out' class='chr-logout'>Logout</a></li>
+          <li><a href='/admin/logout' class='browserid_logout'>Logout</a></li>
         </ul>
       </section>
     </nav>

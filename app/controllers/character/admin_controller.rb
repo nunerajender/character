@@ -8,7 +8,15 @@ class Character::AdminController < ActionController::Base
 
   # Filters -----------------------------------------------
 
-  #before_filter :authenticate_admin_user!
+  before_filter :authenticate_admin_user
+
+  def authenticate_admin_user
+    @admin_user = browserid_current_user if browserid_authenticated?
+  end
+
+
+  # TODO: for api calls return 500 if user is not loggedin
+
 
   before_filter :set_model_class, except: %w( admin )
   # - sets model class to be used in actions, class name is defined
@@ -40,20 +48,6 @@ class Character::AdminController < ActionController::Base
       @form_template = "character/generic_form"
     end
   end
-
-
-  # TODO: revise when switch to devise
-  #before_filter :set_admin_user_id, only: %w( create update )
-  
-  # - this looks like some hackish way to track changes done by admin,
-  #   it is not generic at all and should be revised by porting to devise.
-  #   Not sure what this is used for.
-
-  # def set_admin_user_id
-  #   puts '>>>>>>>>>>>>>>>>>'
-  #   puts current_admin_user.email
-  #   params[@namespace][:admin_user_id] = @character_admin_user.id
-  # end
 
 
   # Helpers -----------------------------------------------
@@ -114,8 +108,6 @@ class Character::AdminController < ActionController::Base
   # Actions -----------------------------------------------
 
   # - the index action implements search and paging functionality.
-  #   TODO: instead of returning a full object scheme, return only
-  #         predefined set of fields.
   #   IDEA: fields and template for index view could be defined in
   #         coffeescript admin file, where list of required fields
   #         is passed to the action as parameter.
@@ -212,15 +204,6 @@ class Character::AdminController < ActionController::Base
     render json: 'ok'
   end
 
-
-  # TODO: this method may be implemented using an update call
-  #       with a set of ids and attributes to update, this will
-  #       involve some frontend logic changes as well.
-  # def reorder
-  #   # TODO: need to add reordarable check
-  #   @model_class.reorder(params[:ids])
-  #   render json: 'ok'
-  # end
 
   # Views -------------------------------------------------
 
