@@ -68,6 +68,26 @@ $list-item-height: 66px;
   }
 }
 
+.chr-action                           { color:#888;
+                                        padding-left: .7em;
+                                        font-size:.8em;
+  &:before                            { content: '\00B7';
+                                        position: absolute;
+                                        margin: 1px 0 0 -.55em;
+                                        color:#888;
+                                        font-size:1.4em;
+  }
+  &:hover                             { text-decoration:underline;
+  }
+}
+
+
+
+
+
+
+
+
 .chr-index-list                       {
   header                              { padding: 1.25em 1.5em 0em;
                                         background: #fff;
@@ -146,6 +166,16 @@ $list-item-height: 66px;
   }
 }
 
+
+
+
+
+
+
+
+
+
+
 .chr-index-details                    { background:#fff;
                                         border-left:1px solid #e3e6e9;
                                         box-shadow: 0 0 3px rgba(0,0,0,0.1);
@@ -169,7 +199,7 @@ $list-item-height: 66px;
                                         margin-right: 1em;
     }
 
-    .chr-container                    { line-height: 1.3;
+    .chr-container                    { line-height: 1.4;
                                         font-size:.9em;
                                         float:left;
 
@@ -188,9 +218,27 @@ $list-item-height: 66px;
     }
   }
 
-  section form                        { margin: 2.5em 6%; // foundation has issues with padding
-    & > .row > .columns               { padding-left:0;
-                                        padding-right:0;
+  form                                { margin-bottom:0;
+    & > .row > .columns               { padding-left:6%;
+                                        padding-right:6%;
+    }
+  }
+
+  form                                {
+    .chr-row-border                   { border-bottom: 1px solid #eee;
+                                        padding-bottom: 2em;
+    }
+
+    .chr-btn-submit                   { margin:2em 0;
+                                        width:100%;
+    }
+
+    h5                                { margin: 2em auto 2em;
+                                        font-weight: normal;
+                                        font-size: 1em;
+                                        text-align: center;
+      small                           { font-size: .8em;
+      }
     }
   }
 }
