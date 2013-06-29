@@ -31,9 +31,15 @@
 
 <body class='antialiased'>
   <% unless @admin_user %>
-    <%= link_to browserid_config.login.path, class: 'browserid_login button', style: 'position: fixed; left: 50%; width: 300px; margin-left: -150px; top: 50%; line-height: 40px; margin-top: -20px;' do %>
-      Login with Persona
-    <% end %>
+
+    <div style='position:fixed; width:100%; height:100%; background:url("http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg") no-repeat center center fixed; background-size:cover;'>
+      <!-- http://feeds.nationalgeographic.com/ng/photography/photo-of-the-day/ -->
+    
+      <%= link_to browserid_config.login.path, class: 'browserid_login button', style: 'position: absolute; bottom: 2em; right: 2em; margin-bottom: 0;' do %>
+        <i class='icon-user' style='margin-right:.3em;'></i>  Login with Persona
+      <% end %>
+
+    </div>
   <% end %>
 </body>
 </html>

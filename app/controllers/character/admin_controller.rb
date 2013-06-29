@@ -28,6 +28,7 @@ class Character::AdminController < ActionController::Base
     # For example: Character-Post -> Character::Post
     @model_slug  = params[:model_slug]
     @model_class = @model_slug.gsub('-', '::').constantize
+    @model_name  = @model_slug.split('-').last.split(/(?=[A-Z])/).join(' ')
     @namespace   = @model_class.name.underscore.gsub('/', '_').to_sym
   end
 
