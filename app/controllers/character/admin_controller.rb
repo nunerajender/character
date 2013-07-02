@@ -28,7 +28,9 @@ class Character::AdminController < ActionController::Base
     # For example: Character-Post -> Character::Post
     @model_slug  = params[:model_slug]
     @model_class = @model_slug.gsub('-', '::').constantize
+    # model name is used while template rendering
     @model_name  = @model_slug.split('-').last.split(/(?=[A-Z])/).join(' ')
+    # namespace is used while form processing
     @namespace   = @model_class.name.underscore.gsub('/', '_').to_sym
   end
 
@@ -38,13 +40,17 @@ class Character::AdminController < ActionController::Base
   #   used for form-template based actions mentioned above
 
   def set_form_template
-    template_folder = @namespace.to_s.pluralize
+    template_folder = @model_class.name.underscore.to_s.pluralize
+
+    if not template_folder.start_with? 'character/'
+      template_folder = 'character/' + template_folder
+    end
 
     # Check if there is a custom form template for the class in the
-    # character/admin/ folder, if not using generic form
+    # character/ folder, if not using generic form
 
-    if template_exists?("form", "character/#{ template_folder }", false)
-      @form_template = "character/#{ template_folder }/form"
+    if template_exists?("form", template_folder, false)
+      @form_template = "#{ template_folder }/form"
     else
       @form_template = "character/generic_form"
     end

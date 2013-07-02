@@ -22,6 +22,20 @@ To add model to the character add following lines in ```/app/assets/javascript/c
 
 Where ```Model_#``` are names of rails models.
 
+
+## Custom forms with simple_forms
+
+Generic form could be overriden by custom form template which should be put to:
+
+```/app/views/character/module_name/model_name/form.html.erb```
+
+or 
+
+```/app/views/character/model_name/form.html.erb```
+
+Where ```module_name`` (optional) and ```model_name``` are names of the model to override form for.
+
+
 ## Foundation usage
 
 At this point all basic layout is using custom style and colors. Foundation is used for menu (mobile) and rendering forms.
