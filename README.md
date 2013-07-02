@@ -36,7 +36,7 @@ or
 
 ```/app/views/character/model_name/form.html.erb```
 
-Where ```module_name`` (optional) and ```model_name``` are names of the model to override form for.
+Where ```module_name``` (optional) and ```model_name``` are names of the model to override form for.
 
 Here is a generic template which is a good starting point for template customization:
 
