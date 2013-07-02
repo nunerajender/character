@@ -39,3 +39,12 @@ class @CharacterGenericCollection extends Backbone.Collection
     options.url = @url_with_params() unless options.url
     @fetch(options)
 
+  character_fetch: (callback) ->
+    @fetch
+      success: (collection, response, options) =>
+        # add scope to every model so it knows where it belongs
+        collection.each (model) => model.set({ __scope: @scope })
+        callback() if callback
+
+
+

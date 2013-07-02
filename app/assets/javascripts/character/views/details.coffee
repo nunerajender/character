@@ -60,10 +60,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
       @model.set(obj)
     else
       # TODO: need to figure out why sometimes collection does not refresh
-      console.log @collection
-      console.log 'fetch'
-      @collection.fetch()
-      #@collection.add(obj)
+      @collection.character_fetch()
 
   on_delete: (e) ->
     if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")
