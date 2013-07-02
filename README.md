@@ -78,8 +78,6 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 . limit access to api
 
-. figure out how to position new item in the scoped view
-
 . add loader spinner for form update (ladda by hakimel)
 
 . replace topnav with original menu version
