@@ -76,8 +76,6 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 ## TODOs & Improvements
 
-. fix: new item sometimes not added to the list
-
 . limit access to api
 
 . figure out how to position new item in the scoped view
