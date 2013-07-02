@@ -56,7 +56,14 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     if typeof(obj) == 'string' then return @update_content(obj)
     # update model
     obj['__scope'] = @scope()
-    if @model then @model.set(obj) else @collection.add(obj)
+    if @model
+      @model.set(obj)
+    else
+      # TODO: need to figure out why sometimes collection does not refresh
+      console.log @collection
+      console.log 'fetch'
+      @collection.fetch()
+      #@collection.add(obj)
 
   on_delete: (e) ->
     if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")

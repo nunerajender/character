@@ -6,15 +6,11 @@
       <h5><%= @model_name %> <small>attributes</small></h5>
     </div>
 
+    <% @form_fields.each do |name| %>
 
-    <div class='small-12 columns'>  
-      <% @form_fields.each do |name| %>
+      <%= f.input name, wrapper_class: 'small-12 columns' %>
 
-        <%= f.input name %>
-
-      <% end %>
-    </div>
-  
+    <% end %>  
   </div>
 
   <div class='row'>
