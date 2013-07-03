@@ -30,7 +30,6 @@ class @Character extends Backbone.Marionette.Application
 
   initialize_plugins: ->
     $(document).foundation('topbar section forms')
-    #$('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' })
 
 
   update_user_image: ->

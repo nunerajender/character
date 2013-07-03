@@ -161,7 +161,9 @@ $list-item-height: 66px;
                                         @include border-radius(15px);
     }
 
-    .chr-container                    { padding: 0 0 0 2.5em;
+    .has-image                        {
+      .chr-container                  { padding: 0 0 0 2.5em;
+      }      
     }
   }
 }
@@ -245,9 +247,5 @@ $list-item-height: 66px;
     }
   }
 }
-
-
-
-
 
 
