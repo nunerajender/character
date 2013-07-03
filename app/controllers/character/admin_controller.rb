@@ -48,10 +48,6 @@ class Character::AdminController < ActionController::Base
       template_folder = 'character/admin/' + template_folder
     end
 
-    puts "\n\n\n"
-    puts template_folder
-    puts "\n\n\n"
-
     # Check if there is a custom form template for the class in the
     # character/ folder, if not using generic form
 
