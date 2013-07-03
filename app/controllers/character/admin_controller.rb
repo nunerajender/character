@@ -42,9 +42,15 @@ class Character::AdminController < ActionController::Base
   def set_form_template
     template_folder = @model_class.name.underscore.to_s.pluralize
 
-    if not template_folder.start_with? 'character/'
-      template_folder = 'character/' + template_folder
+    if template_folder.start_with? 'character/'
+      template_folder = 'character/' + template_folder.gsub('character/', '').gsub('/', '/admin/')
+    else
+      template_folder = 'character/admin/' + template_folder
     end
+
+    puts "\n\n\n"
+    puts template_folder
+    puts "\n\n\n"
 
     # Check if there is a custom form template for the class in the
     # character/ folder, if not using generic form
@@ -52,7 +58,7 @@ class Character::AdminController < ActionController::Base
     if template_exists?("form", template_folder, false)
       @form_template = "#{ template_folder }/form"
     else
-      @form_template = "character/generic_form"
+      @form_template = "character/admin/generic_form"
     end
   end
 
@@ -215,7 +221,7 @@ class Character::AdminController < ActionController::Base
   # Views -------------------------------------------------
 
   def admin
-    render 'character/admin'
+    render 'character/admin/index'
   end
 end
 
