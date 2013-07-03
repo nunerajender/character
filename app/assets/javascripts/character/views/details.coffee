@@ -43,10 +43,23 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     
     if @ui.form
       @ui.form.addClass('custom')
+
+      # This sets simple_form date input type layout combined with Foundation
+
+      $('.row.chr-date-dmy select:eq(0)').wrap('<div class="small-3 columns chr-date-day" />')
+      $('.row.chr-date-dmy select:eq(1)').wrap('<div class="small-5 columns chr-date-month" />')
+      $('.row.chr-date-dmy select:eq(2)').wrap('<div class="small-4 columns chr-date-year" />')
+
       @ui.content.foundation('section', 'resize')
       @ui.content.foundation('forms', 'assemble')
 
-      @ui.form.ajaxForm { success: (response) => @save_model(response) }
+      @ui.form.ajaxForm 
+        beforeSubmit: (arr, $form, options) ->
+          date_fields = simple_form.get_date_values(arr)
+          _.each date_fields, (el) ->
+            arr.push el
+          return true
+        success: (response) => @save_model(response)
 
       # this allows to attach plugins when form is rendered
       $(document).trigger "character.#{ @scope() }.details.form.rendered", [ @el ]

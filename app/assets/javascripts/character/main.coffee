@@ -2,8 +2,8 @@
 #= require browserid
 #= require jquery_ujs
 #= require jquery.ui.sortable
-#= require jquery.ui.datepicker
 #= require jquery.form
+#= require simple_form.date
 #= require underscore
 #= require underscore.string
 #= require underscore.inflection
