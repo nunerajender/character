@@ -22,6 +22,25 @@ $form-label-bottom-margin: .5em;
 @import "theme";
 
 
+
+// Foundation fix for date field input dropdown
+
+.row.chr-date-dmy                     {
+  .chr-date-day .date.custom          { border-right:none;
+  }
+  .chr-date-year .date.custom         { border-left:none;
+  }
+}
+
+
+
+// Foundation fix for textarea height
+
+.chr-index-details form textarea      { height:auto;
+}
+
+
+
 // FOUNDATION: checkbox + label fix, to have in one line
 
 

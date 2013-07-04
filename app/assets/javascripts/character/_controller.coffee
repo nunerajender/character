@@ -5,10 +5,11 @@ class @CharacterAppController extends Marionette.Controller
     @api_url = @options.api || "/admin/#{ @options.name }"
     
     # Collection setup
-    @collection             = new CharacterGenericCollection()
-    @collection.url         = @api_url
-    @collection.model_name  = @options.name # this is used to identify if collection is already shown as index view
-    @collection.scope       = @options.scope
+    @collection               = new CharacterGenericCollection()
+    @collection.url           = @api_url
+    @collection.model_name    = @options.name # this is used to identify if collection is already shown as index view
+    @collection.scope         = @options.scope
+    @collection.order_by      = @options.index_scopes.default || no
 
 
   index: (callback) ->

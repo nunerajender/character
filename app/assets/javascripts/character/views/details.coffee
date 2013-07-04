@@ -44,11 +44,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     if @ui.form
       @ui.form.addClass('custom')
 
-      # This sets simple_form date input type layout combined with Foundation
-
-      $('.row.chr-date-dmy select:eq(0)').wrap('<div class="small-3 columns chr-date-day" />')
-      $('.row.chr-date-dmy select:eq(1)').wrap('<div class="small-5 columns chr-date-month" />')
-      $('.row.chr-date-dmy select:eq(2)').wrap('<div class="small-4 columns chr-date-year" />')
+      simple_form.set_foundation_date_layout()
 
       @ui.content.foundation('section', 'resize')
       @ui.content.foundation('forms', 'assemble')
@@ -62,25 +58,29 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
         success: (response) => @save_model(response)
 
       # this allows to attach plugins when form is rendered
+      # specific to all forms
+      $(document).trigger "character.details.form.rendered", [ @el ]
+
+      # this allows to attach plugins when form is rendered
+      # specific to character module
       $(document).trigger "character.#{ @scope() }.details.form.rendered", [ @el ]
 
   save_model: (obj) ->
     # when form is submitted but returns an error
     if typeof(obj) == 'string' then return @update_content(obj)
+    
     # update model
     obj['__scope'] = @scope()
+    
     if @model
       @model.set(obj)
     else
-      # TODO: need to figure out why sometimes collection does not refresh
       @collection.character_fetch()
 
   on_delete: (e) ->
     if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")
       @close()
-      console.log @model
-      window.temp = @model
-      @model.destroy() # TODO: this event sometimes do now work, probably cause of the server response
+      @model.destroy()
     else
       e.preventDefault() if e
 

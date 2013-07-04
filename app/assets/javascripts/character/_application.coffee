@@ -2,23 +2,34 @@ class @CharacterApp
   constructor: (options_or_name) ->
 
     if typeof options_or_name == 'string'
-      name    = options_or_name
-      options = {} # generate defaults here
-      options.name = name
+      name          = options_or_name
+      options       = {}
+      options.name  = name
     else
       options = options_or_name
-      name    = options.name if options
+      name    = options.name
+
     
+    # Model name is required for generic character module
     if not name
       console.error 'Model name is required to create CharacterApp instance.' ; return
 
-    if not options.pluralized_name then options.pluralized_name = _.pluralize(name)
 
-    if not options.scope then options.scope = _.pluralize(_.slugify(name))
+    # Pluralized name for model to be used in default templates
+    options.pluralized_name   ?= _.pluralize(name)
 
-    if not options.collection_title then options.collection_title = _(name).pluralize()
+    # Character module scope which is used in urls
+    options.scope             ?= _.pluralize(_.slugify(name))
 
-    if not options.icon then options.icon = 'bolt'
+    # Title to be shown in index list header
+    options.collection_title  ?= _(name).pluralize()
+
+    # Default icon to be used in character menu for the module
+    options.icon              ?= 'bolt'
+
+    # Sorting options for index list
+    options.index_scopes      ?= {}
+
 
     character.module name, ->
       @options = options

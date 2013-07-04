@@ -250,11 +250,3 @@ $list-item-height: 66px;
 
 
 
-// Foundation fix for date field input dropdown
-
-.row.chr-date-dmy                     {
-  .chr-date-day .date.custom          { border-right:none;
-  }
-  .chr-date-year .date.custom         { border-left:none;
-  }
-}

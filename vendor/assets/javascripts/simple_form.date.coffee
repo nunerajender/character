@@ -2,10 +2,16 @@
 # Slate Studio 2013
 
 # Uses: 
+#  - jquery
 #  - underscore
 #  - underscore.string
 
 @simple_form =
+  set_foundation_date_layout: ->
+    $('.row.chr-date-dmy select:eq(0)').wrap('<div class="small-3 columns chr-date-day" />')
+    $('.row.chr-date-dmy select:eq(1)').wrap('<div class="small-5 columns chr-date-month" />')
+    $('.row.chr-date-dmy select:eq(2)').wrap('<div class="small-4 columns chr-date-year" />')
+
   get_date_values: (arr) ->
     date_fields = {}
     

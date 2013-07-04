@@ -68,9 +68,11 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 ## TODOs & Improvements
 
+. figure out the way to go with order in index after update is done or new item is added (now resets the collection), maybe we should figure out the way passing default_order configuration of the model in the index api
+
 . limit access to api
 
-. add loader spinner for form update (ladda by hakimel)
+. add loader spinner for form update (ladda by hakimel) / create new item / loading list
 
 . replace topnav with original menu version
 
