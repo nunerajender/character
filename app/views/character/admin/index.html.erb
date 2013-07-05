@@ -9,7 +9,7 @@
 
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-  <title><%= ENV['WEBSITE_NAME'] || "Character" %> | Admin</title>
+  <title><%= Character.title %> | Admin</title>
 
   <%= stylesheet_link_tag 'character', :media => 'all' %>
 
@@ -20,10 +20,12 @@
 
   <% if @admin_user %>
     <script type='text/javascript'>
-      window.website_name           = '<%= ENV["WEBSITE_NAME"] || "Character" %>';
-      window.website_url            = '<%= ENV["WEBSITE_URL"] %>';
-      window.user_image_url         = '<%= @admin_user.gravatar_url(36) %>';
-      window.company_logo_image_url = '<%= image_path("character-company-logo.png") %>';
+      window.user_image_url = '<%= @admin_user.gravatar_url(36) %>';
+      
+      <% if not Character.company_logo_image.empty? %>
+      window.company_logo_image_url = '<%= image_path(Character.company_logo_image) %>';
+      <% end %>
+      
       $(function(){ character.start() });
     </script>
     <%= csrf_meta_tags %>

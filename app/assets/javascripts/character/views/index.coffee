@@ -39,7 +39,8 @@ class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
     @ui.new_btn.attr 'href', "#/#{ @options.scope }/new"
 
   show_logo: ->
-    @ui.details.css { background: "#fff url(#{ window.company_logo_image_url }) no-repeat center center" }
+    if window.company_logo_image_url
+      @ui.details.css { background: "#fff url(#{ window.company_logo_image_url }) no-repeat center center" }
 
   hide_logo: ->
     @ui.details.css { background: "#fff" }
