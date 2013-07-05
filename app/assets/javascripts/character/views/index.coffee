@@ -32,10 +32,17 @@ class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
   ui:
     title:   '#list_title'
     new_btn: '#action_new'
+    details: '#details'
 
   onRender: ->
     @ui.title.html @options.title
     @ui.new_btn.attr 'href', "#/#{ @options.scope }/new"
+
+  show_logo: ->
+    @ui.details.css { background: "#fff url(#{ window.company_logo_image_url }) no-repeat center center" }
+
+  hide_logo: ->
+    @ui.details.css { background: "#fff" }
 
   unselect_item: ->
     if @selected_item

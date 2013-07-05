@@ -30,17 +30,22 @@ class @CharacterAppController extends Marionette.Controller
       @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
 
       character.layout.main.show(@index_layout)
+
+      @index_layout.show_logo()
       @index_layout.content.show(@collection_view)
 
       @collection.character_fetch(callback)
 
     else
+      @index_layout.show_logo()
       @index_layout.unselect_item()
+
       callback() if callback
 
 
   new: ->
     @index =>
+      @index_layout.hide_logo()
       details_view = new CharacterAppDetailsView({ model: no, collection: @collection })
       @index_layout.details.show(details_view)
 
@@ -49,6 +54,7 @@ class @CharacterAppController extends Marionette.Controller
 
   edit: (id) ->
     @index =>
+      @index_layout.hide_logo()
       @index_layout.select_item(id)
 
       doc = @collection.get(id)

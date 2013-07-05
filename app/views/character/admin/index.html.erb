@@ -20,9 +20,10 @@
 
   <% if @admin_user %>
     <script type='text/javascript'>
-      window.website_name    = '<%= ENV["WEBSITE_NAME"] || "Character" %>';
-      window.website_url     = '<%= ENV["WEBSITE_URL"] %>';
-      window.user_image_url  = '<%= @admin_user.gravatar_url(36) %>';
+      window.website_name           = '<%= ENV["WEBSITE_NAME"] || "Character" %>';
+      window.website_url            = '<%= ENV["WEBSITE_URL"] %>';
+      window.user_image_url         = '<%= @admin_user.gravatar_url(36) %>';
+      window.company_logo_image_url = '<%= image_path("character-company-logo.png") %>';
       $(function(){ character.start() });
     </script>
     <%= csrf_meta_tags %>
