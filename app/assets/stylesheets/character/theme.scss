@@ -187,6 +187,9 @@ $list-item-height: 66px;
                                         border-left:1px solid #e3e6e9;
                                         box-shadow: 0 0 3px rgba(0,0,0,0.1);
 
+                                        background-position: 50% 50%;
+                                        background-repeat: no-repeat no-repeat;  
+
   header                              { padding: .9em 1.5em 0;
                                         background: #fff;
                                         border-bottom: 1px solid #eee;
@@ -252,6 +255,5 @@ $list-item-height: 66px;
     }
   }
 }
-
 
 

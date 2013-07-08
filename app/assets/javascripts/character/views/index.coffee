@@ -48,11 +48,10 @@ class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
     @ui.new_btn.attr 'href', "#/#{ @options.scope }/new"
 
   show_logo: ->
-    if window.company_logo_image_url
-      @ui.details.css { background: "#fff url(#{ window.company_logo_image_url }) no-repeat center center" }
+    @ui.details.css { 'background-image': '' }
 
   hide_logo: ->
-    @ui.details.css { background: "#fff" }
+    @ui.details.css { 'background-image': 'none' }
 
   unselect_item: ->
     if @selected_item

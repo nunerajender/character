@@ -20,14 +20,17 @@
 
   <% if @admin_user %>
     <script type='text/javascript'>
-      window.user_image_url = '<%= @admin_user.gravatar_url(36) %>';
-      
-      <% if not Character.company_logo_image.empty? %>
-      window.company_logo_image_url = '<%= image_path(Character.company_logo_image) %>';
-      <% end %>
-      
+      window.user_image_url = '<%= @admin_user.gravatar_url(36) %>';      
       $(function(){ character.start() });
     </script>
+
+    <style>
+    <% if not Character.company_logo_image.empty? %>
+      .chr-index-details {
+        background-image: url(<%= image_path(Character.company_logo_image) %>); 
+      }
+    <% end %>
+    </style>
     <%= csrf_meta_tags %>
   <% end %>
 </head>

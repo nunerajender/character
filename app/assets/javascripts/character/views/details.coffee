@@ -19,8 +19,8 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     header:  '#details_header'
 
   ui:
-    content:   '#details_content'
-    footer:    '#details_footer'
+    content:    '#details_content'
+    footer:     '#details_footer'
 
   events:
     'click #action_delete': 'on_delete'
@@ -49,6 +49,8 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
       @ui.content.foundation('section', 'resize')
       @ui.content.foundation('forms', 'assemble')
 
+      @ui.submit_btn = @ui.content.find('.chr-btn-submit')
+
       url    = @ui.form.attr 'action'
       params = {}
 
@@ -60,12 +62,21 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
 
       @ui.form.ajaxForm
         url: url
-        beforeSubmit: (arr, $form, options) ->
+        beforeSubmit: (arr, $form, options) =>
           # dates fix
           _.each simple_form.get_date_values(arr), (el) -> arr.push el
+
+          # disable button
+          console.log @ui.submit_btn
+          @ui.submit_btn.addClass 'disabled'
+
           return true
         
-        success: (response) => @save_model(response)
+        success: (response) =>
+          @save_model(response)
+
+          # enable button
+          @ui.submit_btn.removeClass 'disabled'
 
       # this allows to attach plugins when form is rendered
       # specific to all forms

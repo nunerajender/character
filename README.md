@@ -1,6 +1,6 @@
 # Character
 
-**Character** is data management framework based on Backbone & Marionette written in CoffeeScript and backed with Rails.
+Character is data management framework based on Backbone & Marionette written in CoffeeScript and backed with Rails.
 
 
 
@@ -93,23 +93,19 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 ## TODOs & Improvements
 
-. limit access to api
-
-. add loader spinner for form update (ladda by hakimel) / create new item / loading list
-
 . replace topnav with original menu version
+
+. limit access to api
 
 . search option
 
 . scopes
 
-. make headers meta to show updated at value if available
-
 . add hotkeys for fast navigation
 
-. collection is rendered twice for some reason
+. make headers meta to show updated at value if available
 
-. fix blinking logo
+. collection is rendered twice for some reason
 
 
 
