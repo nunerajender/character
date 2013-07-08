@@ -18,6 +18,8 @@ class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionVie
   itemView:  CharacterAppIndexItemView
   emptyView: CharacterAppIndexNoItemsView
 
+  initialize: (options) ->
+    @listenTo(@collection, 'sort', @render, @)
 
 
 class @CharacterAppIndexLayout extends Backbone.Marionette.Layout

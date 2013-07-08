@@ -8,7 +8,7 @@ class @CharacterAppDetailsHeaderView extends Backbone.Marionette.ItemView
     btn_close: '#action_close'
 
   onRender: ->
-    @ui.btn_close.attr 'href', "#/#{ @collection.scope }"
+    @ui.btn_close.attr 'href', "#/#{ @collection.options.scope }"
 
 
 
@@ -32,7 +32,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     @header.show(header_view)
 
   scope: ->
-    @collection.scope
+    @collection.options.scope
 
   # this method updates forms html and
   # then start all related plugins
@@ -49,12 +49,22 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
       @ui.content.foundation('section', 'resize')
       @ui.content.foundation('forms', 'assemble')
 
-      @ui.form.ajaxForm 
+      url    = @ui.form.attr 'action'
+      params = {}
+
+      # this should be extended when scopes are added
+      if @collection.options.order_by
+        params.fields_to_include = @collection.options.order_by.split(':')[0]
+
+      url = url + "?" + $.param(params)
+
+      @ui.form.ajaxForm
+        url: url
         beforeSubmit: (arr, $form, options) ->
-          date_fields = simple_form.get_date_values(arr)
-          _.each date_fields, (el) ->
-            arr.push el
+          # dates fix
+          _.each simple_form.get_date_values(arr), (el) -> arr.push el
           return true
+        
         success: (response) => @save_model(response)
 
       # this allows to attach plugins when form is rendered
@@ -74,8 +84,9 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     
     if @model
       @model.set(obj)
+      @collection.sort()
     else
-      @collection.character_fetch()
+      @collection.add(obj)
 
   on_delete: (e) ->
     if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")

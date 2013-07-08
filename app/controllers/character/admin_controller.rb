@@ -92,9 +92,26 @@ class Character::AdminController < ActionController::Base
   end
 
 
+  before_filter :set_fields_to_include, only: %w( index create update )
+
+  def set_fields_to_include
+    @fields_to_include = if params[:fields_to_include]
+      params[:fields_to_include].split(',')
+    else
+      []
+    end
+  end
+
+
   # This builds an object which is used as character internal
   # model in index view and headers.
   def build_character_item(o)
+    # Until we don't have a format for requesting model attributes
+    # use the first attribute of the model.
+
+    # Here we exclude meta fields to have more chances to get
+    # descriptive field for the admin index
+
     fields = @character_item_fields
     hash   = { _id: o.id }
 
@@ -110,44 +127,50 @@ class Character::AdminController < ActionController::Base
       hash[:__image] = o.try(fields[:image_field])
     end
 
+    @fields_to_include.each do |f|
+      hash[f] = o.try(f)
+    end
+
     hash
   end
 
 
   # Actions -----------------------------------------------
 
-  # - the index action implements search and paging functionality.
-  #   IDEA: fields and template for index view could be defined in
-  #         coffeescript admin file, where list of required fields
-  #         is passed to the action as parameter.
+  # - the index action implements order, search and paging
   def index
-    search_query  = params[:search_query] || ''
-    page          = params[:page]         || 1
-    per_page      = params[:per_page]     || 50
+    order_by     = params[:order_by]
+    search_query = params[:search_query] || ''
+    page         = params[:page]         || 1
+    per_page     = params[:per_page]     || 50
 
-    @objects = @model_class.all
+    @objects = @model_class.unscoped.all
 
-    @objects = @objects.full_text_search(search_query) if not search_query.empty?
-    @objects = @objects.page(page).per(per_page)
+    # order_by format: &order_by=field_name:direction,field_name2:direction,...&
+    if order_by
+      filters = {}
+      order_by.split(',').each do |filter|
+        filter_options = filter.split(':')
+        filters[filter_options.first] = filter_options.last
+        @fields_to_include.append(filter_options.first)
+      end
+      
+      @objects = @objects.order_by(filters)
+    end
+    
 
-    # TODO: here we should implement logic of objects transform to
-    #       json list and check if all provided attribute names are
-    #       available, if some is not available provide an error
-    #       handler.
+    #@objects = @objects.full_text_search(search_query) if not search_query.empty?
+    #@objects = @objects.page(page).per(per_page)
 
-
-    # Until we don't have a format for requesting model attributes
-    # use the first attribute of the model.
-
-    # Here we exclude meta fields to have more chances to get
-    # descriptive field for the admin index
     item_objects = @objects.map { |o| build_character_item(o) }
 
-    render json: {  objects:       item_objects,
-                    total_pages:   @objects.total_pages(),
-                    page:          page,
-                    per_page:      per_page,
-                    search_query:  search_query }
+    # render json: {  objects:       item_objects,
+    #                 total_pages:   @objects.total_pages(),
+    #                 page:          page,
+    #                 per_page:      per_page,
+    #                 search_query:  search_query }
+
+    render json: { objects: item_objects }
   end
 
 
