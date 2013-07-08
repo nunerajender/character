@@ -21,14 +21,21 @@ class @CharacterAppController extends Marionette.Controller
       character.layout.scope = @options.scope
       character.layout.select_menu_item(@options.scope)
       
-      # Layout and views: These guys were initiated in initialize method before,
+      # NOTE: Layout and views were initiated in "initialize" method before,
       # but they are loosing events while navigation between apps, so after new
       # item is added to collection it's not rendered.
+
       # TODO: make sure that memory is still available after a couple of big
       # jumps between apps.
+      
       @index_layout = new CharacterAppIndexLayout({ title: @options.collection_title, scope: @options.scope })
       @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
 
+      # This adds module scope class to the layout, to make css customization
+      # possible and easy to do.
+
+      @index_layout.$el.addClass "chr-scope-#{ @options.scope }"
+      
       character.layout.main.show(@index_layout)
 
       @index_layout.show_logo()
