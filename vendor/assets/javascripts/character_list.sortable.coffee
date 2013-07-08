@@ -28,7 +28,7 @@ character_list.sortable = (el, collection) ->
       
       else if prev.length > 0
         prev_position = parseFloat prev.attr('data-position')
-        prev_prev_position = parseFloat prev.prev().attr('data-position')
+        prev_prev_position = if prev.prev().length > 0 then parseFloat(prev.prev().attr('data-position')) else 100000
 
         new_position = prev_position
         update_model_position(ui.item, new_position)
@@ -36,9 +36,9 @@ character_list.sortable = (el, collection) ->
         new_position = (prev_position + prev_prev_position) / 2
         update_model_position(prev, new_position)
       
-      else
+      else if next.length > 0
         next_position = parseFloat next.attr('data-position')
-        next_next_position = parseFloat next.next().attr('data-position')
+        next_next_position = if next.next().length > 0 then parseFloat(next.next().attr('data-position')) else 100000
 
         new_position = next_position
         update_model_position(ui.item, new_position)

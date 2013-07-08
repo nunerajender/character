@@ -11,10 +11,19 @@
 
 ## Configuration
 
-To add model to the character add following lines in ```/app/assets/javascript/character.coffee```:
+Following two cofiguration files have to be created:
+
+```/app/assets/javascript/character.coffee``` - Character modules configuration.
 
     #= require character/main
     #= require_self
+
+```/app/assets/stylesheets/character.scss``` - Character styles.
+
+    @import "character/main";
+
+
+To add model to the character add following lines in ```/app/assets/javascript/character.coffee```:
 
     character.add_module
       name: 'Model_1'
@@ -90,8 +99,6 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 . replace topnav with original menu version
 
-. reorder items option
-
 . search option
 
 . scopes
@@ -101,6 +108,9 @@ At this point all basic layout is using custom style and colors. Foundation is u
 . add hotkeys for fast navigation
 
 . collection is rendered twice for some reason
+
+. fix blinking logo
+
 
 
 
