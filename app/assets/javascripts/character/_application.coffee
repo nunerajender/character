@@ -30,6 +30,12 @@ class @CharacterApp
     # Sorting options for index list
     options.index_scopes      ?= {}
 
+    # Reordering items in a list
+    options.reorderable       ?= false
+
+    # Namespace which is used in rails update method, used to save models
+    options.namespace         ?= _.slugify(name)
+
 
     character.module name, ->
       @options = options

@@ -6,9 +6,11 @@ class @CharacterAppController extends Marionette.Controller
     @collection = new CharacterGenericCollection()
     
     collection_options = 
-      api:        @api_url
-      scope:      @options.scope
-      order_by:   @options.index_scopes.default || no
+      api:          @api_url
+      scope:        @options.scope
+      namespace:    @options.namespace
+      order_by:     @options.index_scopes.default || no
+      reorderable:  @options.reorderable
     
     if @collection.options
       _(@collection.options).extend
@@ -34,8 +36,13 @@ class @CharacterAppController extends Marionette.Controller
       # TODO: make sure that memory is still available after a couple of big
       # jumps between apps.
       
-      @index_layout = new CharacterAppIndexLayout({ title: @options.collection_title, scope: @options.scope })
-      @collection_view = new CharacterAppIndexCollectionView({ collection: @collection })
+      @index_layout = new CharacterAppIndexLayout
+        title:        @options.collection_title
+        scope:        @options.scope
+
+      @collection_view = new CharacterAppIndexCollectionView
+        collection:   @collection
+        reorderable:  @options.reorderable
 
       # This adds module scope class to the layout, to make css customization
       # possible and easy to do.

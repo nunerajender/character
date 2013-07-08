@@ -1,7 +1,6 @@
 #= require jquery
 #= require browserid
 #= require jquery_ujs
-#= require jquery.ui.sortable
 #= require jquery.form
 #= require simple_form.date
 #= require underscore
@@ -10,6 +9,7 @@
 #= require backbone
 #= require backbone.marionette
 #= require foundation
+#= require character_list.sortable
 #= require_tree ./templates
 #= require_tree ./views
 #= require ./_model

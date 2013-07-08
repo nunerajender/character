@@ -5,6 +5,9 @@ class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
     'change':  'render'
     'destroy': 'remove'
 
+  onRender: ->
+    @$el.attr 'data-id', @model.id
+    @$el.attr 'data-position', @model.get('_position')
 
 
 class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
@@ -20,6 +23,10 @@ class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionVie
 
   initialize: (options) ->
     @listenTo(@collection, 'sort', @render, @)
+
+  onRender: ->
+    if @options.reorderable then character_list.sortable(@$el, @collection)
+
 
 
 class @CharacterAppIndexLayout extends Backbone.Marionette.Layout

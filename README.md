@@ -3,6 +3,12 @@
 **Character** is data management framework based on Backbone & Marionette written in CoffeeScript and backed with Rails.
 
 
+
+
+
+
+
+
 ## Configuration
 
 To add model to the character add following lines in ```/app/assets/javascript/character.coffee```:
@@ -21,6 +27,8 @@ To add model to the character add following lines in ```/app/assets/javascript/c
     character.add_module 'Model_3'
 
 Where ```Model_#``` are names of rails models.
+
+
 
 
 
@@ -58,9 +66,17 @@ Here is a generic template which is a good starting point for template customiza
 
 
 
+
+
+
+
 ## Foundation usage
 
 At this point all basic layout is using custom style and colors. Foundation is used for menu (mobile) and rendering forms.
+
+
+
+
 
 
 
@@ -74,8 +90,6 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 . replace topnav with original menu version
 
-. add default logo for details placeholder
-
 . reorder items option
 
 . search option
@@ -86,5 +100,10 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 . add hotkeys for fast navigation
 
-. when create new object, split submit button into two: create + next | create + close
+. collection is rendered twice for some reason
+
+
+
+
+
 

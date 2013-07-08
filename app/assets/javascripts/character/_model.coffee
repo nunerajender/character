@@ -4,8 +4,19 @@
 class @CharacterGenericModel extends Backbone.Model
   idAttribute: '_id'
 
+
   urlRoot: ->
     @collection.options.api
+
+
+  toJSON: (options) ->
+    if options and options.include_namespace
+      obj = {}
+      obj[@collection.options.namespace] = _.clone(this.attributes)
+    else
+      obj = _.clone(this.attributes)
+    
+    return obj
 
 
 
@@ -14,15 +25,12 @@ class @CharacterGenericCollection extends Backbone.Collection
 
 
   url: ->
-    params = {}
+    params =
+      reorderable: @options.reorderable
+
     params.order_by = @options.order_by if @options.order_by
 
     @options.api + "?" + $.param(params, true)
-
-
-  comparator: (m) ->
-    if @options.order_by
-      return m.get(@options.sort_field)
 
 
   character_fetch: (callback) ->
@@ -36,6 +44,11 @@ class @CharacterGenericCollection extends Backbone.Collection
 
   # support of reverse sorting is taken from:
   # http://stackoverflow.com/questions/5013819/reverse-sort-order-with-backbone-js
+
+
+  comparator: (m) ->
+    if @options.order_by
+      return m.get(@options.sort_field)
 
 
   set_sort_field: ->

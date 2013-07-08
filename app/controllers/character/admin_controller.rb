@@ -131,6 +131,10 @@ class Character::AdminController < ActionController::Base
       hash[f] = o.try(f)
     end
 
+    if params[:reorderable] == 'true'
+      hash[:_position] = o.try(:_position)
+    end
+
     hash
   end
 
