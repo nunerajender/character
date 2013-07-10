@@ -6,8 +6,14 @@
 @import "compass/css3";
 
 $primary-color: #232323;
+
 $input-border-color: #eee;
 $input-box-shadow: none;
+$input-prefix-bg: darken(#fff, 1%);
+$input-prefix-border-size: 1px;
+$input-prefix-border-color: #eee; // doesn't work
+$input-prefix-font-color: #6f6f6f;
+
 $panel-bg: #fff;
 $panel-border-color: #eee;
 $panel-border-style: dashed;
@@ -15,13 +21,20 @@ $form-label-font-color: #777;
 
 $form-label-font-size: .8em;
 $form-label-font-weight: 400;
-//$form-label-font-color: lighten(#000, 30%);
 $form-label-bottom-margin: .5em;
+
+
+
 
 @import "foundation";
 @import "theme";
 
+// Foundation postfix fix
 
+span.postfix                          { line-height: 2.5em;
+                                        height: 2.5em;
+                                        border-color: #eee;
+}
 
 // Foundation fix for date field input dropdown
 
