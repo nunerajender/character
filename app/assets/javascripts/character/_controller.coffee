@@ -11,6 +11,8 @@ class @CharacterAppController extends Marionette.Controller
       namespace:    @options.namespace
       order_by:     @options.index_scopes.default || no
       reorderable:  @options.reorderable
+      item_title:   @options.item_title
+      item_meta:    @options.item_meta
     
     if @collection.options
       _(@collection.options).extend

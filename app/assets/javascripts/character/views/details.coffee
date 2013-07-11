@@ -55,8 +55,12 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
       params = {}
 
       # this should be extended when scopes are added
+      
       if @collection.options.order_by
         params.fields_to_include = @collection.options.order_by.split(':')[0]
+
+      params.title_field = @collection.options.item_title if @collection.options.item_title
+      params.meta_field  = @collection.options.item_meta  if @collection.options.item_meta
 
       url = url + "?" + $.param(params)
 

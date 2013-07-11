@@ -28,7 +28,9 @@ class @CharacterGenericCollection extends Backbone.Collection
     params =
       reorderable: @options.reorderable
 
-    params.order_by = @options.order_by if @options.order_by
+    params.order_by    = @options.order_by   if @options.order_by
+    params.title_field = @options.item_title if @options.item_title
+    params.meta_field  = @options.item_meta  if @options.item_meta
 
     @options.api + "?" + $.param(params, true)
 

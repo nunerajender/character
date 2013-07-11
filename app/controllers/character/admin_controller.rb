@@ -75,16 +75,28 @@ class Character::AdminController < ActionController::Base
 
     fields = @model_class.fields.keys - %w( _id _type _position _keywords created_at updated_at deleted_at )
 
+
     # TODO: add a warning message here
-    if fields.size > 0
-      @character_item_fields[:title_field] = fields[0]
+
+    if params[:title_field]
+      @character_item_fields[:title_field] = params[:title_field]
     else
-      puts "WARNING: #{ @model_class } model doesn't have any unique fields."
+      if fields.size > 0
+        @character_item_fields[:title_field] = fields[0]
+      else
+        puts "WARNING: #{ @model_class } model doesn't have any unique fields."
+      end
     end
 
-    if fields.size > 1
-      @character_item_fields[:meta_field] = fields[1]
+
+    if params[:meta_field]
+      @character_item_fields[:meta_field] = params[:meta_field]
+    else
+      if fields.size > 1
+        @character_item_fields[:meta_field] = fields[1]
+      end
     end
+
 
     if @model_class.method_defined? :character_thumb_url
       @character_item_fields[:image_field] = :character_thumb_url 
@@ -133,6 +145,12 @@ class Character::AdminController < ActionController::Base
 
     if params[:reorderable] == 'true'
       hash[:_position] = o.try(:_position)
+    end
+
+    updated_at = o.try(:updated_at)
+    if updated_at
+      # TODO: add smart formatting options here
+      hash[:__updated_at] = updated_at.to_formatted_s(:long_ordinal)
     end
 
     hash
