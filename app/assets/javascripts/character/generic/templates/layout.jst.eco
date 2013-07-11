@@ -1,4 +1,4 @@
-<section class='chr-generic-list' id='list'>
+<section class='chr-generic-collection' id='list'>
   
   <header id='list_header'>
     <span id='list_title' class='title'>Projects</span>

@@ -1,3 +1,7 @@
+#= require_tree ./templates
+#= require_tree ./views
+#= require ./controller
+#= require_self
 
 
 class @Settings

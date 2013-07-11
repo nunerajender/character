@@ -26,7 +26,7 @@ body                                  { background: #fafafa;
 
   // Index application
 
-  .chr-generic-list                   { width: 40%;
+  .chr-generic-collection             { width: 40%;
                                         position: absolute;
                                         bottom: 0;
                                         top: 0;
@@ -88,7 +88,7 @@ $list-item-height: 66px;
 
 
 
-.chr-generic-list                     {
+.chr-generic-collection               {
   header                              { padding: 1.25em 1.5em 0em;
                                         background: #fff;
                                         box-shadow: 0 0 2px rgba(0,0,0,0.2);

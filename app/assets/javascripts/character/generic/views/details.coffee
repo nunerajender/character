@@ -1,19 +1,5 @@
-class @GenericDetailsHeaderView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/generic/details_header"]
-  
-  modelEvents:
-    'change': 'render'
-
-  ui:
-    btn_close: '#action_close'
-
-  onRender: ->
-    @ui.btn_close.attr 'href', "#/#{ @collection.options.scope }"
-
-
-
 class @GenericDetailsView extends Backbone.Marionette.Layout
-  template: JST["character/templates/generic/details"]
+  template: JST["character/generic/templates/details"]
 
   regions:
     header:  '#details_header'
@@ -117,9 +103,4 @@ class @GenericDetailsView extends Backbone.Marionette.Layout
 
   on_close: (e) ->
     @close()
-
-
-
-
-
 

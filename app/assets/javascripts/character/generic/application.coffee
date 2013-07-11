@@ -1,19 +1,13 @@
+#= require_tree ./templates
+#= require_tree ./views
+#= require ./controller
+#= require ./model
+#= require_self
+
+
 class @GenericApplication
-  constructor: (options_or_name) ->
-
-    if typeof options_or_name == 'string'
-      name          = options_or_name
-      options       = {}
-      options.name  = name
-    else
-      options = options_or_name
-      name    = options.name
-
-    
-    # Model name is required for generic character module
-    if not name
-      console.error 'Model name is required to create CharacterApp instance.' ; return
-
+  constructor: (name, options={}) ->
+    options.name = name
 
     # Pluralized name for model to be used in default templates
     options.pluralized_name   ?= _.pluralize(name)

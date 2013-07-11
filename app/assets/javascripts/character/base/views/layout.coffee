@@ -1,5 +1,5 @@
 class @CharacterLayout extends Backbone.Marionette.Layout
-  template: JST['character/templates/character']
+  template: JST['character/base/templates/layout']
   regions:
     menu: "#menu"
     main: "#main"
@@ -22,6 +22,4 @@ class @CharacterLayout extends Backbone.Marionette.Layout
     if link
       @selected_menu_item = link.parent()
       @selected_menu_item.addClass 'active'
-
-
 
