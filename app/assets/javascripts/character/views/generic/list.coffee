@@ -1,5 +1,5 @@
-class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/list_item"]
+class @GenericListItemView extends Backbone.Marionette.ItemView
+  template: JST["character/templates/generic/list_item"]
   tagName: 'li'
   modelEvents:
     'change':  'render'
@@ -10,16 +10,16 @@ class @CharacterAppIndexItemView extends Backbone.Marionette.ItemView
     @$el.attr 'data-position', @model.get('_position')
 
 
-class @CharacterAppIndexNoItemsView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/list_empty"]
+class @GenericListNoItemsView extends Backbone.Marionette.ItemView
+  template: JST["character/templates/generic/list_empty"]
 
 
 
-class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionView
+class @GenericListCollectionView extends Backbone.Marionette.CollectionView
   tagName:   'ul'
   className: 'no-bullet'
-  itemView:  CharacterAppIndexItemView
-  emptyView: CharacterAppIndexNoItemsView
+  itemView:  GenericListItemView
+  emptyView: GenericListNoItemsView
 
   initialize: (options) ->
     @listenTo(@collection, 'sort', @render, @)
@@ -29,8 +29,8 @@ class @CharacterAppIndexCollectionView extends Backbone.Marionette.CollectionVie
 
 
 
-class @CharacterAppIndexLayout extends Backbone.Marionette.Layout
-  template: JST["character/templates/list"]
+class @GenericListLayout extends Backbone.Marionette.Layout
+  template: JST["character/templates/generic/list"]
 
   regions:
     header:  '#list_header'

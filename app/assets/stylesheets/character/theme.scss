@@ -26,14 +26,14 @@ body                                  { background: #fafafa;
 
   // Index application
 
-  .chr-index-list                     { width: 40%;
+  .chr-generic-list                   { width: 40%;
                                         position: absolute;
                                         bottom: 0;
                                         top: 0;
                                         z-index: 2;
   }
 
-  .chr-index-details                  { width: 60%;
+  .chr-generic-details                { width: 60%;
                                         position: absolute;
                                         bottom: 0;
                                         top: 0;
@@ -88,7 +88,7 @@ $list-item-height: 66px;
 
 
 
-.chr-index-list                       {
+.chr-generic-list                     {
   header                              { padding: 1.25em 1.5em 0em;
                                         background: #fff;
                                         box-shadow: 0 0 2px rgba(0,0,0,0.2);
@@ -183,7 +183,7 @@ $list-item-height: 66px;
 
 
 
-.chr-index-details                    { background:#fff;
+.chr-generic-details                  { background:#fff;
                                         border-left:1px solid #e3e6e9;
                                         box-shadow: 0 0 3px rgba(0,0,0,0.1);
 

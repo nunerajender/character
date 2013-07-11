@@ -1,4 +1,4 @@
-<section class='chr-index-list' id='list'>
+<section class='chr-generic-list' id='list'>
   
   <header id='list_header'>
     <span id='list_title' class='title'>Projects</span>
@@ -12,5 +12,5 @@
   <footer id='list_footer'></footer>
 </section>
 
-<section class='chr-index-details' id='details'>
+<section class='chr-generic-details' id='details'>
 </section>

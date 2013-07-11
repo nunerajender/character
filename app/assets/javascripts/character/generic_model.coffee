@@ -1,7 +1,7 @@
 
 
 
-class @CharacterGenericModel extends Backbone.Model
+class @GenericModel extends Backbone.Model
   idAttribute: '_id'
 
 
@@ -20,8 +20,8 @@ class @CharacterGenericModel extends Backbone.Model
 
 
 
-class @CharacterGenericCollection extends Backbone.Collection
-  model: window.CharacterGenericModel
+class @GenericCollection extends Backbone.Collection
+  model: GenericModel
 
 
   url: ->

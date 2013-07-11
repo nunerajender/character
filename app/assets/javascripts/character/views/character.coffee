@@ -1,5 +1,5 @@
 class @CharacterLayout extends Backbone.Marionette.Layout
-  template: JST['character/templates/main']
+  template: JST['character/templates/character']
   regions:
     menu: "#menu"
     main: "#main"
@@ -7,8 +7,6 @@ class @CharacterLayout extends Backbone.Marionette.Layout
     title:           '#project_title'
     user_image:      '#user_image'
     top_menu:        '#menu .top-bar-section .left'
-    first_menu_item: '#menu .top-bar-section .left li a:eq(0)'
-    bottom_menu:     '#menu .top-bar-section .right'
 
 
   unselect_menu_item: ->

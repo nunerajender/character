@@ -1,5 +1,5 @@
-class @CharacterAppDetailsHeaderView extends Backbone.Marionette.ItemView
-  template: JST["character/templates/details_header"]
+class @GenericDetailsHeaderView extends Backbone.Marionette.ItemView
+  template: JST["character/templates/generic/details_header"]
   
   modelEvents:
     'change': 'render'
@@ -12,8 +12,8 @@ class @CharacterAppDetailsHeaderView extends Backbone.Marionette.ItemView
 
 
 
-class @CharacterAppDetailsView extends Backbone.Marionette.Layout
-  template: JST["character/templates/details"]
+class @GenericDetailsView extends Backbone.Marionette.Layout
+  template: JST["character/templates/generic/details"]
 
   regions:
     header:  '#details_header'
@@ -26,13 +26,16 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     'click #action_delete': 'on_delete'
     'click #action_close':  'on_close'
 
+
   # render header as view
   onRender: ->
-    header_view = new CharacterAppDetailsHeaderView { model: @model, collection: @collection }
+    header_view = new GenericDetailsHeaderView { model: @model, collection: @collection }
     @header.show(header_view)
+
 
   scope: ->
     @collection.options.scope
+
 
   # this method updates forms html and
   # then start all related plugins
@@ -71,7 +74,6 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
           _.each simple_form.get_date_values(arr), (el) -> arr.push el
 
           # disable button
-          console.log @ui.submit_btn
           @ui.submit_btn.addClass 'disabled'
 
           return true
@@ -90,6 +92,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
       # specific to character module
       $(document).trigger "character.#{ @scope() }.details.form.rendered", [ @el ]
 
+
   save_model: (obj) ->
     # when form is submitted but returns an error
     if typeof(obj) == 'string' then return @update_content(obj)
@@ -103,6 +106,7 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     else
       @collection.add(obj)
 
+
   on_delete: (e) ->
     if confirm("Do you really want to remove: '#{ @model.get('__title') }'?")
       @close()
@@ -110,8 +114,12 @@ class @CharacterAppDetailsView extends Backbone.Marionette.Layout
     else
       e.preventDefault() if e
 
+
   on_close: (e) ->
     @close()
+
+
+
 
 
 

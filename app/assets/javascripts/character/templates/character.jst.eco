@@ -16,9 +16,14 @@
         <ul class="left">
           <li class="divider"></li>
         </ul>
+        
         <ul class="right">
           <li class="divider hide-for-small"></li>
-          <li><a href='/admin/logout' class='browserid_logout'>Logout</a></li>
+          <li>
+            <a href="#/settings">
+              <i class="icon-gears"></i>Settings
+            </a>
+          </li>
         </ul>
       </section>
     </nav>

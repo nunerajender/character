@@ -1,4 +1,4 @@
-class @CharacterApp
+class @GenericApplication
   constructor: (options_or_name) ->
 
     if typeof options_or_name == 'string'
@@ -49,7 +49,7 @@ class @CharacterApp
       AppRouter = Backbone.Marionette.AppRouter.extend
         appRoutes: routes
 
-      @controller = options.controller || new CharacterAppController(options)
+      @controller = options.controller || new GenericController(options)
       @router = new AppRouter
         controller: @controller
 

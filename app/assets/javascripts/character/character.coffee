@@ -12,9 +12,11 @@
 #= require character_list.sortable
 #= require_tree ./templates
 #= require_tree ./views
-#= require ./_model
-#= require ./_controller
-#= require ./_application
+#= require ./generic_model
+#= require ./generic_controller
+#= require ./generic_application
+#= require ./settings
+#= require ./settings_controller
 #= require_self
 
 
@@ -47,7 +49,11 @@ class @Character extends Backbone.Marionette.Application
 
 
   add_menu_items: ->
-    _.each @submodules, (m) => @add_menu_item(m.options.pluralized_name, m.options.scope, m.options.icon)
+    _.each @submodules, (m) =>
+      # skip settings module
+      if m.moduleName != 'Settings'
+        @add_menu_item(m.options.pluralized_name, m.options.scope, m.options.icon)
+    
     @layout.select_menu_item(@layout.scope)
 
 
@@ -57,12 +63,9 @@ class @Character extends Backbone.Marionette.Application
       window.location.hash = path
 
 
-  add_module: (options) ->
-    new CharacterApp(options)
-
-
 
 @character = new Character()
+@character.settings = new Settings()
 
 
 @character.on "initialize:before", (options) ->
