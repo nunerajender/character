@@ -1,0 +1,35 @@
+
+
+.chr-generic-collection               {
+  &.chr-settings                      { width: 25%;
+    header                            { min-height: 74px;
+                                        box-shadow: none;
+                                        padding: 1em 1.5em 0em;
+      .title                          { font-size: 1.3em;
+                                        color: #777;
+      }
+    }
+    section                           { background: #fff;
+                                        top: 74px;
+                                        bottom: 74px;
+    }
+
+    footer                            { min-height: 74px;
+                                        position: absolute;
+                                        bottom: 0px;
+                                        left: 0px;
+                                        right: 0px;
+                                        padding: 1em 1em 0;
+                                        background: #fff;
+      .button                         { margin-bottom: 0;
+                                        width: 100%;
+      }
+    }
+  }
+}
+
+.chr-generic-details                  {
+  &.chr-settings                      { width: 75%;
+                                        box-shadow: none;
+  }
+}

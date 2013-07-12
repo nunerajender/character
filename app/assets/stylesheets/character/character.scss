@@ -27,7 +27,42 @@ $form-label-bottom-margin: .5em;
 
 
 @import "foundation";
-@import "theme";
+@import "generic";
+@import "settings";
+
+
+
+
+
+
+
+@media #{$small}                      {
+
+  .chr-main-layout                    { position: absolute;
+                                        left: 100px;
+                                        top: 0;
+                                        bottom: 0;
+                                        right: 0;
+                                        overflow: hidden;
+  }
+}
+
+body                                  { background: #fafafa;
+                                        position: inherit;
+}
+
+.top-bar                              { margin-bottom: 0;
+}
+
+.chr-user-image                       { margin-top:-0.3em;
+                                        @include border-radius(3px);
+}
+
+
+
+
+
+
 
 // Foundation postfix fix
 

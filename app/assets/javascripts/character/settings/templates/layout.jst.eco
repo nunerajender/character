@@ -1,13 +1,15 @@
-<section class='chr-generic-list' id='list'>
+<section class='chr-generic-collection chr-settings' id='list'>
   
   <header id='list_header'>
     <span id='list_title' class='title'>Settings</span>
   </header>
   
   <section id='list_content'></section>
-  
-  <footer id='list_footer'></footer>
+
+  <footer>
+    <a href='#' class='button radius secondary'>Logout</a>
+  </footer>
 </section>
 
-<section class='chr-generic-details' id='details'>
+<section class='chr-generic-details chr-settings' id='details'>
 </section>
