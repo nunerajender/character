@@ -5,7 +5,10 @@ class @SettingsController extends Marionette.Controller
     character.layout.scope = 'settings'
     character.layout.select_menu_item('settings')
 
-    @list_layout = new SettingsLayout
+    @layout = new SettingsLayout(models: [ {one: 1}, {one: 2}, { one: 3} ])
 
-    character.layout.main.show(@list_layout)
+    character.layout.main.show(@layout)
 
+
+  edit: ->
+    ;

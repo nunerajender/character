@@ -4,10 +4,13 @@
     <span id='list_title' class='title'>Settings</span>
   </header>
   
-  <section id='list_content'></section>
+  <section id='list_content'>
+    <ul id='settings_menu'>
+    </ul>
+  </section>
 
-  <footer>
-    <a href='#' class='button radius secondary'>Logout</a>
+  <footer id='list_footer'>
+    <a href='/admin/logout' class='browserid_logout button radius secondary'>Logout</a>
   </footer>
 </section>
 

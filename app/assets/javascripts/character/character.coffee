@@ -22,8 +22,11 @@ _.mixin(_.str.exports())
 
 
 @character = new Character()
-@character.settings = new Settings()
 
+
+new Settings() # this creates character.Settings module
+new SettingsApplication 'Admins' # this creates character.Settings.Admins
+new SettingsApplication 'Collections'
 
 @character.on "initialize:before", (options) ->
   @render()

@@ -4,14 +4,37 @@
   &.chr-settings                      { width: 25%;
     header                            { min-height: 74px;
                                         box-shadow: none;
-                                        padding: 1em 1.5em 0em;
+                                        padding: 1.1em 1.5em 0em;
       .title                          { font-size: 1.3em;
                                         color: #777;
+                                        font-weight: 600;
       }
     }
+    
     section                           { background: #fff;
                                         top: 74px;
                                         bottom: 74px;
+    
+      li                              {
+        &:last-child                  { box-shadow: none;
+                                        border: 0;
+        }
+        a                             { color: #777;
+                                        line-height: 2.5;
+                                        padding: 0 1.3em 0;
+                                        min-height: inherit;
+                                        background: #fff;
+                                        border: 0;
+          &.active,
+          &:hover                     { color:#222;
+            &:after                   { content: "\f105";
+                                        font-family: FontAwesome;
+                                        position: absolute;
+                                        right: 1.3em;
+            }
+          }
+        }
+      }
     }
 
     footer                            { min-height: 74px;
@@ -28,8 +51,10 @@
   }
 }
 
+
 .chr-generic-details                  {
   &.chr-settings                      { width: 75%;
                                         box-shadow: none;
   }
 }
+
