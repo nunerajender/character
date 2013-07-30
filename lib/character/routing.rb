@@ -4,10 +4,9 @@ module ActionDispatch::Routing
     def mount_character_admin
       scope '/admin', :module => "Character" do
         
-        match '/', to: 'admin#admin'
-
-        match '/login',   to: 'auth#login'
-        match '/logout',  to: 'auth#logout'        
+        match '/',        to: 'admin#index'
+        match '/login',   to: 'admin#login'
+        match '/logout',  to: 'admin#logout'        
 
         # Register redactor images if module is defined
         # -------------------------------------------------
@@ -19,13 +18,16 @@ module ActionDispatch::Routing
           end
         end
 
-        get     '/:model_slug(.:format)',         to: 'admin#index'
-        get     '/:model_slug/new(.:format)',     to: 'admin#new'
-        post    '/:model_slug(.:format)',         to: 'admin#create'
-        get     '/:model_slug/:id(.:format)',     to: 'admin#show'
-        get     '/:model_slug/:id/edit(.:format)',to: 'admin#edit'
-        put     '/:model_slug/:id(.:format)',     to: 'admin#update'
-        delete  '/:model_slug/:id(.:format)',     to: 'admin#destroy'
+        get     '/settings/:scope(.:format)',     to: 'settings#show'
+        post    '/settings/update',               to: 'settings#update'
+
+        get     '/:model_slug(.:format)',         to: 'api#index'
+        get     '/:model_slug/new(.:format)',     to: 'api#new'
+        post    '/:model_slug(.:format)',         to: 'api#create'
+        get     '/:model_slug/:id(.:format)',     to: 'api#show'
+        get     '/:model_slug/:id/edit(.:format)',to: 'api#edit'
+        put     '/:model_slug/:id(.:format)',     to: 'api#update'
+        delete  '/:model_slug/:id(.:format)',     to: 'api#destroy'
 
       end
     end

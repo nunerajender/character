@@ -23,8 +23,7 @@ class @GenericDetailsView extends Backbone.Marionette.Layout
     @collection.options.scope
 
 
-  # this method updates forms html and
-  # then start all related plugins
+  # this method updates forms html and starts all related plugins
   update_content: (html) ->
     @ui.content.html(html)
 

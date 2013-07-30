@@ -16,11 +16,17 @@
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
   <%= javascript_include_tag 'character' %>
-  <%= setup_browserid %>
+  
+  <% if Rails.env.development? and Character.no_auth_on_development %>
+    <% @admin_user = Character::AdminUser.first %>
+  <% else %>
+    <%= setup_browserid %>
+  <% end %>
 
   <% if @admin_user %>
     <script type='text/javascript'>
       window.user_image_url = '<%= @admin_user.gravatar_url(36) %>';      
+      window.user_email     = '<%= @admin_user.email %>';      
       $(function(){ character.start() });
     </script>
 

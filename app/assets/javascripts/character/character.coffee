@@ -26,7 +26,6 @@ _.mixin(_.str.exports())
 
 new Settings() # this creates character.Settings module
 new SettingsApplication 'Admins' # this creates character.Settings.Admins
-new SettingsApplication 'Collections'
 
 @character.on "initialize:before", (options) ->
   @render()
@@ -41,4 +40,4 @@ new SettingsApplication 'Collections'
   @add_menu_items()
   @jump_to_first_app()
 
-  console.log('Character: Let\'s rock!')
+  console.log('May all beings be happy!')

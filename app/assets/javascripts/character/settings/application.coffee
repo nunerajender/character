@@ -11,7 +11,7 @@ class @SettingsApplication
     # Character module scope which is used in urls
     options.scope ?= _.pluralize(_.slugify(name))
 
-    character.module "Settings.#{name}", ->
+    character.module "Settings.#{options.scope}", ->
       @options = options
 
 
@@ -19,11 +19,12 @@ class @Settings extends Backbone.Marionette.Application
   constructor: ->
     character.module 'Settings', (module) ->
       module.on 'start', ->
-        routes = {}
-        routes['settings'] = 'index'
+        routes =
+          'settings':        'index'
+          'settings/:scope': 'edit'
 
-        _.each @submodules, (m) ->
-          routes["settings/#{ m.options.scope }"] = "edit"
+        #_.each @submodules, (m) ->
+        #  routes["settings/#{ m.options.scope }"] = "edit"
 
         AppRouter = Backbone.Marionette.AppRouter.extend
           appRoutes: routes

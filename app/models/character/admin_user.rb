@@ -2,8 +2,10 @@ class Character::AdminUser
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :name
   field :email
+
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   # Methods -----------------------------------------------
 

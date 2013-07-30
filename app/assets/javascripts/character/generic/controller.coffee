@@ -39,8 +39,8 @@ class @GenericController extends Marionette.Controller
       # jumps between apps.
       
       @layout = new GenericLayout
-        title:        @options.collection_title
-        scope:        @options.scope
+        title: @options.collection_title
+        scope: @options.scope
 
       @collection_view = new GenericCollectionView
         collection:   @collection

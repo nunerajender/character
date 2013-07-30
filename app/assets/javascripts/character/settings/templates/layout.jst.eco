@@ -10,7 +10,7 @@
   </section>
 
   <footer id='list_footer'>
-    <a href='/admin/logout' class='browserid_logout button radius secondary'>Logout</a>
+    <a href='/admin/logout' class='browserid_logout button radius secondary small'>Logout<br/><span id='user_email'></span></a>
   </footer>
 </section>
 

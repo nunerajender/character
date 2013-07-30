@@ -47,6 +47,9 @@ $form-label-bottom-margin: .5em;
   }
 }
 
+html                                  { overflow: hidden;
+}
+
 body                                  { background: #fafafa;
                                         position: inherit;
 }

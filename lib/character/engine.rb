@@ -9,6 +9,7 @@ module Character
       Character.title                  = 'Character'
       Character.company_logo_image     = 'character-company-logo.png'
       Character.login_background_image = 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
+      Character.no_auth_on_development = false
     end
   end
 
@@ -16,6 +17,7 @@ module Character
     attr_accessor :title
     attr_accessor :company_logo_image
     attr_accessor :login_background_image
+    attr_accessor :no_auth_on_development
 
     def configure(&block)
       block.call(self)
