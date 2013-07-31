@@ -12,6 +12,7 @@ require 'browserid-rails'
 require 'mongoid/reorder'
 require 'simple_form'
 require 'kaminari'
+require 'character_settings'
 
 # character
 require 'character/version'

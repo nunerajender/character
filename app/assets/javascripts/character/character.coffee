@@ -13,7 +13,7 @@
 
 #= require ./base/application
 #= require ./generic/application
-#= require ./settings/application
+#= require character/settings/application
 
 #= require_self
 

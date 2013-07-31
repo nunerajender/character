@@ -72,8 +72,8 @@ class @GenericCollection extends Backbone.Collection
       }
     ) ).sort( ( (left, right) ->
        # swap a and b for reverse sort
-       a = if direction is "ASC" then left.criteria else right.criteria
-       b = if direction is "ASC" then right.criteria else left.criteria
+       a = if direction is "asc" then left.criteria else right.criteria
+       b = if direction is "asc" then right.criteria else left.criteria
 
        if a != b
          if a > b or a is undefined then return 1
@@ -81,6 +81,11 @@ class @GenericCollection extends Backbone.Collection
 
        return (if left.index < right.index then -1 else 1)
     ) ), 'value' )
+
+
+  parse: (resp) ->
+    @total_pages = parseInt(resp.total_pages)
+    resp.objects
 
 
   # initialize: ->
@@ -103,11 +108,6 @@ class @GenericCollection extends Backbone.Collection
   #     url = "#{ url }?#{ params }"
 
   #   return url
-
-
-  parse: (resp) ->
-    @total_pages = parseInt(resp.total_pages)
-    resp.objects
 
 
 
