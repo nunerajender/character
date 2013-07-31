@@ -93,9 +93,9 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 ## TODOs & Improvements
 
-. replace topnav with original menu version
-
 . limit access to api
+
+. implement pagination interface in the generic app
 
 . search option
 
@@ -103,9 +103,9 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 . add hotkeys for fast navigation
 
-. make headers meta to show updated at value if available
-
 . collection is rendered twice for some reason
+
+. replace topnav with original menu version
 
 
 

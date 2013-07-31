@@ -161,7 +161,7 @@ class Character::ApiController < ActionController::Base
     order_by     = params[:order_by]
     search_query = params[:search_query] || ''
     page         = params[:page]         || 1
-    per_page     = params[:per_page]     || 50
+    per_page     = params[:per_page]     || 200
 
     @objects = @model_class.unscoped.all
 
@@ -177,9 +177,10 @@ class Character::ApiController < ActionController::Base
       @objects = @objects.order_by(filters)
     end
     
-
+    # search option
     #@objects = @objects.full_text_search(search_query) if not search_query.empty?
-    #@objects = @objects.page(page).per(per_page)
+
+    @objects = @objects.page(page).per(per_page)
 
     item_objects = @objects.map { |o| build_character_item(o) }
 
