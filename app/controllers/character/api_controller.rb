@@ -21,6 +21,14 @@ class Character::ApiController < ActionController::Base
 
   def authenticate_admin_user
     @admin_user = browserid_current_user if browserid_authenticated?
+
+    unless browserid_authenticated?
+      if Rails.env.development? and Character.no_auth_on_development
+        #
+      else
+        render :status => :unauthorized, :json => {error: "You need to sign in or sign up before continuing."}
+      end
+    end
   end
 
   # TODO: for api calls return 500 if user is not loggedin
@@ -99,7 +107,7 @@ class Character::ApiController < ActionController::Base
 
 
     if @model_class.method_defined? :character_thumb_url
-      @character_item_fields[:image_field] = :character_thumb_url 
+      @character_item_fields[:image_field] = :character_thumb_url
     end
   end
 
@@ -131,7 +139,7 @@ class Character::ApiController < ActionController::Base
     if fields.has_key? :meta_field
       hash[:__meta] = o.try(fields[:meta_field])
     end
-    
+
     if fields.has_key? :image_field
       hash[:__image] = o.try(fields[:image_field])
     end
@@ -173,10 +181,10 @@ class Character::ApiController < ActionController::Base
         filters[filter_options.first] = filter_options.last
         @fields_to_include.append(filter_options.first)
       end
-      
+
       @objects = @objects.order_by(filters)
     end
-    
+
     # search option
     #@objects = @objects.full_text_search(search_query) if not search_query.empty?
 
