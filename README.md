@@ -93,8 +93,6 @@ At this point all basic layout is using custom style and colors. Foundation is u
 
 ## TODOs & Improvements
 
-. limit access to api
-
 . implement pagination interface in the generic app
 
 . search option
