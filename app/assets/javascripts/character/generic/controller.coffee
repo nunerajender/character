@@ -1,4 +1,7 @@
 class @GenericController extends Marionette.Controller
+  layout_class:       GenericLayout
+  details_view_class: GenericDetailsView
+
   initialize: (@options) ->
     @api_url = @options.api || "/admin/#{ @options.name }"
     
@@ -38,7 +41,7 @@ class @GenericController extends Marionette.Controller
       # TODO: make sure that memory is still available after a couple of big
       # jumps between apps.
       
-      @layout = new GenericLayout
+      @layout = new @layout_class
         title: @options.collection_title
         scope: @options.scope
 
@@ -66,13 +69,15 @@ class @GenericController extends Marionette.Controller
       callback() if callback
 
 
+
   new: ->
     @index =>
       @layout.hide_logo()
-      details_view = new GenericDetailsView({ model: no, collection: @collection })
+      details_view = new @details_view_class({ model: no, collection: @collection })
       @layout.details.show(details_view)
 
-      $.get "#{ @api_url }/new", (html) => details_view.update_content(html)
+      $.get "#{ @api_url }/new", (html) =>
+        details_view.update_content(html)
 
 
   edit: (id) ->
@@ -82,10 +87,11 @@ class @GenericController extends Marionette.Controller
 
       doc = @collection.get(id)
 
-      details_view = new GenericDetailsView({ model: doc, collection: @collection })
+      details_view = new @details_view_class({ model: doc, collection: @collection })
       @layout.details.show(details_view)
 
-      $.get "#{ @api_url }/#{ id }/edit", (html) => details_view.update_content(html)
+      $.get "#{ @api_url }/#{ id }/edit", (html) =>
+        details_view.update_content(html)
 
 
 

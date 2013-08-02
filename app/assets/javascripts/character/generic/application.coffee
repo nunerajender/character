@@ -6,6 +6,10 @@
 
 
 class @GenericApplication
+  # Controller class is set as an option to make it easy
+  # to expand generic application with custom views.
+  controller_class: GenericController
+
   constructor: (name, options={}) ->
     options.name = name
 
@@ -30,20 +34,26 @@ class @GenericApplication
     # Namespace which is used in rails update method, used to save models
     options.namespace         ?= _.slugify(name)
 
+    @initialize_character_module(options)
 
-    character.module name, ->
-      @options = options
-      
-      scope  = options.scope
-      routes = {}
-      routes["#{ scope }"]          = "index"
-      routes["#{ scope }/new"]      = "new"
-      routes["#{ scope }/edit/:id"] = "edit"
+  # When adding custom views new routes may be required
+  # so this method should be overriden.
+  routes: (scope) ->
+    routes = {}
+    routes["#{ scope }"]          = "index"
+    routes["#{ scope }/new"]      = "new"
+    routes["#{ scope }/edit/:id"] = "edit"
+    routes
 
-      AppRouter = Backbone.Marionette.AppRouter.extend
-        appRoutes: routes
 
-      @controller = options.controller || new GenericController(options)
-      @router = new AppRouter
-        controller: @controller
+  initialize_character_module: (options) ->
+    routes     = @routes(options.scope)
+    controller = new @controller_class(options)
+
+    character.module options.name, ->
+      @options    = options
+      @controller = controller
+      AppRouter   = Backbone.Marionette.AppRouter.extend({ appRoutes: routes })
+      @router     = new AppRouter({ controller: controller })
+
 
