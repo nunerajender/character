@@ -1,12 +1,12 @@
-<a href='#/<%= @__scope %>/edit/<%= @_id %>'
-   title='<%= @__title %>'
-   class='<% if @__image: %>has-image<% end %>' >
+<a href="#/<%= @__scope %>/edit/<%= @_id %>"
+   title="<%= @__title %>"
+   class="<% if @__image: %>has-image<% end %>" >
   
   <% if @__image: %>
-    <img src='<%= @__image %>' />
+    <img src="<%= @__image %>" />
   <% end %>
   
-  <div class='chr-container'>
+  <div class="chr-container">
     
     <strong><%= @__title %></strong>
     <span><%= @__meta %></span>
