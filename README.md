@@ -122,7 +122,7 @@ Here is an example of adding character app for ```Project``` model from the scre
       index_scopes:
         default:    '_position:desc'
 
-Projects app added to character with ```rocket``` menu icon from [Fontawesome icon set](http://fontawesome.io/icons/), default sort order is using ```_position``` model field, and items are reorderable in the list with drag'n'drop.
+Projects app added to character with ```rocket``` menu icon from [Fontawesome Icons](http://fontawesome.io/icons/), default sort order uses ```_position``` model field, and items are reorderable in the list with drag'n'drop to make it possible to reorder projects from the portfolio page.
 
 
 ## Settings Application
