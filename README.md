@@ -21,6 +21,7 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Model Setup](#model-setup)
   * [Custom Forms](#custom-forms)
   * [Nested Forms](#nested-forms)
+  * [Form Plugins](#form-plugins)
 * [Settings Application](#settings-application)
 * [List of Dependencies](#list-of-dependencies)
 * [TODO](#todo)
@@ -158,7 +159,12 @@ Two things to note in this template: 1. [Simple Form]() is used as form generati
 
 #### Nested Forms
 
-[Nested Form](https://github.com/ryanb/nested_form) is a very handy gem to expand forms with editable inlines. It's plays very nice with Character. Add ```#= require jquery_nested_form``` to ```app/assets/javascript/character``` and that's it. Now customized form could include nested forms.
+[Nested Form](https://github.com/ryanb/nested_form) is a very handy gem to expand forms with editable inlines. It plays very nice with Character, just add ```#= require jquery_nested_form``` to ```app/assets/javascript/character``` and that's it. Customized form could include nested forms.
+
+
+#### Form Plugins
+
+
 
 
 ## Settings Application
