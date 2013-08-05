@@ -1,9 +1,13 @@
-# Character
+## Character (α)
 
-Character is data management framework based on Backbone & Marionette written in CoffeeScript and backed with Rails.
+**IN DEVELOPMENT**
+
+Data management framework based on [Backbone.js](http://backbonejs.org/) & [Marionette.js](https://github.com/marionettejs/backbone.marionette) written in CoffeeScript, using [Rails Framework](http://rubyonrails.org/) on the backend. Main goal to create easy to use set of development tools to empower administration applications with a clean and simple user interfaces.
+
+![Character Demo](https://raw.github.com/slate-studio/character/master/img/demo-1.jpg)
 
 
-
+### Installation
 
 
 
