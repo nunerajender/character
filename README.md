@@ -14,6 +14,9 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Step 2: Routes](#step-2-routes)
   * [Step 3: Initializer](#step-3-initializer)
 * [Authentification](#authentification)
+  * [Mozilla Persona](#mozilla-persona)
+  * [Development Mode](#development-mode)
+  * [Login Background](#login-background)
 * [Generic Application](#generic-application)
 * [Dependencies](#dependencies)
 * [TODO](#todo)
@@ -80,17 +83,27 @@ Setup character basic initializer: ```config/initializers/character```, provide 
 
 ## Authentification
 
+#### Mozilla Persona
+
 Character is using [Mozilla Persona](https://login.persona.org/about) as main authentification system. This one chosen as it is very easy to setup and allows us to do not create administrative accounts from one project to another.
 
 There is a rake task that creates administrative account:
 
     rake admin:add_user[admin@email.com]
 
-Persona is javascript based and it validates session everytime application is loaded. There is a way to disable Persona for development mode. Add the following line to Character configuration file ```config/initializers/character.rb```:
+
+#### Development Mode
+
+Persona is javascript based and it validates session everytime application is loaded. There is a way to disable Persona in development mode by adding the following line to Character configuration file ```config/initializers/character.rb```:
 
     config.no_auth_on_development = true
 
-This uses first admin user as current account. At least one account should exist in database to make it work.
+When ```no_auth_on_development``` flag is set first admin user used as as current account. At least one account should be created, but it shoudn't be a real persona account.
+
+
+#### Login Background
+
+Default login background could be changed using ```config.login_background_image``` option in Character configuration file ```config/initializers/character.rb```.
 
 
 ## Generic Application
