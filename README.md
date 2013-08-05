@@ -11,7 +11,7 @@ Data management framework based on [Backbone.js](http://backbonejs.org/) & [Mari
 
 At the moment project is under very intence development so all sources are available on the [Github](https://github.com/slate-studio/character) only. When beta version is ready gems are going to be available on rubygems as well.
 
-Add these to project ```Gemfile```.
+Add these to projects ```Gemfile```.
 
     gem 'character',          git: 'git://github.com/slate-studio/character.git'
     gem 'character_settings', git: 'git://github.com/slate-studio/character_settings.git'
@@ -23,11 +23,9 @@ After running ```bundle``` you need to do basic configuration.
 
 ## Configuration
 
-Here you have to do three steps setup:
+Step 1: Create character assets files.
 
-1. Create character assets files:
-
-```app/assets/stylesheets/character.scss```
+Styles file: ```app/assets/stylesheets/character.scss```
 
     @import "character/character";
     @import "character/blog";
@@ -41,7 +39,7 @@ Here you have to do three steps setup:
       font-style: normal;
     }
 
-```app/assets/javascripts/character.coffee```
+Javascript main file: ```app/assets/javascripts/character.coffee```
 
     #= require character/character
     #= require character/blog
@@ -52,11 +50,11 @@ When files are ready, add them to the ```config/environments/production.rb``` so
 
     config.assets.precompile += %w( character.js character.css )
 
-2. Add character routes to ```config/routes.rb```, preferably on the top of the ```draw``` function:
-  
-    mount_character_admin()
 
-3. Initializer
+Step 2: Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
+
+
+Step 3: Initializer
 
 
 
