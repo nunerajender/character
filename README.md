@@ -13,9 +13,9 @@ Main goal to create easy to use set of development tools to empower administrati
 
 * [Installation](#installation)
 * [Configuration](#configuration)
-  * [Step 1](#step-1)
-  * [Step 2](#step-2)
-  * [Step 3](#step-3)
+  * [Step 1: Assets](#step-1-assets)
+  * [Step 2: Routes](#step-2-routes)
+  * [Step 3: Initializer](#step-3-initializer)
 * [Generic Application](#generic-application)
 * [TODO](#todo)
 
@@ -36,7 +36,7 @@ After running ```bundle``` you need to do basic configuration.
 
 ## Configuration
 
-#### Step 1
+#### Step 1: Assets
 
 Create asset files:
 
@@ -66,12 +66,12 @@ Add assets to the ```config/environments/production.rb``` so they are prebuild o
     config.assets.precompile += %w( character.js character.css )
 
 
-#### Step 2
+#### Step 2: Routes
 
 Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
 
 
-#### Step 3
+#### Step 3: Initializer
 
 Setup character basic initializer: ```config/initializers/character```, provide only title for now:
 
