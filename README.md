@@ -114,7 +114,7 @@ Generic application is a main type of Character apps. It provides a way to setup
 
 ![Character Generic Application Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
 
-Here is an example of adding character app for ```Project``` model, all model setups are added to ```app/assets/javascripts/character.coffee```:
+Here is an example of adding character app for ```Project``` model from the screenshot above. All model setups are added to ```app/assets/javascripts/character.coffee```:
 
     new GenericApplication 'Project',
       icon:         'rocket'
@@ -122,7 +122,7 @@ Here is an example of adding character app for ```Project``` model, all model se
       index_scopes:
         default:    '_position:desc'
 
-This adds Projects app to character menu using ```rocket``` icon from [Fontawesome]() icon set and sets default sort order for the objects list.
+Projects app added to character with ```rocket``` menu icon from [Fontawesome icon set](http://fontawesome.io/icons/), default sort order is using ```_position``` model field, and items are reorderable in the list with drag'n'drop.
 
 
 ## Settings Application
