@@ -105,10 +105,11 @@ When ```no_auth_on_development``` flag is set first admin user used as as curren
 
 Default login background could be changed using ```config.login_background_image``` option in Character configuration file ```config/initializers/character.rb```.
 
+![Character Default Login](https://raw.github.com/slate-studio/character/master/doc/img/demo-3.jpg)
 
 ## Generic Application
 
-![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
+![Character Generic Application Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
 
 
 ## List of Dependencies
