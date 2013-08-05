@@ -9,7 +9,7 @@ Main goal to create easy to use set of development tools to empower administrati
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
 
 
-### Index
+## Index
 
 * [Installation](#installation)
 * [Configuration](#configuration)
@@ -20,7 +20,7 @@ Main goal to create easy to use set of development tools to empower administrati
 * [TODO](#todo)
 
 
-### Installation
+## Installation
 
 At the moment project is under very intence development so all sources are available on the [Github](https://github.com/slate-studio/character) only. When beta version is ready gems are going to be available on rubygems as well.
 
@@ -34,9 +34,9 @@ Add these to projects ```Gemfile```.
 After running ```bundle``` you need to do basic configuration.
 
 
-### Configuration
+## Configuration
 
-##### Step 1
+#### Step 1
 
 Create asset files:
 
@@ -66,12 +66,12 @@ Add assets to the ```config/environments/production.rb``` so they are prebuild o
     config.assets.precompile += %w( character.js character.css )
 
 
-##### Step 2
+#### Step 2
 
 Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
 
 
-##### Step 3
+#### Step 3
 
 Setup character basic initializer: ```config/initializers/character```, provide only title for now:
 
@@ -80,10 +80,10 @@ Setup character basic initializer: ```config/initializers/character```, provide 
     end
 
 
-### Generic Application
+## Generic Application
 
 
-### TODO
+## TODO
 
 . implement pagination interface in the generic app
 
