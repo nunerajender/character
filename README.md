@@ -18,6 +18,7 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Development Mode](#development-mode)
   * [Login Background](#login-background)
 * [Generic Application](#generic-application)
+* [Settings Application](#settings-application)
 * [List of Dependencies](#list-of-dependencies)
 * [TODO](#todo)
 
@@ -109,7 +110,22 @@ Default login background could be changed using ```config.login_background_image
 
 ## Generic Application
 
+Generic application is a main type of Character apps. It provides a way to setup administrative application for any [Mongoid](http://mongoid.org/en/mongoid/index.html) model in no time.
+
 ![Character Generic Application Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
+
+Here is an example of adding character app for ```Project``` model, all model setups are added to ```app/assets/javascripts/character.coffee```:
+
+    new GenericApplication 'Project',
+      icon:         'rocket'
+      reorderable:  true
+      index_scopes:
+        default:    '_position:desc'
+
+This adds Projects app to character menu using ```rocket``` icon from [Fontawesome]() icon set and sets default sort order for the objects list.
+
+
+## Settings Application
 
 
 ## List of Dependencies
