@@ -8,8 +8,6 @@ Main goal to create easy to use set of development tools to empower administrati
 
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
 
-### Index
-
 * [Installation](#installation)
 * [Configuration](#configuration)
   * [Step 1: Assets](#step-1-assets)
