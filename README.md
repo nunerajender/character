@@ -1,4 +1,4 @@
-## Character (α)
+# Character (α)
 
 **IN DEVELOPMENT**
 
@@ -59,7 +59,6 @@ Character initialization & configuration: ```app/assets/javascripts/character.co
 
     #= require character/character
     #= require character/blog
-    #= require jquery_nested_form
     #= require_self
 
 Add assets to the ```config/environments/production.rb``` so they are prebuild on production:
@@ -120,7 +119,8 @@ List of tools and libraries that are used by Character:
 * replace foundation topnav with original menu (layout/css)
 
 
-
+--
+[Alexander Kravets](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 5, 2013
 
 
 
