@@ -15,6 +15,7 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Step 1: Assets](#step-1-assets)
   * [Step 2: Routes](#step-2-routes)
   * [Step 3: Initializer](#step-3-initializer)
+* [Authentification](#authentification)
 * [Generic Application](#generic-application)
 * [Dependencies](#dependencies)
 * [TODO](#todo)
@@ -80,7 +81,12 @@ Setup character basic initializer: ```config/initializers/character```, provide 
     end
 
 
+## Authentification
+
+
 ## Generic Application
+
+![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
 
 
 ## Dependencies
