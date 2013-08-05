@@ -16,7 +16,7 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Step 2: Routes](#step-2-routes)
   * [Step 3: Initializer](#step-3-initializer)
 * [Generic Application](#generic-application)
-* [Requirements](#requirements)
+* [Dependencies](#dependencies)
 * [TODO](#todo)
 
 
@@ -83,42 +83,35 @@ Setup character basic initializer: ```config/initializers/character```, provide 
 ## Generic Application
 
 
-## Requirements
+## Dependencies
 
 List of tools and libraries that are used by Character:
 
-. [jQuery](https://github.com/rails/jquery-rails)
-. [Underscore](https://github.com/rweng/underscore-rails)
-. [Underscore String](https://github.com/epeli/underscore.string)
-. [Backbone](http://backbonejs.org/)
-. [Backbone Marionette](https://github.com/chancancode/marionette-rails)
-. [jQuery UI](https://github.com/joliss/jquery-ui-rails)
-. [Eco](https://github.com/sstephenson/eco)
-. [Compass](https://github.com/Compass/compass-rails)
-. [Foundation](https://github.com/zurb/foundation/)
-. [Fontawesome](https://github.com/bokmann/font-awesome-rails)
-. [BrowserID](https://github.com/alexkravets/browserid-auth-rails)
-. [Simple Form](https://github.com/plataformatec/simple_form)
-. [Kaminari](https://github.com/amatsuda/kaminari)
-. [Character Settings](https://github.com/slate-studio/character_settings)
+* [jQuery](https://github.com/rails/jquery-rails)
+* [Underscore](https://github.com/rweng/underscore-rails)
+* [Underscore String](https://github.com/epeli/underscore.string)
+* [Backbone](http://backbonejs.org/)
+* [Backbone Marionette](https://github.com/chancancode/marionette-rails)
+* [jQuery UI](https://github.com/joliss/jquery-ui-rails)
+* [Eco](https://github.com/sstephenson/eco)
+* [Compass](https://github.com/Compass/compass-rails)
+* [Foundation](https://github.com/zurb/foundation/)
+* [Fontawesome](https://github.com/bokmann/font-awesome-rails)
+* [BrowserID](https://github.com/alexkravets/browserid-auth-rails)
+* [Simple Form](https://github.com/plataformatec/simple_form)
+* [Kaminari](https://github.com/amatsuda/kaminari)
+* [Character Settings](https://github.com/slate-studio/character_settings)
 
 
 ## TODO
 
-. implement pagination interface in the generic app
-
-. search option
-
-. scopes
-
-. add notifications to be shown after save action
-
-. add hotkeys for fast navigation
-
-. FIX: collection is rendered twice for some reason
-
-. replace foundation topnav with original menu (layout/css)
-
+* implement pagination interface in the generic app
+* search option
+* scopes
+* add notifications to be shown after save action
+* add hotkeys for fast navigation
+* FIX: collection is rendered twice for some reason
+* replace foundation topnav with original menu (layout/css)
 
 
 
