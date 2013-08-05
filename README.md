@@ -80,6 +80,18 @@ Setup character basic initializer: ```config/initializers/character```, provide 
 
 ## Authentification
 
+Character is using [Mozilla Persona](https://login.persona.org/about) as main authentification system. This one chosen as it is very easy to setup and allows us to do not create administrative accounts from one project to another.
+
+There is a rake task that creates administrative account:
+
+    rake admin:add_user[admin@email.com]
+
+Persona is javascript based and it validates session everytime application is loaded. There is a way to disable Persona for development mode. Add the following line to Character configuration file ```config/initializers/character.rb```:
+
+    config.no_auth_on_development = true
+
+This uses first admin user as current account. At least one account should exist in database to make it work.
+
 
 ## Generic Application
 
