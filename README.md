@@ -8,6 +8,8 @@ Main goal to create easy to use set of development tools to empower administrati
 
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
 
+#### Index
+
 * [Installation](#installation)
 * [Configuration](#configuration)
   * [Step 1: Assets](#step-1-assets)
@@ -82,6 +84,23 @@ Setup character basic initializer: ```config/initializers/character```, provide 
 
 
 ## Requirements
+
+List of tools and libraries that are used by Character:
+
+. [jQuery](https://github.com/rails/jquery-rails)
+. [Underscore](https://github.com/rweng/underscore-rails)
+. [Underscore String](https://github.com/epeli/underscore.string)
+. [Backbone](http://backbonejs.org/)
+. [Backbone Marionette](https://github.com/chancancode/marionette-rails)
+. [jQuery UI](https://github.com/joliss/jquery-ui-rails)
+. [Eco](https://github.com/sstephenson/eco)
+. [Compass](https://github.com/Compass/compass-rails)
+. [Foundation](https://github.com/zurb/foundation/)
+. [Fontawesome](https://github.com/bokmann/font-awesome-rails)
+. [BrowserID](https://github.com/alexkravets/browserid-auth-rails)
+. [Simple Form](https://github.com/plataformatec/simple_form)
+. [Kaminari](https://github.com/amatsuda/kaminari)
+. [Character Settings](https://github.com/slate-studio/character_settings)
 
 
 ## TODO
