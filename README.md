@@ -18,7 +18,7 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Development Mode](#development-mode)
   * [Login Background](#login-background)
 * [Generic Application](#generic-application)
-* [Dependencies](#dependencies)
+* [List of Dependencies](#list-of-dependencies)
 * [TODO](#todo)
 
 
@@ -111,9 +111,7 @@ Default login background could be changed using ```config.login_background_image
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
 
 
-## Dependencies
-
-List of tools and libraries that are used by Character:
+## List of Dependencies
 
 * [jQuery](https://github.com/rails/jquery-rails)
 * [Underscore](https://github.com/rweng/underscore-rails)
@@ -140,10 +138,10 @@ List of tools and libraries that are used by Character:
 * add hotkeys for fast navigation
 * FIX: collection is rendered twice for some reason
 * replace foundation topnav with original menu (layout/css)
-
+* annotated source
 
 --
-[Alexander Kravets](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 5, 2013
+[Александр Кравец](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 5, 2013
 
 
 
