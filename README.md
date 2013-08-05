@@ -157,10 +157,11 @@ Character looks for forms templates at ```app/views/character/admin/pluralized_m
 
 Two things to note in this template: 1. [Simple Form]() is used as form generation tool; 2. It's important for submit button to have ```chr-btn-submit``` class.
 
-#### Nested Forms
+#### Nested Form
 
-[Nested Form](https://github.com/ryanb/nested_form) is a very handy gem to expand forms with editable inlines. It plays very nice with Character, just add ```#= require jquery_nested_form``` to ```app/assets/javascript/character``` and that's it. Customized form could include nested forms.
+[Nested Form](https://github.com/ryanb/nested_form) is a very handy gem to expand forms with editable inlines. It plays very nice with Character, just add ```#= require jquery_nested_form``` to ```app/assets/javascript/character``` and that's it. Customized form could include nested forms. Following screenshot shows part of the Project form -- editable list of embeded images into the Project model handled by [Nested Form](https://github.com/ryanb/nested_form).
 
+![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-4.jpg)
 
 #### Form Plugins
 
