@@ -9,11 +9,58 @@ Data management framework based on [Backbone.js](http://backbonejs.org/) & [Mari
 
 ### Installation
 
+At the moment project is under very intence development so all sources are available on the [Github](https://github.com/slate-studio/character) only. When beta version is ready gems are going to be available on rubygems as well.
 
+Add these to project ```Gemfile```.
 
+    gem 'character',          git: 'git://github.com/slate-studio/character.git'
+    gem 'character_settings', git: 'git://github.com/slate-studio/character_settings.git'
+    gem 'character_redactor', git: 'git://github.com/slate-studio/character_redactor.git'
+    gem 'character_blog',     git: 'git://github.com/slate-studio/character_blog.git'
+
+After running ```bundle``` you need to do basic configuration.
 
 
 ## Configuration
+
+Here you have to do three steps setup:
+
+1. Create character assets files:
+
+```app/assets/stylesheets/character.scss```
+
+    @import "character/character";
+    @import "character/blog";
+
+    // Firefox font fix for production
+    @font-face {
+      font-family: 'FontAwesome';
+      src: url("http://www.slatestudio.com/assets/fontawesome-webfont.eot");
+      src: url("http://www.slatestudio.com/assets/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("http://www.slatestudio.com/assets/fontawesome-webfont.woff") format("woff"), url("http://www.slatestudio.com/assets/fontawesome-webfont.ttf") format("truetype"), url("http://www.slatestudio.com/assets/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+```app/assets/javascripts/character.coffee```
+
+    #= require character/character
+    #= require character/blog
+    #= require jquery_nested_form
+    #= require_self
+
+When files are ready, add them to the ```config/environments/production.rb``` so they are prebuild on production:
+
+    config.assets.precompile += %w( character.js character.css )
+
+2. Add character routes to ```config/routes.rb```, preferably on the top of the ```draw``` function:
+  
+    mount_character_admin()
+
+3. Initializer
+
+
+
+
 
 Following two cofiguration files have to be created:
 
