@@ -23,9 +23,9 @@ After running ```bundle``` you need to do basic configuration.
 
 ## Configuration
 
-Step 1: Create character assets files.
+**Step 1:** Create character assets files.
 
-Styles file: ```app/assets/stylesheets/character.scss```
+Character basic styles & overrides: ```app/assets/stylesheets/character.scss```
 
     @import "character/character";
     @import "character/blog";
@@ -39,7 +39,7 @@ Styles file: ```app/assets/stylesheets/character.scss```
       font-style: normal;
     }
 
-Javascript main file: ```app/assets/javascripts/character.coffee```
+Character initialization & configuration: ```app/assets/javascripts/character.coffee```
 
     #= require character/character
     #= require character/blog
@@ -51,45 +51,14 @@ When files are ready, add them to the ```config/environments/production.rb``` so
     config.assets.precompile += %w( character.js character.css )
 
 
-Step 2: Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
+**Step 2:** Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
 
 
-Step 3: Initializer
+**Step 3:** Setup character basic initializer: ```config/initializers/character```, provide only title for now:
 
-
-
-
-
-Following two cofiguration files have to be created:
-
-```/app/assets/javascript/character.coffee``` - Character modules configuration.
-
-    #= require character/main
-    #= require_self
-
-```/app/assets/stylesheets/character.scss``` - Character styles.
-
-    @import "character/main";
-
-
-To add model to the character add following lines in ```/app/assets/javascript/character.coffee```:
-
-    character.add_module
-      name: 'Model_1'
-      icon: 'rocket'
-
-    character.add_module
-      name: 'Model_2'
-      icon: 'bolt'
-
-    character.add_module 'Model_3'
-
-Where ```Model_#``` are names of rails models.
-
-
-
-
-
+    Character.configure do |config|
+      config.title = 'Website Admin Title'
+    end
 
 
 ## Using Custom Forms
