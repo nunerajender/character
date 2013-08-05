@@ -21,20 +21,20 @@ Add these to projects ```Gemfile```.
 After running ```bundle``` you need to do basic configuration.
 
 
-## Configuration
+### Configuration
 
-**Step 1:** Create character assets files.
+**Step 1:** Create asset files:
 
 Character basic styles & overrides: ```app/assets/stylesheets/character.scss```
 
     @import "character/character";
     @import "character/blog";
 
-    // Firefox font fix for production
+    // Firefox font fix for production: replace www.website.com with the real address
     @font-face {
       font-family: 'FontAwesome';
-      src: url("http://www.slatestudio.com/assets/fontawesome-webfont.eot");
-      src: url("http://www.slatestudio.com/assets/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("http://www.slatestudio.com/assets/fontawesome-webfont.woff") format("woff"), url("http://www.slatestudio.com/assets/fontawesome-webfont.ttf") format("truetype"), url("http://www.slatestudio.com/assets/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+      src: url("http://www.website.com/assets/fontawesome-webfont.eot");
+      src: url("http://www.website.com/assets/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("http://www.website.com/assets/fontawesome-webfont.woff") format("woff"), url("http://www.website.com/assets/fontawesome-webfont.ttf") format("truetype"), url("http://www.website.com/assets/fontawesome-webfont.svg#fontawesomeregular") format("svg");
       font-weight: normal;
       font-style: normal;
     }
@@ -46,7 +46,7 @@ Character initialization & configuration: ```app/assets/javascripts/character.co
     #= require jquery_nested_form
     #= require_self
 
-When files are ready, add them to the ```config/environments/production.rb``` so they are prebuild on production:
+Add assets to the ```config/environments/production.rb``` so they are prebuild on production:
 
     config.assets.precompile += %w( character.js character.css )
 
