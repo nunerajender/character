@@ -156,10 +156,9 @@ Character looks for forms templates at ```app/views/character/admin/pluralized_m
 
 Two things to note in this template: 1. [Simple Form]() is used as form generation tool; 2. It's important for submit button to have ```chr-btn-submit``` class.
 
-
 #### Nested Forms
 
-
+[Nested Form](https://github.com/ryanb/nested_form) is a very handy gem to expand forms with editable inlines. It's plays very nice with Character. Add ```#= require jquery_nested_form``` to ```app/assets/javascript/character``` and that's it. Now customized form could include nested forms.
 
 
 ## Settings Application
