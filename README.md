@@ -138,15 +138,12 @@ Character looks for forms templates at ```app/views/character/admin/pluralized_m
 
     <%= simple_form_for @object, url: @form_action_url do |f| %>
       <div class='row chr-row-border chr-details-padding'>
-        
         <div class='small-12 columns'> 
           <h5><%= @model_name %> <small>attributes</small></h5>
         </div>
 
         <% @form_fields.each do |name| %>
-
           <%= f.input name, wrapper_class: 'small-12 columns' %>
-
         <% end %>  
       </div>
 
