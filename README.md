@@ -8,15 +8,13 @@ Main goal to create easy to use set of development tools to empower administrati
 
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
 
-
-## Index
-
 * [Installation](#installation)
 * [Configuration](#configuration)
   * [Step 1: Assets](#step-1-assets)
   * [Step 2: Routes](#step-2-routes)
   * [Step 3: Initializer](#step-3-initializer)
 * [Generic Application](#generic-application)
+* [Requirements](#requirements)
 * [TODO](#todo)
 
 
@@ -81,6 +79,9 @@ Setup character basic initializer: ```config/initializers/character```, provide 
 
 
 ## Generic Application
+
+
+## Requirements
 
 
 ## TODO
