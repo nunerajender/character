@@ -18,7 +18,7 @@
   <%= javascript_include_tag 'character' %>
   
   <% if Rails.env.development? and Character.no_auth_on_development %>
-    <% @admin_user = Character::AdminUser.first %>
+    <%# do not add browserid javascript when on localhost and no_auth flag set %>
   <% else %>
     <%= setup_browserid %>
   <% end %>

@@ -5,31 +5,18 @@
 # TODO: split filters into separate module
 #
 
-class Character::ApiController < ActionController::Base
+class Character::ApiController < Character::BaseController
   # Generic API
 
-  layout false
 
   # Filters -----------------------------------------------
 
-  before_filter :authenticate_admin_user
   before_filter :set_model_class
   before_filter :set_form_template,         only:   %w( new edit create update )
   before_filter :set_form_fields
   before_filter :map_character_item_fields
   before_filter :set_fields_to_include,     only:   %w( index create update )
 
-  def authenticate_admin_user
-    @admin_user = browserid_current_user if browserid_authenticated?
-
-    unless browserid_authenticated?
-      if Rails.env.development? and Character.no_auth_on_development
-        #
-      else
-        render :status => :unauthorized, :json => {error: "You need to sign in or sign up before continuing."}
-      end
-    end
-  end
 
   # TODO: for api calls return 500 if user is not loggedin
 

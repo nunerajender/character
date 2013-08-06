@@ -7,7 +7,11 @@ class Character::AdminController < ActionController::Base
   before_filter :authenticate_admin_user
 
   def authenticate_admin_user
-    @admin_user = browserid_current_user if browserid_authenticated?
+    if Rails.env.development? and Character.no_auth_on_development
+      @admin_user = Character::AdminUser.first
+    else
+      @admin_user = browserid_current_user if browserid_authenticated?
+    end
   end
 
   def login
