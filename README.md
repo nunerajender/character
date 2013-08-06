@@ -35,8 +35,6 @@ Add these to projects ```Gemfile```.
 
     gem 'character',          git: 'git://github.com/slate-studio/character.git'
     gem 'character_settings', git: 'git://github.com/slate-studio/character_settings.git'
-    gem 'character_redactor', git: 'git://github.com/slate-studio/character_redactor.git'
-    gem 'character_blog',     git: 'git://github.com/slate-studio/character_blog.git'
 
 After running ```bundle``` you need to do basic configuration.
 
@@ -50,7 +48,6 @@ Create asset files:
 Character basic styles & overrides: ```app/assets/stylesheets/character.scss```
 
     @import "character/character";
-    @import "character/blog";
 
     // Firefox font fix for production: replace www.website.com with the real address
     @font-face {
@@ -64,7 +61,6 @@ Character basic styles & overrides: ```app/assets/stylesheets/character.scss```
 Character initialization & configuration: ```app/assets/javascripts/character.coffee```
 
     #= require character/character
-    #= require character/blog
     #= require_self
 
 Add assets to the ```config/environments/production.rb``` so they are prebuild on production:
@@ -82,7 +78,7 @@ Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, pref
 Setup character basic initializer: ```config/initializers/character```, provide only title for now:
 
     Character.configure do |config|
-      config.title = 'Website Admin Title'
+      config.title = 'Admin Title'
     end
 
 
@@ -165,8 +161,24 @@ Two things to note in this template: 1. [Simple Form]() is used as form generati
 
 #### Form Plugins
 
+One of core ideas of Character is simplicity of integration any kind of jQuery plugins. Plugins could be initiated using scoped form events, for Projects example from above the event is named: ```character.projects.details.form.rendered```.
 
+Here is how jQuery UI reorderable plugin attached to the project form to provide a way to change image position. This code is put to the bottom of ```app/assets/javascript/character.coffee```:
 
+    $ ->
+      # Make it possible to change the order of images for projects with drag'n'drop
+
+      $(document).on 'character.projects.details.form.rendered', (e, el) ->
+        list = $(el).find('#image_items')
+
+        sort_options =
+          stop: (e, ui) ->
+            items = list.find('.fields')
+            total = items.length
+            items.each (index, el) ->
+              $(el).find('.project_images__position input').val(total - index)
+
+        list.sortable(sort_options).disableSelection()
 
 ## Settings Application
 
