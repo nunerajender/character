@@ -180,7 +180,14 @@ Here is how [jQuery UI sortable](http://jqueryui.com/sortable/) plugin attached 
 
         list.sortable(sort_options).disableSelection()
 
+
 ## Settings Application
+
+Settings application provides a generic way of expanding admin with editable sets of parameters (objects) or editable collections. One of good examples of usage of settings app is an admin application which allows to add/remove administrators:
+
+![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-5.jpg)
+
+Settings could be used to provide a simple way of editing CTAs, webpage editable content, etc. Read more on Character Settings [here](https://github.com/slate-studio/character_settings).
 
 
 ## List of Dependencies
@@ -213,7 +220,7 @@ Here is how [jQuery UI sortable](http://jqueryui.com/sortable/) plugin attached 
 * annotated source
 
 --
-[Александр Кравец](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 5, 2013
+[Александр Кравец](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 6, 2013
 
 
 
