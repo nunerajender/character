@@ -1,4 +1,6 @@
-# Character Generic Application
+# Generic Application
+
+[Documentation Index](https://github.com/slate-studio/character/blob/master/README.md)
 
 ## API
 
