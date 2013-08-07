@@ -113,6 +113,8 @@ Default login background could be changed using ```config.login_background_image
 
 Generic application is a main type of Character apps. It provides a way to setup administrative application for any [Mongoid](http://mongoid.org/en/mongoid/index.html) model in no time.
 
+[Generic Application API Reference](https://github.com/slate-studio/character/blob/master/doc/generic_application.md)
+
 ![Character Generic Application Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-2.jpg)
 
 #### Model Setup
