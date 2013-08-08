@@ -13,7 +13,7 @@ class Character::BaseController < ActionController::Base
 
     unless browserid_authenticated?
       if Rails.env.development? and Character.no_auth_on_development
-        @admin_user = Character::AdminUser.first
+        @admin_user = current_namespace.user_class.first
       else
         render status: :unauthorized, json: { error: "Access denied." }
       end

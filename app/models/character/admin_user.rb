@@ -10,7 +10,7 @@ class Character::AdminUser
   # Methods -----------------------------------------------
 
   def self.find_by_email(email)
-    Character::AdminUser.where(email:email).first()
+    where(email:email).first()
   end
 
   def gravatar_url(size)

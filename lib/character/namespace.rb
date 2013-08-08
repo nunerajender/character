@@ -20,6 +20,12 @@ module Character
       @no_auth_on_development = false
     end
 
+
+    def user_class
+      @user_class ||= @user_model.constantize
+    end
+
+
     def default?
       @name == Namespace::DEFAULT_NAMESPACE
     end

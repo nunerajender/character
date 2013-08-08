@@ -10,7 +10,7 @@ class Character::AdminController < ActionController::Base
 
   def authenticate_admin_user
     if Rails.env.development? and Character.no_auth_on_development
-      @admin_user = Character::AdminUser.first
+      @admin_user = current_namespace.user_class.first
     else
       # FIXME: There might be issues during concurrent requests,
       #        find better solution
