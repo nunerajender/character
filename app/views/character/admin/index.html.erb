@@ -19,10 +19,11 @@
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
+  <script>window.namespace = '<%= current_namespace.name %>';</script>
   <% if current_namespace.default? %>
     <%= javascript_include_tag 'character' %>
   <% else %>
-    <%= javascript_include_tag "character/#{current_namespace.name}", :media => 'all' %>
+    <%= javascript_include_tag "character/#{current_namespace.name}" %>
   <% end %>
 
   <% if Rails.env.development? and current_namespace.no_auth_on_development %>

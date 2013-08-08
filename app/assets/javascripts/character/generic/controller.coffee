@@ -3,12 +3,12 @@ class @GenericController extends Marionette.Controller
   details_view_class: GenericDetailsView
 
   initialize: (@options) ->
-    @api_url = @options.api || "/admin/#{ @options.name }"
-    
+    @api_url = @options.api || "/#{ window.namespace }/#{ @options.name }"
+
     # Collection setup
     @collection = new GenericCollection()
-    
-    collection_options = 
+
+    collection_options =
       api:          @api_url
       scope:        @options.scope
       namespace:    @options.namespace
@@ -16,7 +16,7 @@ class @GenericController extends Marionette.Controller
       reorderable:  @options.reorderable
       item_title:   @options.item_title
       item_meta:    @options.item_meta
-    
+
     if @collection.options
       _(@collection.options).extend
     else
@@ -33,14 +33,14 @@ class @GenericController extends Marionette.Controller
 
       character.layout.scope = @options.scope
       character.layout.select_menu_item(@options.scope)
-      
+
       # NOTE: Layout and views were initiated in "initialize" method before,
       # but they are loosing events while navigation between apps, so after new
       # item is added to collection it's not rendered.
 
       # TODO: make sure that memory is still available after a couple of big
       # jumps between apps.
-      
+
       @layout = new @layout_class
         title: @options.collection_title
         scope: @options.scope
@@ -53,7 +53,7 @@ class @GenericController extends Marionette.Controller
       # possible and easy to do.
 
       @layout.$el.addClass "chr-scope-#{ @options.scope }"
-      
+
 
       character.layout.main.show(@layout)
 
