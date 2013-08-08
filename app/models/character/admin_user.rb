@@ -15,7 +15,7 @@ class Character::AdminUser
 
   def gravatar_url(size)
     hash = Digest::MD5.hexdigest(email)
-    "http://www.gravatar.com/avatar/#{ hash}?s=#{ size }&d=mm"
+    "http://www.gravatar.com/avatar/#{ hash }?s=#{ size }&d=mm"
   end
 
   def character_thumb_url

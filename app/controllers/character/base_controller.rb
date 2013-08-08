@@ -21,6 +21,3 @@ class Character::BaseController < ActionController::Base
   end
 
 end
-
-
-
