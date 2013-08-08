@@ -2,6 +2,8 @@
 #         Slate, 2013
 
 class Character::BaseController < ActionController::Base
+  include NamespaceHelper
+
   layout false
 
   before_filter :authenticate_admin_user
@@ -17,6 +19,7 @@ class Character::BaseController < ActionController::Base
       end
     end
   end
+
 end
 
 

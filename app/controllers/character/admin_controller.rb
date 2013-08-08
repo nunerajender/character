@@ -2,6 +2,8 @@
 #         Slate, 2013
 
 class Character::AdminController < ActionController::Base
+  include NamespaceHelper
+
   layout false
 
   before_filter :authenticate_admin_user
@@ -21,7 +23,7 @@ class Character::AdminController < ActionController::Base
   def logout
     logout_browserid
     head :ok
-  end  
+  end
 end
 
 
