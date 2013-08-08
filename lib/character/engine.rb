@@ -15,7 +15,7 @@ module Character
 
     def namespaces
       if @namespaces.blank?
-        @namespaces = { "admin" => Namespace.new }
+        @namespaces = { Namespace::DEFAULT_NAMESPACE => Namespace.new }
       else
         @namespaces
       end
@@ -26,15 +26,11 @@ module Character
     end
 
     def namespace(name, &block)
-      namespace = @namespaces[name] || (@namespaces[name] = Namespace.new)
-      block.call(namespace)
+      block.call( @namespaces[name] ||= Namespace.new(name) )
     end
 
     def method_missing(method, *args)
-      unless @namespaces["admin"]
-        @namespaces["admin"] = Namespace.new
-      end
-      @namespaces["admin"].send method, *args
+      ( @namespaces[Namespace::DEFAULT_NAMESPACE] ||= Namespace.new ).send method, *args
     end
   end
 end
