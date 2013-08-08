@@ -11,11 +11,19 @@
 
   <title><%= current_namespace.title %> | Admin</title>
 
-  <%= stylesheet_link_tag 'character', :media => 'all' %>
+  <% if current_namespace.default? %>
+    <%= stylesheet_link_tag 'character', :media => 'all' %>
+  <% else %>
+    <%= stylesheet_link_tag "character/#{current_namespace.name}", :media => 'all' %>
+  <% end %>
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
-  <%= javascript_include_tag 'character' %>
+  <% if current_namespace.default? %>
+    <%= javascript_include_tag 'character' %>
+  <% else %>
+    <%= javascript_include_tag "character/#{current_namespace.name}", :media => 'all' %>
+  <% end %>
 
   <% if Rails.env.development? and current_namespace.no_auth_on_development %>
     <%# do not add browserid javascript when on localhost and no_auth flag set %>
