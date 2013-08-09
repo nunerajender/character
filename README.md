@@ -70,7 +70,7 @@ Add assets to the ```config/environments/production.rb``` so they are prebuild o
 
 #### Step 2: Routes
 
-Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
+Add ```mount_character()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
 
 
 #### Step 3: Initializer
@@ -135,18 +135,18 @@ Character looks for forms templates at ```app/views/character/admin/pluralized_m
 
     <%= simple_form_for @object, url: @form_action_url do |f| %>
       <div class='row chr-row-border chr-details-padding'>
-        <div class='small-12 columns'> 
+        <div class='small-12 columns'>
           <h5><%= @model_name %> <small>attributes</small></h5>
         </div>
 
         <% @form_fields.each do |name| %>
           <%= f.input name, wrapper_class: 'small-12 columns' %>
-        <% end %>  
+        <% end %>
       </div>
 
       <div class='row'>
         <div class='small-12 columns'>
-          <%= f.button :submit, class: 'chr-btn-submit radius secondary' %>      
+          <%= f.button :submit, class: 'chr-btn-submit radius secondary' %>
         </div>
       </div>
     <% end %>
