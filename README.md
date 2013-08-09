@@ -70,7 +70,7 @@ Add assets to the ```config/environments/production.rb``` so they are prebuild o
 
 #### Step 2: Routes
 
-Add ```mount_character_admin()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
+Add ```mount_character()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
 
 
 #### Step 3: Initializer
@@ -137,18 +137,18 @@ Character looks for forms templates at ```app/views/character/admin/pluralized_m
 
     <%= simple_form_for @object, url: @form_action_url do |f| %>
       <div class='row chr-row-border chr-details-padding'>
-        <div class='small-12 columns'> 
+        <div class='small-12 columns'>
           <h5><%= @model_name %> <small>attributes</small></h5>
         </div>
 
         <% @form_fields.each do |name| %>
           <%= f.input name, wrapper_class: 'small-12 columns' %>
-        <% end %>  
+        <% end %>
       </div>
 
       <div class='row'>
         <div class='small-12 columns'>
-          <%= f.button :submit, class: 'chr-btn-submit radius secondary' %>      
+          <%= f.button :submit, class: 'chr-btn-submit radius secondary' %>
         </div>
       </div>
     <% end %>
@@ -160,6 +160,12 @@ Two things to note in this template: 1. [Simple Form]() is used as form generati
 [Nested Form](https://github.com/ryanb/nested_form) is a very handy gem to expand forms with editable inlines. It plays very nice with Character, just add ```#= require jquery_nested_form``` to ```app/assets/javascript/character``` and that's it. Customized form could include nested forms. Following screenshot shows part of the Project form -- editable list of embeded images into the Project model handled by [Nested Form](https://github.com/ryanb/nested_form).
 
 ![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-4.jpg)
+
+#### Namespaces
+
+Namespaces allow you to use several independent admins for one website. Each of them will be using separate configuration, styles and templates.
+
+[See namespaces section for details](https://github.com/slate-studio/character/blob/master/doc/namespaces.md)
 
 #### Form Plugins
 
@@ -190,7 +196,6 @@ Settings application provides a generic way of expanding admin with editable set
 ![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-5.jpg)
 
 Settings could be used to provide a simple way of editing CTAs, webpage editable content, etc. Read more on Character Settings [here](https://github.com/slate-studio/character_settings).
-
 
 ## List of Dependencies
 
@@ -223,6 +228,7 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 
 --
 [Александр Кравец](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 6, 2013
+Роман Лупійчук @ [Slate](http://www.slatestudio.com)
 
 
 

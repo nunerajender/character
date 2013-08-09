@@ -9,42 +9,43 @@
 
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-  <title><%= Character.title %> | Admin</title>
+  <title><%= character_namespace.title %> | Admin</title>
 
-  <%= stylesheet_link_tag 'character', :media => 'all' %>
+  <%= stylesheet_link_tag character_namespace.stylesheet_filename, :media => 'all' %>
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
-  <%= javascript_include_tag 'character' %>
-  
-  <% if Rails.env.development? and Character.no_auth_on_development %>
+  <script>window.character_namespace = '<%= character_namespace.name %>';</script>
+  <%= javascript_include_tag character_namespace.javascript_filename %>
+
+  <% if Rails.env.development? and character_namespace.no_auth_on_development %>
     <%# do not add browserid javascript when on localhost and no_auth flag set %>
   <% else %>
     <%= setup_browserid %>
   <% end %>
 
   <% if @admin_user %>
-    <script type='text/javascript'>
-      window.user_image_url = '<%= @admin_user.gravatar_url(36) %>';      
-      window.user_email     = '<%= @admin_user.email %>';      
+    <script>
+      window.user_image_url = '<%= @admin_user.gravatar_url(36) %>';
+      window.user_email     = '<%= @admin_user.email %>';
       $(function(){ character.start() });
     </script>
 
     <style>
-    <% if Character.company_logo_image.start_with?('http://') %>
-      .chr-generic-details { background-image: url(<%= Character.company_logo_image %>); }
+    <% if character_namespace.company_logo_image.start_with?('http://') %>
+      .chr-generic-details { background-image: url(<%= character_namespace.company_logo_image %>); }
     <% else %>
-      .chr-generic-details { background-image: url(<%= image_path(Character.company_logo_image) %>); }
+      .chr-generic-details { background-image: url(<%= image_path(character_namespace.company_logo_image) %>); }
     <% end %>
     </style>
 
     <%= csrf_meta_tags %>
   <% else %>
     <style>
-      <% if Character.login_background_image.start_with?('http://') %>
-      .chr-login { background-image:url("<%= Character.login_background_image %>"); }
+      <% if character_namespace.login_background_image.start_with?('http://') %>
+      .chr-login { background-image:url("<%= character_namespace.login_background_image %>"); }
       <% else %>
-      .chr-login { background-image:url("<%= image_path(Character.login_background_image) %>"); }
+      .chr-login { background-image:url("<%= image_path(character_namespace.login_background_image) %>"); }
       <% end %>
     </style>
   <% end %>
@@ -54,7 +55,7 @@
   <% unless @admin_user %>
 
     <div class='chr-login'>  <!-- NICE BG: http://feeds.nationalgeographic.com/ng/photography/photo-of-the-day/ -->
-    
+
       <%= link_to browserid_config.login.path, class: 'browserid_login button' do %>
         <i class='icon-user' style='margin-right:.3em;'></i>  Login with Persona
       <% end %>

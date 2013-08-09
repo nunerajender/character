@@ -15,6 +15,7 @@ require 'kaminari'
 require 'character_settings'
 
 # character
+require 'character/namespace'
 require 'character/version'
 require 'character/engine'
 require 'character/routing'

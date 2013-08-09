@@ -1,26 +1,37 @@
 module Character
   class Engine < ::Rails::Engine
     config.before_configuration do
-      config.browserid.user_model        = "Character::AdminUser"
-      config.browserid.login.text        = 'Sign-in with Persona'
-      config.browserid.login.path        = '/admin/login'
-      config.browserid.logout.path       = '/admin/logout'
-
-      Character.title                  = 'Character'
-      Character.company_logo_image     = 'character-company-logo.png'
-      Character.login_background_image = 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
-      Character.no_auth_on_development = false
+      Character.namespaces = {}
     end
   end
 
   class << self
-    attr_accessor :title
-    attr_accessor :company_logo_image
-    attr_accessor :login_background_image
-    attr_accessor :no_auth_on_development
+    attr_writer :namespaces
+
+    def namespaces
+      if @namespaces.blank?
+        @namespaces = { Namespace::DEFAULT_NAMESPACE => Namespace.new }
+      else
+        @namespaces
+      end
+    end
 
     def configure(&block)
       block.call(self)
+    end
+
+    def namespace(name, &block)
+      @custom_namespace_used = true
+      raise StandardError.new("Please do not mix namespaced & default configurations") if @default_namespace_used
+
+      block.call( @namespaces[name] ||= Namespace.new(name) )
+    end
+
+    def method_missing(method, *args)
+      @default_namespace_used = true
+      raise StandardError.new("Please do not mix namespaced & default configurations") if @custom_namespace_used
+
+      ( @namespaces[Namespace::DEFAULT_NAMESPACE] ||= Namespace.new ).send method, *args
     end
   end
 end
