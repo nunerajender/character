@@ -22,6 +22,7 @@ Main goal to create easy to use set of development tools to empower administrati
   * [Custom Form](#custom-form)
   * [Nested Form](#nested-form)
   * [Form Plugins](#form-plugins)
+* [Character Namespaces](#character-namespaces)
 * [Settings Application](#settings-application)
 * [List of Dependencies](#list-of-dependencies)
 * [TODO](#todo)
@@ -45,7 +46,7 @@ After running ```bundle``` you need to do basic configuration.
 
 Create asset files:
 
-Character basic styles & overrides: ```app/assets/stylesheets/character.scss```
+Character basic styles & overrides: ```app/assets/stylesheets/admin.scss```
 
     @import "character/character";
 
@@ -58,14 +59,14 @@ Character basic styles & overrides: ```app/assets/stylesheets/character.scss```
       font-style: normal;
     }
 
-Character initialization & configuration: ```app/assets/javascripts/character.coffee```
+Character initialization & configuration: ```app/assets/javascripts/admin.coffee```
 
     #= require character/character
     #= require_self
 
 Add assets to the ```config/environments/production.rb``` so they are prebuild on production:
 
-    config.assets.precompile += %w( character.js character.css )
+    config.assets.precompile += %w( admin.js admin.css )
 
 
 #### Step 2: Routes
@@ -161,12 +162,6 @@ Two things to note in this template: 1. [Simple Form]() is used as form generati
 
 ![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-4.jpg)
 
-#### Namespaces
-
-Namespaces allow you to use several independent admins for one website. Each of them will be using separate configuration, styles and templates.
-
-[See namespaces section for details](https://github.com/slate-studio/character/blob/master/doc/namespaces.md)
-
 #### Form Plugins
 
 One of core ideas of Character is simplicity of integration any kind of jQuery plugins. Plugins could be initiated using scoped form events, for Projects example from above the event is named: ```character.projects.details.form.rendered```.
@@ -187,6 +182,13 @@ Here is how [jQuery UI sortable](http://jqueryui.com/sortable/) plugin attached 
               $(el).find('.project_images__position input').val(total - index)
 
         list.sortable(sort_options).disableSelection()
+
+
+## Character Namespaces
+
+Namespaces allow you to use several independent character app instances for one website. Each of them will be using separate configuration, styles and templates.
+
+[See namespaces section for details](https://github.com/slate-studio/character/blob/master/doc/namespaces.md)
 
 
 ## Settings Application
@@ -227,8 +229,8 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 * annotated source
 
 --
-[Александр Кравец](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 6, 2013
-Роман Лупійчук @ [Slate](http://www.slatestudio.com)
+[Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 9, 2013
+Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 
 
 
