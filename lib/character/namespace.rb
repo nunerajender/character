@@ -5,7 +5,10 @@ module Character
     attr_accessor :name,
                   :title,
                   :user_model,
-                  :permisssions_filter,
+                  :permissions_filter,
+
+                  :javascript_filename,
+                  :stylesheet_filename,
 
                   :company_logo_image,
                   :login_background_image,
@@ -22,10 +25,17 @@ module Character
     end
 
 
+    def javascript_filename
+      @javascript_filename || @name
+    end
+
+    def stylesheet_filename
+      @stylesheet_filename || @name
+    end
+
     def user_class
       @user_class ||= @user_model.constantize
     end
-
 
     def default?
       @name == Namespace::DEFAULT_NAMESPACE
