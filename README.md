@@ -229,9 +229,8 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 * annotated source
 
 --
-[Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 9, 2013
-
-Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
+* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 9, 2013
+* Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 
 
 
