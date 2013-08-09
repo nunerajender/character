@@ -27,6 +27,7 @@ end
 List of all available options.
 
 | Option                   | Description                   | Default   |
+| ------------------------ | ----------------------------- | --------- |
 | `title`                  | Title of admin                |           |
 | `user_model`             | Model to authenticate users, must be browserid compatible | Character::AdminUser |
 | `permissions_filter`     | lambda function to restrict permissions. Must return boolean value. It is runned each time when api call is code. It is executed in controller context, so `request`, `params`, `@model_class` can be used to decide if allow request. | |
