@@ -159,6 +159,12 @@ Two things to note in this template: 1. [Simple Form]() is used as form generati
 
 ![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-4.jpg)
 
+#### Namespaces
+
+Namespaces allow you to use several independent admins for one website. Each of them will be using separate configuration, styles and templates.
+
+[See namespaces section for details](https://github.com/slate-studio/character/blob/master/doc/namespaces.md)
+
 #### Form Plugins
 
 One of core ideas of Character is simplicity of integration any kind of jQuery plugins. Plugins could be initiated using scoped form events, for Projects example from above the event is named: ```character.projects.details.form.rendered```.
@@ -188,7 +194,6 @@ Settings application provides a generic way of expanding admin with editable set
 ![Character Nested Forms Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-5.jpg)
 
 Settings could be used to provide a simple way of editing CTAs, webpage editable content, etc. Read more on Character Settings [here](https://github.com/slate-studio/character_settings).
-
 
 ## List of Dependencies
 
@@ -221,6 +226,7 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 
 --
 [Александр Кравец](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 6, 2013
+Роман Лупійчук @ [Slate](http://www.slatestudio.com)
 
 
 
