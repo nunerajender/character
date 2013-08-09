@@ -260,7 +260,7 @@ class Character::ApiController < Character::BaseController
 
 
   def check_permissions
-    filter = character_namespace.request_filter
+    filter = character_namespace.permissions_filter
     if filter.nil? || self.instance_exec(&filter)
       true
     else

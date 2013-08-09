@@ -5,7 +5,7 @@ module Character
     attr_accessor :name,
                   :title,
                   :user_model,
-                  :request_filter,
+                  :permisssions_filter,
 
                   :company_logo_image,
                   :login_background_image,
