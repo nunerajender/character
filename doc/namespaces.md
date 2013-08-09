@@ -37,3 +37,8 @@ List of all available options.
 | login_background_image   | See main doc for details      |           |
 | no_auth_on_development   | See main doc for details      |           |
 
+### Templates
+
+Each namespace has each own templates. They must live under `character/#{name of your namespace}` folder. E.g. under `character/admin` & `character/producers` for configuration from "Configuration" section.
+
+
