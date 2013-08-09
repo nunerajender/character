@@ -3,7 +3,7 @@ class @GenericController extends Marionette.Controller
   details_view_class: GenericDetailsView
 
   initialize: (@options) ->
-    @api_url = @options.api || "/#{ window.namespace }/#{ @options.name }"
+    @api_url = @options.api || "/#{ window.character_namespace }/#{ @options.name }"
 
     # Collection setup
     @collection = new GenericCollection()

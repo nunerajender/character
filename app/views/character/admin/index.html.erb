@@ -9,24 +9,16 @@
 
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-  <title><%= current_namespace.title %> | Admin</title>
+  <title><%= character_namespace.title %> | Admin</title>
 
-  <% if current_namespace.default? %>
-    <%= stylesheet_link_tag 'character', :media => 'all' %>
-  <% else %>
-    <%= stylesheet_link_tag "character/#{current_namespace.name}", :media => 'all' %>
-  <% end %>
+  <%= stylesheet_link_tag character_namespace.name, :media => 'all' %>
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
-  <script>window.namespace = '<%= current_namespace.name %>';</script>
-  <% if current_namespace.default? %>
-    <%= javascript_include_tag 'character' %>
-  <% else %>
-    <%= javascript_include_tag "character/#{current_namespace.name}" %>
-  <% end %>
+  <script>window.character_namespace = '<%= character_namespace.name %>';</script>
+  <%= javascript_include_tag character_namespace.name %>
 
-  <% if Rails.env.development? and current_namespace.no_auth_on_development %>
+  <% if Rails.env.development? and character_namespace.no_auth_on_development %>
     <%# do not add browserid javascript when on localhost and no_auth flag set %>
   <% else %>
     <%= setup_browserid %>
@@ -40,20 +32,20 @@
     </script>
 
     <style>
-    <% if current_namespace.company_logo_image.start_with?('http://') %>
-      .chr-generic-details { background-image: url(<%= current_namespace.company_logo_image %>); }
+    <% if character_namespace.company_logo_image.start_with?('http://') %>
+      .chr-generic-details { background-image: url(<%= character_namespace.company_logo_image %>); }
     <% else %>
-      .chr-generic-details { background-image: url(<%= image_path(current_namespace.company_logo_image) %>); }
+      .chr-generic-details { background-image: url(<%= image_path(character_namespace.company_logo_image) %>); }
     <% end %>
     </style>
 
     <%= csrf_meta_tags %>
   <% else %>
     <style>
-      <% if current_namespace.login_background_image.start_with?('http://') %>
-      .chr-login { background-image:url("<%= current_namespace.login_background_image %>"); }
+      <% if character_namespace.login_background_image.start_with?('http://') %>
+      .chr-login { background-image:url("<%= character_namespace.login_background_image %>"); }
       <% else %>
-      .chr-login { background-image:url("<%= image_path(current_namespace.login_background_image) %>"); }
+      .chr-login { background-image:url("<%= image_path(character_namespace.login_background_image) %>"); }
       <% end %>
     </style>
   <% end %>

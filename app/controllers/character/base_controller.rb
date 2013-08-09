@@ -10,16 +10,17 @@ class Character::BaseController < ActionController::Base
 
   def authenticate_admin_user
     if Rails.env.development? and Character.no_auth_on_development
-      @admin_user = current_namespace.user_class.first
+      @admin_user = character_namespace.user_class.first
     else
       # FIXME: There might be issues during concurrent requests,
       #        find better solution
 
-      Rails.configuration.browserid.user_model       = current_namespace.user_model
-      Rails.configuration.browserid.session_variable = "#{current_namespace.name}_browserid_email"
-      Rails.configuration.browserid.login.text       = 'Sign-in with Persona'
-      Rails.configuration.browserid.login.path       = "/#{current_namespace.name}/login"
-      Rails.configuration.browserid.logout.path      = "/#{current_namespace.name}/logout"
+      browserid_config = Rails.configuration.browserid
+      browserid_config.user_model       = character_namespace.user_model
+      browserid_config.session_variable = "#{ character_namespace.name }_browserid_email"
+      browserid_config.login.text       = 'Sign-in with Persona'
+      browserid_config.login.path       = "/#{ character_namespace.name }/login"
+      browserid_config.logout.path      = "/#{ character_namespace.name }/logout"
 
       if browserid_authenticated?
         @admin_user = browserid_current_user
