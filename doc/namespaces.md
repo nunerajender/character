@@ -39,6 +39,6 @@ List of all available options.
 
 ### Templates
 
-Each namespace has each own templates. They must live under `character/#{name of your namespace}` folder. E.g. under `character/admin` & `character/producers` for configuration from "Configuration" section.
+Each namespace has its own templates. They must live under `character/#{name of your namespace}` folder. E.g. under `character/admin` & `character/producers` for configuration from "Configuration" section.
 
 
