@@ -19,7 +19,7 @@ module TemplatesHelper
       if template_exists?("form", template_folder, false)
         "#{ template_folder }/form"
       else
-        "character/admin/generic_form"
+        "character/generic_form"
       end
     end
   end
