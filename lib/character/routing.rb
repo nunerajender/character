@@ -6,9 +6,9 @@ module ActionDispatch::Routing
 
         scope "/#{name}", :module => "Character" do
 
-          match '/',        to: 'admin#index'
-          match '/login',   to: 'admin#login'
-          match '/logout',  to: 'admin#logout'
+          match '/',        to: 'application#index'
+          match '/login',   to: 'application#login'
+          match '/logout',  to: 'application#logout'
 
           # Register redactor images if module is defined
           # -------------------------------------------------
