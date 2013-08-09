@@ -21,10 +21,16 @@ module Character
     end
 
     def namespace(name, &block)
+      @custom_namespace_used = true
+      raise StandardError.new("Please do not mix namespaced & default configurations") if @default_namespace_used
+
       block.call( @namespaces[name] ||= Namespace.new(name) )
     end
 
     def method_missing(method, *args)
+      @default_namespace_used = true
+      raise StandardError.new("Please do not mix namespaced & default configurations") if @custom_namespace_used
+
       ( @namespaces[Namespace::DEFAULT_NAMESPACE] ||= Namespace.new ).send method, *args
     end
   end
