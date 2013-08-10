@@ -30,7 +30,7 @@ List of all available options.
 | ------------------------ | ----------------------------- | --------- |
 | title                    | Title of admin                |           |
 | user_model               | Model to authenticate users, must be [browserid](https://github.com/alexkravets/browserid-auth-rails) compatible | Character::AdminUser |
-| permissions_filter       | lambda function to restrict permissions. Must return boolean value. It is runned each time when api call is code. It is executed in controller context, so `request`, `params`, `@model_class` can be used to decide if allow request. | |
+| permissions_filter       | lambda function which defines permissions. Must return boolean value. It is runned before each request to admin and is executed in controller context, so `request`, `params`, `model_class` can be used to decide if allow paticular request. | |
 | javascript_filename      | JavaScript configuration file | Name of namespace |
 | stylesheet_filename      | Stylesheet file               | Name of namespace |
 | company_logo_image       | See main doc for details      |           |
