@@ -123,8 +123,7 @@ class Character::ApiController < Character::BaseController
     if filter.nil? || self.instance_exec(&filter)
       true
     else
-      # TODO: Make js handling this case
-      render json: 'error', status: :forbidden
+      render status: :unauthorized, json: { error: "Access denied." }
     end
   end
 
