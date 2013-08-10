@@ -7,10 +7,6 @@ class Character::ApiController < Character::BaseController
   include TemplatesHelper
   include JsonObjectHelper
 
-  # Filters -----------------------------------------------
-
-  before_filter :check_permissions
-
   # Actions -----------------------------------------------
 
   # - the index action implements order, search and paging
@@ -112,19 +108,6 @@ class Character::ApiController < Character::BaseController
     @object = model_class.find(params[:id])
     @object.destroy
     render json: 'ok'
-  end
-
-
-  private
-
-
-  def check_permissions
-    filter = character_namespace.permissions_filter
-    if filter.nil? || self.instance_exec(&filter)
-      true
-    else
-      render status: :unauthorized, json: { error: "Access denied." }
-    end
   end
 
 end
