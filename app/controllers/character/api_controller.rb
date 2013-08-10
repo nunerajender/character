@@ -75,7 +75,7 @@ class Character::ApiController < Character::BaseController
 
   # - new action comment relates to edit action as well.
   def edit
-    @object = model_class.find(params[:id])  
+    @object = model_class.find(params[:id])
     render form_template
   end
 
@@ -123,8 +123,8 @@ class Character::ApiController < Character::BaseController
     if filter.nil? || self.instance_exec(&filter)
       true
     else
-      # Alex: What is this for? API is json based.
-      redirect_to "/#{ character_namespace.name }", warning: "Action not permitted"
+      # TODO: Make js handling this case
+      render json: 'error', status: :forbidden
     end
   end
 
