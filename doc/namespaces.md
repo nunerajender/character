@@ -13,7 +13,7 @@ Character.configure do |config|
     namespace.user_model = 'Producer'
 
     namespace.permissions_filter = proc do
-      %w(Producer Videos).include? @model_class.name
+      %w(Producer Videos).include? model_class.name
     end
   end
 
@@ -29,7 +29,7 @@ List of all available options.
 | Option                   | Description                   | Default   |
 | ------------------------ | ----------------------------- | --------- |
 | title                    | Title of admin                |           |
-| user_model               | Model to authenticate users, must be [browserid](https://github.com/mvxcvi/browserid-rails) compatible | Character::AdminUser |
+| user_model               | Model to authenticate users, must be [browserid](https://github.com/alexkravets/browserid-auth-rails) compatible | Character::AdminUser |
 | permissions_filter       | lambda function to restrict permissions. Must return boolean value. It is runned each time when api call is code. It is executed in controller context, so `request`, `params`, `@model_class` can be used to decide if allow request. | |
 | javascript_filename      | JavaScript configuration file | Name of namespace |
 | stylesheet_filename      | Stylesheet file               | Name of namespace |

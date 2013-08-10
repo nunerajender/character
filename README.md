@@ -120,7 +120,7 @@ Generic application is a main type of Character apps. It provides a way to setup
 
 #### Model Setup
 
-Here is an example of adding character app for ```Project``` model from the screenshot above. All model setups are added to ```app/assets/javascripts/character.coffee```:
+Here is an example of adding character app for ```Project``` model from the screenshot above. All model setups are added to ```app/assets/javascripts/admin.coffee```:
 
     new GenericApplication 'Project',
       icon:         'rocket'
@@ -166,7 +166,7 @@ Two things to note in this template: 1. [Simple Form]() is used as form generati
 
 One of core ideas of Character is simplicity of integration any kind of jQuery plugins. Plugins could be initiated using scoped form events, for Projects example from above the event is named: ```character.projects.details.form.rendered```.
 
-Here is how [jQuery UI sortable](http://jqueryui.com/sortable/) plugin attached to the project form to provide a way to change image position with drag'n'drop. This code is put to the bottom of ```app/assets/javascript/character.coffee```:
+Here is how [jQuery UI sortable](http://jqueryui.com/sortable/) plugin attached to the project form to provide a way to change image position with drag'n'drop. This code is put to the bottom of ```app/assets/javascript/admin.js.coffee```:
 
     $ ->
       # Make it possible to change the order of images for projects with drag'n'drop
