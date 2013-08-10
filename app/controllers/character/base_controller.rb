@@ -12,8 +12,6 @@ class Character::BaseController < ActionController::Base
     if Rails.env.development? and character_namespace.no_auth_on_development
       @admin_user = character_namespace.user_class.first
     else
-      initialize_browserid
-
       if browserid_authenticated?
         @admin_user = browserid_current_user
       else
@@ -22,17 +20,17 @@ class Character::BaseController < ActionController::Base
     end
   end
 
-  private
-
-  def initialize_browserid
-    # FIXME: There might be issues during concurrent requests,
-    #        find better solution
-
-    browserid_config = Rails.configuration.browserid
-    browserid_config.user_model       = character_namespace.user_model
-    browserid_config.session_variable = "#{ character_namespace.name }_browserid_email"
-    browserid_config.login.text       = 'Sign-in with Persona'
-    browserid_config.login.path       = "/#{ character_namespace.name }/login"
-    browserid_config.logout.path      = "/#{ character_namespace.name }/logout"
+  # Overrides browserid-auth-rails config with session dependent values
+  def browserid_config
+    @browserid_config ||= begin
+      config = Rails.configuration.browserid.clone
+      config.user_model       = character_namespace.user_model
+      config.session_variable = "#{ character_namespace.name }_browserid_email"
+      config.login.text       = 'Sign-in with Persona'
+      config.login.path       = "/#{ character_namespace.name }/login"
+      config.logout.path      = "/#{ character_namespace.name }/logout"
+      config
+    end
   end
+
 end
