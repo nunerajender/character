@@ -6,9 +6,9 @@ class Character::BaseController < ActionController::Base
 
   layout false
 
-  before_filter :authenticate_admin_user
+  before_filter :authenticate_user
 
-  def authenticate_admin_user
+  def authenticate_user
     if Rails.env.development? and character_namespace.no_auth_on_development
       @admin_user = character_namespace.user_class.first
     else
