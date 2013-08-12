@@ -13,7 +13,7 @@ class Character::ApplicationController < Character::BaseController
 
   def authenticate_user
     if Rails.env.development? and character_namespace.no_auth_on_development
-      @admin_user = character_namespace.user_class.first
+      authenticate_first_user
     else
       @admin_user = browserid_current_user if browserid_authenticated?
     end
