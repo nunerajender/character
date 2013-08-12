@@ -16,7 +16,7 @@ module Character
 
 
     def initialize(name = Namespace::DEFAULT_NAMESPACE)
-      @name                   = name
+      @name                   = name.to_url
       @title                  = 'Character'
       @user_model             = 'Character::AdminUser'
       @company_logo_image     = 'character-company-logo.png'
@@ -24,6 +24,10 @@ module Character
       @no_auth_on_development = false
     end
 
+
+    def title
+      @title || @name.humanize
+    end
 
     def javascript_filename
       @javascript_filename || @name
