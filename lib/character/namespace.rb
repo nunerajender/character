@@ -5,7 +5,10 @@ module Character
     attr_accessor :name,
                   :title,
                   :user_model,
+
                   :permissions_filter,
+                  :before_index,
+                  :before_save,
 
                   :javascript_filename,
                   :stylesheet_filename,

@@ -31,6 +31,10 @@ class Character::ApiController < Character::BaseController
       @objects = @objects.order_by(filters)
     end
 
+    if character_namespace.before_index
+      instance_exec &character_namespace.before_index
+    end
+
     # search option
     #@objects = @objects.full_text_search(search_query) if not search_query.empty?
 
@@ -78,7 +82,11 @@ class Character::ApiController < Character::BaseController
 
   # TODO: support of multiple object creation.
   def create
-    @object = model_class.create params[form_attributes_namespace]
+    @object = model_class.new params[form_attributes_namespace]
+
+    if character_namespace.before_save
+      instance_exec &character_namespace.before_save
+    end
 
     if @object.save
       render json: build_json_object(@object)
@@ -92,9 +100,13 @@ class Character::ApiController < Character::BaseController
   def update
     # TODO: support of multiple object update
 
-    @object = model_class.find(params[:id])
+    @object = model_class.find(params[:id]).assign_attributes params[form_attributes_namespace]
 
-    if @object.update_attributes params[form_attributes_namespace]
+    if character_namespace.before_save
+      instance_exec &character_namespace.before_save
+    end
+
+    if @object.save
       render json: build_json_object(@object)
     else
       # TODO: check if we need form_action_url and model_name here

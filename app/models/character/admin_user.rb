@@ -7,6 +7,8 @@ class Character::AdminUser
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  index({ email: 1 }, { unique: true })
+
   # Methods -----------------------------------------------
 
   def self.find_by_email(email)
