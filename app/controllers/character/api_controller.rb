@@ -100,7 +100,8 @@ class Character::ApiController < Character::BaseController
   def update
     # TODO: support of multiple object update
 
-    @object = model_class.find(params[:id]).assign_attributes params[form_attributes_namespace]
+    @object = model_class.find(params[:id])
+    @object.assign_attributes params[form_attributes_namespace]
 
     if character_namespace.before_save
       instance_exec &character_namespace.before_save
