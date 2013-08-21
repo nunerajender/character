@@ -19,6 +19,34 @@ class Character::ApiController < Character::BaseController
 
     @objects = model_class.unscoped.all
 
+
+
+    # filter with where
+    scopes = params.keys.select { |s| s.starts_with? 'where__' }
+    scopes.each do |s|
+      field_name = s.gsub('where__', '')
+      
+      filters = {}
+      filters_list = params[s].split(',')
+      
+      if params[s].include? ':'
+        params[s].split(',').each do |f|
+          filters[ f.split(':').first ] = f.split(':').last
+        end
+
+        @objects = @objects.where( field_name => filters )
+      else
+        @objects = @objects.where( field_name => params[s] )
+      end
+    end
+
+
+
+    # search option
+    #@objects = @objects.full_text_search(search_query) if not search_query.empty?
+
+
+
     # order_by format: &order_by=field_name:direction,field_name2:direction,...&
     if order_by
       filters = {}
@@ -35,10 +63,12 @@ class Character::ApiController < Character::BaseController
       instance_exec &character_namespace.before_index
     end
 
-    # search option
-    #@objects = @objects.full_text_search(search_query) if not search_query.empty?
 
+
+    # pagination
     @objects = @objects.page(page).per(per_page)
+
+
 
     item_objects = @objects.map { |o| build_json_object(o) }
 
