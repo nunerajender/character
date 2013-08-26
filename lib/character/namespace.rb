@@ -19,7 +19,7 @@ module Character
 
 
     def initialize(name = Namespace::DEFAULT_NAMESPACE)
-      @name                   = name.to_url
+      @name                   = name.gsub('', '-').downcase #.to_url ? where this method is from? need to include in gemspec
       @title                  = 'Character'
       @user_model             = 'Character::AdminUser'
       @company_logo_image     = 'character-company-logo.png'
