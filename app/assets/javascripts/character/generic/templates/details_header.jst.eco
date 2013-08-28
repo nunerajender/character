@@ -9,24 +9,21 @@
 <div class='chr-container <% if not @__meta: %>chr-no-meta<% end %>'>
 
   <% if @__meta: %>
-  
+
     <strong><%= @__title %></strong>
 
     <% if @_id: %>
       <div class='chr-actions'><a href='#/<%= @__scope %>' id='action_delete'>Delete</a></div>
     <% end %>
-    
+
     <div class='chr-meta'>Updated on <%= @__updated_at %></div>
-  
+
   <% else: %>
-  
-    <% if @__title: %>
 
-      <strong><%= @__title %></strong>
+    <% if @_id: %>
 
-      <% if @_id: %>
-        <div class='chr-actions'><a href='#/<%= @__scope %>' id='action_delete'>Delete</a></div>
-      <% end %>
+      <strong><%= @__title || "No title" %></strong>
+      <div class='chr-actions'><a href='#/<%= @__scope %>' id='action_delete'>Delete</a></div>
 
     <% else: %>
 
