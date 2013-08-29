@@ -1,5 +1,5 @@
 class @GenericDetailsView extends Backbone.Marionette.Layout
-  template: JST["character/generic/templates/details"]
+  template: JST["character/generic/templates/custom/details"] || JST["character/generic/templates/details"]
 
   regions:
     header:  '#details_header'

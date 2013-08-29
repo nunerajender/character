@@ -28,6 +28,9 @@ class @GenericApplication
     # Sorting options for index list
     options.index_scopes      ?= {}
 
+    # Extra model fields for custom template, if needed
+    options.index_extra_fields ?= []
+
     # Reordering items in a list
     options.reorderable       ?= false
 

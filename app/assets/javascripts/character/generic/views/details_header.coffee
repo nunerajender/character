@@ -1,6 +1,6 @@
 class @GenericDetailsHeaderView extends Backbone.Marionette.ItemView
-  template: JST["character/generic/templates/details_header"]
-  
+  template: JST["character/generic/templates/custom/details_header"] || JST["character/generic/templates/details_header"]
+
   modelEvents:
     'change': 'render'
 

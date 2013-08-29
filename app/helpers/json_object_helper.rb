@@ -42,7 +42,7 @@ module JsonObjectHelper
     end
   end
 
-  
+
   # IDEA: try to move the __title and __meta logic to the frontend model
 
 
@@ -76,6 +76,12 @@ module JsonObjectHelper
 
     if params[:reorderable] == 'true'
       hash[:_position] = o.try(:_position)
+    end
+
+    if params[:extra_fields].present?
+      params[:extra_fields].each do |extra_field|
+        hash[extra_field] = o.try(extra_field)
+      end
     end
 
     updated_at = o.try(:updated_at)

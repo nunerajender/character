@@ -1,5 +1,5 @@
 class @GenericCollectionItemView extends Backbone.Marionette.ItemView
-  template: JST["character/generic/templates/collection_item"]
+  template: JST["character/generic/templates/custom/collection_item"] || JST["character/generic/templates/collection_item"]
   tagName: 'li'
   modelEvents:
     'change':  'render'
@@ -11,7 +11,7 @@ class @GenericCollectionItemView extends Backbone.Marionette.ItemView
 
 
 class @GenericCollectionEmptyView extends Backbone.Marionette.ItemView
-  template: JST["character/generic/templates/collection_empty"]
+  template: JST["character/generic/templates/custom/collection_empty"] || JST["character/generic/templates/collection_empty"]
 
 
 class @GenericCollectionView extends Backbone.Marionette.CollectionView

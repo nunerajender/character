@@ -1,5 +1,5 @@
 class @GenericLayout extends Backbone.Marionette.Layout
-  template: JST["character/generic/templates/layout"]
+  template: JST["character/generic/templates/custom/layout"] || JST["character/generic/templates/layout"]
 
   regions:
     header:  '#list_header'
