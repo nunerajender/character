@@ -25,10 +25,10 @@ class Character::ApiController < Character::BaseController
     scopes = params.keys.select { |s| s.starts_with? 'where__' }
     scopes.each do |s|
       field_name = s.gsub('where__', '')
-      
+
       filters = {}
       filters_list = params[s].split(',')
-      
+
       if params[s].include? ':'
         params[s].split(',').each do |f|
           filters[ f.split(':').first ] = f.split(':').last
@@ -59,6 +59,7 @@ class Character::ApiController < Character::BaseController
       @objects = @objects.order_by(filters)
     end
 
+
     if character_namespace.before_index
       instance_exec &character_namespace.before_index
     end
@@ -67,7 +68,6 @@ class Character::ApiController < Character::BaseController
 
     # pagination
     @objects = @objects.page(page).per(per_page)
-
 
 
     item_objects = @objects.map { |o| build_json_object(o) }

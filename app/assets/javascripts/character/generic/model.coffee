@@ -15,7 +15,7 @@ class @GenericModel extends Backbone.Model
       obj[@collection.options.namespace] = _.clone(this.attributes)
     else
       obj = _.clone(this.attributes)
-    
+
     return obj
 
 

@@ -28,7 +28,7 @@ class @GenericDetailsView extends Backbone.Marionette.Layout
     @ui.content.html(html)
 
     @ui.form = @ui.content.find('form')
-    
+
     if @ui.form
       @ui.form.addClass('custom')
 
@@ -39,21 +39,18 @@ class @GenericDetailsView extends Backbone.Marionette.Layout
 
       @ui.submit_btn = @ui.content.find('.chr-btn-submit')
 
-      url    = @ui.form.attr 'action'
       params = {}
 
       # this should be extended when scopes are added
-      
+
       if @collection.options.order_by
         params.fields_to_include = @collection.options.order_by.split(':')[0]
 
       params.title_field = @collection.options.item_title if @collection.options.item_title
       params.meta_field  = @collection.options.item_meta  if @collection.options.item_meta
 
-      url = url + "?" + $.param(params)
-
       @ui.form.ajaxForm
-        url: url
+        data: params
         beforeSubmit: (arr, $form, options) =>
           # dates fix
           _.each simple_form.get_date_values(arr), (el) -> arr.push el
@@ -62,7 +59,7 @@ class @GenericDetailsView extends Backbone.Marionette.Layout
           @ui.submit_btn.addClass 'disabled'
 
           return true
-        
+
         success: (response) =>
           @save_model(response)
 
@@ -81,10 +78,10 @@ class @GenericDetailsView extends Backbone.Marionette.Layout
   save_model: (obj) ->
     # when form is submitted but returns an error
     if typeof(obj) == 'string' then return @update_content(obj)
-    
+
     # update model
     obj['__scope'] = @scope()
-    
+
     if @model
       @model.set(obj)
       @collection.sort()
