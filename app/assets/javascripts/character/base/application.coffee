@@ -32,12 +32,12 @@ class @Character extends Backbone.Marionette.Application
       # skip settings module
       if m.moduleName != 'Settings'
         @add_menu_item(m.options.pluralized_name, m.options.scope, m.options.icon)
-    
+
     @layout.select_menu_item(@layout.scope)
 
 
   jump_to_first_app: ->
-    if window.location.hash == "" 
+    if window.location.hash == ""
       path = $('#menu .top-bar-section .left li a:eq(0)').attr 'href'
       window.location.hash = path
 

@@ -1,5 +1,9 @@
 class @GenericCollectionItemView extends Backbone.Marionette.ItemView
-  template: JST["character/generic/templates/custom/collection_item"] || JST["character/generic/templates/collection_item"]
+  template: (serialized_model) =>
+    custom_template  = JST["character/generic/templates/#{ window.character_namespace }/#{ @model.collection.options.scope }/collection_item"]
+    regular_template = JST["character/generic/templates/collection_item"]
+    (custom_template || regular_template)(serialized_model)
+
   tagName: 'li'
   modelEvents:
     'change':  'render'
@@ -11,7 +15,10 @@ class @GenericCollectionItemView extends Backbone.Marionette.ItemView
 
 
 class @GenericCollectionEmptyView extends Backbone.Marionette.ItemView
-  template: JST["character/generic/templates/custom/collection_empty"] || JST["character/generic/templates/collection_empty"]
+  template: (serialized_model) ->
+    custom_template  = JST["character/generic/templates/#{ window.character_namespace }/collection_empty"]
+    regular_template = JST["character/generic/templates/collection_empty"]
+    (custom_template || regular_template)(serialized_model)
 
 
 class @GenericCollectionView extends Backbone.Marionette.CollectionView
