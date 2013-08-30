@@ -1,6 +1,6 @@
 class @GenericLayout extends Backbone.Marionette.Layout
   template: (serialized_model) ->
-    custom_template  = JST["character/generic/templates/#{ window.character_namespace }/layout"]
+    custom_template  = JST["#{ window.character_namespace }/templates/layout"]
     regular_template = JST["character/generic/templates/layout"]
     (custom_template || regular_template)(serialized_model)
 

@@ -1,6 +1,6 @@
 class @GenericDetailsView extends Backbone.Marionette.Layout
   template: (serialized_model) =>
-    custom_template  = JST["character/generic/templates/#{ window.character_namespace }/#{ @collection.options.scope }/details"]
+    custom_template  = JST["#{ window.character_namespace }/templates/#{ @collection.options.scope }/details"]
     regular_template = JST["character/generic/templates/details"]
     (custom_template || regular_template)(serialized_model)
 

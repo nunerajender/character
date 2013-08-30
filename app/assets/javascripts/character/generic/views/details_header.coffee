@@ -1,6 +1,6 @@
 class @GenericDetailsHeaderView extends Backbone.Marionette.ItemView
   template: (serialized_model) =>
-    custom_template  = JST["character/generic/templates/#{ window.character_namespace }/#{ @collection.options.scope }/details_header"]
+    custom_template  = JST["#{ window.character_namespace }/templates/#{ @collection.options.scope }/details_header"]
     regular_template = JST["character/generic/templates/details_header"]
     (custom_template || regular_template)(serialized_model)
 
