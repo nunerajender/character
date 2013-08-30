@@ -31,8 +31,8 @@ class @GenericCollection extends Backbone.Collection
     params.order_by    = @options.order_by   if @options.order_by
     params.title_field = @options.item_title if @options.item_title
     params.meta_field  = @options.item_meta  if @options.item_meta
-    unless _.isEmpty(@options.index_extra_fields)
-      params["extra_fields[]"] = @options.index_extra_fields
+    unless _.isEmpty(@options.item_extra_fields)
+      params["extra_fields[]"] = @options.item_extra_fields
 
     @options.api + "?" + $.param(params, true)
 

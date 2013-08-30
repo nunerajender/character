@@ -16,7 +16,7 @@ class @GenericController extends Marionette.Controller
       reorderable:  @options.reorderable
       item_title:   @options.item_title
       item_meta:    @options.item_meta
-      index_extra_fields: @options.index_extra_fields
+      item_extra_fields: @options.item_extra_fields
 
     if @collection.options
       _(@collection.options).extend
