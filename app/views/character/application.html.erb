@@ -11,12 +11,12 @@
 
   <title><%= character_namespace.title %> | Admin</title>
 
-  <%= stylesheet_link_tag find_asset("character/#{character_namespace.stylesheet_filename}",character_namespace.stylesheet_filename), :media => 'all' %>
+  <%= stylesheet_link_tag character_namespace.stylesheet_filename, :media => 'all' %>
 
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
   <script>window.character_namespace = '<%= character_namespace.name %>';</script>
-  <%= javascript_include_tag find_asset("character/#{character_namespace.javascript_filename}", character_namespace.javascript_filename) %>
+  <%= javascript_include_tag character_namespace.javascript_filename %>
 
   <% if Rails.env.development? and character_namespace.no_auth_on_development %>
     <%# do not add browserid javascript when on localhost and no_auth flag set %>
