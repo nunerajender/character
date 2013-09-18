@@ -12,6 +12,7 @@ class Character::ApiController < Character::BaseController
   # - the index action implements order, search and paging
   # TODO: implement filtering
   def index
+    scope        = params[:scope]
     order_by     = params[:order_by]
     search_query = params[:search_query] || ''
     page         = params[:page]         || 1

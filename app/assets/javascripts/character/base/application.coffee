@@ -10,7 +10,7 @@ class @Character extends Backbone.Marionette.Application
 
 
   initialize_plugins: ->
-    $(document).foundation('topbar section forms')
+    $(document).foundation('topbar section forms dropdown')
 
 
   update_user_image: ->
@@ -40,4 +40,3 @@ class @Character extends Backbone.Marionette.Application
     if window.location.hash == ""
       path = $('#menu .top-bar-section .left li a:eq(0)').attr 'href'
       window.location.hash = path
-

@@ -23,7 +23,7 @@
                                         position: absolute;
                                         overflow: hidden;
                                         overflow-y: auto;
-                                        
+
   }
 }
 
@@ -62,7 +62,7 @@ $list-item-height: 66px;
                                         position: absolute;
                                         margin: 1px 0 0 -.55em;
                                         color:#888;
-    }    
+    }
   }
 }
 
@@ -98,6 +98,26 @@ $list-item-height: 66px;
                                         width: 100%;
                                         z-index:2;
                                         line-height:1.65;
+
+    .title.dropdown                   { // dropdown triangle taken here: https://github.com/zurb/foundation/blob/master/scss/foundation/components/_dropdown-buttons.scss
+                                        margin-left: 1em;
+                                        padding-bottom: .5em;
+      &:before                        { position: absolute;
+                                        content: "";
+                                        width: 0;
+                                        height: 0;
+                                        display: block;
+                                        border-style: solid;
+                                        border-color: $dropdown-button-pip-color-alt transparent transparent transparent;
+                                        top: 48%;
+                                        border-width: 0.35em;
+                                        opacity: .4;
+      }
+      &:hover                         {
+        &:before                      { opacity: 1;
+        }
+      }
+    }
   }
 
   section                             { overflow: hidden;
@@ -110,60 +130,62 @@ $list-item-height: 66px;
                                         z-index: 1;
   }
 
-  ul                                  { margin-bottom:72px;
-  }
-  
-  li                                  {
-
-    
-    &.active a                        { box-shadow: 0 1px 3px #ededed inset;
-                                        background: #f1f1f1;
-                                        border-color: #cfcfcf;
-                                        color: #555;
-
-      strong                          { color: #333;
-      }
-    }
-    
-    &:last-child                      { border-bottom: 1px solid #ddd;
-                                        box-shadow: 0 0 3px #ddd;
-    }
-    a                                 { background: #fafafa;
-                                        border-top: 1px solid #eee;
-                                        padding: 1em 1.3em 0em;
-                                        position: relative;
-                                        min-height: $list-item-height;
-                                        display:block;
-                                        color:#999;
-      
-      span,
-      strong                          { 
-                                        font-size:.9em;
-                                        white-space: nowrap;
-                                        text-overflow: ellipsis;
-                                        overflow: hidden;
-                                        display: block;
-                                        line-height: 1.2;
-      }
-
-      span                            { font-size:.75em;
-                                        line-height: 1.8;
-      }
-
-      strong                          { color:#666;
-
-      }
+  .list                                 {
+    ul                                  { margin-bottom:72px;
     }
 
-    img                               { width:26px;
-                                        height:26px;
-                                        float:left;
-                                        @include border-radius(15px);
-    }
+    li                                  {
 
-    .has-image                        {
-      .chr-container                  { padding: 0 0 0 2.5em;
-      }      
+
+      &.active a                        { box-shadow: 0 1px 3px #ededed inset;
+                                          background: #f1f1f1;
+                                          border-color: #cfcfcf;
+                                          color: #555;
+
+        strong                          { color: #333;
+        }
+      }
+
+      &:last-child                      { border-bottom: 1px solid #ddd;
+                                          box-shadow: 0 0 3px #ddd;
+      }
+      a                                 { background: #fafafa;
+                                          border-top: 1px solid #eee;
+                                          padding: 1em 1.3em 0em;
+                                          position: relative;
+                                          min-height: $list-item-height;
+                                          display:block;
+                                          color:#999;
+
+        span,
+        strong                          {
+                                          font-size:.9em;
+                                          white-space: nowrap;
+                                          text-overflow: ellipsis;
+                                          overflow: hidden;
+                                          display: block;
+                                          line-height: 1.2;
+        }
+
+        span                            { font-size:.75em;
+                                          line-height: 1.8;
+        }
+
+        strong                          { color:#666;
+
+        }
+      }
+
+      img                               { width:26px;
+                                          height:26px;
+                                          float:left;
+                                          @include border-radius(15px);
+      }
+
+      .has-image                        {
+        .chr-container                  { padding: 0 0 0 2.5em;
+        }
+      }
     }
   }
 
@@ -195,7 +217,7 @@ $list-item-height: 66px;
                                         box-shadow: 0 0 3px rgba(0,0,0,0.1);
 
                                         background-position: 50% 50%;
-                                        background-repeat: no-repeat no-repeat;  
+                                        background-repeat: no-repeat no-repeat;
 
   header                              { padding: .9em 1.5em 0;
                                         background: #fff;
@@ -208,7 +230,7 @@ $list-item-height: 66px;
       a                               { padding: 0 0 0 .25em;
       }
     }
-    
+
     img                               { width:36px;
                                         height:36px;
                                         @include border-radius(18px);
@@ -242,7 +264,7 @@ $list-item-height: 66px;
   .chr-details-padding.row > .columns { padding-right:6%;
                                         padding-left:6%;
   }
-  
+
   .chr-row-border                     { border-bottom: 1px solid #eee;
                                         padding-bottom: 2em;
   }

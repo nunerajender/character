@@ -227,6 +227,9 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 * FIX: collection is rendered twice for some reason
 * replace foundation topnav with original menu (layout/css)
 * annotated source
+* ipad
+* iphone
+* translations
 
 --
 * [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 9, 2013

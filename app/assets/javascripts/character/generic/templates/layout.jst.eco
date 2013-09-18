@@ -1,14 +1,18 @@
 <section class='chr-generic-collection' id='list'>
-  
+
   <header id='list_header'>
-    <span id='list_title' class='title'>Projects</span>
+    <a id='list_title' class='title' href='#'>Projects</a>
     <span class='chr-actions'>
       <a href='#' id='action_new'>New</a>
     </span>
+    <aside class='right'>
+      <i class='icon-search'></i>
+    </aside>
+    <ul id='scopes' class='f-dropdown' data-dropdown-content></ul>
   </header>
-  
-  <section id='list_content'></section>
-  
+
+  <section id='list_content' class='list'></section>
+
   <footer id='list_footer'></footer>
 </section>
 

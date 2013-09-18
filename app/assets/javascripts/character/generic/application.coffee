@@ -2,6 +2,7 @@
 #= require_tree ./views
 #= require ./controller
 #= require ./model
+#= require ./collection
 #= require_self
 
 
@@ -25,8 +26,14 @@ class @GenericApplication
     # Default icon to be used in character menu for the module
     options.icon              ?= 'bolt'
 
-    # Sorting options for index list
-    options.index_scopes      ?= {}
+    # Index list default scope sort order
+    options.index_default_scope_order_by ?= {}
+
+    # Index scopes options with labels
+    if options.index_scopes
+      _(options.index_scopes).each (val, key) ->
+        val.slug  ||= key
+        val.title ||= _(key).titleize()
 
     # Extra model fields for custom template, if needed
     options.item_extra_fields ?= []
@@ -39,13 +46,15 @@ class @GenericApplication
 
     @initialize_character_module(options)
 
-  # When adding custom views new routes may be required
-  # so this method should be overriden.
-  routes: (scope) ->
+  # When adding custom views new routes may be required,
+  # if so this method should be overriden.
+  routes: (app_scope) ->
     routes = {}
-    routes["#{ scope }"]          = "index"
-    routes["#{ scope }/new"]      = "new"
-    routes["#{ scope }/edit/:id"] = "edit"
+    # Order is important here: new should be before index
+    # to have collection_scopes work correct.
+    routes["#{ app_scope }(/:collection_scope_name)/edit/:id"] = "edit"
+    routes["#{ app_scope }(/:collection_scope_name)/new"]      = "new"
+    routes["#{ app_scope }(/:collection_scope_name)"]          = "index"
     routes
 
 
@@ -58,5 +67,3 @@ class @GenericApplication
       @controller = controller
       AppRouter   = Backbone.Marionette.AppRouter.extend({ appRoutes: routes })
       @router     = new AppRouter({ controller: controller })
-
-

@@ -12,7 +12,7 @@ class @GenericController extends Marionette.Controller
       api:          @api_url
       scope:        @options.scope
       namespace:    @options.namespace
-      order_by:     @options.index_scopes.default || no
+      order_by:     @options.index_default_scope_order_by || no
       reorderable:  @options.reorderable
       item_title:   @options.item_title
       item_meta:    @options.item_meta
@@ -26,7 +26,10 @@ class @GenericController extends Marionette.Controller
     @collection.set_sort_field()
 
 
-  index: (callback) ->
+  index: (collection_scope_name, callback) ->
+    if @options.index_scopes and collection_scope_name
+      collection_scope = @options.index_scopes[collection_scope_name]
+
     # this should also close details view if openned
 
     # if we are in the same module scope -> don't re-render index
@@ -43,8 +46,9 @@ class @GenericController extends Marionette.Controller
       # jumps between apps.
 
       @layout = new @layout_class
-        title: @options.collection_title
-        scope: @options.scope
+        title:        @options.collection_title
+        scope:        @options.scope
+        index_scopes: @options.index_scopes
 
       @collection_view = new GenericCollectionView
         collection:   @collection
@@ -61,18 +65,22 @@ class @GenericController extends Marionette.Controller
       @layout.show_logo()
       @layout.content.show(@collection_view)
 
-      @collection.character_fetch(callback)
+      @collection.character_fetch(collection_scope, callback)
 
     else
       @layout.show_logo()
       @layout.unselect_item()
+      @layout.update_title(collection_scope)
 
-      callback() if callback
+      # if collection scope has changed, update collection items
+      if @collection.options.scope != collection_scope
+        @collection.character_fetch(collection_scope, callback)
+      else
+        callback() if callback
 
 
-
-  new: ->
-    @index =>
+  new: (collection_scope_name) ->
+    @index collection_scope_name, =>
       @layout.hide_logo()
       details_view = new @details_view_class({ model: no, collection: @collection })
       @layout.details.show(details_view)
@@ -81,8 +89,8 @@ class @GenericController extends Marionette.Controller
         details_view.update_content(html)
 
 
-  edit: (id) ->
-    @index =>
+  edit: (collection_scope_name, id) ->
+    @index collection_scope_name, =>
       @layout.hide_logo()
       @layout.select_item(id)
 

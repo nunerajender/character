@@ -11,5 +11,7 @@ class @GenericDetailsHeaderView extends Backbone.Marionette.ItemView
     btn_close: '#action_close'
 
   onRender: ->
-    @ui.btn_close.attr 'href', "#/#{ @collection.options.scope }"
-
+    if @collection.options.collection_scope
+      @ui.btn_close.attr 'href', "#/#{ @collection.options.scope }/#{ @collection.options.collection_scope.slug }"
+    else
+      @ui.btn_close.attr 'href', "#/#{ @collection.options.scope }"
