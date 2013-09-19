@@ -1,0 +1,22 @@
+.chr-generic-app-layout               {
+  .left-panel                         { position: absolute;
+                                        width: 40%;
+                                        bottom: 0;
+                                        top: 0;
+                                        z-index: 2;
+  }
+
+  .right-panel                        { position: absolute;
+                                        width: 60%;
+                                        bottom: 0;
+                                        top: 0;
+                                        right: 0;
+                                        z-index: 3;
+  }
+
+  .logo                               { border-left: 1px solid #e3e6e9;
+                                        box-shadow: 0 0 3px rgba(0,0,0,0.1);
+                                        background-position: 50% 50%;
+                                        background-repeat: no-repeat no-repeat;
+  }
+}

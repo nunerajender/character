@@ -4,7 +4,6 @@
 
 @character.on "initialize:before", (options) ->
   @layout = new CharacterApplicationLayout().render()
-  $('body').prepend(@layout.el)
 
 @character.on "initialize:after",  (@options) ->
   # add character apps to the menu
@@ -21,7 +20,13 @@
   # set user avatar
   @layout.menu.ui.avatar.attr('src', @options.user.avatar_url)
 
-  # @initialize_plugins()
-  # @jump_to_first_app()
+  # initialize foundation plugins
+  $(document).foundation('topbar section forms dropdown')
+
+  # jump to the first app in list on first load
+  location.hash = @layout.menu.ui.items.find('a').attr('href') if location.hash == ""
+
+  # add project logo
+  $("<style>#logo{background-image:url('#{@options.logo}');}</style>").appendTo("head")
 
   Backbone.history.start() if Backbone.history
