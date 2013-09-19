@@ -1,0 +1,22 @@
+// === Character login screen theme ===
+// main background is set in the layout
+//
+.chr-login                            { position: fixed;
+                                        width: 100%;
+                                        height: 100%;
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                        background-position: center center;
+                                        background-attachment: fixed;
+
+  .icon-user                          { margin-right: .3em;
+  }
+
+  .browserid_login                    { @include button-base;
+                                        @include button-size;
+                                        @include button-style($secondary-color, 3px, false);
+                                        position: absolute;
+                                        bottom: 1em;
+                                        right: 2em;
+  }
+}
