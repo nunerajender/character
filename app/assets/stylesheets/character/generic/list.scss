@@ -1,0 +1,19 @@
+
+
+.chr-generic-list                     { position: absolute;
+                                        top: $list-header-height;
+                                        bottom: 0;
+                                        left: 0;
+                                        right: 0;
+                                        z-index: 1;
+                                        overflow: hidden;
+                                        overflow-y: auto;
+                                        background-color: $list-bg-color;
+
+  .empty                              { text-align: center;
+                                        line-height: 5;
+                                        color: #777;
+                                        font-size: .8em;
+                                        text-transform: uppercase;
+  }
+}

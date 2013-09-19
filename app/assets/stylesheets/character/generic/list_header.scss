@@ -1,12 +1,11 @@
 
 
-$header-height: 68px;
 $action-color: #666;
 $dropdown-color: $dropdown-button-pip-color-alt;
 
 .chr-generic-list-header              { position: absolute;
                                         width: 100%;
-                                        height: $header-height;
+                                        height: $list-header-height;
                                         padding: 1.25em 1.6em 0em;
                                         line-height: 1.65;
                                         box-shadow: 0 0 2px rgba(0,0,0,0.2);

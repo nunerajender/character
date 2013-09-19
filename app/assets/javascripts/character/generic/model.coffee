@@ -4,13 +4,18 @@ class @GenericModel extends Backbone.Model
   idAttribute: '_id'
 
   urlRoot: ->
-    @collection.options.api
+    @collection.options.collection_url
 
-  toJSON: (options) ->
-    if options and options.include_namespace
-      obj = {}
-      obj[@collection.options.namespace] = _.clone(this.attributes)
+  toJSON: (options={}) ->
+    if options.process_for_save
+      namespace = @collection.options.model_slug
+      object    = {}
+      object[namespace] = _.clone(@attributes)
     else
-      obj = _.clone(this.attributes)
+      object = _.clone(@attributes)
 
-    return obj
+      # helpers for template
+      object['__title'] = object[@collection.options.item_title]
+      object['__meta']  = object[@collection.options.item_meta]
+      object['__image'] = object[@collection.options.item_image] || ''
+    return object

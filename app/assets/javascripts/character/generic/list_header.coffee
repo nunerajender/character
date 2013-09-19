@@ -1,9 +1,6 @@
 
 
 class @GenericListHeader extends Backbone.Marionette.Layout
-  tagEl:    'header'
-  className: 'chr-generic-list-header'
-
   template: -> """<a class='title'></a><span class='actions'><a class='new'>New</a></span>
                   <aside class='right search'></aside>
                   <ul id='scopes' class='f-dropdown'></ul>"""
@@ -12,8 +9,8 @@ class @GenericListHeader extends Backbone.Marionette.Layout
     title:      '.title'
     actions:    '.actions'
     new_action: '.new'
-    scopes:     '#scopes'
     search:     '.search'
+    scopes:     '#scopes'
 
   onRender: ->
     @update_title()
@@ -43,6 +40,5 @@ class @GenericListHeader extends Backbone.Marionette.Layout
 
     @ui.scopes.append """<li><a href='#/#{ @options.path }'>#{ @get_title() }</a></li>"""
 
-    _.each scopes, (opts, scope) =>
-      title = opts.title || _(scope).titleize()
-      @ui.scopes.append """<li><a href='#/#{ @options.path }/#{ scope }'>#{ title }</a></li>"""
+    _.each scopes, (scope, key) =>
+      @ui.scopes.append """<li><a href='#/#{ @options.path }/#{ scope.slug }'>#{ scope.title }</a></li>"""

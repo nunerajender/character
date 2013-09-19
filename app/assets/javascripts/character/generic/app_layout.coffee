@@ -4,11 +4,16 @@
 class @GenericAppLayout extends Backbone.Marionette.Layout
   className: 'chr-generic-app-layout'
 
-  template: -> """<div class='left-panel' id='left_panel'></div><aside class='right-panel logo' id='logo'></aside>"""
+  template: -> """<div class='left-panel'>
+                    <div id='list_header' class='chr-generic-list-header'></div>
+                    <div id='list' class='chr-generic-list'></div>
+                  </div>
+                  <aside class='right-panel logo' id='logo'></aside>"""
 
   regions:
-    left_panel: '#left_panel'
+    header: '#list_header'
+    list:   '#list'
 
   onRender: ->
-    @left_panel.show(new GenericListHeader(@options))
-    #@list = new GenericList(@options)
+    @header.show(new GenericListHeader(@options))
+    @list.show(new GenericList({ collection: @options.collection }))

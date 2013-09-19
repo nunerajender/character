@@ -1,0 +1,57 @@
+
+$list-item-title-color: #666;
+$list-item-meta-color: #999;
+$list-item-border-color: #eee;
+$list-item-active-border-color: #cfcfcf;
+$list-item-active-bg: #f1f1f1;
+$list-item-active-title-color: #333;
+$list-item-active-meta-color: #555;
+
+.chr-generic-list-item                {
+  &:last-child                        { border-bottom: 1px solid #ddd;
+                                        box-shadow: 0 0 3px #ddd;
+  }
+
+  a img                               { display: none;
+                                        width: 26px;
+                                        height: 26px;
+                                        float: left;
+                                        @include border-radius(15px);
+  }
+
+  &.active a                          { box-shadow: 0 1px 3px #ededed inset;
+                                        background: $list-item-active-bg;
+                                        border-color: $list-item-active-border-color;
+    .title                            { color: $list-item-active-title-color;
+    }
+    .meta                             { color: $list-item-active-meta-color;
+    }
+  }
+
+  a                                   { background: $list-bg-color;
+                                        border-top: 1px solid $list-item-border-color;
+                                        padding: .6em 1.3em 0em;
+                                        position: relative;
+                                        height: $list-item-height;
+                                        display: block;
+    .meta,
+    .title                            { font-size:.9em;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        display: block;
+                                        line-height: 1.2;
+    }
+    .meta                             { font-size:.75em;
+                                        line-height: 1.8;
+                                        color: $list-item-meta-color;
+    }
+    .title                            { color: $list-item-title-color;
+    }
+  }
+
+  .has-image                          {
+    .container                        { padding: 0 0 0 2.5em;
+    }
+  }
+}
