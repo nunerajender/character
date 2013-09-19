@@ -1,4 +1,5 @@
 #= require ./list
+#= require ./list_header
 
 class @GenericAppLayout extends Backbone.Marionette.Layout
   className: 'chr-generic-app-layout'
@@ -7,3 +8,7 @@ class @GenericAppLayout extends Backbone.Marionette.Layout
 
   regions:
     left_panel: '#left_panel'
+
+  onRender: ->
+    @left_panel.show(new GenericListHeader(@options))
+    #@list = new GenericList(@options)

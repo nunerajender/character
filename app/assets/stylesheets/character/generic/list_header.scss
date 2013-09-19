@@ -1,0 +1,47 @@
+
+
+$header-height: 68px;
+$action-color: #666;
+
+.chr-generic-list-header              { position: absolute;
+                                        width: 100%;
+                                        height: $header-height;
+                                        padding: 1.25em 1.6em 0em;
+                                        line-height: 1.65;
+                                        box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                        z-index: 2;
+
+    // .title.dropdown                   { // dropdown triangle taken here: https://github.com/zurb/foundation/blob/master/scss/foundation/components/_dropdown-buttons.scss
+    //                                     margin-left: 1em;
+    //                                     padding-bottom: .5em;
+    //   &:before                        { position: absolute;
+    //                                     content: "";
+    //                                     width: 0;
+    //                                     height: 0;
+    //                                     display: block;
+    //                                     border-style: solid;
+    //                                     border-color: $dropdown-button-pip-color-alt transparent transparent transparent;
+    //                                     top: 48%;
+    //                                     border-width: 0.35em;
+    //                                     opacity: .4;
+    //   }
+    //   &:hover                         {
+    //     &:before                      { opacity: 1;
+    //     }
+    //   }
+    // }
+
+  .actions a                          { color: $action-color;
+                                        font-size: .8em;
+                                        margin-left: 1em;
+
+    &:before                          { content: '\00B7';
+                                        position: absolute;
+                                        margin: 0 0 0 -.5em;
+                                        font-size: 1.4em;
+    }
+
+    &:hover                           { text-decoration: underline;
+    }
+  }
+}
