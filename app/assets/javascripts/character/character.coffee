@@ -11,11 +11,10 @@
 #= require foundation
 #= require character_list.sortable
 
-#= require ./character_application
 #= require_self
+#= require ./generic/app
+#= require ./settings/app
+#= require ./settings/app_module
+#= require ./character_application
 
 _.mixin(_.str.exports())
-
-@character = new CharacterApplication()
-@character.on "initialize:before", (options) -> @render()
-@character.on "initialize:after",  (options) -> @after()

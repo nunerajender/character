@@ -39,9 +39,6 @@ Gem::Specification.new do |gem|
   # using kaminari library
   # TODO: check if we need this
   gem.add_runtime_dependency 'kaminari'
-
-  # character settings
-  gem.add_runtime_dependency 'character_settings'
 end
 
 

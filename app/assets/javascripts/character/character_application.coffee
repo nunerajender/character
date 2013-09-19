@@ -1,16 +1,27 @@
 #= require ./character_layout
 
-class @CharacterApplication extends Backbone.Marionette.Application
-  render: ->
-    @layout = new CharacterApplicationLayout().render()
-    $('body').prepend(@layout.el)
+@character = new Backbone.Marionette.Application()
 
-  after: ->
-    Backbone.history.start() if Backbone.history
+@character.on "initialize:before", (options) ->
+  @layout = new CharacterApplicationLayout().render()
+  $('body').prepend(@layout.el)
 
-    # @initialize_plugins()
-    # @update_user_image()
-    # @add_menu_items()
-    # @jump_to_first_app()
+@character.on "initialize:after",  (@options) ->
+  # add character apps to the menu
+  _.each @submodules, (m) =>
+    opts = m.options
+    if m.moduleName == 'Settings'
+      @layout.menu.$el.find(' > a')
+        .attr('href', '#/settings')
+        .removeClass('browserid_logout')
+        .html("<i class='icon-gears'></i> Settings")
+    else
+      @layout.menu.add_item(opts.path, opts.icon, opts.pluralized_name)
 
-    # console.log('May all beings be happy!')
+  # set user avatar
+  @layout.menu.ui.avatar.attr('src', @options.user.avatar_url)
+
+  # @initialize_plugins()
+  # @jump_to_first_app()
+
+  Backbone.history.start() if Backbone.history

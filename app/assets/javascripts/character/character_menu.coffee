@@ -6,16 +6,14 @@ class @CharacterApplicationMenu extends Backbone.Marionette.Layout
   className: 'chr-menu'
 
   template: -> """<img id='user_avatar' src="">
-                  <ul id='menu_items'>
-                    <li><a href="#/dashboard" class='active'><i class="icon-dashboard"></i>Dashboard</a></li>
-                    <li><a href="#/dashboard"><i class="icon-rocket"></i>Dashboard</a></li>
-                  </ul>
+                  <ul id='menu_items'></ul>
                   <a href='/admin/logout' class='browserid_logout'><i class="icon-signout"></i>Logout</a>"""
 
   ui:
-    items: '#menu_items'
+    items:  '#menu_items'
+    avatar: '#user_avatar'
 
-  add_app: (path, icon, title) ->
+  add_item: (path, icon, title) ->
     @ui.items.append("""<li><a href="#/#{ path }"><i class="icon-#{ icon }"></i>#{ title }</a></li>""")
 
   events:
@@ -25,5 +23,5 @@ class @CharacterApplicationMenu extends Backbone.Marionette.Layout
     @select_item($(e.currentTarget))
 
   select_item: ($i) ->
-    @ui.items.find('a.active').removeClass('active')
+    @$el.find('a.active').removeClass('active')
     $i.addClass('active')
