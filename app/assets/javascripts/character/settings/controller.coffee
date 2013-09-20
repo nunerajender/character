@@ -1,6 +1,6 @@
 
 
-@Character.Settings.Controller = Marionette.Controller.extend
+@SettingsController = Marionette.Controller.extend
   index: () ->
     console.log 'settings index'
 

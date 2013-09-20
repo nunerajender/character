@@ -1,25 +1,19 @@
 #= require_self
-#= require ./app_router
-#= require ./app_controller
+#= require ./router
+#= require ./controller
 
 
-@Character.Settings = {}
+@Character.settings = (name, options={}) ->
+  if not @Settings
+    mod = @module 'Settings', (module, @application) ->
+      controller = new SettingsController()
+      router     = new SettingsRouter({ controller: controller })
 
-
-@character.addSettings = ->
-  mod = @module 'Settings', (module, @application) ->
-    controller = new Character.Settings.Controller()
-    router     = new Character.Settings.Router({ controller: controller })
-
-  mod.on 'start', ->
-    @application.layout.menu.$el.find(' > a')
-                                .attr('href', '#/settings')
-                                .removeClass('browserid_logout')
-                                .html("<i class='icon-gears'></i> Settings")
-
-
-@character.settings = (name, options={}) ->
-  if not @Settings then @addSettings()
+    mod.on 'start', ->
+      @application.layout.menu.currentView.$el.find(' > a')
+                                  .attr('href', '#/settings')
+                                  .removeClass('browserid_logout')
+                                  .html("<i class='icon-gears'></i> Settings")
 
   options.name = name
   options.path ?= _.slugify(name)
