@@ -1,6 +1,7 @@
 #= require ./options
 #= require ./collection
-#= require ./layout
+#= require ./list
+#= require ./list_header
 
 @Character.module 'App', (Module, App) ->
   Module.Router = Backbone.Marionette.AppRouter.extend
@@ -12,20 +13,11 @@
 
 
   Module.Controller = Marionette.Controller.extend
-
     initialize: ->
-      @options.collection = @initCollection()
-      @layout = new AppLayout(@options)
-
-    initCollection: ->
-      collection = new AppCollection()
-      collection.options = @options.collection_options
-      return collection
-
-    # actions ===============================================
+      @layout = new Module.Layout(@options)
 
     index: (scope, callback) ->
-      App.layout.content.show(@layout)
+      App.main.show(@layout)
       @layout.header.update(scope)
       @options.collection.update(scope)
 
@@ -34,10 +26,35 @@
     edit: (scope, id) ->
 
 
-  App.app = (name, opts={}) ->
-    options    = new AppOptions(name, opts)
-    controller = new Module.Controller(options)
-    router     = new Module.Router({ path: options.path, controller: controller })
+  Module.Layout = Backbone.Marionette.Layout.extend
+    className: 'chr-app-layout'
 
-    app = @module "App.#{ options.name }", -> @options = options
-    app.on 'start', -> App.add_menu_item(options.path, options.icon, options.pluralized_name)
+    template: -> """<div class='left-panel'>
+                      <div id='list_header' class='chr-app-list-header'></div>
+                      <div id='list_content' class='chr-app-list'></div>
+                    </div>
+                    <aside class='right-panel logo' id='logo'></aside>"""
+
+    regions:
+      list_header:  '#list_header'
+      list_content: '#list_content'
+
+    onRender: ->
+      @header = new AppListHeader(@options)
+      @list   = new AppList({ collection: @options.collection })
+
+      @list_header.show(@header)
+      @list_content.show(@list)
+
+
+  App.app = (name, options={}) ->
+    @module "App.#{ name }", (app) ->
+      options = new AppOptions(name, options)
+
+      options.collection         = new Module.Collection()
+      options.collection.options = options.collection_options
+
+      controller        = new Module.Controller(options)
+      controller.router = new Module.Router({ path: options.path, controller: controller })
+
+      app.on 'start', -> App.add_menu_item(options.path, options.icon, options.pluralized_name)

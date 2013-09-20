@@ -42,6 +42,7 @@
   Module.addInitializer (options) ->
     layout = new Module.Main()
     App.layout = layout
+    App.main   = layout.content
 
     # add main character layout to DOM
     $('body').prepend(layout.render().el)
