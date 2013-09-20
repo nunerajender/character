@@ -25,7 +25,7 @@ $input-disabled-bg: #fafafa;
 
 @import "foundation";
 
-@import "character_login";
+@import "login";
 
 $chr-menu-width: 100px;
 $chr-menu-divider-color: #222;
@@ -33,7 +33,7 @@ $chr-menu-bg-color: $topbar-bg;
 $chr-menu-item-color: #ccc;
 $chr-menu-item-active-color: #fff;
 
-@import "character_layout";
+@import "layout";
 @import "app/app";
 
 // this makes no bouncing effect when scrolling
