@@ -35,6 +35,7 @@ $chr-menu-item-active-color: #fff;
 
 @import "layout";
 @import "app/app";
+@import "settings/layout";
 
 // this makes no bouncing effect when scrolling
 html                                  { overflow: hidden;

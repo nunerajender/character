@@ -1,6 +1,10 @@
 
 
 @Character.module 'App', (Module) ->
+
+  #========================================================
+  # Model
+  #========================================================
   Module.Model = Backbone.Model.extend
     idAttribute: '_id'
 
@@ -22,6 +26,9 @@
       return object
 
 
+  #========================================================
+  # Collection
+  #========================================================
   Module.Collection = Backbone.Collection.extend
     model: Module.Model
 

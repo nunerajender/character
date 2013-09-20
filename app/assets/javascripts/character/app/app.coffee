@@ -1,4 +1,3 @@
-#= require ./options
 #= require ./collection
 #= require ./layout
 
@@ -16,7 +15,7 @@
 
 
   #========================================================
-  # Router
+  # Controller
   #========================================================
   Module.Controller = Backbone.Marionette.Controller.extend
     initialize: -> @app = @options.app
