@@ -1,21 +1,21 @@
 
 
-@Character.module 'Layout', (Layout, CharacterApp) ->
-  Layout.Main = Backbone.Marionette.Layout.extend
+@Character.module 'Layout', (Module, App) ->
+  Module.Main = Backbone.Marionette.Layout.extend
     id:        'character'
     className: 'character'
 
     template: -> """<div id='menu' class='chr-menu'></div><div id='content' class='chr-content'></div>"""
 
     onRender: ->
-      @menu.show(new Layout.Menu())
+      @menu.show(new Module.Menu())
 
     regions:
       menu:    '#menu'
       content: '#content'
 
 
-  Layout.Menu = Backbone.Marionette.ItemView.extend
+  Module.Menu = Backbone.Marionette.ItemView.extend
     tagName:   'nav'
     template: -> """<img id='user_avatar' src="">
                     <ul id='menu_items'></ul>
@@ -39,9 +39,9 @@
       $i.addClass('active')
 
 
-  Layout.addInitializer (options) ->
-    layout = new Layout.Main()
-    CharacterApp.layout = layout
+  Module.addInitializer (options) ->
+    layout = new Module.Main()
+    App.layout = layout
 
     # add main character layout to DOM
     $('body').prepend(layout.render().el)
@@ -54,3 +54,10 @@
 
     # initialize foundation plugins
     $(document).foundation('topbar section forms dropdown')
+
+
+  App.add_menu_item = (path, icon, title) ->
+    App.layout.menu.currentView.add_item(path, icon, title)
+
+  App.first_app_link = ->
+    App.layout.menu.currentView.ui.items.find('a').attr('href')
