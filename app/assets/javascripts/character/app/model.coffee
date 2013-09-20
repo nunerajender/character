@@ -1,6 +1,6 @@
 
 
-class @GenericModel extends Backbone.Model
+@AppModel = Backbone.Model.extend
   idAttribute: '_id'
 
   urlRoot: ->

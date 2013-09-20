@@ -1,16 +1,14 @@
 #= require ./character_menu
 
-class @CharacterApplicationLayout extends Backbone.Marionette.Layout
+@CharacterLayout = Backbone.Marionette.Layout.extend
   id:        'character'
   className: 'character'
 
   template: -> """<div id='content' class='chr-content'></div>"""
 
   onRender: ->
-    @menu = new CharacterApplicationMenu().render()
+    @menu = new CharacterMenu().render()
     @$el.prepend(@menu.el)
-
-    $('body').prepend(@el)
 
   regions:
     content: '#content'

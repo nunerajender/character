@@ -28,7 +28,7 @@ $input-disabled-bg: #fafafa;
 @import "character_login";
 @import "character_layout";
 @import "character_menu";
-@import "generic/app";
+@import "app/app";
 
 // this makes no bouncing effect when scrolling
 html                                  { overflow: hidden;

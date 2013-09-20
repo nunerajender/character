@@ -1,13 +1,14 @@
 #= require ./list_item
 
-class @GenericListEmtpy extends Backbone.Marionette.ItemView
+
+@AppListEmtpy = Backbone.Marionette.ItemView.extend
   template: -> """<div class='empty'>No items found</div>"""
 
 
-class @GenericList extends Backbone.Marionette.CollectionView
+@AppList = Backbone.Marionette.CollectionView.extend
   tagName:   'ul'
-  itemView:  GenericListItem
-  emptyView: GenericListEmtpy
+  itemView:  AppListItem
+  emptyView: AppListEmtpy
 
   #initialize: (options) ->
     #@listenTo(@collection, 'sort', @render, @)

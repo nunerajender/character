@@ -1,6 +1,6 @@
 
 
-class @GenericListHeader extends Backbone.Marionette.Layout
+@AppListHeader = Backbone.Marionette.ItemView.extend
   template: -> """<a class='title'></a><span class='actions'><a class='new'>New</a></span>
                   <aside class='right search'></aside>
                   <ul id='scopes' class='f-dropdown'></ul>"""
@@ -12,33 +12,29 @@ class @GenericListHeader extends Backbone.Marionette.Layout
     search:     '.search'
     scopes:     '#scopes'
 
-  onRender: ->
-    @update_title()
-    @add_scopes()
-
-  get_title: ->
-    if @options.scopes then 'All ' + @options.pluralized_name else @options.pluralized_name
-
-  update_title: (scope) ->
-    title = @get_title()
+  update: (scope_slug) ->
+    title = @options.pluralized_name
     link  = "#/#{ @options.path }"
 
-    if scope
-      link += "/#{ scope }"
+    if @options.scopes
+      if scope_slug
+        title = @options.scopes[scope_slug].title
+        link += '/' + @options.scopes[scope_slug].slug
+      else
+        title = 'All ' + @options.pluralized_name
 
     @ui.title.html(title)
     @ui.title.attr('href', link)
+    @ui.new_action.attr('href', link + "/new")
 
-    @ui.new_action.attr('href', "#{ link }/new")
+    if @options.scopes
+      @add_scopes()
 
   add_scopes: ->
     scopes = @options.scopes
-    if not scopes then return
 
-    @ui.title.html(@get_title())
     @ui.title.addClass('dropdown').attr('data-dropdown', 'scopes')
 
-    @ui.scopes.append """<li><a href='#/#{ @options.path }'>#{ @get_title() }</a></li>"""
-
+    @ui.scopes.append """<li><a href='#/#{ @options.path }'>#{ 'All ' + @options.pluralized_name }</a></li>"""
     _.each scopes, (scope, key) =>
       @ui.scopes.append """<li><a href='#/#{ @options.path }/#{ scope.slug }'>#{ scope.title }</a></li>"""

@@ -1,7 +1,7 @@
 #= require ./model
 
-class @GenericCollection extends Backbone.Collection
-  model: GenericModel
+@AppCollection = Backbone.Collection.extend
+  model: AppModel
 
   parse: (resp) ->
     resp.objects

@@ -1,6 +1,6 @@
 
 
-class @GenericAppRouter extends Backbone.Marionette.AppRouter
+@AppRouter = Backbone.Marionette.AppRouter.extend
   initialize: (options) ->
     @appRoutes = {}
     @appRoutes["#{ options.path }(/:scope)/edit/:id"] = "edit"

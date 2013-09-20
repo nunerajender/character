@@ -1,6 +1,6 @@
 
 
-class @GenericAppOptions
+class @AppOptions
   constructor: (@name, options) ->
     _.extend(@, options)
 
@@ -10,12 +10,12 @@ class @GenericAppOptions
     @model_slug             ?= _.slugify(@name)
     @reorderable            ?= false
 
-    @scopes                 ?= {}
-    _(@scopes).each (scope, slug) ->
-      scope.slug  ||= slug
-      scope.title ||= _(slug).titleize()
+    if @scopes
+      _(@scopes).each (scope, slug) ->
+        scope.slug  ||= slug
+        scope.title ||= _(slug).titleize()
 
-    @model_fields           ?= []
+    @model_fields ?= []
     @model_fields.push(@item_title)
     @model_fields.push(@item_meta)
     @model_fields.push(@item_image)
@@ -24,7 +24,7 @@ class @GenericAppOptions
 
     @collection_options =
       scopes:              @scopes
-      order_by:            @default_scope_order_by
+      order_by:            @default_scope_order_by # not sure this will work if null
       collection_url:      @collection_url
       item_title:          @item_title
       item_meta:           @item_meta

@@ -1,6 +1,6 @@
 
 
-class @CharacterApplicationMenu extends Backbone.Marionette.Layout
+@CharacterMenu = Backbone.Marionette.ItemView.extend
   tagName:   'nav'
   id:        'menu'
   className: 'chr-menu'

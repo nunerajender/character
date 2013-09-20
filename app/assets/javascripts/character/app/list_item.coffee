@@ -1,8 +1,8 @@
 
 
-class @GenericListItem extends Backbone.Marionette.ItemView
+@AppListItem = Backbone.Marionette.ItemView.extend
   tagName:   'li'
-  className: 'chr-generic-list-item'
+  className: 'chr-app-list-item'
 
   template: (item) ->  """<a title='#{ item.__title }'>
                             <img src='#{ item.__image }' />

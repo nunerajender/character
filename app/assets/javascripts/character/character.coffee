@@ -12,9 +12,10 @@
 #= require character_list.sortable
 
 #= require_self
-#= require ./generic/app
-#= require ./settings/app
-#= require ./settings/app_module
 #= require ./character_application
+#= require ./app/app
+#= require ./settings/app
 
 _.mixin(_.str.exports())
+
+@Character = {}
