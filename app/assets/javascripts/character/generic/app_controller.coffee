@@ -2,21 +2,21 @@
 #= require ./collection
 
 class @GenericAppController extends Marionette.Controller
-  initialize: (@opts) ->
-    @opts.collection = new GenericCollection()
-    @opts.collection.options =
-      item_title:     @opts.item_title
-      item_meta:      @opts.item_meta
-      item_image:     @opts.item_image
-      reorderable:    @opts.reorderable
-      model_fields:   @opts.model_fields
-      collection_url: @opts.collection_url
 
-    @layout          = new GenericAppLayout(@opts)
+  initialize: (@opts) ->
+    @opts.collection = @initCollection()
+    @layout = new GenericAppLayout(@opts)
+
+  initCollection: ->
+    collection = new GenericCollection()
+    collection.options = @opts.collection_options
+    return collection
+
+  # actions ===============================================
 
   index: (scope, callback) ->
     character.layout.content.show(@layout)
-    @opts.collection.characterFetch()
+    @opts.collection.update(scope)
 
   new: (scope) ->
 

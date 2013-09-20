@@ -54,7 +54,7 @@ class Character::ApiController < Character::BaseController
       order_by.split(',').each do |filter|
         filter_options = filter.split(':')
         filters[filter_options.first] = filter_options.last
-        object_fields_to_include.append(filter_options.first)
+        object_fields.append(filter_options.first)
       end
 
       @objects = @objects.order_by(filters)
