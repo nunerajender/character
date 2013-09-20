@@ -1,9 +1,12 @@
 #= require ./options
 #= require ./collection
-#= require ./list
-#= require ./list_header
+#= require ./layout
 
 @Character.module 'App', (Module, App) ->
+
+  #========================================================
+  # Router
+  #========================================================
   Module.Router = Backbone.Marionette.AppRouter.extend
     initialize: (options) ->
       @appRoutes = {}
@@ -12,49 +15,65 @@
       @appRoutes["#{ options.path }(/:scope)"]          = "index"
 
 
-  Module.Controller = Marionette.Controller.extend
-    initialize: ->
-      @layout = new Module.Layout(@options)
+  #========================================================
+  # Router
+  #========================================================
+  Module.Controller = Backbone.Marionette.Controller.extend
+    initialize: -> @app = @options.app
 
     index: (scope, callback) ->
-      App.main.show(@layout)
-      @layout.header.update(scope)
-      @options.collection.update(scope)
+      App.main.show(@app.layout)
+      @app.layout.header.update(scope)
+      @app.collection.update(scope)
+      callback() if callback
 
     new: (scope) ->
+      console.log 'new'
 
     edit: (scope, id) ->
+      console.log 'edit'
 
 
-  Module.Layout = Backbone.Marionette.Layout.extend
-    className: 'chr-app-layout'
-
-    template: -> """<div class='left-panel'>
-                      <div id='list_header' class='chr-app-list-header'></div>
-                      <div id='list_content' class='chr-app-list'></div>
-                    </div>
-                    <aside class='right-panel logo' id='logo'></aside>"""
-
-    regions:
-      list_header:  '#list_header'
-      list_content: '#list_content'
-
-    onRender: ->
-      @header = new AppListHeader(@options)
-      @list   = new AppList({ collection: @options.collection })
-
-      @list_header.show(@header)
-      @list_content.show(@list)
-
-
+  #========================================================
+  # Initialization
+  #========================================================
   App.app = (name, options={}) ->
-    @module "App.#{ name }", (app) ->
-      options = new AppOptions(name, options)
+    options.name            ?= name
+    options.model_slug      ?= _.slugify(options.name)
+    options.pluralized_name ?= _.pluralize(options.name)
+    options.path            ?= _.slugify(options.pluralized_name)
+    options.icon            ?= 'bolt'
+    options.reorderable     ?= false
 
-      options.collection         = new Module.Collection()
-      options.collection.options = options.collection_options
+    if options.scopes
+      _(options.scopes).each (scope, slug) ->
+        scope.slug  ||= slug
+        scope.title ||= _(slug).titleize()
 
-      controller        = new Module.Controller(options)
-      controller.router = new Module.Router({ path: options.path, controller: controller })
+    options.model_fields ?= []
+    options.model_fields.push(options.item_title)
+    options.model_fields.push(options.item_meta)
+    options.model_fields.push(options.item_image)
+    options.model_fields = _.compact(options.model_fields)
+    options.model_fields = _.uniq(options.model_fields)
+
+    @module "App.#{ options.path }", (app) ->
+      options.app = app
+
+      app.collection = new Module.Collection()
+      app.collection.options =
+        scopes:              options.scopes
+        order_by:            options.default_scope_order_by
+        collection_url:      options.collection_url
+        item_title:          options.item_title
+        item_meta:           options.item_meta
+        item_image:          options.item_image
+        constant_params:
+          reorderable:       options.reorderable
+          fields_to_include: options.model_fields.join(',')
+
+      controller = new Module.Controller(options)
+      app.layout = new Module.Layout.Main(options)
+      app.router = new Module.Router({ path: options.path, controller: controller })
 
       app.on 'start', -> App.add_menu_item(options.path, options.icon, options.pluralized_name)
