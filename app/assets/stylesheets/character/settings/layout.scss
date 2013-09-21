@@ -1,0 +1,63 @@
+
+$settings-border-color: #e3e6e9;
+$settings-header-height: 68px;
+$settings-header-color: #777;
+$settings-list-item-active-color: #222;
+
+
+.chr-settings-layout                  {
+  .left-panel                         { position: absolute;
+                                        width: 25%;
+                                        bottom: 0;
+                                        top: 0;
+                                        z-index: 2;
+  }
+
+  .right-panel                        { position: absolute;
+                                        width: 75%;
+                                        bottom: -10px;
+                                        top: 0;
+                                        right: 0;
+                                        z-index: 3;
+                                        border-left: 1px solid $settings-border-color;
+  }
+
+  .browserid_logout                   { position: absolute;
+                                        bottom: 0px;
+                                        left: 0px;
+                                        right: 0px;
+                                        margin: 0 1em 1em;
+                                        line-height: 1.3;
+    .user-email                       { font-weight: normal;
+                                        color: $settings-header-color;
+    }
+  }
+}
+
+.chr-settings-list-header             { height: $settings-header-height;
+                                        color: $settings-header-color;
+                                        padding: 1em 1em 0em;
+                                        font-size: 1.3em;
+}
+
+.chr-settings-list                    {
+  a                                   { display: block;
+                                        color: $settings-header-color;
+                                        line-height: 2.5;
+                                        padding: 0 1.4em 0;
+    &.active, &:hover                 { color: $settings-list-item-active-color;
+      &:after                         { content: "\f105";
+                                        font-family: FontAwesome;
+                                        position: absolute;
+                                        right: 1.4em;
+      }
+    }
+  }
+}
+
+.chr-settings-view-header             { padding: 1.45em 6% 0;
+                                        border-bottom: 1px solid $settings-border-color;
+                                        height: $settings-header-height;
+  .title                              { font-size: 1.2em;
+  }
+}

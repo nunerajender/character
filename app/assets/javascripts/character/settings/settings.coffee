@@ -10,6 +10,7 @@
       'settings':         'index'
       'settings/:module': 'edit'
 
+
   #========================================================
   # Controller
   #========================================================
@@ -21,7 +22,13 @@
 
     edit: (module) ->
       @index()
-      console.log 'settings edit'
+
+      @app.layout.setActiveMenuItem(module)
+      @app.layout.view.show(new Module.Layout.View())
+
+      $.get "/admin/settings/#{ module }", (html) =>
+        @app.layout.view.currentView.ui.form.html(html)
+
 
   #========================================================
   # Initialization
@@ -40,4 +47,4 @@
     options.name = name
     options.path ?= _.slugify(name)
 
-    @module "Settings.#{options.path}", -> @options = options
+    @module "Settings.Apps.#{options.path}", -> @options = options

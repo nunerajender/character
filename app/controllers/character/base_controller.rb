@@ -53,5 +53,4 @@ class Character::BaseController < ActionController::Base
       render status: :unauthorized, json: { error: "Access denied." }
     end
   end
-
 end
