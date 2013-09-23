@@ -1,6 +1,10 @@
 
 
 @Character.module 'Layout', (Module, App) ->
+
+  #========================================================
+  # Main
+  #========================================================
   Module.Main = Backbone.Marionette.Layout.extend
     id:        'character'
     className: 'character'
@@ -14,7 +18,9 @@
       menu:    '#menu'
       content: '#content'
 
-
+  #========================================================
+  # Menu
+  #========================================================
   Module.Menu = Backbone.Marionette.ItemView.extend
     tagName:   'nav'
     template: -> """<img id='user_avatar' src="">
@@ -38,7 +44,9 @@
       @$el.find('a.active').removeClass('active')
       $i.addClass('active')
 
-
+  #========================================================
+  # Init
+  #========================================================
   Module.addInitializer (options) ->
     layout = new Module.Main()
 

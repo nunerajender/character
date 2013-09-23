@@ -40,7 +40,7 @@ $settings-list-item-active-color: #222;
                                         font-size: 1.3em;
 }
 
-.chr-settings-list                    {
+.chr-settings-list                    { @extend .no-bullet;
   a                                   { display: block;
                                         color: $settings-header-color;
                                         line-height: 2.5;
@@ -58,6 +58,11 @@ $settings-list-item-active-color: #222;
 .chr-settings-view-header             { padding: 1.45em 6% 0;
                                         border-bottom: 1px solid $settings-border-color;
                                         height: $settings-header-height;
+                                        position: absolute; left: 0; top: 0; right: 0;
   .title                              { font-size: 1.2em;
   }
+}
+
+.chr-settings-view-form               { position: absolute; left: 0; top: $settings-header-height;; right: 0; bottom: 0;
+                                        padding-top: 3em;
 }

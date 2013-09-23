@@ -1,0 +1,21 @@
+
+
+.chr-settings-view-form               {
+  &.admins                            {
+    img                               { @include border-radius(28px);
+                                        margin-top: -.5em;
+                                        width: 46px;
+                                        height: 46px;
+                                        float: right;
+    }
+
+    .row .column.chr-actions,
+    .row .columns.chr-actions         { line-height: 1.75;
+                                        padding-left: 0;
+    }
+
+    .row .row                         { margin-bottom: 1em;
+                                        margin-top: 1em;
+    }
+  }
+}

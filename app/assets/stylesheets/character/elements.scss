@@ -1,0 +1,26 @@
+
+
+$action-color: #666;
+
+.chr-action,
+.chr-actions a                        { color: $action-color;
+                                        font-size: 12px;
+  &:hover                             { text-decoration: underline;
+  }
+}
+
+.chr-action-pin                       { margin-left: 5px;
+                                        margin-right: 4px;
+  &:before                            { content: '\00B7';
+                                        font-size: 17px;
+                                        color: $action-color;
+  }
+}
+
+.chr-action-save                      { @include button-base;
+                                        @include button-size($button-sml);
+                                        @include button-style($secondary-color, 3px, false);
+                                        font-weight: normal;
+                                        margin-bottom: 0;
+                                        top: -4px;
+}

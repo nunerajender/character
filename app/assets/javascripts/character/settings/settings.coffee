@@ -22,12 +22,8 @@
 
     edit: (module) ->
       @index()
-
+      @app.layout.view.show(new Module.Layout.View(@app.Apps.submodules[module].options))
       @app.layout.setActiveMenuItem(module)
-      @app.layout.view.show(new Module.Layout.View())
-
-      $.get "/admin/settings/#{ module }", (html) =>
-        @app.layout.view.currentView.ui.form.html(html)
 
 
   #========================================================

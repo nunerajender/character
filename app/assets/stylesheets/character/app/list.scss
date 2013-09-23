@@ -10,6 +10,9 @@
                                         overflow-y: auto;
                                         background-color: $list-bg-color;
 
+  ul                                  { @extend .no-bullet;
+  }
+
   .empty                              { text-align: center;
                                         line-height: 5;
                                         color: #777;
