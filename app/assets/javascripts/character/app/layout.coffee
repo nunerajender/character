@@ -9,14 +9,15 @@
     className: 'chr-app-layout'
 
     template: -> """<div class='left-panel'>
-                      <div id='list_header' class='chr-app-list-header'></div>
-                      <div id='list_content' class='chr-app-list'></div>
+                      <div id=list_header class='chr-app-list-header'></div>
+                      <div id=list_content class='chr-app-list'></div>
                     </div>
-                    <aside class='right-panel logo' id='logo'></aside>"""
+                    <div id=view class='right-panel logo'></div>"""
 
     regions:
       list_header:  '#list_header'
       list_content: '#list_content'
+      view:         '#view'
 
     onRender: ->
       @header = new Module.ListHeader(@options)
@@ -24,6 +25,7 @@
 
       @list_header.show(@header)
       @list_content.show(@list)
+
 
   #========================================================
   # List Header
@@ -119,3 +121,39 @@
 
     onRender: ->
       if @options.reorderable then character_list.sortable(@$el, @collection)
+
+
+  #========================================================
+  # View
+  #========================================================
+  Module.View = Backbone.Marionette.Layout.extend
+    className: 'chr-app-view'
+    template: -> "<header id=header class='chr-app-view-header'>
+                    <span id=view_title class='title'></span>
+                    <a id='action_save' class='chr-action-save' style='display:none;'>Create</a>
+                  </header>
+                  <div id=form_view class='chr-app-view-form'></div>"
+
+    regions:
+      header:  '#header'
+
+    ui:
+      title:        '#view_title'
+      action_save:  '#action_save'
+      form_view:    '#form_view'
+
+    onRender: ->
+      title = "New #{ @options.name }"
+      @ui.title.html(title)
+
+      $.get "#{ @options.url }/new", (html) =>
+        @ui.form_view.html(html)
+        @onFormRendered()
+
+    onFormRendered: ->
+      @ui.form = @ui.form_view.find('form')
+      if @ui.form.length > 0
+        @ui.action_save.show()
+        @ui.form.ajaxForm
+          beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled'); return true
+          success: (response) => @ui.action_save.removeClass('disabled')

@@ -61,7 +61,7 @@
     layout.menu.currentView.ui.avatar.attr('src', options.user.avatar_url)
 
     # add project logo
-    $("<style>#logo{background-image:url('#{ options.logo }');}</style>").appendTo("head")
+    $("<style>.logo{background-image:url('#{ options.logo }');}</style>").appendTo("head")
 
     # initialize foundation plugins
     $(document).foundation('topbar section forms dropdown')

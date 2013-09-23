@@ -1,6 +1,6 @@
 
 $settings-border-color: #e3e6e9;
-$settings-header-height: 68px;
+$settings-header-height: 68px + 1;
 $settings-header-color: #777;
 $settings-list-item-active-color: #222;
 
@@ -55,7 +55,7 @@ $settings-list-item-active-color: #222;
   }
 }
 
-.chr-settings-view-header             { padding: 1.45em 6% 0;
+.chr-settings-view-header             { padding: 1.5em 6% 0;
                                         border-bottom: 1px solid $settings-border-color;
                                         height: $settings-header-height;
                                         position: absolute; left: 0; top: 0; right: 0;

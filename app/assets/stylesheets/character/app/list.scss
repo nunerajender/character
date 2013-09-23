@@ -1,13 +1,7 @@
 
 
-.chr-app-list                         { position: absolute;
-                                        top: $list-header-height;
-                                        bottom: 0;
-                                        left: 0;
-                                        right: 0;
-                                        z-index: 1;
-                                        overflow: hidden;
-                                        overflow-y: auto;
+.chr-app-list                         { @include position(0, $list-header-height, 0, 0, 1);
+                                        @include scrollable;
                                         background-color: $list-bg-color;
 
   ul                                  { @extend .no-bullet;

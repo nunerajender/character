@@ -24,10 +24,11 @@
       App.main.show(@app.layout)
       @app.layout.header.update(scope)
       @app.collection.update(scope)
-      callback() if callback
+      #callback() if callback
 
     new: (scope) ->
-      console.log 'new'
+      @index(scope)
+      @app.layout.view.show(new Module.Layout.View({ model: no, name: @options.name, url: @options.collection_url }))
 
     edit: (scope, id) ->
       console.log 'edit'
@@ -43,6 +44,7 @@
     options.path            ?= _.slugify(options.pluralized_name)
     options.icon            ?= 'bolt'
     options.reorderable     ?= false
+    options.collection_url  ?= "/#{ options.name }"
 
     if options.scopes
       _(options.scopes).each (scope, slug) ->
