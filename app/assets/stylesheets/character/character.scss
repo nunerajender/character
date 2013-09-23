@@ -33,10 +33,10 @@ $chr-menu-bg-color: $topbar-bg;
 $chr-menu-item-color: #ccc;
 $chr-menu-item-active-color: #fff;
 
-@import "elements";
-@import "layout";
 @import "app/app";
 @import "settings/settings";
+@import "elements";
+@import "layout";
 
 // this makes no bouncing effect when scrolling
 html                                  { overflow: hidden;

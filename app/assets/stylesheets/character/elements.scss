@@ -1,6 +1,7 @@
 
 
 $action-color: #666;
+$header-save-button-height: $list-item-height - 1;
 
 .chr-action,
 .chr-actions a                        { color: $action-color;
@@ -17,16 +18,11 @@ $action-color: #666;
   }
 }
 
-.chr-action-save                      { @include button-base;
-                                        @include button-size($button-sml);
-                                        @include button-style($secondary-color, 3px, false);
-                                        font-weight: normal;
-                                        margin-bottom: 0;
-                                        top: -4px;
-
-  &.disabled, &[disabled] { @include button-style($bg:$primary-color, $disabled:true);
-    &.secondary { @include button-style($bg:$secondary-color, $disabled:true); }
-    &.success { @include button-style($bg:$success-color, $disabled:true); }
-    &.alert { @include button-style($bg:$alert-color, $disabled:true); }
+.chr-action-save                      { position: absolute; top: 0; right: 0;
+                                        color: $action-color;
+                                        line-height: $header-save-button-height;
+                                        border-left: 1px solid $settings-border-color;
+                                        padding: 0 1.5em;
+  &.disabled                          { color: lighten($action-color, 30%);
   }
 }

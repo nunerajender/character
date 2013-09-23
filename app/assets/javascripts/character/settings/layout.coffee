@@ -45,6 +45,7 @@
   Module.View = Backbone.Marionette.ItemView.extend
     template: -> """<header id='header' class='chr-settings-view-header'>
                       <span class='title' id='title'></span><span class='chr-actions' id='actions'></span>
+                      <a id='action_save' class='chr-action-save' style='display:none;'>Save</a>
                     </header>
                     <section id='form_view' class='chr-settings-view-form'></section>"""
 
@@ -53,6 +54,7 @@
       actions:            '#actions'
       new_item_template:  '#new_item_template'
       form_view:          '#form_view'
+      action_save:        '#action_save'
 
     onRender: ->
       @ui.title.html(@options.name)
@@ -68,10 +70,10 @@
 
       @ui.form = @ui.form_view.find('form')
       if @ui.form.length > 0
-        @ui.title.after("<aside class='right'><a class='chr-action-save'>Save</a></aside>")
+        @ui.action_save.show()
         @ui.form.ajaxForm
-          beforeSubmit: (arr, $form, options) -> $('.chr-action-save').addClass('disabled'); return true
-          success: (response) -> $('.chr-action-save').removeClass('disabled')
+          beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled'); return true
+          success: (response) => @ui.action_save.removeClass('disabled')
 
     events:
       'click .chr-action-save': 'onSave'
