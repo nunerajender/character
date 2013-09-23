@@ -23,4 +23,10 @@ $action-color: #666;
                                         font-weight: normal;
                                         margin-bottom: 0;
                                         top: -4px;
+
+  &.disabled, &[disabled] { @include button-style($bg:$primary-color, $disabled:true);
+    &.secondary { @include button-style($bg:$secondary-color, $disabled:true); }
+    &.success { @include button-style($bg:$success-color, $disabled:true); }
+    &.alert { @include button-style($bg:$alert-color, $disabled:true); }
+  }
 }

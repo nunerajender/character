@@ -45,47 +45,52 @@
   Module.View = Backbone.Marionette.ItemView.extend
     template: -> """<header id='header' class='chr-settings-view-header'>
                       <span class='title' id='title'></span><span class='chr-actions' id='actions'></span>
-                      <aside class='right'><a href='#' class='chr-action-save action_save'>Save</a></aside>
                     </header>
-                    <section id='form' class='chr-settings-view-form'></section>"""
+                    <section id='form_view' class='chr-settings-view-form'></section>"""
 
     ui:
       title:              '#title'
-      form:               '#form'
       actions:            '#actions'
       new_item_template:  '#new_item_template'
+      form_view:          '#form_view'
 
     onRender: ->
-      @ui.title.html @options.name
-      @ui.form.addClass @options.path
+      @ui.title.html(@options.name)
+      @ui.form_view.addClass(@options.path)
       $.get "/admin/settings/#{ @options.path }", (html) =>
-        @ui.form.html(html)
+        @ui.form_view.html(html)
         @onFormRendered()
 
     onFormRendered: ->
-      @ui.new_item_template = @ui.form.find('#new_item_template')
-
-      if @ui.new_item_template.length
+      @ui.new_item_template = @ui.form_view.find('#new_item_template')
+      if @ui.new_item_template.length > 0
         @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
 
-    events:
-      'click .action_save':   'onSave'
-      'click .action_new':    'addItem'
-      'click .action_cancel': 'cancelItem'
-      'click .action_delete': 'removeItem'
+      @ui.form = @ui.form_view.find('form')
+      if @ui.form.length > 0
+        @ui.title.after("<aside class='right'><a class='chr-action-save'>Save</a></aside>")
+        @ui.form.ajaxForm
+          beforeSubmit: (arr, $form, options) -> $('.chr-action-save').addClass('disabled'); return true
+          success: (response) -> $('.chr-action-save').removeClass('disabled')
 
-    onSave: -> alert 'save'
+    events:
+      'click .chr-action-save': 'onSave'
+      'click .action_new':      'addItem'
+      'click .action_cancel':   'cancelItem'
+      'click .action_delete':   'deleteItem'
+
+    onSave: (e) ->
+      (unless $(e.currentTarget).hasClass('disabled') then @ui.form.submit()) ; return false
 
     addItem: ->
       html = @ui.new_item_template.html()
       html = html.replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
       @ui.new_item_template.before("<div class='new_item'>#{ html }</div>")
-      #@update_position_values()
 
     cancelItem: (e) ->
       $(e.currentTarget).closest('.new_item').remove() ; return false
 
-    removeItem: -> (e) ->
+    deleteItem: (e) ->
       item_cls = $(e.currentTarget).attr('data-item-class')
 
       if item_cls
