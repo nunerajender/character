@@ -59,4 +59,4 @@
     $("<style>.logo{background-image:url('#{ options.logo }');}</style>").appendTo("head")
 
     # initialize foundation plugins
-    $(document).foundation('topbar section forms dropdown')
+    $(document).foundation('section forms dropdown')

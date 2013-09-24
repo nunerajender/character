@@ -155,8 +155,19 @@
       @ui.form = @ui.form_view.find('form')
       if @ui.form.length > 0
         @ui.form.ajaxForm
-          beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled') ; return true
+          beforeSubmit: (arr, $form, options) =>
+            # date fixes for rails
+            _.each simple_form.get_date_values(arr), (el) -> arr.push el
+            @ui.action_save.addClass('disabled')
+            return true
           success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
+
+      # layout fix for date selectors
+      simple_form.set_foundation_date_layout()
+
+      # @ui.form.addClass('custom')
+      # @ui.form.foundation('forms', 'assemble')
+      # @ui.form.foundation('section', 'resize')
 
     updateModel: (resp) ->
       # when response is a string, that means form with errors returned
@@ -194,7 +205,7 @@
       meta:  '#view_meta'
 
     initialize: ->
-      @listenTo(@model, 'change', @render, @)
+      @listenTo(@model, 'change', @render, @) if @model
 
     onRender: ->
       @ui.title.html if @model then @model.getTitle() else "New #{ @options.name }"
