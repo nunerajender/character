@@ -18,6 +18,7 @@
     initialize: -> @app = @options.app
 
     index: ->
+      App.path = 'settings'
       App.menu.selectItem('settings')
       App.main.show(@app.layout)
 

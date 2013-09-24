@@ -100,9 +100,7 @@
       link: 'a'
 
     onRender: ->
-      @ui.link.attr('href', '#/' + location.character.path + '/' +
-                            (if location.character.scope then location.character.scope + '/' else '') +
-                            "edit/#{ @model.id }")
+      @ui.link.attr('href', "#/#{ App.path }/edit/#{ @model.id }")
 
       # reordering helpers
       @$el.attr('data-id', @model.id)
@@ -161,14 +159,33 @@
       if @model
         @ui.meta.html("Updated #{ moment(@model.get('updated_at')).fromNow() }")
 
-      $.get url, (html) => ( @ui.form_view.html(html) ; @onFormRendered() ) if @ui.form_view
+      $.get url, (html) => @updateContent(html)
+
+    updateContent: (form_html) ->
+      ( @ui.form_view.html(form_html) ; @onFormRendered() ) if @ui.form_view
 
     onFormRendered: ->
       @ui.form = @ui.form_view.find('form')
       if @ui.form.length > 0
         @ui.form.ajaxForm
           beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled') ; return true
-          success: (response) => @ui.action_save.removeClass('disabled')
+          success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
+
+    updateModel: (resp) ->
+      # when response is a string, that means form with errors returned
+      if typeof(resp) == 'string' then return @updateContent(resp)
+      # assuming response is json
+      if @model then @model.set(resp) else @options.collection.add(resp)
+      @options.collection.sort()
+
+    events:
+      'click #action_save':   'onSave'
+      'click #action_delete': 'onDelete'
 
     onSave: ->
+      @ui.form.submit() ; return false
+
     onDelete: ->
+      if confirm("""Are you sure about deleting "#{ @model.getTitle() }"?""")
+        @close() ; @model.destroy() ; @options.router.navigate(App.path)
+      return false

@@ -5,6 +5,7 @@
                                         background-color: $list-bg-color;
 
   ul                                  { @extend .no-bullet;
+                                        margin-bottom: 5em;
   }
 
   .empty                              { text-align: center;

@@ -10,21 +10,26 @@
     initialize: -> @app = @options.app
 
     index: (scope, callback) ->
-      location.character = { path: @options.path, scope: scope }
-      App.menu.selectItem(@options.path)
-      App.main.show(@app.layout)
-      @app.layout.header.update(scope)
-      @app.collection.update(scope, callback)
+      current_path = "#{ @options.path }" + ( if scope then "/#{ scope }" else '')
+      if App.path != current_path
+        App.path = current_path
+        App.menu.selectItem(@options.path)
+        App.main.show(@app.layout)
+        @app.layout.header.update(scope)
+        @app.collection.update(scope, callback)
+      else
+        @app.layout.view.close()
+        callback?()
 
     new: (scope) ->
       @index(scope)
-      @app.layout.view.show(new Module.Layout.View({ model: no, name: @options.name, url: @options.collection_url }))
+      @app.layout.view.show(new Module.Layout.View({ model: no, name: @options.name, url: @options.collection_url, collection: @app.collection }))
 
     edit: (scope, id) ->
       @index scope, =>
         doc = @app.collection.get(id)
         @app.layout.list.selectItem(id)
-        @app.layout.view.show(new Module.Layout.View({ model: doc, name: @options.name, url: @options.collection_url }))
+        @app.layout.view.show(new Module.Layout.View({ model: doc, name: @options.name, url: @options.collection_url, collection: @app.collection, router: @app.router }))
 
 
   #========================================================

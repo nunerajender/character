@@ -1,6 +1,6 @@
 
 
-$header-height: $list-item-height + 1px;
+$header-height: $list-item-height;
 $border-color: #eee;
 
 .chr-app-view-header                  { @include position(0, 0, 0, inherit);
