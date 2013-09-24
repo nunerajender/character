@@ -121,7 +121,7 @@
 
     onRender: ->
       @selectItem(@selected_item_id) if @selected_item_id
-      if @collection.options.reorderable then reorderable(@$el, @collection)
+      if @collection.options.reorderable then App.Plugins.reorderable(@$el, @collection)
 
     selectItem: (id) ->
       @selected_item_id = id
@@ -171,12 +171,12 @@
           data: params
           beforeSubmit: (arr, $form, options) =>
             # date fixes for rails
-            _.each get_date_field_values(arr), (el) -> arr.push el
+            _.each App.Plugins.get_date_field_values(arr), (el) -> arr.push el
             @ui.action_save.addClass('disabled')
             return true
           success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
 
-      fix_date_field_layout()
+      App.Plugins.fix_date_field_layout()
 
       # @ui.form.addClass('custom')
       # @ui.form.foundation('forms', 'assemble')
@@ -187,9 +187,6 @@
       if typeof(resp) == 'string' then return @updateContent(resp)
       # assuming response is json
       if @model then @model.set(resp) else @options.collection.add(resp)
-      console.log 'sorting'
-      console.log resp
-      console.log @model.attributes
       @options.collection.sort()
 
     events:

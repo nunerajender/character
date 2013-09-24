@@ -27,5 +27,7 @@ $header-save-button-height: $list-item-height;
   }
 }
 
-.chr-app-view-form form > .row > .columns { padding: 0 6%;
+.chr-app-view-form form               { margin-top: 3em;
+  & > .row > .columns                 { padding: 0 6%;
+  }
 }

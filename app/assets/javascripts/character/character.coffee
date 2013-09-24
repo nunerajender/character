@@ -9,10 +9,10 @@
 #= require backbone.marionette
 #= require foundation
 #= require moment
-#= require ./plugins/reorderable
-#= require ./plugins/date_field
 
 #= require_self
+#= require ./plugins/reorderable
+#= require ./plugins/date_field
 #= require ./layout
 #= require ./app/app
 
