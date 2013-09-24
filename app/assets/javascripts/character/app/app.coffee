@@ -18,6 +18,7 @@
         @app.layout.header.update(scope)
         @app.collection.update(scope, callback)
       else
+        @app.layout.list.unselectCurrentItem()
         @app.layout.view.close()
         callback?()
 

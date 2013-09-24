@@ -119,11 +119,18 @@
       @listenTo(@collection, 'sort', @render, @)
 
     onRender: ->
-      if @options.reorderable then character_list.sortable(@$el, @collection)
+      @selectItem(@selected_item_id) if @selected_item_id
+      # TODO: reorderable
+      #if @options.reorderable then character_list.sortable(@$el, @collection)
 
     selectItem: (id) ->
+      @selected_item_id = id
       @$el.find('li.active').removeClass('active')
       @$el.find("li[data-id=#{ id }]").addClass('active')
+
+    unselectCurrentItem: ->
+      @selected_item_id = null
+      @$el.find('li.active').removeClass('active')
 
 
   #========================================================
