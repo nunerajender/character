@@ -48,43 +48,47 @@
   # Initialization
   #========================================================
   App.app = (name, options={}) ->
-    options.name            ?= name
-    options.model_slug      ?= _.slugify(options.name)
-    options.pluralized_name ?= _.pluralize(options.name)
-    options.path            ?= _.slugify(options.pluralized_name)
-    options.icon            ?= 'bolt'
-    options.reorderable     ?= false
-    options.collection_url  ?= "/#{ options.name }"
+    module_name = _.slugify(name)
+    @module "App.#{ module_name }", (app) ->
+      app.on 'start', ->
+        # Options
+        options.app              = app
+        options.name            ?= name
+        options.model_slug      ?= _.slugify(options.name)
+        options.pluralized_name ?= _.pluralize(options.name)
+        options.path            ?= _.slugify(options.pluralized_name)
+        options.icon            ?= 'bolt'
+        options.reorderable     ?= false
+        options.collection_url  ?= "/#{ App.options.url }/#{ options.name }"
 
-    if options.scopes
-      _(options.scopes).each (scope, slug) ->
-        scope.slug  ||= slug
-        scope.title ||= _(slug).titleize()
+        if options.scopes
+          _(options.scopes).each (scope, slug) ->
+            scope.slug  ||= slug
+            scope.title ||= _(slug).titleize()
 
-    options.model_fields ?= []
-    options.model_fields.push(options.item_title)
-    options.model_fields.push(options.item_meta)
-    options.model_fields.push(options.item_image)
-    options.model_fields = _.compact(options.model_fields)
-    options.model_fields = _.uniq(options.model_fields)
+        options.model_fields ?= []
+        options.model_fields.push(options.item_title)
+        options.model_fields.push(options.item_meta)
+        options.model_fields.push(options.item_image)
+        options.model_fields = _.compact(options.model_fields)
+        options.model_fields = _.uniq(options.model_fields)
 
-    @module "App.#{ options.path }", (app) ->
-      options.app = app
+        # Collection
+        app.collection = new Module.Collection()
+        app.collection.options =
+          scopes:              options.scopes
+          order_by:            options.default_scope_order_by
+          collection_url:      options.collection_url
+          item_title:          options.item_title
+          item_meta:           options.item_meta
+          item_image:          options.item_image
+          constant_params:
+            reorderable:       options.reorderable
+            fields_to_include: options.model_fields.join(',')
 
-      app.collection = new Module.Collection()
-      app.collection.options =
-        scopes:              options.scopes
-        order_by:            options.default_scope_order_by
-        collection_url:      options.collection_url
-        item_title:          options.item_title
-        item_meta:           options.item_meta
-        item_image:          options.item_image
-        constant_params:
-          reorderable:       options.reorderable
-          fields_to_include: options.model_fields.join(',')
+        # Controller, Layout and Router
+        controller = new Module.Controller(options)
+        app.layout = new Module.Layout.Main(options)
+        app.router = new Module.Router({ path: options.path, controller: controller })
 
-      controller = new Module.Controller(options)
-      app.layout = new Module.Layout.Main(options)
-      app.router = new Module.Router({ path: options.path, controller: controller })
-
-      app.on 'start', -> App.menu.addItem(options.path, options.icon, options.pluralized_name)
+        App.menu.addItem(options.path, options.icon, options.pluralized_name)

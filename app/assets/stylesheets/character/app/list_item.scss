@@ -8,11 +8,14 @@ $list-item-active-title-color: #333;
 $list-item-active-meta-color: #555;
 
 .chr-app-list-item                    {
+  &.has-thumbnail a img               { display: inline-block;
+  }
   a img                               { display: none;
-                                        width: 26px;
-                                        height: 26px;
+                                        width: 36px;
+                                        height: 36px;
+                                        @include border-radius(18px);
                                         float: left;
-                                        @include border-radius(15px);
+                                        margin-right: 1em;
   }
 
   &.active a                          { background: $list-item-active-bg;
@@ -37,7 +40,7 @@ $list-item-active-meta-color: #555;
                                         line-height: 1.2;
     }
     .meta                             { font-size:.75em;
-                                        line-height: 1.8;
+                                        line-height: 2;
                                         color: $list-item-meta-color;
     }
     .title                            { color: $list-item-title-color;

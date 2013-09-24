@@ -26,7 +26,8 @@
                             Character.start({
                               user: { avatar_url: '<%= @admin_user.gravatar_url(36) %>',
                                       email: '<%= @admin_user.email %>' },
-                              logo: '<%= image_path(character_namespace.company_logo_image) %>'
+                              logo: '<%= image_path(character_namespace.company_logo_image) %>',
+                              url:  '<%= character_namespace.name %>'
                             });
                           });
                         </script>

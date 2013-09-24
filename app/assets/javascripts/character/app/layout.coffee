@@ -100,6 +100,7 @@
       link: 'a'
 
     onRender: ->
+      @$el.addClass('has-thumbnail') if @model.getImage()
       @ui.link.attr('href', "#/#{ App.path }/edit/#{ @model.id }")
 
       # reordering helpers
