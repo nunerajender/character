@@ -2,7 +2,6 @@
 #= require browserid
 #= require jquery_ujs
 #= require jquery.form
-#= require simple_form.date
 #= require underscore
 #= require underscore.string
 #= require underscore.inflection
@@ -11,6 +10,7 @@
 #= require foundation
 #= require moment
 #= require ./plugins/reorderable
+#= require ./plugins/date_field
 
 #= require_self
 #= require ./layout

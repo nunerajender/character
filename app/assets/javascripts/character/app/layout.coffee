@@ -171,13 +171,12 @@
           data: params
           beforeSubmit: (arr, $form, options) =>
             # date fixes for rails
-            _.each simple_form.get_date_values(arr), (el) -> arr.push el
+            _.each get_date_field_values(arr), (el) -> arr.push el
             @ui.action_save.addClass('disabled')
             return true
           success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
 
-      # layout fix for date selectors
-      simple_form.set_foundation_date_layout()
+      fix_date_field_layout()
 
       # @ui.form.addClass('custom')
       # @ui.form.foundation('forms', 'assemble')
