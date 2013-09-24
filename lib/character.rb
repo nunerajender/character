@@ -6,6 +6,7 @@ require 'jquery-ui-rails'
 require 'underscore-rails'
 require 'marionette-rails'
 require 'eco'
+require 'momentjs-rails'
 
 # backend
 require 'browserid-rails'

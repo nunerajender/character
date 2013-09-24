@@ -10,6 +10,7 @@
 #= require backbone.marionette
 #= require foundation
 #= require character_list.sortable
+#= require moment
 
 #= require_self
 #= require ./layout

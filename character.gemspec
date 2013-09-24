@@ -28,6 +28,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'zurb-foundation'
   gem.add_runtime_dependency 'font-awesome-rails'
+  gem.add_runtime_dependency 'momentjs-rails'
 
   # auth method
   gem.add_runtime_dependency 'browserid-auth-rails'

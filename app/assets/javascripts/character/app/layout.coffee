@@ -144,7 +144,7 @@
                   <div id=form_view class='chr-app-view-form'></div>"
 
     regions:
-      header:  '#header'
+      header: '#header'
 
     ui:
       title:         '#view_title'
@@ -159,7 +159,7 @@
       url = "#{ @options.url }/" + if @model then "#{ @model.id }/edit" else "new"
 
       if @model
-        @ui.meta.html("Updated at #{ @model.get('updated_at') }")
+        @ui.meta.html("Updated #{ moment(@model.get('updated_at')).fromNow() }")
 
       $.get url, (html) => ( @ui.form_view.html(html) ; @onFormRendered() ) if @ui.form_view
 
