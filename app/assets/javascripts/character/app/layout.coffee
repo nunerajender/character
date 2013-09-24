@@ -131,34 +131,21 @@
   #========================================================
   Module.View = Backbone.Marionette.Layout.extend
     className: 'chr-app-view'
-    template: -> "<header id=header class='chr-app-view-header'>
-                    <span id=view_title class='title'></span><span class='chr-actions'><i class='chr-action-pin'></i><a id=action_delete>Delete</a></span>
-                    <div id=view_meta class='meta'></div>
-                    <a id='action_save' class='chr-action-save'>
-                      <span class='create'>Create</span>
-                      <span class='save'>Save</span>
-                    </a>
-                  </header>
+    template: -> "<header id=header class='chr-app-view-header'></header>
                   <div id=form_view class='chr-app-view-form'></div>"
 
     regions:
       header: '#header'
 
     ui:
-      title:         '#view_title'
-      meta:          '#view_meta'
       action_save:   '#action_save'
       action_delete: '#action_delete'
       form_view:     '#form_view'
 
     onRender: ->
-      @$el.addClass                if @model then 'edit'                     else 'new'
-      @ui.title.html               if @model then @model.getTitle()          else "New #{ @options.name }"
+      @header.show(new Module.ViewHeader({ model: @model, name: @options.name }))
+      @$el.addClass if @model then 'edit' else 'new'
       url = "#{ @options.url }/" + if @model then "#{ @model.id }/edit" else "new"
-
-      if @model
-        @ui.meta.html("Updated #{ moment(@model.get('updated_at')).fromNow() }")
-
       $.get url, (html) => @updateContent(html)
 
     updateContent: (form_html) ->
@@ -189,3 +176,26 @@
       if confirm("""Are you sure about deleting "#{ @model.getTitle() }"?""")
         @close() ; @model.destroy() ; @options.router.navigate(App.path)
       return false
+
+
+  #========================================================
+  # View Header
+  #========================================================
+  Module.ViewHeader = Backbone.Marionette.ItemView.extend
+    template: -> "<span id=view_title class='title'></span><span class='chr-actions'><i class='chr-action-pin'></i><a id=action_delete>Delete</a></span>
+                  <div id=view_meta class='meta'></div>
+                  <a id='action_save' class='chr-action-save'>
+                    <span class='create'>Create</span>
+                    <span class='save'>Save</span>
+                  </a>"
+
+    ui:
+      title: '#view_title'
+      meta:  '#view_meta'
+
+    initialize: ->
+      @listenTo(@model, 'change', @render, @)
+
+    onRender: ->
+      @ui.title.html if @model then @model.getTitle() else "New #{ @options.name }"
+      @ui.meta.html("Updated #{ moment(@model.get('updated_at')).fromNow() }") if @model
