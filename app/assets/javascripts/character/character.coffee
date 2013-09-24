@@ -23,4 +23,4 @@ _.mixin(_.str.exports())
 @Character.on "initialize:after", ->
   Backbone.history.start() if Backbone.history
 
-  location.hash = @first_app_link() if location.hash == ""
+  location.hash = @menu.firstItem().attr('href') if location.hash == ""

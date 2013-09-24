@@ -31,44 +31,32 @@
       items:  '#menu_items'
       avatar: '#user_avatar'
 
-    add_item: (path, icon, title) ->
-      @ui.items.append("""<li><a href="#/#{ path }"><i class="icon-#{ icon }"></i>#{ title }</a></li>""")
+    addItem: (path, icon, title) ->
+      @ui.items.append("<li><a href='#/#{ path }' class='mi-#{ path }'><i class='icon-#{ icon }'></i>#{ title }</a></li>")
 
-    events:
-      'click a': 'item_clicked'
-
-    item_clicked: (e) ->
-      @select_item($(e.currentTarget))
-
-    select_item: ($i) ->
+    selectItem: (cls) ->
       @$el.find('a.active').removeClass('active')
-      $i.addClass('active')
+      @$el.find("a.mi-#{cls}").addClass('active')
+
+    firstItem: ->
+      @ui.items.find('a:eq(0)')
 
   #========================================================
   # Init
   #========================================================
   Module.addInitializer (options) ->
     layout = new Module.Main()
+    layout.render().$el.prependTo('body')
 
     App.options = options
-    App.layout  = layout
     App.main    = layout.content
-
-    # add main character layout to DOM
-    $('body').prepend(layout.render().el)
+    App.menu    = layout.menu.currentView
 
     # set user avatar
-    layout.menu.currentView.ui.avatar.attr('src', options.user.avatar_url)
+    App.menu.ui.avatar.attr('src', options.user.avatar_url)
 
     # add project logo
     $("<style>.logo{background-image:url('#{ options.logo }');}</style>").appendTo("head")
 
     # initialize foundation plugins
     $(document).foundation('topbar section forms dropdown')
-
-
-  App.add_menu_item = (path, icon, title) ->
-    App.layout.menu.currentView.add_item(path, icon, title)
-
-  App.first_app_link = ->
-    App.layout.menu.currentView.ui.items.find('a').attr('href')

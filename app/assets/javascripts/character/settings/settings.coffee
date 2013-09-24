@@ -18,6 +18,7 @@
     initialize: -> @app = @options.app
 
     index: ->
+      App.menu.selectItem('settings')
       App.main.show(@app.layout)
 
     edit: (module) ->
@@ -34,10 +35,11 @@
     controller = new Module.Controller({ app: @ })
     router     = new Module.Router({ controller: controller })
 
-    App.layout.menu.currentView.$el.find(' > a')
-                                   .attr('href', '#/settings')
-                                   .removeClass('browserid_logout')
-                                   .html("<i class='icon-gears'></i> Settings")
+    App.menu.$el.find(' > a')
+            .attr('href', '#/settings')
+            .addClass('mi-settings')
+            .removeClass('browserid_logout')
+            .html("<i class='icon-gears'></i> Settings")
 
   App.settings = (name, options={}) ->
     options.name = name

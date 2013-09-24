@@ -20,10 +20,15 @@
         object = _.clone(@attributes)
 
         # helpers for template
-        object['__title'] = object[@collection.options.item_title]
-        object['__meta']  = object[@collection.options.item_meta]
-        object['__image'] = object[@collection.options.item_image] || ''
+        object['__title'] = @getTitle()
+        object['__meta']  = @getMeta()
+        object['__image'] = @getImage() || ''
       return object
+
+    getTitle:    -> @get(@collection.options.item_title)
+    getMeta:     -> @get(@collection.options.item_meta)
+    getImage:    -> @get(@collection.options.item_image)
+    getPosition: -> @get('_position')
 
 
   #========================================================
@@ -31,6 +36,9 @@
   #========================================================
   Module.Collection = Backbone.Collection.extend
     model: Module.Model
+
+    got: (callback) ->
+
 
     parse: (resp) ->
       resp.objects
@@ -60,7 +68,9 @@
         if @requestParams.order_by
           [ @sortField, @sortDirection ] = @requestParams.order_by.split(':')
 
-        @fetch({ reset: true })
+        @fetch({ reset: true, success: -> callback?() })
+      else
+        callback?()
 
     # support of reverse sorting is taken from:
     # http://stackoverflow.com/questions/5013819/reverse-sort-order-with-backbone-js

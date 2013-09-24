@@ -58,9 +58,9 @@
       @ui.new_action.attr('href', link + "/new")
 
       if @options.scopes
-        @add_scopes()
+        @addScopesDropdown()
 
-    add_scopes: ->
+    addScopesDropdown: ->
       scopes = @options.scopes
 
       @ui.title.addClass('dropdown').attr('data-dropdown', 'scopes')
@@ -100,12 +100,13 @@
       link: 'a'
 
     onRender: ->
-      # update link according to the current state
-      @ui.link.attr('href', location.hash + "/edit/#{ @model.get('_id') }")
+      @ui.link.attr('href', '#/' + location.character.path + '/' +
+                            (if location.character.scope then location.character.scope + '/' else '') +
+                            "edit/#{ @model.id }")
 
       # reordering helpers
       @$el.attr('data-id', @model.id)
-      @$el.attr('data-position', @model.get('_position'))
+      @$el.attr('data-position', @model.getPosition())
 
 
   #========================================================
@@ -122,6 +123,10 @@
     onRender: ->
       if @options.reorderable then character_list.sortable(@$el, @collection)
 
+    selectItem: (id) ->
+      @$el.find('li.active').removeClass('active')
+      @$el.find("li[data-id=#{ id }]").addClass('active')
+
 
   #========================================================
   # View
@@ -129,8 +134,12 @@
   Module.View = Backbone.Marionette.Layout.extend
     className: 'chr-app-view'
     template: -> "<header id=header class='chr-app-view-header'>
-                    <span id=view_title class='title'></span>
-                    <a id='action_save' class='chr-action-save' style='display:none;'>Create</a>
+                    <span id=view_title class='title'></span><span class='chr-actions'><i class='chr-action-pin'></i><a id=action_delete>Delete</a></span>
+                    <div id=view_meta class='meta'></div>
+                    <a id='action_save' class='chr-action-save'>
+                      <span class='create'>Create</span>
+                      <span class='save'>Save</span>
+                    </a>
                   </header>
                   <div id=form_view class='chr-app-view-form'></div>"
 
@@ -138,22 +147,28 @@
       header:  '#header'
 
     ui:
-      title:        '#view_title'
-      action_save:  '#action_save'
-      form_view:    '#form_view'
+      title:         '#view_title'
+      meta:          '#view_meta'
+      action_save:   '#action_save'
+      action_delete: '#action_delete'
+      form_view:     '#form_view'
 
     onRender: ->
-      title = "New #{ @options.name }"
-      @ui.title.html(title)
+      @$el.addClass                if @model then 'edit'                     else 'new'
+      @ui.title.html               if @model then @model.getTitle()          else "New #{ @options.name }"
+      url = "#{ @options.url }/" + if @model then "#{ @model.id }/edit" else "new"
 
-      $.get "#{ @options.url }/new", (html) =>
-        @ui.form_view.html(html)
-        @onFormRendered()
+      if @model
+        @ui.meta.html("Updated at #{ @model.get('updated_at') }")
+
+      $.get url, (html) => @ui.form_view.html(html) ; @onFormRendered()
 
     onFormRendered: ->
       @ui.form = @ui.form_view.find('form')
       if @ui.form.length > 0
-        @ui.action_save.show()
         @ui.form.ajaxForm
-          beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled'); return true
+          beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled') ; return true
           success: (response) => @ui.action_save.removeClass('disabled')
+
+    onSave: ->
+    onDelete: ->
