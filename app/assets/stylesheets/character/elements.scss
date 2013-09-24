@@ -21,7 +21,6 @@ $header-save-button-height: $list-item-height;
 .chr-action-save                      { position: absolute; top: 0; right: 0;
                                         color: $action-color;
                                         line-height: $header-save-button-height;
-                                        border-left: 1px solid $settings-border-color;
                                         padding: 0 1.5em;
   &.disabled                          { color: lighten($action-color, 30%);
   }

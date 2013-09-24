@@ -25,8 +25,8 @@
         object['__image'] = @getImage() || ''
       return object
 
-    getTitle:    -> @get(@collection.options.item_title)
-    getMeta:     -> @get(@collection.options.item_meta)
+    getTitle:    -> @get(@collection.options.item_title || _(@attributes).keys()[0])
+    getMeta:     -> @get(@collection.options.item_meta) || ''
     getImage:    -> @get(@collection.options.item_image)
     getPosition: -> @get('_position')
 

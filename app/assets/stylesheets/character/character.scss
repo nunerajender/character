@@ -33,6 +33,8 @@ $chr-menu-bg-color: $topbar-bg;
 $chr-menu-item-color: #ccc;
 $chr-menu-item-active-color: #fff;
 
+$chr-border-color: #f1f1f1;
+
 @mixin position($left, $top, $right, $bottom, $z-index: 0) {
                                         position: absolute;
                                         left: $left;

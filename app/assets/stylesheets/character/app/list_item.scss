@@ -1,16 +1,14 @@
 
 
+$list-item-border-color: $chr-border-color;
+$list-item-active-bg: #f5f5f5;
 $list-item-title-color: #666;
 $list-item-meta-color: #999;
-$list-item-border-color: #eee;
-$list-item-active-border-color: #cfcfcf;
-$list-item-active-bg: #f1f1f1;
 $list-item-active-title-color: #333;
 $list-item-active-meta-color: #555;
 
 .chr-app-list-item                    {
-  &:last-child                        { border-bottom: 1px solid #ddd;
-                                        box-shadow: 0 0 3px #ddd;
+  &:last-child                        { border-bottom: 1px solid $list-item-border-color;
   }
 
   a img                               { display: none;
@@ -20,9 +18,7 @@ $list-item-active-meta-color: #555;
                                         @include border-radius(15px);
   }
 
-  &.active a                          { box-shadow: 0 1px 3px #ededed inset;
-                                        background: $list-item-active-bg;
-                                        border-color: $list-item-active-border-color;
+  &.active a                          { background: $list-item-active-bg;
     .title                            { color: $list-item-active-title-color;
     }
     .meta                             { color: $list-item-active-meta-color;

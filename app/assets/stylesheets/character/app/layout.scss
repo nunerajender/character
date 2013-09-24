@@ -16,8 +16,7 @@
                                         z-index: 3;
   }
 
-  .logo                               { border-left: 1px solid #e3e6e9;
-                                        box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  .logo                               { border-left: 1px solid $chr-border-color;
                                         background-position: 50% 50%;
                                         background-repeat: no-repeat no-repeat;
   }
