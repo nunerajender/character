@@ -154,7 +154,14 @@
     onFormRendered: ->
       @ui.form = @ui.form_view.find('form')
       if @ui.form.length > 0
+
+        # include fields to properly update item in a list and sort
+        params = @collection.options.constant_params
+        if @collection.sortField
+          params.fields_to_include = [ params.fields_to_include, @collection.sortField ].join(',')
+
         @ui.form.ajaxForm
+          data: params
           beforeSubmit: (arr, $form, options) =>
             # date fixes for rails
             _.each simple_form.get_date_values(arr), (el) -> arr.push el
@@ -174,6 +181,9 @@
       if typeof(resp) == 'string' then return @updateContent(resp)
       # assuming response is json
       if @model then @model.set(resp) else @options.collection.add(resp)
+      console.log 'sorting'
+      console.log resp
+      console.log @model.attributes
       @options.collection.sort()
 
     events:

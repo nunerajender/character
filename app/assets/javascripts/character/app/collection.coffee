@@ -37,9 +37,6 @@
   Module.Collection = Backbone.Collection.extend
     model: Module.Model
 
-    got: (callback) ->
-
-
     parse: (resp) ->
       resp.objects
 
