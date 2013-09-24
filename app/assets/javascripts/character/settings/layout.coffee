@@ -60,8 +60,7 @@
       @ui.title.html(@options.name)
       @ui.form_view.addClass(@options.path)
       $.get "/admin/settings/#{ @options.path }", (html) =>
-        @ui.form_view.html(html)
-        @onFormRendered()
+        ( @ui.form_view.html(html) ; @onFormRendered() )  if @ui.form_view
 
     onFormRendered: ->
       @ui.new_item_template = @ui.form_view.find('#new_item_template')

@@ -161,7 +161,7 @@
       if @model
         @ui.meta.html("Updated at #{ @model.get('updated_at') }")
 
-      $.get url, (html) => @ui.form_view.html(html) ; @onFormRendered()
+      $.get url, (html) => ( @ui.form_view.html(html) ; @onFormRendered() ) if @ui.form_view
 
     onFormRendered: ->
       @ui.form = @ui.form_view.find('form')

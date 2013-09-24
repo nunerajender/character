@@ -3,21 +3,18 @@ module TemplatesHelper
   # used for form-template based actions like new, edit, create, update
   def form_template
     set_form_attributes
-    
+
     @form_template ||= begin
       template_folder = model_class.name.underscore.to_s.pluralize
+      template_folder.gsub!('character/', '')
 
-      if template_folder.start_with? 'character/'
-        template_folder = 'character/' + template_folder.gsub('character/', '').gsub('/', "/#{ character_namespace.name }/")
-      else
-        template_folder = "character/#{ character_namespace.name }/" + template_folder
-      end
+      generic_template_folder    = "character/#{ template_folder }"
+      namespaced_template_folder = "character/#{ character_namespace.name }/#{ template_folder }"
 
-      # check if there is a custom form template for the class in the
-      # character/ folder, if not use generic form
-
-      if template_exists?("form", template_folder, false)
-        "#{ template_folder }/form"
+      if    template_exists?("form", namespaced_template_folder, false)
+        "#{ namespaced_template_folder }/form"
+      elsif template_exists?("form", generic_template_folder, false)
+        "#{ generic_template_folder }/form"
       else
         "character/generic_form"
       end
