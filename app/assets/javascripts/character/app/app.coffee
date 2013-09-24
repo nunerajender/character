@@ -48,17 +48,15 @@
   # Initialization
   #========================================================
   App.app = (name, options={}) ->
-    module_name = _.slugify(name)
-    @module "App.#{ module_name }", (app) ->
+    options.name            ?= name
+    options.pluralized_name ?= _.pluralize(options.name)
+    options.path            ?= _.slugify(options.pluralized_name)
+
+    @module "App.#{ options.path }", (app) ->
       app.on 'start', ->
         # Options
         options.app              = app
-        options.name            ?= name
-        options.model_slug      ?= _.slugify(options.name)
-        options.pluralized_name ?= _.pluralize(options.name)
-        options.path            ?= _.slugify(options.pluralized_name)
         options.icon            ?= 'bolt'
-        options.reorderable     ?= false
         options.collection_url  ?= "/#{ App.options.url }/#{ options.name }"
 
         if options.scopes
@@ -77,11 +75,13 @@
         app.collection = new Module.Collection()
         app.collection.options =
           scopes:              options.scopes
+          model_slug:          options.model_slug || _.slugify(name)
           order_by:            options.default_scope_order_by
           collection_url:      options.collection_url
           item_title:          options.item_title
           item_meta:           options.item_meta
           item_image:          options.item_image
+          reorderable:         options.reorderable || false
           constant_params:
             reorderable:       options.reorderable
             fields_to_include: options.model_fields.join(',')

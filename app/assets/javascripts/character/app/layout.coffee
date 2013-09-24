@@ -121,8 +121,7 @@
 
     onRender: ->
       @selectItem(@selected_item_id) if @selected_item_id
-      # TODO: reorderable
-      #if @options.reorderable then character_list.sortable(@$el, @collection)
+      if @collection.options.reorderable then reorderable(@$el, @collection)
 
     selectItem: (id) ->
       @selected_item_id = id

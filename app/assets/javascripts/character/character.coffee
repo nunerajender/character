@@ -9,8 +9,8 @@
 #= require backbone
 #= require backbone.marionette
 #= require foundation
-#= require character_list.sortable
 #= require moment
+#= require ./plugins/reorderable
 
 #= require_self
 #= require ./layout
