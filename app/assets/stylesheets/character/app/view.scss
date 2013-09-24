@@ -6,7 +6,7 @@ $border-color: #eee;
 .chr-app-view-header                  { @include position(0, 0, 0, inherit);
                                         height: $header-height;
                                         border-bottom: 1px solid $border-color;
-                                        padding: 1.5em 1.6em 0em;
+                                        padding: 1.5em 6% 0em;
   .title                              { font-size:1.2em;
   }
 }
@@ -17,13 +17,13 @@ $border-color: #eee;
 }
 
 .chr-app-view.edit                    {
-  .chr-app-view-header                { padding-top: 1em;
+  .chr-app-view-header                { padding-top: .9em;
     .title                            { font-size: .9em;
                                         font-weight: bold;
     }
     .meta                             { font-size: .8em;
                                         color: #777;
-                                        line-height: 1.5;
+                                        line-height: 2;
     }
   }
   .chr-action-save .create            { display: none;

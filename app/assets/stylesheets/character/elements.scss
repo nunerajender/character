@@ -19,9 +19,13 @@ $header-save-button-height: $list-item-height;
 }
 
 .chr-action-save                      { position: absolute; top: 0; right: 0;
+                                        border-left: 1px solid $chr-border-color;
                                         color: $action-color;
                                         line-height: $header-save-button-height;
                                         padding: 0 1.5em;
   &.disabled                          { color: lighten($action-color, 30%);
   }
+}
+
+.chr-app-view-form form > .row > .columns { padding: 0 6%;
 }
