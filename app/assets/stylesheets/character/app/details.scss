@@ -1,23 +1,20 @@
 
 
-$header-height: $list-item-height;
-$border-color: #eee;
-
-.chr-app-view-header                  { @include position(0, 0, 0, inherit);
-                                        height: $header-height;
-                                        border-bottom: 1px solid $border-color;
+.chr-app-details-header               { @include position(0, 0, 0, inherit);
+                                        height: $chr-list-header-height;
+                                        border-bottom: 1px solid $chr-border-color;
                                         padding: 1.5em 6% 0em;
   .title                              { font-size:1.2em;
   }
 }
 
-.chr-app-view-form                    { @include position(0, $header-height, 0, 0);
+.chr-app-details-form                 { @include position(0, $chr-list-header-height, 0, 0);
                                         @include scrollable;
                                         background-color: #fff;
 }
 
-.chr-app-view.edit                    {
-  .chr-app-view-header                { padding-top: .9em;
+.chr-app-details.edit                 {
+  .chr-app-details-header             { padding-top: .9em;
     .title                            { font-size: .9em;
                                         font-weight: bold;
     }
@@ -30,8 +27,8 @@ $border-color: #eee;
   }
 }
 
-.chr-app-view.new                     {
-  .chr-app-view-header                {
+.chr-app-details.new                  {
+  .chr-app-details-header             {
     .chr-actions                      { display: none;
     }
   }

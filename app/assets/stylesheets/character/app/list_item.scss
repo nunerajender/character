@@ -1,12 +1,5 @@
 
 
-$list-item-border-color: $chr-border-color;
-$list-item-active-bg: #f5f5f5;
-$list-item-title-color: #666;
-$list-item-meta-color: #999;
-$list-item-active-title-color: #333;
-$list-item-active-meta-color: #555;
-
 .chr-app-list-item                    {
   &.has-thumbnail a img               { display: inline-block;
   }
@@ -18,18 +11,18 @@ $list-item-active-meta-color: #555;
                                         margin-right: 1em;
   }
 
-  &.active a                          { background: $list-item-active-bg;
-    .title                            { color: $list-item-active-title-color;
+  &.active a                          { background: $chr-list-item-active-bg;
+    .title                            { color: $chr-list-item-active-title-color;
     }
-    .meta                             { color: $list-item-active-meta-color;
+    .meta                             { color: $chr-list-item-active-meta-color;
     }
   }
 
-  a                                   { background: $list-bg-color;
-                                        border-bottom: 1px solid $list-item-border-color;
+  a                                   { background: $chr-list-bg-color;
+                                        border-bottom: 1px solid $chr-border-color;
                                         padding: 1em 1.3em 0em;
                                         position: relative;
-                                        height: $list-item-height;
+                                        height: $chr-list-item-height;
                                         display: block;
     .meta,
     .title                            { font-size:.9em;
@@ -41,9 +34,9 @@ $list-item-active-meta-color: #555;
     }
     .meta                             { font-size:.75em;
                                         line-height: 2;
-                                        color: $list-item-meta-color;
+                                        color: $chr-list-item-meta-color;
     }
-    .title                            { color: $list-item-title-color;
+    .title                            { color: $chr-list-item-title-color;
     }
   }
 

@@ -1,10 +1,7 @@
 
 
-$action-color: #666;
-$header-save-button-height: $list-item-height;
-
 .chr-action,
-.chr-actions a                        { color: $action-color;
+.chr-actions a                        { color: $chr-action-color;
                                         font-size: 12px;
   &:hover                             { text-decoration: underline;
   }
@@ -14,20 +11,20 @@ $header-save-button-height: $list-item-height;
                                         margin-right: 4px;
   &:before                            { content: '\00B7';
                                         font-size: 17px;
-                                        color: $action-color;
+                                        color: $chr-action-color;
   }
 }
 
 .chr-action-save                      { position: absolute; top: 0; right: 0;
                                         border-left: 1px solid $chr-border-color;
-                                        color: $action-color;
-                                        line-height: $header-save-button-height;
+                                        color: $chr-action-color;
+                                        line-height: $chr-action-save-height;
                                         padding: 0 1.5em;
-  &.disabled                          { color: lighten($action-color, 30%);
+  &.disabled                          { color: lighten($chr-action-color, 30%);
   }
 }
 
-.chr-app-view-form form               { margin-top: 3em;
+.chr-app-details-form form            { margin: 3em 0;
   & > .row > .columns                 { padding: 0 6%;
   }
 }

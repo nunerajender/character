@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+@import "font-awesome";
+@import "compass/css3";
+
+$primary-color: #232323;
+
+$input-border-color: #eee;
+$input-box-shadow: none;
+$input-prefix-bg: darken(#fff, 1%);
+$input-prefix-border-size: 1px;
+$input-prefix-border-color: #eee; // doesn't work
+$input-prefix-font-color: #6f6f6f;
+
+$panel-bg: #fff;
+$panel-border-color: #eee;
+$panel-border-style: dashed;
+$form-label-font-color: #777;
+
+$form-label-font-size: .8em;
+$form-label-font-weight: 400;
+$form-label-bottom-margin: .5em;
+
+$input-disabled-bg: #fafafa;
+
+
+@import "foundation";
+
+
+$chr-border-color: #f1f1f1;
+
+$chr-menu-width: 100px;
+$chr-menu-divider-color: #222;
+$chr-menu-bg-color: $topbar-bg;
+$chr-menu-item-color: #ccc;
+$chr-menu-item-active-color: #fff;
+
+$chr-settings-header-height: 68px;
+$chr-settings-header-color: #777;
+$chr-settings-list-item-active-color: #222;
+
+$chr-list-bg-color: #fafafa;
+$chr-list-header-height: 68px;
+$chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
+
+$chr-list-item-height: 68px;
+$chr-list-item-active-bg: #f5f5f5;
+$chr-list-item-title-color: #666;
+$chr-list-item-meta-color: #999;
+$chr-list-item-active-title-color: #333;
+$chr-list-item-active-meta-color: #555;
+
+$chr-action-color: #666;
+$chr-action-save-height: 68px;
+
+
+@mixin position($left, $top, $right, $bottom, $z-index: 0) {
+                                      position: absolute;
+                                      left: $left;
+                                      top: $top;
+                                      right: $right;
+                                      bottom: $bottom;
+                                      z-index: $z-index;
+
+}
+
+@mixin scrollable                   { overflow: hidden;
+                                      overflow-y: auto;
+}
+
+
+@import "./character/app/*";
+@import "./character/settings/*";
+@import "./character/elements";
+@import "./character/views";
