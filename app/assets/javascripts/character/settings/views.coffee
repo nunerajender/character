@@ -58,7 +58,7 @@
   onRender: ->
     @ui.title.html(@options.name)
     @ui.form_view.addClass(@options.path)
-    $.get "/admin/settings/#{ @options.path }", (html) =>
+    $.get "#{ chr.options.url }/settings/#{ @options.path }", (html) =>
       ( @ui.form_view.html(html) ; @onFormRendered() )  if @ui.form_view
 
   onFormRendered: ->
@@ -72,6 +72,8 @@
       @ui.form.ajaxForm
         beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled'); return true
         success: (response) => @ui.action_save.removeClass('disabled')
+
+    @afterFormRendered?()
 
   events:
     'click .chr-action-save': 'onSave'
