@@ -58,6 +58,7 @@
   }
 }
 
-.chr-settings-view-form               { position: absolute; left: 0; top: $chr-settings-header-height;; right: 0; bottom: 0;
+.chr-settings-view-form               { @include position(0, $chr-settings-header-height, 0, inherit);
+                                        @include scrollable;
                                         padding-top: 3em;
 }

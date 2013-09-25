@@ -22,7 +22,7 @@
 
   new: (scope) ->
     @index(scope)
-    view = new Character.App.DetailsView
+    view = new @app.DetailsView
       model:      no
       name:       @options.name
       url:        @app.collection.options.collection_url + "/new"
@@ -34,7 +34,7 @@
     @index scope, =>
       doc = @app.collection.get(id)
       @app.main.list.selectItem(id)
-      view = new Character.App.DetailsView
+      view = new @app.DetailsView
         model:      doc
         name:       @options.name
         url:        @app.collection.options.collection_url + "/#{ id }/edit"
@@ -48,7 +48,7 @@
 #========================================================
 @Character.App.Router = Backbone.Marionette.AppRouter.extend
   initialize: (options) ->
-    @appRoutes = {}
+    @appRoutes ||= {}
     @appRoutes["#{ options.path }(/:scope)/new"]      = "new"
     @appRoutes["#{ options.path }(/:scope)/edit/:id"] = "edit"
     @appRoutes["#{ options.path }(/:scope)"]          = "index"

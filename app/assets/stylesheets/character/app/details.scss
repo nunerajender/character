@@ -13,6 +13,15 @@
                                         background-color: #fff;
 }
 
+.chr-app-details                      {
+  .chr-app-details-header             {
+    .chr-actions                      { display: none;
+    }
+  }
+  .chr-action-save .save              { display: none;
+  }
+}
+
 .chr-app-details.edit                 {
   .chr-app-details-header             { padding-top: .9em;
     .title                            { font-size: .9em;
@@ -23,15 +32,8 @@
                                         line-height: 2;
     }
   }
+  .chr-action-save .save              { display: inline;
+  }
   .chr-action-save .create            { display: none;
-  }
-}
-
-.chr-app-details.new                  {
-  .chr-app-details-header             {
-    .chr-actions                      { display: none;
-    }
-  }
-  .chr-action-save .save              { display: none;
   }
 }

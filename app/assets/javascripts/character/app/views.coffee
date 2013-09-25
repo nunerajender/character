@@ -157,10 +157,10 @@
     @router = @options.app.router
 
   onRender: ->
-    header_view = new @DetailsHeaderView({ model: @model, name: @options.name })
+    header_view = new @DetailsHeaderView({ model: @model, name: "New #{ @options.name }" })
     @header.show(header_view)
 
-    @$el.addClass if @model then 'edit' else 'new'
+    @$el.addClass('edit') if @model
 
     $.get @options.url, (html) => @updateContent(html)
 
@@ -227,5 +227,5 @@
     @listenTo(@model, 'change', @render, @) if @model
 
   onRender: ->
-    @ui.title.html if @model then @model.getTitle() else "New #{ @options.name }"
+    @ui.title.html if @model then @model.getTitle() else @options.name
     @ui.meta.html("Updated #{ moment(@model.get('updated_at')).fromNow() }") if @model

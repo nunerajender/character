@@ -13,9 +13,8 @@ chr.module 'Settings', (Module, App) ->
             .html("<i class='icon-gears'></i> Settings")
 
 
-class @CharacterSettingsApp
-  constructor: (name, options={}) ->
-    options.name = name
-    options.path ?= _.slugify(name)
+@CharacterSettingsApp = (name, options={}) ->
+  options.name = name
+  options.path ?= _.slugify(name)
 
-    chr.module "Settings.#{options.path}", -> @options = options
+  chr.module "Settings.#{options.path}", -> @options = options
