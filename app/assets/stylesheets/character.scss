@@ -12,11 +12,7 @@ $input-prefix-border-size: 1px;
 $input-prefix-border-color: #eee; // doesn't work
 $input-prefix-font-color: #6f6f6f;
 
-$panel-bg: #fff;
-$panel-border-color: #eee;
-$panel-border-style: dashed;
 $form-label-font-color: #777;
-
 $form-label-font-size: .8em;
 $form-label-font-weight: 400;
 $form-label-bottom-margin: .5em;
@@ -24,8 +20,14 @@ $form-label-bottom-margin: .5em;
 $input-disabled-bg: #fafafa;
 
 
-@import "foundation";
+$chr-secondary-bg-color: #fafafa;
 
+$panel-bg: $chr-secondary-bg-color;
+$panel-border-style: none;
+
+$table-even-row-bg: $chr-secondary-bg-color;
+
+@import "foundation";
 
 $chr-secondary-bg-color: #fafafa;
 $chr-border-color: #f1f1f1;
