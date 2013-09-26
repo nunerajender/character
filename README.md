@@ -34,8 +34,7 @@ At the moment project is under very intence development so all sources are avail
 
 Add these to projects ```Gemfile```.
 
-    gem 'character',          git: 'git://github.com/slate-studio/character.git'
-    gem 'character_settings', git: 'git://github.com/slate-studio/character_settings.git'
+    gem 'character', git: 'git://github.com/slate-studio/character.git'
 
 After running ```bundle``` you need to do basic configuration.
 
@@ -214,25 +213,21 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 * [BrowserID](https://github.com/alexkravets/browserid-auth-rails)
 * [Simple Form](https://github.com/plataformatec/simple_form)
 * [Kaminari](https://github.com/amatsuda/kaminari)
-* [Character Settings](https://github.com/slate-studio/character_settings)
 
 
 ## TODO
 
-* implement pagination interface in the generic app
-* search option
-* scopes
-* add notifications to be shown after save action
-* add hotkeys for fast navigation
-* FIX: collection is rendered twice for some reason
-* replace foundation topnav with original menu (layout/css)
-* annotated source
+* pagination
+* search
+* notifications
+* hotkeys
 * ipad
 * iphone
 * translations
+* annotate sources
 
 --
-* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - August 9, 2013
+* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - September 26, 2013
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 
 
