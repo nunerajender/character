@@ -34,9 +34,9 @@
 # List Header
 #========================================================
 @Character.App.ListHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> """<a class='title'></a><span class='chr-actions'><i class='chr-action-pin'></i><a class='new'>New</a></span>
-                  <aside class='right search'></aside>
-                  <ul id='scopes' class='f-dropdown'></ul>"""
+  template: -> "<a class='title'></a><span class='chr-actions'><i class='chr-action-pin'></i><a class='new'>New</a></span>
+                <aside class='right search'></aside>
+                <ul id='scopes' class='f-dropdown'></ul>"
 
   ui:
     title:      '.title'

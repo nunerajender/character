@@ -27,4 +27,11 @@
 .chr-app-details-form form            { margin: 3em 0;
   & > .row > .columns                 { padding: 0 6%;
   }
+  // Simpleform layout fixes
+  //------------------------
+  // checkbox + label fix, to have in one line
+  label.boolean                       { display:inline-block;
+                                        margin-left: .5em;
+                                        margin-top: .2em;
+  }
 }

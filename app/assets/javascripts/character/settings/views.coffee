@@ -87,16 +87,18 @@
   addItem: ->
     html = @ui.new_item_template.html()
     html = html.replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
-    @ui.new_item_template.before("<div class='new_item'>#{ html }</div>")
+    @ui.new_item_template.before(html)
+
+    @afterAddItem?()
 
   cancelItem: (e) ->
-    $(e.currentTarget).closest('.new_item').remove() ; return false
+    item_cls = $(e.currentTarget).attr('data-item-class')
+    $(e.currentTarget).closest(".#{ item_cls }").remove() ; return false
 
   deleteItem: (e) ->
-    item_cls = $(e.currentTarget).attr('data-item-class')
-
-    if item_cls
-      item = $(e.currentTarget).closest(".#{ item_cls }")
+    if confirm("Are you sure about deleting this?")
+      item_cls = $(e.currentTarget).attr('data-item-class')
+      item     = $(e.currentTarget).closest(".#{ item_cls }")
 
       destroy_field = _.find item.find("input[type=hidden]"), (f) ->
         name = $(f).attr('name')
