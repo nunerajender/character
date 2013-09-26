@@ -27,6 +27,7 @@ $input-disabled-bg: #fafafa;
 @import "foundation";
 
 
+$chr-secondary-bg-color: #fafafa;
 $chr-border-color: #f1f1f1;
 
 $chr-menu-width: 100px;
@@ -39,7 +40,7 @@ $chr-settings-header-height: 68px;
 $chr-settings-header-color: #777;
 $chr-settings-list-item-active-color: #222;
 
-$chr-list-bg-color: #fafafa;
+$chr-list-bg-color: $chr-secondary-bg-color;
 $chr-list-header-height: 68px;
 $chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
 

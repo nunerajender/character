@@ -1,8 +1,13 @@
 
 
+.logo                                 { background-position: 50% 50%;
+                                        background-repeat: no-repeat no-repeat;
+}
+
 .chr-action,
 .chr-actions a                        { color: $chr-action-color;
                                         font-size: 12px;
+  &.active,
   &:hover                             { text-decoration: underline;
   }
 }
@@ -33,5 +38,8 @@
   label.boolean                       { display:inline-block;
                                         margin-left: .5em;
                                         margin-top: .2em;
+  }
+  // Foundation fix for textarea height
+  textarea                            { height:auto;
   }
 }

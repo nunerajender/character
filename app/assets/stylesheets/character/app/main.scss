@@ -1,23 +1,12 @@
 
 
 .chr-app-main                         {
-  .left-panel                         { position: absolute;
+  .left-panel                         { @include position(0, 0, inherit, 0, 2);
                                         width: 35%;
-                                        bottom: 0;
-                                        top: 0;
-                                        z-index: 2;
   }
 
-  .right-panel                        { position: absolute;
+  .right-panel                        { @include position(inherit, 0, 0, 0, 3);
                                         width: 65%;
-                                        bottom: 0;
-                                        top: 0;
-                                        right: 0;
-                                        z-index: 3;
-  }
-
-  .logo                               { border-left: 1px solid $chr-border-color;
-                                        background-position: 50% 50%;
-                                        background-repeat: no-repeat no-repeat;
+                                        border-left: 1px solid $chr-border-color;
   }
 }

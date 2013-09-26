@@ -7,11 +7,11 @@
 @Character.App.MainView = Backbone.Marionette.Layout.extend
   className: 'chr-app-main'
 
-  template: -> """<div class='left-panel'>
-                    <div id=list_header class='chr-app-list-header'></div>
-                    <div id=list_content class='chr-app-list'></div>
-                  </div>
-                  <div id=details class='right-panel logo'></div>"""
+  template: -> "<div class='left-panel'>
+                  <div id=list_header class='chr-app-list-header'></div>
+                  <div id=list_content class='chr-app-list'></div>
+                </div>
+                <div id=details class='right-panel logo'></div>"
 
   regions:
     list_header:  '#list_header'
