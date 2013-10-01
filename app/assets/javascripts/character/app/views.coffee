@@ -124,7 +124,7 @@
 
   onRender: ->
     @selectItem(@selected_item_id) if @selected_item_id
-    if @collection.options.reorderable then App.Plugins.reorderable(@$el, @collection)
+    if @collection.options.reorderable then Character.Plugins.reorderable(@$el, @collection)
 
   selectItem: (id) ->
     @selected_item_id = id
@@ -185,11 +185,7 @@
           return true
         success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
 
-    Character.Plugins.fix_date_field_layout()
-
-    # @ui.form.addClass('custom')
-    # @ui.form.foundation('forms', 'assemble')
-    # @ui.form.foundation('section', 'resize')
+      $(document).trigger('rendered.chrForm', [ @ui.form ])
 
   updateModel: (resp) ->
     # when response is a string, that means form with errors returned

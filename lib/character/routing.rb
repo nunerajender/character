@@ -10,16 +10,6 @@ module ActionDispatch::Routing
           match '/login',   to: 'application#login'
           match '/logout',  to: 'application#logout'
 
-          # Register redactor images if module is defined
-          # -------------------------------------------------
-          # I don't really like that this is hardcoded here. It would be nice
-          # to have module option to add it's routes to the /admin scope.
-          if defined?(Character::Redactor)
-            scope '/redactor', :module => "Redactor" do
-              resources :images, only: [:index, :create]
-            end
-          end
-
           get     '/settings/:scope(.:format)',     to: 'settings#show'
           post    '/settings/update',               to: 'settings#update'
 

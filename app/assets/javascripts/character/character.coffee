@@ -19,8 +19,16 @@
 _.mixin(_.str.exports())
 
 
-@chr = new Backbone.Marionette.Application()
+$ ->
+  $(document).on 'rendered.chrForm', (e, $form) ->
+    Character.Plugins.fix_date_field_layout()
 
+    # @ui.form.addClass('custom')
+    # @ui.form.foundation('forms', 'assemble')
+    # @ui.form.foundation('section', 'resize')
+
+
+@chr = new Backbone.Marionette.Application()
 
 @chr.on "initialize:before", (@options) ->
   main_view = new Character.MainView()

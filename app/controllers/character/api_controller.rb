@@ -79,7 +79,7 @@ class Character::ApiController < Character::BaseController
     #                 per_page:      per_page,
     #                 search_query:  search_query }
 
-    render json: { objects: item_objects }
+    render json: item_objects
   end
 
 

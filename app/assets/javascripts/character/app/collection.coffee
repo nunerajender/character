@@ -36,8 +36,8 @@
 @Character.App.Collection = Backbone.Collection.extend
   model: Character.App.Model
 
-  parse: (resp) ->
-    resp.objects
+  # parse: (resp) ->
+  #   resp.objects
 
   url: (params) ->
     @options.collection_url + "?" + $.param(params || @requestParams || {}, true)
