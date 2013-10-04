@@ -7,25 +7,7 @@
                                         line-height: 1.65;
                                         border-bottom: 1px solid $chr-border-color;
 
-  // dropdown triangle taken here:
-  // https://github.com/zurb/foundation/blob/master/scss/foundation/components/_dropdown-buttons.scss
-  .title.dropdown                     {
-                                        margin-left: 1em;
-                                        padding-bottom: .5em;
-    &:before                          { position: absolute;
-                                        content: "";
-                                        width: 0;
-                                        height: 0;
-                                        display: block;
-                                        border-style: solid;
-                                        border-color: $chr-list-header-dropdown-color transparent transparent transparent;
-                                        top: 46%;
-                                        border-width: 0.35em;
-                                        opacity: .4;
-    }
-    &:hover                           {
-      &:before                        { opacity: 1;
-      }
-    }
+  .title.dropdown                     { border-bottom: 1px dashed $chr-action-color;
+                                        padding-bottom: .1em;
   }
 }
