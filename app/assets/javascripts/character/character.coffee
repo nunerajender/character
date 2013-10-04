@@ -22,6 +22,7 @@ _.mixin(_.str.exports())
 $ ->
   $(document).on 'rendered.chrForm', (e, $form) ->
     Character.Plugins.fix_date_field_layout()
+    Character.Plugins.enableDrawers()
 
     # @ui.form.addClass('custom')
     # @ui.form.foundation('forms', 'assemble')

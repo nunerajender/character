@@ -43,3 +43,36 @@
   textarea                            { height:auto;
   }
 }
+
+.chr-top-drawer                       { margin-top: -10.6em;
+                                        margin-bottom: 1.4em;
+                                        padding-bottom: 0;
+                                        background-color: #fff;
+   &:hover                            { background-color: $panel-bg;
+  }
+
+  &.shown                             { margin-top: -3em;
+                                        background-color: $panel-bg;
+    .action-show-drawer i:before      { content: '\f106';
+    }
+  }
+
+  .action-show-drawer                 { display: block;
+                                        text-align: center;
+                                        opacity: .3;
+                                        line-height: 1.5;
+                                        width: 100%;
+                                        float: left;
+  }
+}
+
+input[type=text].chr-title-input      { background-color: transparent;
+                                        border: none;
+                                        line-height: 1;
+                                        padding: 0 0 1em 0;
+                                        border-bottom: 1px dashed $chr-border-color;
+                                        font-weight: bold;
+                                        font-size: 1.5em;
+  &:focus                             { box-shadow: none;
+  }
+}
