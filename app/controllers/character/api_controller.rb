@@ -16,7 +16,7 @@ class Character::ApiController < Character::BaseController
     order_by     = params[:order_by]
     search_query = params[:search_query] || ''
     page         = params[:page]         || 1
-    per_page     = params[:per_page]     || 200
+    per_page     = params[:per_page]     || 25
 
     @objects = model_class.unscoped.all
 
@@ -73,13 +73,12 @@ class Character::ApiController < Character::BaseController
 
     item_objects = @objects.map { |o| build_json_object(o) }
 
+    render json: item_objects
     # render json: {  objects:       item_objects,
     #                 total_pages:   @objects.total_pages(),
     #                 page:          page,
     #                 per_page:      per_page,
     #                 search_query:  search_query }
-
-    render json: item_objects
   end
 
 

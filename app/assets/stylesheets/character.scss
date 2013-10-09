@@ -3,18 +3,19 @@
 @import "font-awesome";
 @import "compass/css3";
 
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $primary-color: #232323;
 
-$input-border-color: #eee;
+$input-border-color: #ddd;
 $input-box-shadow: none;
 $input-prefix-bg: darken(#fff, 1%);
 $input-prefix-border-size: 1px;
-$input-prefix-border-color: #eee; // doesn't work
+//$input-prefix-border-color: #ddd; // doesn't work
 $input-prefix-font-color: #6f6f6f;
 
-$form-label-font-color: #777;
+$form-label-font-color: $primary-color;
 $form-label-font-size: .8em;
-$form-label-font-weight: 400;
+$form-label-font-weight: bold;
 $form-label-bottom-margin: .5em;
 
 $input-disabled-bg: #fafafa;
@@ -71,7 +72,6 @@ $chr-action-save-height: 68px;
 @mixin scrollable                   { overflow: hidden;
                                       overflow-y: auto;
 }
-
 
 @import "./character/app/*";
 @import "./character/settings/*";

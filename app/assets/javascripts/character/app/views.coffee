@@ -186,6 +186,7 @@
         success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
 
       $(document).trigger('rendered.chrForm', [ @ui.form ])
+      @afterFormRendered?()
 
   updateModel: (resp) ->
     # when response is a string, that means form with errors returned

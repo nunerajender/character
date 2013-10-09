@@ -42,10 +42,11 @@
   url: (params) ->
     @options.collection_url + "?" + $.param(params || @requestParams || {}, true)
 
-  update: (scope_slug, callback) ->
+  updateRequestParams: (scope_slug) ->
     scopes = @options.scopes
     params = {}
 
+    # slug
     if scope_slug and scopes
       scope  = scopes[scope_slug]
 
@@ -54,7 +55,9 @@
         params["where__#{name}"] = value
         params.order_by         ?= scope.order_by
 
+    # sort order
     params.order_by ||= @options.order_by
+
     _.extend(params, @options.constant_params)
 
     if @url() != @url(params)
@@ -64,6 +67,14 @@
       if @requestParams.order_by
         [ @sortField, @sortDirection ] = @requestParams.order_by.split(':')
 
+      return true
+    else
+      return false
+
+  update: (scope_slug, callback) ->
+    paramsChanged = @updateRequestParams(scope_slug)
+
+    if paramsChanged
       @fetch({ reset: true, success: -> callback?() })
     else
       callback?()
