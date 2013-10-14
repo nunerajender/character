@@ -137,7 +137,7 @@
 
 
 #========================================================
-# View
+# Details
 #========================================================
 @Character.App.DetailsView = Backbone.Marionette.Layout.extend
   className: 'chr-app-details'
@@ -174,7 +174,7 @@
       # include fields to properly update item in a list and sort
       params = @collection.options.constant_params
       if @collection.sortField
-        params.fields_to_include = [ params.fields_to_include, @collection.sortField ].join(',')
+        params.fields_to_include = _([ params.fields_to_include, @collection.sortField ]).uniq().join(',')
 
       @ui.form.ajaxForm
         data: params
@@ -204,7 +204,7 @@
 
   onDelete: ->
     if confirm("""Are you sure about deleting "#{ @model.getTitle() }"?""")
-      @close() ; @model.destroy() ; @router.navigate(App.path)
+      @close() ; @model.destroy() ; @router.navigate(chr.path)
     return false
 
 

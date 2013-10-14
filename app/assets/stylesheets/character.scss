@@ -6,19 +6,20 @@
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $primary-color: #232323;
 
+//$input-prefix-border-color: #ddd; // doesn't work
 $input-border-color: #ddd;
 $input-box-shadow: none;
 $input-prefix-bg: darken(#fff, 1%);
 $input-prefix-border-size: 1px;
-//$input-prefix-border-color: #ddd; // doesn't work
 $input-prefix-font-color: #6f6f6f;
+$input-include-glowing-effect: false;
+$input-disabled-bg: #fafafa;
 
 $form-label-font-color: $primary-color;
 $form-label-font-size: .8em;
 $form-label-font-weight: bold;
 $form-label-bottom-margin: .5em;
 
-$input-disabled-bg: #fafafa;
 
 
 $chr-secondary-bg-color: #fafafa;
