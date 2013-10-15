@@ -215,6 +215,13 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 * [Kaminari](https://github.com/amatsuda/kaminari)
 
 
+## Running Tests
+
+To run the test use the following command in the gem's root directory:
+
+    $ rake test
+
+
 ## TODO
 
 * pagination
