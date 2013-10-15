@@ -217,7 +217,7 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 
 ## Running Tests
 
-To run the test use the following command in the gem's root directory:
+To run the tests use the following command in the gem's root directory:
 
     $ rake test
 
