@@ -1,6 +1,4 @@
-
 @Character.App ||= {}
-
 @CharacterApp = (name, options={}) ->
   options.name ?= name
   options.pluralized_name ?= _.pluralize(options.name)
