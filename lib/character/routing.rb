@@ -4,7 +4,7 @@ module ActionDispatch::Routing
     def mount_character
       Character.namespaces.each do |name, settings|
 
-        scope "/#{name}", :module => "Character" do
+        scope "/#{name}", :module => "character" do
 
           match '/',        to: 'application#index'
           match '/login',   to: 'application#login'
