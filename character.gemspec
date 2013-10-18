@@ -40,6 +40,10 @@ Gem::Specification.new do |gem|
   # using kaminari library
   # TODO: check if we need this
   gem.add_runtime_dependency 'kaminari'
+
+  # test
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'minitest'
 end
 
 
