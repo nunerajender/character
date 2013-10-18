@@ -62,7 +62,7 @@ $ ->
   id:        'character'
   className: 'character'
 
-  template: -> """<div id='menu' class='chr-menu'></div><div id='content' class='chr-content'></div>"""
+  template: -> "<div id='menu' class='chr-menu'></div><div id='content' class='chr-content'></div>"
 
   onRender: ->
     @menu.show(new Character.MenuView())
