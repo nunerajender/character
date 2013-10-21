@@ -12,7 +12,7 @@ class Character::ApplicationController < Character::BaseController
   # before_filter :authenticate_user
 
   def authenticate_user
-    if Rails.env.development? and character_namespace.no_auth_on_development
+    if (Rails.env.development? and character_namespace.no_auth_on_development) or Rails.env.test?
       authenticate_first_user
     else
       @admin_user = browserid_current_user if browserid_authenticated?
