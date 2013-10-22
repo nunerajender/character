@@ -103,3 +103,20 @@ input[type=text].chr-title-input      { background-color: transparent;
   &.shown                             { background-color: $panel-bg;
   }
 }
+
+select                                { font-size: 12px;
+                                        border-radius: 1px;
+                                        height: 28px;
+                                        margin-top: 3px;
+
+                                        -webkit-appearance: menulist-button;
+                                        -webkit-rtl-ordering: logical;
+                                        -webkit-writing-mode: horizontal-tb;
+                                        align-items: center;
+
+                                        border-color: #ccc;
+  &:focus                             { outline-color: transparent;
+                                        outline-style: none;
+                                        border-color: $input-focus-border-color;
+  }
+}
