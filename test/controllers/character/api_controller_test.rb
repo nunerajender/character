@@ -6,6 +6,7 @@ class Character::ApiControllerTest < ActionController::TestCase
   # end
 
   setup do
+    @foo = FactoryGirl.create(:foo)
   end
 
   teardown do
@@ -17,53 +18,45 @@ class Character::ApiControllerTest < ActionController::TestCase
   # Actions
   #
 
-  test "show action" do
-    foo = FactoryGirl.create(:foo)
-    get :show, { model_slug: 'Foo', id: foo.id }
-    assert_response :success
-  end
-
   # test "should get index" do
-  #   get :index
+  #   get :index, model_slug: "Foo"
   #   assert_response :success
   #   assert_not_nil assigns(:dogs)
   # end
 
-  # test "should get new" do
-  #   get :new
-  #   assert_response :success
-  # end
+  test "should show foo" do
+    get :show, model_slug: "Foo", id: @foo.id
+    assert_response :success
+  end
 
-  # test "should create dog" do
-  #   assert_difference('Dog.count') do
-  #     post :create, dog: { age: @dog.age, name: @dog.name }
-  #   end
+  test "should get new" do
+    get :new, model_slug: "Foo"
+    assert_response :success
+  end
 
-  #   assert_redirected_to dog_path(assigns(:dog))
-  # end
+  test "should create foo" do
+    assert_difference("Foo.count") do
+      post :create, model_slug: "Foo", foo: { name: "Test" }
+    end
+    assert_equal json_response["name"], "Test"
+  end
 
-  # test "should show dog" do
-  #   get :show, id: @dog
-  #   assert_response :success
-  # end
+  test "should get edit" do
+    get :edit, model_slug: "Foo", id: @foo
+    assert_response :success
+  end
 
-  # test "should get edit" do
-  #   get :edit, id: @dog
-  #   assert_response :success
-  # end
+  test "should update foo" do
+    put :update, model_slug: "Foo", id: @foo, foo: { name: "Test 2" }
+    assert_equal json_response["name"], "Test 2"
+  end
 
-  # test "should update dog" do
-  #   patch :update, id: @dog, dog: { age: @dog.age, name: @dog.name }
-  #   assert_redirected_to dog_path(assigns(:dog))
-  # end
-
-  # test "should destroy dog" do
-  #   assert_difference('Dog.count', -1) do
-  #     delete :destroy, id: @dog
-  #   end
-
-  #   assert_redirected_to dogs_path
-  # end
+  test "should destroy foo" do
+    assert_difference('Foo.count', -1) do
+      delete :destroy, model_slug: "Foo", id: @foo
+    end
+    assert_equal @response.body, "ok"
+  end
 
 
   #

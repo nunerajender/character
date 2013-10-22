@@ -4,10 +4,15 @@ require "rails/test_help"
 require "minitest/rails"
 
 require "database_cleaner"
-require "factory_girl"
+DatabaseCleaner.strategy = :truncation
 
-Dir[Rails.root + "test/factories/*.rb"].each {|file| require file }
+require "factory_girl"
+FactoryGirl.find_definitions
 
 class ActiveSupport::TestCase
-  # Add helper methods to be used by all tests here...
+  # Helper methods available in all tests
+
+  def json_response
+    ActiveSupport::JSON.decode @response.body
+  end
 end
