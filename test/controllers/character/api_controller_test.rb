@@ -41,6 +41,13 @@ class Character::ApiControllerTest < ActionController::TestCase
     assert_equal json_response["name"], "Test"
   end
 
+  # test "should not create if foo is not valid" do
+  #   assert_no_difference("Foo.count") do
+  #     post :create, model_slug: "Foo", foo: { name: "Test", age: "abc" }
+  #   end
+  #   assert_template @controller.form_template
+  # end
+
   test "should get edit" do
     get :edit, model_slug: "Foo", id: @foo
     assert_response :success

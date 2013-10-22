@@ -8,6 +8,7 @@ ENV["RAILS_ENV"] = "test"
 # Rails
 #
 
+require "active_model"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 
@@ -50,5 +51,9 @@ end
 class Foo
   include Mongoid::Document
   include Mongoid::Timestamps
+
   field :name
+
+  # field :age, type: Integer
+  # validates :age, numericality: { only_integer: true }
 end
