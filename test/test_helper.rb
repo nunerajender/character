@@ -1,13 +1,13 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require 'config/test_application'
 
+require "rails/test_help"
+require "minitest/rails"
 
-class Character::TestCase < Minitest::Test
-  def self.test(name, &block)
-    define_method("test_#{name.inspect}", &block)
-  end
+require "database_cleaner"
+require "factory_girl"
 
-  def self.setup(&block)
-    define_method("setup", &block)
-  end
+Dir[Rails.root + "test/factories/*.rb"].each {|file| require file }
+
+class ActiveSupport::TestCase
+  # Add helper methods to be used by all tests here...
 end

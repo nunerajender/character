@@ -1,10 +1,4 @@
 module Character
-  class Engine < ::Rails::Engine
-    config.before_configuration do
-      Character.namespaces = {}
-    end
-  end
-
   class << self
     attr_writer :namespaces
 
@@ -32,6 +26,12 @@ module Character
       raise StandardError.new("Please do not mix namespaced & default configurations") if @custom_namespace_used
 
       ( @namespaces[Namespace::DEFAULT_NAMESPACE] ||= Namespace.new ).send method, *args
+    end
+  end
+
+  class Engine < ::Rails::Engine
+    config.before_configuration do
+      Character.namespaces = {}
     end
   end
 end
