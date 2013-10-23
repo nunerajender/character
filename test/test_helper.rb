@@ -1,4 +1,4 @@
-require 'config/test_application'
+require 'config/application'
 
 require "rails/test_help"
 require "minitest/rails"

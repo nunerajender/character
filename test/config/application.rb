@@ -1,5 +1,5 @@
-# Here we build a dummy application that is required to test
-# the gem that supplies some behavior to another rails application
+# Initialize a dummy application that is required to test
+# the gem that supplies some behavior to a rails application
 
 ENV["RAILS_ENV"] = "test"
 
@@ -34,6 +34,14 @@ Mongoid.load!(path_to_mongoid_config)
 
 
 #
+# Kaminari
+#
+
+require "kaminari"
+Kaminari::Hooks.init
+
+
+#
 # Character
 #
 
@@ -53,7 +61,5 @@ class Foo
   include Mongoid::Timestamps
 
   field :name
-
-  # field :age, type: Integer
-  # validates :age, numericality: { only_integer: true }
+  validates :name, length: { maximum: 6 }
 end

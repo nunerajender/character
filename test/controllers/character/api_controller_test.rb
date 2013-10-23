@@ -18,11 +18,11 @@ class Character::ApiControllerTest < ActionController::TestCase
   # Actions
   #
 
-  # test "should get index" do
-  #   get :index, model_slug: "Foo"
-  #   assert_response :success
-  #   assert_not_nil assigns(:dogs)
-  # end
+  test "should get index" do
+    get :index, model_slug: "Foo"
+    assert_response :success
+    assert json_response.length > 0
+  end
 
   test "should show foo" do
     get :show, model_slug: "Foo", id: @foo.id
@@ -41,12 +41,12 @@ class Character::ApiControllerTest < ActionController::TestCase
     assert_equal json_response["name"], "Test"
   end
 
-  # test "should not create if foo is not valid" do
-  #   assert_no_difference("Foo.count") do
-  #     post :create, model_slug: "Foo", foo: { name: "Test", age: "abc" }
-  #   end
-  #   assert_template @controller.form_template
-  # end
+  test "should not create if foo is not valid" do
+    assert_no_difference("Foo.count") do
+      post :create, model_slug: "Foo", foo: { name: "Test - Invalid attribute"}
+    end
+    assert_template @controller.form_template
+  end
 
   test "should get edit" do
     get :edit, model_slug: "Foo", id: @foo
@@ -70,31 +70,31 @@ class Character::ApiControllerTest < ActionController::TestCase
   # Routes
   #
 
-  test "index route" do
+  test "should root to index" do
     assert_routing({ path: "/admin/Foo", method: "get" }, { controller: "character/api", action: "index", model_slug: "Foo"})
   end
 
-  test "show route" do
+  test "should root to show" do
     assert_routing({ path: "/admin/Foo/1", method: "get" }, { controller: "character/api", action: "show", model_slug: "Foo", id: "1"})
   end
 
-  test "new route" do
+  test "should root to new" do
     assert_routing({ path: "/admin/Foo/new", method: "get" }, { controller: "character/api", action: "new", model_slug: "Foo"})
   end
 
-  test "create route" do
+  test "should root to create" do
     assert_routing({ path: "/admin/Foo", method: 'post' }, { controller: "character/api", action: "create", model_slug: "Foo"})
   end
 
-  test "edit route" do
+  test "should root to edit" do
     assert_routing({ path: "/admin/Foo/1/edit", method: 'get' }, { controller: "character/api", action: "edit", model_slug: "Foo", id: "1"})
   end
 
-  test "update route" do
+  test "should root to update" do
     assert_routing({ path: "/admin/Foo/1", method: 'put' }, { controller: "character/api", action: "update", model_slug: "Foo", id: "1"})
   end
 
-  test "destroy route" do
+  test "should root to destroy" do
     assert_routing({ path: "/admin/Foo/1", method: 'delete' }, { controller: "character/api", action: "destroy", model_slug: "Foo", id: "1"})
   end
 end
