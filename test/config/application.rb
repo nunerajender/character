@@ -1,5 +1,5 @@
 # Initialize a dummy application that is required to test
-# the gem that supplies some behavior to a rails application
+# the gem that supplies some behavior to another rails application
 
 ENV["RAILS_ENV"] = "test"
 
@@ -61,5 +61,7 @@ class Foo
   include Mongoid::Timestamps
 
   field :name
+  field :published, type: Boolean, default: true
+
   validates :name, length: { maximum: 6 }
 end
