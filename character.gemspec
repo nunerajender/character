@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.description   = ''
   gem.license       = ''
 
-  gem.authors       = ['Alexander Kravets', 'Maksym Melnyk']
+  gem.authors       = ['Alexander Kravets', 'Roman Lupiichuk', 'Maksym Melnyk']
   gem.email         = 'alex@slatestudio.com'
   gem.homepage      = 'https://github.com/slate-studio/character'
 
