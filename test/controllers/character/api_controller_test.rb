@@ -11,10 +11,6 @@ class Character::ApiControllerTest < ActionController::TestCase
     DatabaseCleaner.clean
   end
 
-  test "the truth" do
-    assert true
-  end
-
   test "should get index" do
     get :index, model_slug: "Foo"
     assert_response :success
