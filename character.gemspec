@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.description   = ''
   gem.license       = ''
 
-  gem.authors       = ['Alexander Kravets', 'Maxim Melnyk']
+  gem.authors       = ['Alexander Kravets', 'Roman Lupiichuk', 'Maksym Melnyk']
   gem.email         = 'alex@slatestudio.com'
   gem.homepage      = 'https://github.com/slate-studio/character'
 
@@ -43,6 +43,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'kaminari'
 
   # test
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'minitest'
-end
+  gem.add_development_dependency 'mongoid', '~> 3.0.0'
+  gem.add_development_dependency 'minitest-rails'
+  gem.add_development_dependency 'database_cleaner'
+  gem.add_development_dependency 'factory_girl_rails', '~> 4.0'

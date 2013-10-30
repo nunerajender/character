@@ -1,13 +1,18 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require 'config/application'
 
+require "rails/test_help"
+require "minitest/rails"
 
-class Character::TestCase < Minitest::Test
-  def self.test(name, &block)
-    define_method("test_#{name.inspect}", &block)
-  end
+require "database_cleaner"
+DatabaseCleaner.strategy = :truncation
 
-  def self.setup(&block)
-    define_method("setup", &block)
+require "factory_girl"
+FactoryGirl.find_definitions
+
+class ActiveSupport::TestCase
+  # Helper methods available in all tests
+
+  def json_response
+    ActiveSupport::JSON.decode @response.body
   end
 end
