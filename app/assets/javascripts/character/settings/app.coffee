@@ -10,7 +10,7 @@ chr.module 'Settings', (Module, App) ->
             .attr('href', '#/settings')
             .addClass('mi-settings')
             .removeClass('browserid_logout')
-            .html("<i class='icon-gears'></i> Settings")
+            .html("<i class='fa fa-gears'></i> Settings")
 
 
 @CharacterSettingsApp = (name, options={}) ->

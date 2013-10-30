@@ -80,14 +80,14 @@ $ ->
 
   template: -> """<img id='user_avatar' src="">
                   <ul id='menu_items'></ul>
-                  <a href='/admin/logout' class='browserid_logout'><i class="icon-signout"></i>Logout</a>"""
+                  <a href='/admin/logout' class='browserid_logout'><i class="fa fa-signout"></i>Logout</a>"""
 
   ui:
     items:  '#menu_items'
     avatar: '#user_avatar'
 
   addItem: (path, icon, title) ->
-    @ui.items.append("<li><a href='#/#{ path }' class='mi-#{ path }'><i class='icon-#{ icon }'></i>#{ title }</a></li>")
+    @ui.items.append("<li><a href='#/#{ path }' class='mi-#{ path }'><i class='fa fa-#{ icon }'></i>#{ title }</a></li>")
 
   selectItem: (cls) ->
     @$el.find('a.active').removeClass('active')

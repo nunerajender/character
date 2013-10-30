@@ -2,7 +2,7 @@
 
 @Character.Plugins.enableDrawers = () ->
   $('.chr-top-drawer').each (i, el) ->
-    $(el).append("<a class='action-show-drawer' href='#'><i class='icon-angle-down'></i></a>")
+    $(el).append("<a class='action-show-drawer' href='#'><i class='fa fa-angle-down'></i></a>")
 
     margin_top = -1 * ( $(el).position().top + $(el).height() - $(el).find('action-show-drawer').height() )
     margin_top_hidden= -1 * $(el).position().top
