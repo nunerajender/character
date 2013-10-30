@@ -47,3 +47,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'minitest-rails'
   gem.add_development_dependency 'database_cleaner'
   gem.add_development_dependency 'factory_girl_rails', '~> 4.0'
+end
