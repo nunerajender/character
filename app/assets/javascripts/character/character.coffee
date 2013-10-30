@@ -2,6 +2,7 @@
 #= require browserid
 #= require jquery_ujs
 #= require jquery.form
+#= require jquery_nested_form
 #= require underscore
 #= require underscore.string
 #= require underscore.inflection

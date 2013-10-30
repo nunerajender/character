@@ -12,6 +12,7 @@ require 'momentjs-rails'
 require 'browserid-rails'
 require 'mongoid/reorder'
 require 'simple_form'
+require 'nested_form'
 require 'kaminari'
 
 # character
