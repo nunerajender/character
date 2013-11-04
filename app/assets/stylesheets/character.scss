@@ -79,3 +79,6 @@ $chr-action-save-height: 68px;
 @import "./character/settings/*";
 @import "./character/elements";
 @import "./character/views";
+
+template                              { display: none;
+}
