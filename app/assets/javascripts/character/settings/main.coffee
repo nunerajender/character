@@ -9,7 +9,7 @@
                       Logout<br><span id='user_email' class='user-email'>santyor@gmail.com</span>
                     </a>
                   </aside>
-                  <div id=details class='right-panel'></div>"""
+                  <div id=details class='right-panel logo'></div>"""
 
   regions:
     details: '#details'

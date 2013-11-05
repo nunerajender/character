@@ -61,4 +61,6 @@
 .chr-settings-view-form               { @include position(0, $chr-settings-header-height, 0, inherit);
                                         @include scrollable;
                                         padding-top: 3em;
+                                        min-height: 100%;
+                                        background-color: white;
 }
