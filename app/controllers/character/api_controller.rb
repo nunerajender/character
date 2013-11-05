@@ -9,14 +9,12 @@ class Character::ApiController < Character::BaseController
 
   # Actions -----------------------------------------------
 
-  # - the index action implements order, search and paging
-  # TODO: implement filtering
+  # - the index action implements order+filtering, search and paging
   def index
-    scope        = params[:scope]
-    order_by     = params[:order_by]
-    search_query = params[:q] || ''
-    page         = params[:page]         || 1
-    per_page     = params[:per_page]     || 25
+    order_by     = params[:o]
+    search_query = params[:q]  || ''
+    page         = params[:p]  || 1
+    per_page     = params[:pp] || 25
 
     @objects = model_class.unscoped.all
 
@@ -45,7 +43,7 @@ class Character::ApiController < Character::BaseController
 
     # search option
     if not search_query.empty?
-      @objects = @objects.full_text_search(search_query)
+      @objects = @objects.full_text_search(search_query, match: :all)
     end
 
 
@@ -73,14 +71,10 @@ class Character::ApiController < Character::BaseController
     @objects = @objects.page(page).per(per_page)
 
 
-    item_objects = @objects.map { |o| build_json_object(o) }
 
+    # result
+    item_objects = @objects.map { |o| build_json_object(o) }
     render json: item_objects
-    # render json: {  objects:       item_objects,
-    #                 total_pages:   @objects.total_pages(),
-    #                 page:          page,
-    #                 per_page:      per_page,
-    #                 search_query:  search_query }
   end
 
 
@@ -154,5 +148,4 @@ class Character::ApiController < Character::BaseController
     @object.destroy
     render json: 'ok'
   end
-
 end

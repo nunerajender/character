@@ -3,8 +3,8 @@ module JsonObjectHelper
     @object_fields ||= begin
       @object_fields = []
 
-      if params[:fields_to_include]
-        @object_fields = params[:fields_to_include].split(',')
+      if params[:f]
+        @object_fields = params[:f].split(',')
       else
         fields = model_class.fields.keys - %w( _id _type _position _keywords created_at updated_at deleted_at )
 
@@ -13,7 +13,7 @@ module JsonObjectHelper
         @object_fields << :character_thumb_url if model_class.method_defined? :character_thumb_url
       end
 
-      @object_fields << :_position if params[:reorder] == 'true'
+      @object_fields << :_position if model_class.fields.keys.include? :_position
       @object_fields << :created_at
       @object_fields << :updated_at
 

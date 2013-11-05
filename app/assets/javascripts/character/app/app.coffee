@@ -8,6 +8,7 @@
   options.implementation  ?= Character.App
   options.search          ?= false
   options.reorder         ?= false
+  options.items_per_page  ?= 25
 
   if options.scopes
     _(options.scopes).each (scope, slug) ->
@@ -39,8 +40,8 @@
         item_meta:           options.item_meta
         item_image:          options.item_image
         constant_params:
-          reorder:           options.reorder
-          fields_to_include: options.model_fields.join(',')
+          f:  options.model_fields.join(',')
+          pp: options.items_per_page
 
       options.app = app
 

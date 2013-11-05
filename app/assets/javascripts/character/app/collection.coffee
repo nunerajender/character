@@ -36,9 +36,6 @@
 @Character.App.Collection = Backbone.Collection.extend
   model: Character.App.Model
 
-  # parse: (resp) ->
-  #   resp.objects
-
   url: (params) ->
     @options.collection_url + "?" + $.param(params || @requestParams || {}, true)
 
@@ -46,33 +43,38 @@
     scopes = @options.scopes
     params = {}
 
+    # page
+    if @page
+      params.p = @page
+
+    # search
     if @search_query
       params.q = @search_query
 
-    # slug
+    # order + filtering
     if @scope_slug and scopes
       scope  = scopes[@scope_slug]
 
       if scope
         [name, value] = scope.where.split('=')
         params["where__#{name}"] = value
-        params.order_by         ?= scope.order_by
+        params.o ?= scope.order_by
 
-    # sort order
-    params.order_by ||= @options.order_by
+    params.o ||= @options.order_by
 
     _.extend(params, @options.constant_params)
 
     if @url() != @url(params)
       @requestParams = params
 
-      # update sorting options
-      if @requestParams.order_by
-        [ @sortField, @sortDirection ] = @requestParams.order_by.split(':')
+      # collection sortBy settings
+      if @requestParams.o
+        [ @sortField, @sortDirection ] = @requestParams.o.split(':')
 
       return true
     else
       return false
+
 
   update: (callback) ->
     paramsChanged = @updateRequestParams()
@@ -82,19 +84,32 @@
     else
       callback?()
 
+
   scope: (@scope_slug, callback) ->
+    @page = 1
     @search_query = false
     @update(callback)
 
+
   search: (@search_query, callback) ->
+    @page = 1
     @update(callback)
+
+
+  more: (callback) ->
+    @page += 1
+    @updateRequestParams()
+    @fetch({ remove: false, success: -> callback?() })
+
 
   # support of reverse sorting is taken from:
   # http://stackoverflow.com/questions/5013819/reverse-sort-order-with-backbone-js
 
+
   comparator: (m) ->
     if @requestParams.order_by
       return m.get(@sortField)
+
 
   sortBy: (iterator, context) ->
     obj = @models
