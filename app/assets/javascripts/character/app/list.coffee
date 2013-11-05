@@ -10,7 +10,7 @@
 
   onRender: ->
     @selectItem(@selected_item_id) if @selected_item_id
-    if @collection.options.reorderable then Character.Plugins.reorderable(@$el, @collection)
+    if @collection.options.reorder then Character.Plugins.reorderable(@$el, @collection)
 
   selectItem: (id) ->
     @selected_item_id = id

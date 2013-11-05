@@ -14,7 +14,7 @@ class Character::ApiController < Character::BaseController
   def index
     scope        = params[:scope]
     order_by     = params[:order_by]
-    search_query = params[:search_query] || ''
+    search_query = params[:q] || ''
     page         = params[:page]         || 1
     per_page     = params[:per_page]     || 25
 
@@ -44,7 +44,9 @@ class Character::ApiController < Character::BaseController
 
 
     # search option
-    #@objects = @objects.full_text_search(search_query) if not search_query.empty?
+    if not search_query.empty?
+      @objects = @objects.full_text_search(search_query)
+    end
 
 
 
@@ -154,6 +156,3 @@ class Character::ApiController < Character::BaseController
   end
 
 end
-
-
-

@@ -10,4 +10,30 @@
   .title.dropdown                     { border-bottom: 1px dashed $chr-action-color;
                                         padding-bottom: .1em;
   }
+
+  .search                             {
+    a                                 { color: $chr-action-color;
+                                        position: absolute;
+                                        right: 1.5em;
+      &:hover                         { color: $body-font-color;
+      }
+    }
+    .fa-times                         { display: none;
+    }
+    input                             { display: none;
+    }
+    &.shown                           {
+      .fa-search                      { display: none;
+      }
+      .fa-times                       { display: inline;
+      }
+      input                           { width: inherit;
+                                        position: absolute;
+                                        top: 1.25em;
+                                        left: 1em;
+                                        right: 1em;
+                                        display: block;
+      }
+    }
+  }
 }

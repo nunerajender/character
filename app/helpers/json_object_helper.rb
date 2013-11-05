@@ -13,7 +13,7 @@ module JsonObjectHelper
         @object_fields << :character_thumb_url if model_class.method_defined? :character_thumb_url
       end
 
-      @object_fields << :_position if params[:reorderable] == 'true'
+      @object_fields << :_position if params[:reorder] == 'true'
       @object_fields << :created_at
       @object_fields << :updated_at
 

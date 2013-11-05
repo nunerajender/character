@@ -14,7 +14,8 @@
       chr.menu.selectItem(@options.path)
       chr.main.show(@app.main)
       @app.main.header.update(scope)
-      @app.collection.update(scope, callback)
+
+      @app.collection.scope(scope, callback)
     else
       @app.main.list.unselectCurrentItem()
       @app.main.details.close()
@@ -41,14 +42,3 @@
         collection: @app.collection
         app:        @app
       @app.main.details.show(view)
-
-
-#========================================================
-# Router
-#========================================================
-@Character.App.Router = Backbone.Marionette.AppRouter.extend
-  initialize: (options) ->
-    @appRoutes ||= {}
-    @appRoutes["#{ options.path }(/:scope)/new"]      = "new"
-    @appRoutes["#{ options.path }(/:scope)/edit/:id"] = "edit"
-    @appRoutes["#{ options.path }(/:scope)"]          = "index"

@@ -42,13 +42,16 @@
   url: (params) ->
     @options.collection_url + "?" + $.param(params || @requestParams || {}, true)
 
-  updateRequestParams: (scope_slug) ->
+  updateRequestParams: ->
     scopes = @options.scopes
     params = {}
 
+    if @search_query
+      params.q = @search_query
+
     # slug
-    if scope_slug and scopes
-      scope  = scopes[scope_slug]
+    if @scope_slug and scopes
+      scope  = scopes[@scope_slug]
 
       if scope
         [name, value] = scope.where.split('=')
@@ -71,13 +74,20 @@
     else
       return false
 
-  update: (scope_slug, callback) ->
-    paramsChanged = @updateRequestParams(scope_slug)
+  update: (callback) ->
+    paramsChanged = @updateRequestParams()
 
     if paramsChanged
       @fetch({ reset: true, success: -> callback?() })
     else
       callback?()
+
+  scope: (@scope_slug, callback) ->
+    @search_query = false
+    @update(callback)
+
+  search: (@search_query, callback) ->
+    @update(callback)
 
   # support of reverse sorting is taken from:
   # http://stackoverflow.com/questions/5013819/reverse-sort-order-with-backbone-js

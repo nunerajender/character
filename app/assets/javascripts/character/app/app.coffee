@@ -1,10 +1,13 @@
 @Character.App ||= {}
 @CharacterApp = (name, options={}) ->
   options.name ?= name
+  options.model_slug      ?= _.slugify(options.name)
   options.pluralized_name ?= _.pluralize(options.name)
   options.path            ?= _.slugify(options.pluralized_name)
   options.icon            ?= 'bolt'
   options.implementation  ?= Character.App
+  options.search          ?= false
+  options.reorder         ?= false
 
   if options.scopes
     _(options.scopes).each (scope, slug) ->
@@ -23,18 +26,20 @@
     app = _(app).extend(options.implementation)
 
     app.on 'start', =>
+      collection_url = options.collection_url || "#{ chr.options.url }/#{ options.name }"
       app.collection = new app.Collection()
       app.collection.options =
+        collection_url:      collection_url
         scopes:              options.scopes
-        model_slug:          options.model_slug || _.slugify(name)
+        model_slug:          options.model_slug
         order_by:            options.default_scope_order_by
-        collection_url:      options.collection_url || "#{ chr.options.url }/#{ options.name }"
+        reorder:             options.reorder
+        search:              options.search
         item_title:          options.item_title
         item_meta:           options.item_meta
         item_image:          options.item_image
-        reorderable:         options.reorderable || false
         constant_params:
-          reorderable:       options.reorderable
+          reorder:           options.reorder
           fields_to_include: options.model_fields.join(',')
 
       options.app = app

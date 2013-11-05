@@ -1,15 +1,55 @@
 @Character.App ||= {}
 @Character.App.ListHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<a class='title'></a><span class='chr-actions'><i class='chr-action-pin'></i><a class='new'>New</a></span>
-                <aside class='right search'></aside>
+  template: -> "<a class='title'></a>
+                <span class='chr-actions'><i class='chr-action-pin'></i><a class='new'>New</a></span>
+                <aside class='right search'>
+                  <input type='text' placeholder='Type your search here...' />
+                  <a href='#'><i class='fa fa-times'></i><i class='fa fa-search'></i></a>
+                </aside>
                 <ul id='scopes' class='f-dropdown'></ul>"
 
   ui:
-    title:      '.title'
-    actions:    '.actions'
-    new_action: '.new'
-    search:     '.search'
-    scopes:     '#scopes'
+    title:         '.title'
+    actions:       '.actions'
+    new_action:    '.new'
+    search:        '.search'
+    search_input:  '.search input'
+    scopes:        '#scopes'
+
+
+  events:
+    'click .search a':     'toggleSearchBar'
+    'keyup .search input': 'runSearch'
+
+
+  runSearch: (e) ->
+    delay = 800
+
+    if @search_on_type_timeout
+      clearTimeout(@search_on_type_timeout)
+
+    query = @ui.search_input.val()
+    return false if query.length < 3
+
+    @search_on_type_timeout = setTimeout((=> @options.app.collection.search(query)), delay)
+
+
+  toggleSearchBar: ->
+    if @ui.search.hasClass('shown')
+      @ui.search.removeClass('shown')
+      @ui.search_input.val('')
+      @options.app.collection.search(false)
+    else
+      @ui.search.addClass('shown')
+      @ui.search_input.focus()
+    false
+
+
+  onRender: ->
+    if @options.search then @ui.search.show() else @ui.search.hide()
+
+    @afterOnRender() if @afterOnRender
+
 
   update: (scope_slug) ->
     title = @options.pluralized_name
@@ -28,6 +68,7 @@
 
     if @options.scopes
       @addScopesDropdown()
+
 
   addScopesDropdown: ->
     scopes = @options.scopes

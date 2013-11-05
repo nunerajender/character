@@ -25,10 +25,6 @@ $ ->
     Character.Plugins.fix_date_field_layout()
     Character.Plugins.enableDrawers()
 
-    # @ui.form.addClass('custom')
-    # @ui.form.foundation('forms', 'assemble')
-    # @ui.form.foundation('section', 'resize')
-
 
 @chr = new Backbone.Marionette.Application()
 

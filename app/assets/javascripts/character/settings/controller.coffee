@@ -2,19 +2,11 @@
 @Character.Settings ||= {}
 
 #========================================================
-# Router
-#========================================================
-@Character.Settings.Router = Backbone.Marionette.AppRouter.extend
-  appRoutes:
-    'settings':         'index'
-    'settings/:module': 'edit'
-
-
-#========================================================
 # Controller
 #========================================================
 @Character.Settings.Controller = Marionette.Controller.extend
-  initialize: -> @module = @options.module
+  initialize: ->
+    @module = @options.module
 
   index: ->
     chr.path = 'settings'
@@ -23,6 +15,8 @@
 
   edit: (settings_app) ->
     @index()
-    details_view = new Character.Settings.DetailsView(@module.submodules[settings_app].options)
+    options      = @module.submodules[settings_app].options
+    details_view = new options.detailsViewClass(options)
+
     @module.main.details.show(details_view)
     @module.main.setActiveMenuItem(settings_app)
