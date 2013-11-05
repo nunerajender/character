@@ -19,19 +19,21 @@
 
   events:
     'click .search a':     'toggleSearchBar'
-    'keyup .search input': 'runSearch'
+    'keyup .search input': 'onKeyup'
 
 
-  runSearch: (e) ->
-    delay = 800
-
+  onKeyup: (e) ->
     if @search_on_type_timeout
       clearTimeout(@search_on_type_timeout)
 
-    query = @ui.search_input.val()
-    return false if query.length < 3
+    return @toggleSearchBar() if e.keyCode == 27
 
-    @search_on_type_timeout = setTimeout((=> @options.app.collection.search(query)), delay)
+    query = @ui.search_input.val()
+
+    if e.keyCode == 13
+      @options.app.collection.search(query)
+    else
+      @search_on_type_timeout = setTimeout((=> @options.app.collection.search(query)), 800)
 
 
   toggleSearchBar: ->
