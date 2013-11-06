@@ -1,3 +1,8 @@
+.chr-form-label                       { margin-bottom: $form-label-bottom-margin;
+                                        font-size: $form-label-font-size;
+                                        font-weight: bold;
+}
+
 .chr-form-split                       { //background: $chr-border-color;
                                         height: 0px;
                                         margin-top: .5em;
@@ -66,5 +71,18 @@ select                                { font-size: 12px;
   &:focus                             { outline-color: transparent;
                                         outline-style: none;
                                         border-color: $input-focus-border-color;
+  }
+}
+
+.chr-form-image-upload                { margin-bottom: 1em;
+  img                                 { position: absolute;
+                                        width: 56px;
+                                        height: 56px;
+  }
+  aside                               { margin-left: 66px;
+                                        padding-top: .5em;
+                                        height: 56px;
+    .input.file input                 { margin-bottom: .5em;
+    }
   }
 }

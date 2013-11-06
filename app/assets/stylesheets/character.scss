@@ -20,8 +20,6 @@ $form-label-font-size: .8em;
 $form-label-font-weight: bold;
 $form-label-bottom-margin: .5em;
 
-
-
 $chr-secondary-bg-color: #fafafa;
 
 $panel-bg: $chr-secondary-bg-color;
@@ -59,7 +57,6 @@ $chr-list-item-active-meta-color: #555;
 
 $chr-action-color: #666;
 $chr-action-save-height: 68px;
-
 
 @mixin position($left, $top, $right, $bottom, $z-index: 0) {
                                         position: absolute;
