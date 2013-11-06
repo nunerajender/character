@@ -4,6 +4,7 @@
   $list = $('#images_helper')
   if $list.hasClass('reorderable')
     sort_options =
+      handle: '.handle'
       stop: (e, ui) ->
         items = $list.find('.fields')
         total = items.length
