@@ -1,34 +1,3 @@
-
-
-.logo                                 { background-position: 50% 50%;
-                                        background-repeat: no-repeat no-repeat;
-}
-
-.chr-action,
-.chr-actions a                        { color: $chr-action-color;
-                                        font-size: 12px;
-  &.active,
-  &:hover                             { text-decoration: underline;
-  }
-}
-
-.chr-action-pin                       { margin-left: 5px;
-                                        margin-right: 4px;
-  &:before                            { content: '\00B7';
-                                        font-size: 17px;
-                                        color: $chr-action-color;
-  }
-}
-
-.chr-action-save                      { position: absolute; top: 0; right: 0;
-                                        //border-left: 1px solid $chr-border-color;
-                                        color: $chr-action-color;
-                                        line-height: $chr-action-save-height;
-                                        padding: 0 1.5em;
-  &.disabled                          { color: lighten($chr-action-color, 30%);
-  }
-}
-
 .chr-form-split                       { //background: $chr-border-color;
                                         height: 0px;
                                         margin-top: .5em;
@@ -64,27 +33,6 @@
 
   label .note                         { font-weight: normal;
                                         color: lighten($primary-color, 40%);
-  }
-}
-
-.chr-top-drawer                       { margin-bottom: 1.4em;
-                                        padding-top: 1.25em;
-                                        padding-bottom: 0;
-                                        background-color: #fff;
-   &:hover                            { background-color: $panel-bg;
-  }
-
-  &.shown                             { background-color: $panel-bg;
-    .action-show-drawer i:before      { content: '\f106';
-    }
-  }
-
-  .action-show-drawer                 { display: block;
-                                        text-align: center;
-                                        opacity: .3;
-                                        line-height: 1.5;
-                                        width: 100%;
-                                        float: left;
   }
 }
 

@@ -8,6 +8,10 @@ html                                  { overflow: hidden;
 body                                  { position: inherit;
 }
 
+.logo                                 { background-position: 50% 50%;
+                                        background-repeat: no-repeat no-repeat;
+}
+
 .chr-login                            { position: fixed;
                                         width: 100%;
                                         height: 100%;

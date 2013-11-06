@@ -1,0 +1,14 @@
+<div class='large-block-grid-4 chr-form-images'>
+  <%= form.fields_for :images, form.object.images do |m| %>
+      <% if m.object.persisted? %>
+                <%= image_tag m.object.image.try(:project_thumbnail).url %>
+                <%#= m.input :title, label: 'Title' %>
+                <%= m.link_to_remove do %><i class='fa fa-times'></i><% end %>
+      <% else %>
+                <%= m.input :image %>
+                <%#= m.input :title %>
+                <%= m.link_to_remove do %><i class='fa fa-times'></i><% end %>
+      <% end %>
+  <% end %>
+</div>
+<%= form.link_to_add(:images) do %>Add Image<% end %>
