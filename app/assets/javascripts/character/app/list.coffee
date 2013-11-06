@@ -10,6 +10,7 @@
 
 
   loadMoreItems: ->
+    # NOTE: This still will request a new page every time if last item is last on last page
     if @collection.size() == @collection.page * @collection.options.constant_params.pp
       if not @loading_more_items_in_progress
         @loading_more_items_in_progress = true
