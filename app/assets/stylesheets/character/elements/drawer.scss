@@ -1,13 +1,9 @@
-.chr-top-drawer                       { margin-bottom: 1.4em;
-                                        padding-top: 1.25em;
+.chr-top-drawer                       { @extend .row;
+                                        margin-bottom: 1.4em;
+                                        margin-top: -3em;
                                         padding-bottom: 0;
                                         background-color: #fff;
-   &:hover                            { background-color: $panel-bg;
-  }
-
-  &.shown                             { background-color: $panel-bg;
-    .action-show-drawer i:before      { content: '\f106';
-    }
+  &:hover                             { background-color: $panel-bg;
   }
 
   .action-show-drawer                 { display: block;
@@ -17,4 +13,18 @@
                                         width: 100%;
                                         float: left;
   }
+
+  .drawer-content                     { display: none;
+  }
+
+  &.shown                             { background-color: $panel-bg;
+                                        padding-top: 1.25em;
+    .action-show-drawer i:before      { content: '\f106';
+    }
+    .drawer-content                   { display: block;
+    }
+  }
+}
+
+.drawer-content > .columns            { padding: 0 6%;
 }

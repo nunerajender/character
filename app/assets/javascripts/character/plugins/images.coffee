@@ -18,4 +18,5 @@
     $title_input = $(e.currentTarget).parent().find('.hidden.title')
     val     = $title_input.val()
     new_val = prompt("Enter new title for image", val)
-    $title_input.val(new_val)
+    if new_val or new_val == ''
+      $title_input.val(new_val)

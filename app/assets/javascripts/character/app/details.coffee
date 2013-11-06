@@ -17,8 +17,8 @@
     @router = @options.app.router
 
   onRender: ->
-    header_view = new @DetailsHeaderView({ model: @model, name: "New #{ @options.name }" })
-    @header.show(header_view)
+    @header_view = new @DetailsHeaderView({ model: @model, name: "New #{ @options.name }" })
+    @header.show(@header_view)
 
     @$el.addClass('edit') if @model
 
@@ -34,16 +34,18 @@
       # include fields to properly update item in a list and sort
       params = @collection.options.constant_params
       if @collection.sortField
-        params.fields_to_include = _([ params.fields_to_include, @collection.sortField ]).uniq().join(',')
+        params.f = _([ params.f, @collection.sortField ]).uniq().join(',')
 
       @ui.form.ajaxForm
         data: params
         beforeSubmit: (arr, $form, options) =>
           # date fixes for rails
           _(Character.Plugins.get_date_field_values(arr)).each (el) -> arr.push(el)
-          @ui.action_save.addClass('disabled')
+          @header_view.setSavingState()
           return true
-        success: (resp) => @ui.action_save.removeClass('disabled') ; @updateModel(resp)
+        success: (resp) =>
+          @header_view.setSavedState()
+          @updateModel(resp)
 
       $(document).trigger('rendered.chrForm', [ @ui.form ])
       @afterFormRendered?()

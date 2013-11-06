@@ -28,8 +28,11 @@
     if @ui.form.length > 0
       @ui.action_save.show()
       @ui.form.ajaxForm
-        beforeSubmit: (arr, $form, options) => @ui.action_save.addClass('disabled'); return true
-        success: (response) => @ui.action_save.removeClass('disabled')
+        beforeSubmit: (arr, $form, options) =>
+          @setSavingState()
+          return true
+        success: (response) =>
+          @setSavedState()
 
     @afterFormRendered?()
 
@@ -64,5 +67,14 @@
 
       $(destroy_field).attr('value', 'true')
       item.replaceWith(destroy_field)
-
     return false
+
+  setSavingState: ->
+    @ui.action_save.addClass('disabled')
+    @ui.action_save.html 'Saving...'
+
+  setSavedState: ->
+    setTimeout ( =>
+      @ui.action_save.removeClass('disabled')
+      @ui.action_save.html 'Save'
+    ), 500

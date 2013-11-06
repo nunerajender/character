@@ -74,10 +74,22 @@ $chr-action-save-height: 68px;
                                         overflow-y: auto;
 }
 
-@import "./character/app/*";
-@import "./character/settings/*";
-@import "./character/elements/*";
-@import "./character/helpers/*";
+@import "./character/app/details";
+@import "./character/app/list";
+@import "./character/app/list_header";
+@import "./character/app/list_item";
+@import "./character/app/main";
+
+@import "./character/settings/admins";
+@import "./character/settings/views";
+
+@import "./character/elements/actions";
+@import "./character/elements/drawer";
+@import "./character/elements/form";
+@import "./character/elements/grid";
+
+@import "./character/helpers/images";
+
 @import "./character/views";
 
 template                              { display: none;
