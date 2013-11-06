@@ -24,6 +24,7 @@ $ ->
   $(document).on 'rendered.chrForm', (e, $form) ->
     Character.Plugins.fix_date_field_layout()
     Character.Plugins.enableDrawers()
+    Character.Plugins.imagesHelperReorderable()
 
 
 @chr = new Backbone.Marionette.Application()

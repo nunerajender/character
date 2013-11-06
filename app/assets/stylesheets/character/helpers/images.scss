@@ -1,2 +1,24 @@
-.chr-form-images                      {
+.chr-form-images                      { @include block-grid-div(4, $block-grid-default-spacing, true);
+  .fields a                           { display: none;
+                                        width: 2em;
+                                        height: 2em;
+                                        position: absolute;
+                                        background: #222;
+                                        color: white;
+                                        padding: .4em .6em;
+    &.action-edit-title               { margin-top: -2em;
+                                        padding-top: 0.5em;
+    }
+  }
+  .fields:hover a                     { display: block;
+  }
+}
+
+.chr-form-images-new                {
+  .file input                       { margin-top: .6em;
+                                      margin-bottom: 0;
+  }
+  .cancel                           { margin-top: .4em;
+                                      text-align: right;
+  }
 }

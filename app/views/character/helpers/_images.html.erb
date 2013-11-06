@@ -1,14 +1,21 @@
-<div class='large-block-grid-4 chr-form-images'>
-  <%= form.fields_for :images, form.object.images do |m| %>
+<div class='chr-form-images <% if reorderable %>reorderable<% end %>' id='images_helper'>
+  <%= form.fields_for fields_for, form.object.try(fields_for) do |m| %>
       <% if m.object.persisted? %>
-                <%= image_tag m.object.image.try(:project_thumbnail).url %>
-                <%#= m.input :title, label: 'Title' %>
-                <%= m.link_to_remove do %><i class='fa fa-times'></i><% end %>
+        <%= m.link_to_remove do %><i class='fa fa-times'></i><% end %>
+        <%= image_tag m.object.image.try(:chr_images_helper_thumbnail).url %>
+        <%= m.input :title, as: :hidden, input_html: { class: 'title' } %>
+        <%= m.input :_position, as: :hidden, input_html: { class: 'position' } if reorderable %>
+        <a href='#' class='action-edit-title' title='Edit image title'><i class='fa fa-edit'></i></a>
       <% else %>
-                <%= m.input :image %>
-                <%#= m.input :title %>
-                <%= m.link_to_remove do %><i class='fa fa-times'></i><% end %>
+              <div class='row chr-form-images-new'>
+                <%= m.input :title, placeholder: 'Alt', label: false, wrapper_class: 'large-6 columns' %>
+                <%= m.input :image, label: false, wrapper_class: 'large-4 columns' %>
+                <%= m.input :_position, as: :hidden, input_html: { class: 'position' } if reorderable %>
+                <div class='large-2 columns cancel'>
+                  <span class='chr-actions'><i class="chr-action-pin"></i><%= m.link_to_remove do %>Cancel<% end %></span>
+                </div>
+              </div>
       <% end %>
   <% end %>
 </div>
-<%= form.link_to_add(:images) do %>Add Image<% end %>
+<%= form.link_to_add(:images, class: 'chr-action') do %><i class="chr-action-pin"></i><span class='lb'>Add an image</span><% end %>
