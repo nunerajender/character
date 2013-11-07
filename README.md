@@ -1,6 +1,6 @@
 # Character (α)
 
-**IN DEVELOPMENT**
+**IN DEVELOPMENT (obsolete)**
 
 Data management framework based on [Backbone.js](http://backbonejs.org/) & [Marionette.js](https://github.com/marionettejs/backbone.marionette) written in CoffeeScript, using [Rails Framework](http://rubyonrails.org/) on the back-end. Front-end is based on [Foundation 4](http://foundation.zurb.com/) framework.
 
@@ -237,6 +237,3 @@ To run the tests use the following command in the gem's root directory:
 * [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - September 26, 2013
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 * Мельник Максим @ [Slate](http://www.slatestudio.com) - October 23, 2013
-
-
-

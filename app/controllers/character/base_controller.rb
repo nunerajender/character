@@ -26,11 +26,11 @@ class Character::BaseController < ActionController::Base
   private
 
   def authenticate_user
-    if (Rails.env.development? and character_namespace.no_auth_on_development) or Rails.env.test?
+    if authenticate_first_user?
       authenticate_first_user
     else
       if browserid_authenticated?
-        @admin_user = browserid_current_user
+        @current_user = browserid_current_user
       else
         render status: :unauthorized, json: { error: "Access denied." }
       end
@@ -39,9 +39,14 @@ class Character::BaseController < ActionController::Base
 
 
   def authenticate_first_user
-    @admin_user = character_namespace.user_class.first
+    @current_user = character_namespace.user_class.first
     def self.browserid_authenticated?; true; end
-    def self.browserid_current_user; @admin_user; end
+    def self.browserid_current_user; @current_user; end
+  end
+
+
+  def authenticate_first_user?
+    (Rails.env.development? and character_namespace.no_auth_on_development) or Rails.env.test?
   end
 
 

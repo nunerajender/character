@@ -1,0 +1,9 @@
+<div class='row'>
+  <div class='large-8 columns large-centered'>
+    <p style='margin-top: 3em;'>You're signed in with <strong><%= @browserid_email %></strong>, but this account have no access to this area. You can ask administrator to provide access for this email or re-sign in with a different email.</p>
+
+    <%= link_to "/#{character_namespace.name}/logout?redirect=/#{character_namespace.name}", class: 'browserid_logout' do %>
+      <i class='fa fa-sign-out'></i> Sign out
+    <% end %>
+  </div>
+</div>

@@ -5,8 +5,8 @@
   template: -> """<aside class='left-panel'>
                     <header class='chr-settings-list-header'>Settings</header>
                     <ul id=list class='chr-settings-list'></ul>
-                    <a href='/admin/logout' class='browserid_logout button radius secondary small'>
-                      Logout<br><span id='user_email' class='user-email'>santyor@gmail.com</span>
+                    <a href='logout' class='browserid_logout button radius secondary small'>
+                      Sign out<br><span id='user_email' class='user-email'>santyor@gmail.com</span>
                     </a>
                   </aside>
                   <div id=details class='right-panel logo'></div>"""
@@ -15,10 +15,12 @@
     details: '#details'
 
   ui:
-    list:       '#list'
-    user_email: '#user_email'
+    list:          '#list'
+    user_email:    '#user_email'
+    action_logout: '.browserid_logout'
 
   onRender: ->
+    @ui.action_logout.attr 'href', chr.options.url + '/logout'
     @ui.user_email.html(chr.options.user.email)
     @addMenu()
 

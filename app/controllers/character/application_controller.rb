@@ -7,10 +7,19 @@ class Character::ApplicationController < Character::BaseController
   layout false
 
   def authenticate_user
-    if (Rails.env.development? and character_namespace.no_auth_on_development) or Rails.env.test?
+    if authenticate_first_user?
       authenticate_first_user
     else
-      @admin_user = browserid_current_user if browserid_authenticated?
+      if browserid_authenticated?
+        @current_user = browserid_current_user
+      else
+        @browserid_email = browserid_email
+
+        # if no users and this is first time login create an account to logged in user
+        if not character_namespace.user_class.first
+          @current_user = character_namespace.user_class.create(email: @browserid_email) if @browserid_email
+        end
+      end
     end
   end
 
@@ -24,6 +33,11 @@ class Character::ApplicationController < Character::BaseController
 
   def logout
     logout_browserid
-    head :ok
+
+    if params['redirect']
+      redirect_to params['redirect']
+    else
+      head :ok
+    end
   end
 end

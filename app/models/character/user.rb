@@ -1,4 +1,4 @@
-class Character::AdminUser
+class Character::User
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -20,7 +20,7 @@ class Character::AdminUser
     "http://www.gravatar.com/avatar/#{ hash }?s=#{ size }&d=mm"
   end
 
-  def character_thumb_url
+  def chr_thumbnail_url
     gravatar_url(56)
   end
 end

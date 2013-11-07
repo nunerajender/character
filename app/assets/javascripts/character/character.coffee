@@ -77,11 +77,12 @@ $ ->
 
   template: -> """<img id='user_avatar' src="">
                   <ul id='menu_items'></ul>
-                  <a href='/admin/logout' class='browserid_logout'><i class="fa fa-signout"></i>Logout</a>"""
+                  <a href='' class='browserid_logout'><i class="fa fa-signout"></i>Sign out</a>"""
 
   ui:
-    items:  '#menu_items'
-    avatar: '#user_avatar'
+    items:          '#menu_items'
+    avatar:         '#user_avatar'
+    action_logout:  '.browserid_logout'
 
   addItem: (path, icon, title) ->
     @ui.items.append("<li><a href='#/#{ path }' class='mi-#{ path }'><i class='fa fa-#{ icon }'></i>#{ title }</a></li>")
@@ -92,3 +93,6 @@ $ ->
 
   firstItem: ->
     @ui.items.find('a:eq(0)')
+
+  onRender: ->
+    @ui.action_logout.attr 'href', chr.options.url + '/logout'
