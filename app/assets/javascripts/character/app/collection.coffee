@@ -76,10 +76,10 @@
       return false
 
 
-  update: (callback) ->
+  update: (callback, force=false) ->
     paramsChanged = @updateRequestParams()
 
-    if paramsChanged
+    if paramsChanged or force
       @fetch({ reset: true, success: -> callback?() })
     else
       callback?()
@@ -100,6 +100,12 @@
     @page += 1
     @updateRequestParams()
     @fetch({ remove: false, success: -> callback?() })
+
+
+  refetch: (callback) ->
+    @page = 1
+    @search_query = false
+    @update(callback, true)
 
 
   # support of reverse sorting is taken from:

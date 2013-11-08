@@ -19,7 +19,11 @@
   setSavingState: ->
     @previous_save_label = @ui.action_save.html()
     @ui.action_save.addClass('disabled')
-    @ui.action_save.html 'Saving...'
+
+    if @previous_save_label == 'Create'
+      @ui.action_save.html 'Creating...'
+    else
+      @ui.action_save.html 'Saving...'
 
   setSavedState: ->
     setTimeout ( =>

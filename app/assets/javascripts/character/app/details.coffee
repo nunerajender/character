@@ -50,21 +50,33 @@
       $(document).trigger('rendered.chrForm', [ @ui.form ])
       @afterFormRendered?()
 
-  updateModel: (resp) ->
-    # when response is a string, that means form with errors returned
-    if typeof(resp) == 'string' then return @updateContent(resp)
-    # assuming response is json
-    if @model then @model.set(resp) else @collection.add(resp)
-    @collection.sort()
 
   events:
     'click #action_save':   'onSave'
     'click #action_delete': 'onDelete'
 
+
   onSave: ->
-    @ui.form.submit() ; return false
+    @ui.form.submit()
+    return false
+
+
+  updateModel: (resp) ->
+    # when response is a string, that means form with errors returned
+    if typeof(resp) == 'string' then return @updateContent(resp)
+    # assuming response is json
+    if @model
+      @model.set(resp)
+      @collection.sort()
+    else
+      @collection.refetch()
+
 
   onDelete: ->
     if confirm("""Are you sure about deleting "#{ @model.getTitle() }"?""")
-      @close() ; @model.destroy() ; @router.navigate(chr.path)
+      @close()
+      @model.destroy
+        success: =>
+          @collection.refetch()
+          @router.navigate(chr.path)
     return false
