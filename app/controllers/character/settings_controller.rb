@@ -3,9 +3,14 @@
 
 class Character::SettingsController < Character::BaseController
   def show
-    scope = params[:scope]
-    # TODO: add template check here
-    render "character/settings/#{ scope }"
+    scope         = params[:scope]
+    template_name = scope.gsub('-', '_')
+
+    if template_exists?(template_name, "character/settings", false)
+      render "character/settings/#{ template_name }"
+    else
+      render text: 'Settings template not found.'
+    end
   end
 
   def update
