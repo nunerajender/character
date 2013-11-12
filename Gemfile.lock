@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    character (0.7.5)
+    character (0.7.7.1)
       browserid-auth-rails
       compass-rails
       eco
@@ -10,6 +10,7 @@ PATH
       kaminari
       marionette-rails
       momentjs-rails
+      nested_form
       simple_form
       underscore-rails
       zurb-foundation
@@ -107,6 +108,7 @@ GEM
       tzinfo (~> 0.3.22)
     moped (1.5.1)
     multi_json (1.8.2)
+    nested_form (0.3.2)
     origin (1.1.0)
     polyglot (0.3.3)
     rack (1.4.5)

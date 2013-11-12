@@ -33,7 +33,7 @@ class Character::ApiControllerTest < ActionController::TestCase
     FactoryGirl.create(:foo, name: "Test 3")
     FactoryGirl.create(:foo, name: "Test 2")
 
-    get :index, model_slug: "Foo", order_by: "name"
+    get :index, model_slug: "Foo", o: "name"
     assert_response :success
 
     obj_1 = json_response.find{|obj| obj["name"] == "Test 2"}
