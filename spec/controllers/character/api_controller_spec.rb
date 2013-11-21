@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Character::ApiController do
   include Decode
 
+
   after :each do
     DatabaseCleaner.clean
   end

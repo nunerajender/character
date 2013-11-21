@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "API routing" do
+describe "API routing", :type => :routing do
   it "routes /admin/Foo to api#index" do
     expect(get: "/admin/Foo").to route_to(controller: "character/api", action: "index", model_slug: "Foo")
   end
