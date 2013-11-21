@@ -25,11 +25,3 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
-
-# class ActiveSupport::TestCase
-#   # Helper methods available in all tests
-
-#   def json_response
-#     ActiveSupport::JSON.decode @response.body
-#   end
-# end
