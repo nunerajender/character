@@ -42,9 +42,9 @@ Gem::Specification.new do |gem|
   # TODO: check if we need this
   gem.add_runtime_dependency 'kaminari'
 
-  # test
+  # Test environment
   gem.add_development_dependency 'mongoid', '~> 3.0.0'
-  gem.add_development_dependency 'minitest-rails'
+  gem.add_development_dependency 'rspec-rails'
   gem.add_development_dependency 'database_cleaner'
   gem.add_development_dependency 'factory_girl_rails', '~> 4.0'
 end
