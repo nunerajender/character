@@ -30,7 +30,7 @@ Main goal to create easy to use set of development tools to empower administrati
 
 ## Installation
 
-At the moment project is under very intence development so all sources are available on the [Github](https://github.com/slate-studio/character) only. When beta version is ready gems are going to be available on rubygems as well.
+At the moment project is under very intense development so all sources are available on the [Github](https://github.com/slate-studio/character) only. When beta version is ready gems are going to be available on rubygems as well.
 
 Add these to projects ```Gemfile```.
 
