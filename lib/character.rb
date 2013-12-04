@@ -1,6 +1,6 @@
 # frontend & assets
 require 'compass-rails'
-require 'zurb-foundation'
+require 'foundation-rails'
 require 'font-awesome-rails'
 require 'jquery-ui-rails'
 require 'underscore-rails'

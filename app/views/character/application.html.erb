@@ -6,7 +6,7 @@
   <title><%= character_namespace.title %> | Admin</title>
 
   <%= stylesheet_link_tag character_namespace.stylesheet_filename, :media => 'all' %>
-  <%= javascript_include_tag 'vendor/custom.modernizr' %>
+  <%= javascript_include_tag 'vendor/modernizr' %>
 
   <script>window.character_namespace = '<%= character_namespace.name %>';</script>
   <%= javascript_include_tag character_namespace.javascript_filename %>
@@ -41,5 +41,6 @@
 
   <% end %>
 
+  <%= javascript_include_tag 'foundation' %>
 </body>
 </html>

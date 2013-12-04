@@ -6,7 +6,7 @@
                   <input type='text' placeholder='Type your search here...' />
                   <a href='#'><i class='fa fa-times'></i><i class='fa fa-search'></i></a>
                 </aside>
-                <ul id='scopes' class='f-dropdown'></ul>"
+                <ul id='scopes' class='f-dropdown' data-dropdown-content></ul>"
 
   ui:
     title:         '.title'
@@ -80,3 +80,9 @@
     @ui.scopes.append """<li><a href='#/#{ @options.path }'>#{ 'All ' + @options.pluralized_name }</a></li>"""
     _.each scopes, (scope, key) =>
       @ui.scopes.append """<li><a href='#/#{ @options.path }/#{ scope.slug }'>#{ scope.title }</a></li>"""
+
+    $(document).foundation('dropdown', 'init')
+
+
+  onClose: ->
+    $(document).foundation('dropdown', 'off')

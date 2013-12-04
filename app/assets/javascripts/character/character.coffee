@@ -8,7 +8,7 @@
 #= require underscore.inflection
 #= require backbone
 #= require backbone.marionette
-#= require foundation
+# require foundation
 #= require moment
 
 #= require_self
@@ -43,7 +43,7 @@ $ ->
   $("<style>.logo{background-image:url('#{ options.logo }');}</style>").appendTo("head")
 
   # initialize foundation plugins
-  $(document).foundation('section forms dropdown')
+  #$(document).foundation()
 
 
 @chr.on "initialize:after", ->
