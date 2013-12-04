@@ -77,7 +77,7 @@ $ ->
 
   template: -> """<img id='user_avatar' src="">
                   <ul id='menu_items'></ul>
-                  <a href='' class='browserid_logout'><i class="fa fa-signout"></i>Sign out</a>"""
+                  <a href='' class='browserid_logout'><i class="fa fa-sign-out"></i>Sign out</a>"""
 
   ui:
     items:          '#menu_items'
