@@ -57,22 +57,22 @@ input[type=text].chr-title-input      { background-color: transparent;
   }
 }
 
-select                                { font-size: 12px;
-                                        border-radius: 1px;
-                                        height: 28px;
-                                        margin-top: 3px;
+// select                                { font-size: 12px;
+//                                         border-radius: 1px;
+//                                         height: 28px;
+//                                         margin-top: 3px;
 
-                                        -webkit-appearance: menulist-button;
-                                        -webkit-rtl-ordering: logical;
-                                        -webkit-writing-mode: horizontal-tb;
-                                        align-items: center;
+//                                         -webkit-appearance: menulist-button;
+//                                         -webkit-rtl-ordering: logical;
+//                                         -webkit-writing-mode: horizontal-tb;
+//                                         align-items: center;
 
-                                        border-color: #ccc;
-  &:focus                             { outline-color: transparent;
-                                        outline-style: none;
-                                        border-color: $input-focus-border-color;
-  }
-}
+//                                         border-color: #ccc;
+//   &:focus                             { outline-color: transparent;
+//                                         outline-style: none;
+//                                         border-color: $input-focus-border-color;
+//   }
+// }
 
 .chr-form-image-upload                { margin-bottom: 1em;
   img                                 { position: absolute;
