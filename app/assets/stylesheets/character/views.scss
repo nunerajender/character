@@ -25,7 +25,7 @@ body                                  { position: inherit;
 
   .browserid_login                    { @include button-base;
                                         @include button-size;
-                                        @include button-style($secondary-color, 3px, false);
+                                        @include button-style($secondary-color, 0px, false);
                                         position: absolute;
                                         bottom: 1em;
                                         right: 2em;
