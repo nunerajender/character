@@ -24,7 +24,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'jquery-ui-rails'
   gem.add_runtime_dependency 'underscore-rails'
   gem.add_runtime_dependency 'marionette-rails'
-  gem.add_runtime_dependency 'eco'
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'foundation-rails'
   gem.add_runtime_dependency 'font-awesome-rails'

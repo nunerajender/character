@@ -5,12 +5,11 @@ require 'font-awesome-rails'
 require 'jquery-ui-rails'
 require 'underscore-rails'
 require 'marionette-rails'
-require 'eco'
 require 'momentjs-rails'
 
 # backend
 require 'browserid-rails'
-require 'mongoid/reorder'
+require 'mongoid/reorder' # not sure if we still use this
 require 'simple_form'
 require 'nested_form'
 require 'kaminari'

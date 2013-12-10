@@ -55,6 +55,8 @@ input[type=text].chr-title-input      { background-color: transparent;
 .chr-form-group                       { margin-bottom: 1em;
   &.shown                             { background-color: $panel-bg;
   }
+  select                              { background-color: #fff;
+  }
 }
 
 // select                                { font-size: 12px;
