@@ -6,7 +6,7 @@
                     <header class='chr-settings-list-header'>Settings</header>
                     <ul id=list class='chr-settings-list'></ul>
                     <a href='logout' class='browserid_logout button radius secondary small'>
-                      Sign out<br><span id='user_email' class='user-email'>santyor@gmail.com</span>
+                      <strong>Sign out</strong><br><span id='user_email' class='user-email'>santyor@gmail.com</span>
                     </a>
                   </aside>
                   <div id=details class='right-panel logo'></div>"""
