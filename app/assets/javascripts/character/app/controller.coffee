@@ -41,4 +41,5 @@
         url:        @app.collection.options.collection_url + "/#{ id }/edit"
         collection: @app.collection
         app:        @app
+        deletable:  @options.deletable
       @app.main.details.show(view)

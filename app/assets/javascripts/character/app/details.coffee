@@ -17,7 +17,7 @@
     @router = @options.app.router
 
   onRender: ->
-    @header_view = new @DetailsHeaderView({ model: @model, name: "New #{ @options.name }" })
+    @header_view = new @DetailsHeaderView({ model: @model, name: "New #{ @options.name }", deletable: @options.deletable })
     @header.show(@header_view)
 
     @$el.addClass('edit') if @model

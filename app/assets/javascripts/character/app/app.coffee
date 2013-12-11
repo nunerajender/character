@@ -9,6 +9,7 @@
   options.search          ?= false
   options.reorder         ?= false
   options.items_per_page  ?= 25
+  options.deletable       ?= true
 
   if options.scopes
     _(options.scopes).each (scope, slug) ->
