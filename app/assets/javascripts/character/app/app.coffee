@@ -12,9 +12,15 @@
   options.deletable       ?= true
 
   if options.scopes
+    if options.scopes.default
+      default_scope_order_by = options.scopes.default.order_by
+      delete options.scopes['default']
+
     _(options.scopes).each (scope, slug) ->
       scope.slug  ||= slug
       scope.title ||= _(slug).titleize()
+
+  default_scope_order_by ?= options.default_scope_order_by
 
   options.model_fields ?= []
   options.model_fields.push(options.item_title)
@@ -34,7 +40,7 @@
         collection_url:      collection_url
         scopes:              options.scopes
         model_slug:          options.model_slug
-        order_by:            options.default_scope_order_by
+        order_by:            default_scope_order_by
         reorder:             options.reorder
         search:              options.search
         item_title:          options.item_title
