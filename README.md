@@ -2,7 +2,73 @@
 
 **IN DEVELOPMENT (obsolete)**
 
-Data management framework based on [Backbone.js](http://backbonejs.org/) & [Marionette.js](https://github.com/marionettejs/backbone.marionette) written in CoffeeScript, using [Rails Framework](http://rubyonrails.org/) on the back-end. Front-end is based on [Foundation 4](http://foundation.zurb.com/) framework.
+Data management framework based on [Backbone.js](http://backbonejs.org/) & [Marionette.js](https://github.com/marionettejs/backbone.marionette) written in CoffeeScript, using [Rails Framework](http://rubyonrails.org/) on the back-end. Front-end is based on [Foundation 5](http://foundation.zurb.com/) framework.
+
+## New Project
+
+Start new Rails project:
+
+    rails _3.2.16_ new ProjectName -T -O
+
+Add following gems to the ```Gemfile``` and run ```bundle```:
+
+    gem 'bson_ext'
+    gem 'mongoid'
+    gem 'asset_sync'
+    gem 'character', github: 'slate-studio/character'
+
+Create mongo database config:
+
+    rails g mongoid:config
+
+If you're willing to use Foundation 5, run generator:
+
+    foundation:install
+
+Mount character in the ```config/routes.rb```:
+
+    mount_character()
+
+Create ```app/assets/javascript/admin.coffee```:
+
+    #= require character/character
+    #= require character/settings
+    #= require_self
+
+    CharacterSettingsApp('Admins')
+
+Create ```app/assets/stylesheets/admin.scss```:
+
+    @import "character";
+
+    // Firefox font fix
+    @font-face {
+      font-family: 'FontAwesome';
+      src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot");
+      src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.woff") format("woff"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.ttf") format("truetype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+Remove ```//= require_tree .``` and ```*= require_tree .``` string from ```app/assets/javascripts/application.js``` and ```app/assets/stylesheets/application.js```.
+
+Add character & foundation javascript assets to production environment ```config/environment/production.rb```:
+
+    config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )
+
+Create basic character configuration file ```config/initializers/character.rb```:
+
+    Character.configure do |config|
+      config.title                  = 'Project Admin Title'
+      config.no_auth_on_development = false
+    end
+
+Rename default ```app/assets/images/rails.png``` to ```app/assets/images/character-company-logo.png```.
+
+**DONE!**
+
+
+## Content
 
 Main goal to create easy to use set of development tools to empower administration applications with a clean and simple user interfaces.
 
