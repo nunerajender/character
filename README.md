@@ -1,8 +1,34 @@
 # Character (α)
 
-**IN DEVELOPMENT (obsolete)**
+**IN DEVELOPMENT**
 
-Data management framework based on [Backbone.js](http://backbonejs.org/) & [Marionette.js](https://github.com/marionettejs/backbone.marionette) written in CoffeeScript, using [Rails Framework](http://rubyonrails.org/) on the back-end. Front-end is based on [Foundation 5](http://foundation.zurb.com/) framework.
+Character is a set of development tools (framework) for empowering administration applications with a clean and simple user interfaces. Main goal of Character is to make developers life easier while building modern administration applications.
+
+Core technologies that Character is built with: [Backbone.js](http://backbonejs.org) + [Marionette.js](https://github.com/marionettejs/backbone.marionette), [Foundation 5](http://foundation.zurb.com) and [Rails](http://rubyonrails.org).
+
+![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
+
+## Content
+
+* [Installation](#installation)
+* [Configuration](#configuration)
+  * [Step 1: Assets](#step-1-assets)
+  * [Step 2: Routes](#step-2-routes)
+  * [Step 3: Initializer](#step-3-initializer)
+* [Authentification](#authentification)
+  * [Mozilla Persona](#mozilla-persona)
+  * [Development Mode](#development-mode)
+  * [Login Background](#login-background)
+* [Generic Application](#generic-application)
+  * [Model Setup](#model-setup)
+  * [Custom Form](#custom-form)
+  * [Nested Form](#nested-form)
+  * [Form Plugins](#form-plugins)
+* [Character Namespaces](#character-namespaces)
+* [Settings Application](#settings-application)
+* [List of Dependencies](#list-of-dependencies)
+* [TODO](#todo)
+
 
 ## New Project
 
@@ -65,33 +91,6 @@ Create basic character configuration file ```config/initializers/character.rb```
 Rename default ```app/assets/images/rails.png``` to ```app/assets/images/character-company-logo.png```.
 
 **DONE!**
-
-
-## Content
-
-Main goal to create easy to use set of development tools to empower administration applications with a clean and simple user interfaces.
-
-![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
-
-* [Installation](#installation)
-* [Configuration](#configuration)
-  * [Step 1: Assets](#step-1-assets)
-  * [Step 2: Routes](#step-2-routes)
-  * [Step 3: Initializer](#step-3-initializer)
-* [Authentification](#authentification)
-  * [Mozilla Persona](#mozilla-persona)
-  * [Development Mode](#development-mode)
-  * [Login Background](#login-background)
-* [Generic Application](#generic-application)
-  * [Model Setup](#model-setup)
-  * [Custom Form](#custom-form)
-  * [Nested Form](#nested-form)
-  * [Form Plugins](#form-plugins)
-* [Character Namespaces](#character-namespaces)
-* [Settings Application](#settings-application)
-* [List of Dependencies](#list-of-dependencies)
-* [TODO](#todo)
-
 
 ## Installation
 
@@ -254,18 +253,27 @@ Settings could be used to provide a simple way of editing CTAs, webpage editable
 
 ## List of Dependencies
 
+Frontend Javascript:
+
 * [jQuery](https://github.com/rails/jquery-rails)
 * [Underscore](https://github.com/rweng/underscore-rails)
 * [Underscore String](https://github.com/epeli/underscore.string)
 * [Backbone](http://backbonejs.org/)
 * [Backbone Marionette](https://github.com/chancancode/marionette-rails)
 * [jQuery UI](https://github.com/joliss/jquery-ui-rails)
-* [Eco](https://github.com/sstephenson/eco)
+* [Moment.js](http://momentjs.com)
+
+Frontend CSS:
+
 * [Compass](https://github.com/Compass/compass-rails)
 * [Foundation](https://github.com/zurb/foundation/)
 * [Fontawesome](https://github.com/bokmann/font-awesome-rails)
+
+Backend:
+
 * [BrowserID](https://github.com/alexkravets/browserid-auth-rails)
 * [Simple Form](https://github.com/plataformatec/simple_form)
+* [Nested Forms](https://github.com/ryanb/nested_form)
 * [Kaminari](https://github.com/amatsuda/kaminari)
 
 
@@ -278,8 +286,6 @@ To run the tests use the following command in the gem's root directory:
 
 ## TODO
 
-* pagination
-* search
 * notifications
 * hotkeys
 * ipad
@@ -288,6 +294,6 @@ To run the tests use the following command in the gem's root directory:
 * annotate sources
 
 --
-* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - September 26, 2013
+* [Олександр Кравець](http://www.bits.in.ua) @ [Slate](http://www.slatestudio.com) - September 26, 2013
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 * Мельник Максим @ [Slate](http://www.slatestudio.com) - October 23, 2013
