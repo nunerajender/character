@@ -31,7 +31,7 @@ Start new Rails project:
 
     rails _3.2.16_ new ProjectName -T -O
 
-Add following gems to the ```Gemfile``` and run ```bundle```:
+Add following gems to the ```Gemfile```:
 
     gem 'bson_ext'
     gem 'mongoid'
@@ -39,11 +39,17 @@ Add following gems to the ```Gemfile``` and run ```bundle```:
     gem 'character', github: 'slate-studio/character'
     # gem 'character', path: '../character'
 
+Run ```bundle``` from projects root.
+
 Create mongo database config, initialize Foundation (not required if it's not used in the project) and install Character assets and fixes:
 
     rails g mongoid:config
     rails g foundation:install
     rails g character:install
+
+In one line:
+
+    rails g mongoid:config ; rails g foundation:install ; rails g character:install
 
 Character generator does:
 1. Mounts character in the ```config/routes.rb``` with ```mount_character()``` command
@@ -53,6 +59,7 @@ Character generator does:
 5. Add character & foundation javascript assets to production environment in ```config/environment/production.rb```: ```config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )```
 6. Create character initializer ```config/initializers/character.rb```
 
+Done! Check out ```localhost:3000/admin``` in the browser.
 
 ## Authentification
 
