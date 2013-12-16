@@ -10,6 +10,7 @@ Core technologies that Character is built with: [Backbone.js](http://backbonejs.
 
 ## Content
 
+* [New Project](#new-project)
 * [Installation](#installation)
 * [Configuration](#configuration)
   * [Step 1: Assets](#step-1-assets)
