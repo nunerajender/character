@@ -11,14 +11,8 @@ Core technologies that Character is built with: [Backbone.js](http://backbonejs.
 ## Content
 
 * [New Project](#new-project)
-* [Installation](#installation)
-* [Configuration](#configuration)
-  * [Step 1: Assets](#step-1-assets)
-  * [Step 2: Routes](#step-2-routes)
-  * [Step 3: Initializer](#step-3-initializer)
 * [Authentification](#authentification)
   * [Mozilla Persona](#mozilla-persona)
-  * [Development Mode](#development-mode)
   * [Login Background](#login-background)
 * [Generic Application](#generic-application)
   * [Model Setup](#model-setup)
@@ -43,108 +37,21 @@ Add following gems to the ```Gemfile``` and run ```bundle```:
     gem 'mongoid'
     gem 'asset_sync'
     gem 'character', github: 'slate-studio/character'
+    # gem 'character', path: '../character'
 
-Create mongo database config:
+Create mongo database config, initialize Foundation (not required if it's not used in the project) and install Character assets and fixes:
 
     rails g mongoid:config
+    rails g foundation:install
+    rails g character:install
 
-If you're willing to use Foundation 5, run generator:
-
-    foundation:install
-
-Mount character in the ```config/routes.rb```:
-
-    mount_character()
-
-Create ```app/assets/javascript/admin.coffee```:
-
-    #= require character/character
-    #= require character/settings
-    #= require_self
-
-    CharacterSettingsApp('Admins')
-
-Create ```app/assets/stylesheets/admin.scss```:
-
-    @import "character";
-
-    // Firefox font fix
-    @font-face {
-      font-family: 'FontAwesome';
-      src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot");
-      src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.woff") format("woff"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.ttf") format("truetype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
-      font-weight: normal;
-      font-style: normal;
-    }
-
-Remove ```//= require_tree .``` and ```*= require_tree .``` string from ```app/assets/javascripts/application.js``` and ```app/assets/stylesheets/application.js```.
-
-Add character & foundation javascript assets to production environment ```config/environment/production.rb```:
-
-    config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )
-
-Create basic character configuration file ```config/initializers/character.rb```:
-
-    Character.configure do |config|
-      config.title = 'Project Admin Title'
-    end
-
-Rename default ```app/assets/images/rails.png``` to ```app/assets/images/character-company-logo.png```.
-
-**DONE!**
-
-## Installation
-
-At the moment project is under very intense development so all sources are available on the [Github](https://github.com/slate-studio/character) only. When beta version is ready gems are going to be available on rubygems as well.
-
-Add these to projects ```Gemfile```.
-
-    gem 'character', git: 'git://github.com/slate-studio/character.git'
-
-After running ```bundle``` you need to do basic configuration.
-
-
-## Configuration
-
-#### Step 1: Assets
-
-Create asset files:
-
-Character basic styles & overrides: ```app/assets/stylesheets/admin.scss```
-
-    @import "character/character";
-
-    // Firefox font fix for production: replace www.website.com with the real address
-    @font-face {
-      font-family: 'FontAwesome';
-      src: url("http://www.website.com/assets/fontawesome-webfont.eot");
-      src: url("http://www.website.com/assets/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("http://www.website.com/assets/fontawesome-webfont.woff") format("woff"), url("http://www.website.com/assets/fontawesome-webfont.ttf") format("truetype"), url("http://www.website.com/assets/fontawesome-webfont.svg#fontawesomeregular") format("svg");
-      font-weight: normal;
-      font-style: normal;
-    }
-
-Character initialization & configuration: ```app/assets/javascripts/admin.coffee```
-
-    #= require character/character
-    #= require_self
-
-Add assets to the ```config/environments/production.rb``` so they are prebuild on production:
-
-    config.assets.precompile += %w( admin.js admin.css )
-
-
-#### Step 2: Routes
-
-Add ```mount_character()``` routes mounter to ```config/routes.rb```, preferably on the top of the ```draw``` function.
-
-
-#### Step 3: Initializer
-
-Setup character basic initializer: ```config/initializers/character```, provide only title for now:
-
-    Character.configure do |config|
-      config.title = 'Admin Title'
-    end
+Character generator does:
+1. Mounts character in the ```config/routes.rb``` with ```mount_character()``` command
+2. Creates ```app/assets/javascript/admin.coffee```
+3. Create ```app/assets/stylesheets/admin.scss```
+4. Remove ```//= require_tree .``` and ```*= require_tree .``` string from ```app/assets/javascripts/application.js``` and ```app/assets/stylesheets/application.js``` — that's required to do not include admin assets in the application assets
+5. Add character & foundation javascript assets to production environment in ```config/environment/production.rb```: ```config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )```
+6. Create character initializer ```config/initializers/character.rb```
 
 
 ## Authentification
@@ -295,6 +202,6 @@ To run the tests use the following command in the gem's root directory:
 * annotate sources
 
 --
-* [Олександр Кравець](http://www.bits.in.ua) @ [Slate](http://www.slatestudio.com) - September 26, 2013
+* [Олександр Кравець](http://www.bits.in.ua) @ [Slate](http://www.slatestudio.com) - December 16, 2013
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 * Мельник Максим @ [Slate](http://www.slatestudio.com) - October 23, 2013
