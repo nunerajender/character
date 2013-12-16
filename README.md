@@ -55,12 +55,11 @@ Done! Check out ```localhost:3000/admin``` in the browser.
 
 Character generator does:
 
-1. Mounts character in the ```config/routes.rb``` with ```mount_character()``` command
-2. Creates ```app/assets/javascript/admin.coffee```
-3. Create ```app/assets/stylesheets/admin.scss```
-4. Remove ```//= require_tree .``` and ```*= require_tree .``` string from ```app/assets/javascripts/application.js``` and ```app/assets/stylesheets/application.js``` — that's required to do not include admin assets in the application assets
-5. Add character & foundation javascript assets to production environment in ```config/environment/production.rb```: ```config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )```
-6. Create character initializer ```config/initializers/character.rb```
+1. Mount character in the ```config/routes.rb``` with ```mount_character()``` command
+2. Create ```app/assets/javascript/admin.coffee``` and ```app/assets/stylesheets/admin.scss```
+3. Remove ```//= require_tree .``` and ```*= require_tree .``` string from ```app/assets/javascripts/application.js``` and ```app/assets/stylesheets/application.js``` — to do not include admin assets in the application assets
+4. Add character & foundation javascript assets to production environment in ```config/environment/production.rb```: ```config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )```
+5. Create character initializer ```config/initializers/character.rb```
 
 ## Authentification
 
