@@ -23,7 +23,7 @@
                             chr.start({
                               user: { avatar_url: '<%= @current_user.gravatar_url(36) %>',
                                       email: '<%= @current_user.email %>' },
-                              logo: '<%= image_path(character_namespace.company_logo_image) %>',
+                              logo: '<%= image_path(character_namespace.logo_image) %>',
                               url:  '/<%= character_namespace.name %>'
                             });
                           });

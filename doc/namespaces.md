@@ -32,7 +32,7 @@ List of all available options.
 | permissions_filter       | lambda function which defines permissions. Must return boolean value. It is runned before each request to admin and is executed in controller context, so `request`, `params`, `model_class` can be used to decide if allow paticular request. | |
 | javascript_filename      | JavaScript configuration file | Name of namespace |
 | stylesheet_filename      | Stylesheet file               | Name of namespace |
-| company_logo_image       | See main doc for details      |           |
+| logo_image               | See main doc for details      |           |
 | login_background_image   | See main doc for details      |           |
 
 ### Templates
