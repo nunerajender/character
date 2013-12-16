@@ -7,18 +7,14 @@ class Character::ApplicationController < Character::BaseController
   layout false
 
   def authenticate_user
-    if authenticate_first_user?
-      authenticate_first_user
+    if browserid_authenticated?
+      @current_user = browserid_current_user
     else
-      if browserid_authenticated?
-        @current_user = browserid_current_user
-      else
-        @browserid_email = browserid_email
+      @browserid_email = browserid_email
 
-        # if no users and this is first time login create an account to logged in user
-        if not character_namespace.user_class.first
-          @current_user = character_namespace.user_class.create(email: @browserid_email) if @browserid_email
-        end
+      # if no users and this is first time login create an account to logged in user
+      if not character_namespace.user_class.first
+        @current_user = character_namespace.user_class.create(email: @browserid_email) if @browserid_email
       end
     end
   end
