@@ -11,10 +11,7 @@
   <script>window.character_namespace = '<%= character_namespace.name %>';</script>
   <%= javascript_include_tag character_namespace.javascript_filename %>
 
-  <% if Rails.env.production? or not character_namespace.no_auth_on_development %>
-    <%= setup_browserid debug: false %>
-  <% end %>
-
+  <%= setup_browserid debug: false %>
   <%= csrf_meta_tags %>
 </head>
 

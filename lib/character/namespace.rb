@@ -14,9 +14,7 @@ module Character
                   :stylesheet_filename,
 
                   :company_logo_image,
-                  :login_background_image,
-                  :no_auth_on_development
-
+                  :login_background_image
 
     def initialize(name = Namespace::DEFAULT_NAMESPACE)
       @name                   = name.gsub(' ', '-').downcase #.to_url ? where this method is from? need to include in gemspec
@@ -24,9 +22,7 @@ module Character
       @user_model             = 'Character::User'
       @company_logo_image     = 'character-company-logo.png'
       @login_background_image = 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
-      @no_auth_on_development = false
     end
-
 
     def title
       @title || @name.humanize

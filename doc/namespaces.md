@@ -19,7 +19,6 @@ Character.configure do |config|
 
   config.namespace 'admin' do |namespace|
     namespace.title = 'Admin'
-    namespace.no_auth_on_development = true
   end
 end
 ```
@@ -35,10 +34,7 @@ List of all available options.
 | stylesheet_filename      | Stylesheet file               | Name of namespace |
 | company_logo_image       | See main doc for details      |           |
 | login_background_image   | See main doc for details      |           |
-| no_auth_on_development   | See main doc for details      |           |
 
 ### Templates
 
 Each namespace has its own templates. They must live under `character/#{name of your namespace}` folder. E.g. under `character/admin` & `character/producers` for configuration from "Configuration" section.
-
-

@@ -59,8 +59,7 @@ Add character & foundation javascript assets to production environment ```config
 Create basic character configuration file ```config/initializers/character.rb```:
 
     Character.configure do |config|
-      config.title                  = 'Project Admin Title'
-      config.no_auth_on_development = false
+      config.title = 'Project Admin Title'
     end
 
 Rename default ```app/assets/images/rails.png``` to ```app/assets/images/character-company-logo.png```.
@@ -154,18 +153,7 @@ Setup character basic initializer: ```config/initializers/character```, provide 
 
 Character is using [Mozilla Persona](https://login.persona.org/about) as main authentification system. This one chosen as it is very easy to setup and allows us to do not create administrative accounts from one project to another.
 
-There is a rake task that creates administrative account:
-
-    rake admin:add_user[admin@email.com]
-
-
-#### Development Mode
-
-Persona is javascript based and it validates session everytime application is loaded. There is a way to disable Persona in development mode by adding the following line to Character configuration file ```config/initializers/character.rb```:
-
-    config.no_auth_on_development = true
-
-When ```no_auth_on_development``` flag is set first admin user used as as current account. At least one account should be created, but it shoudn't be a real persona account.
+While logging to Character for the first time, first administrative account is created. Add other accounts via console or using Character / Settings / Admins tab.
 
 
 #### Login Background

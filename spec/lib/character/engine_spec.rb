@@ -9,8 +9,7 @@ describe Character::Engine do
 
   it "creates new namespaces" do
     Character.namespace 'producers' do |namespace|
-      namespace.user_model             = 'Producer'
-      namespace.no_auth_on_development = true
+      namespace.user_model = 'Producer'
     end
     expect(Character.namespaces.keys.index("producers")).to be
   end
