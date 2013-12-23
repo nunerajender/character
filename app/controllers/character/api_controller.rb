@@ -1,11 +1,17 @@
 # Author: Alexander Kravets
 #         Slate, 2013
 
-class Character::ApiController < Character::BaseController
+class Character::ApiController < ActionController::Base
   include InstanceHelper
   include ModelClassHelper
   include TemplatesHelper
   include JsonObjectHelper
+
+  include AuthHelper
+  before_filter :authenticate_user
+
+  layout :false
+
 
   # Actions -----------------------------------------------
 
@@ -150,5 +156,13 @@ class Character::ApiController < Character::BaseController
     @object = model_class.find(params[:id])
     @object.destroy
     render json: 'ok'
+  end
+
+  private
+
+  def authenticate_user
+    if not auto_login!
+      if browserid_authenticated? then login! else render status: :unauthorized, json: { error: "Access denied." } end
+    end
   end
 end

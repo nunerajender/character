@@ -1,23 +1,13 @@
 # Author: Alexander Kravets
 #         Slate, 2013
 
-class Character::ApplicationController < Character::BaseController
+class Character::ApplicationController < ActionController::Base
   include InstanceHelper
 
+  include AuthHelper
+  before_filter :authenticate_user
+
   layout false
-
-  def authenticate_user
-    if browserid_authenticated?
-      @current_user = browserid_current_user
-    else
-      @browserid_email = browserid_email
-
-      # if no users and this is first time login create an account to logged in user
-      if not character_instance.user_class.first
-        @current_user = character_instance.user_class.create(email: @browserid_email) if @browserid_email
-      end
-    end
-  end
 
   def index
     render 'character/application'
@@ -34,6 +24,14 @@ class Character::ApplicationController < Character::BaseController
       redirect_to params['redirect']
     else
       head :ok
+    end
+  end
+
+  private
+
+  def authenticate_user
+    if not auto_login!
+      if browserid_authenticated? then login! else register_first_user! end
     end
   end
 end

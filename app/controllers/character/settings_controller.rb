@@ -1,7 +1,14 @@
 # Author: Alexander Kravets
 #         Slate, 2013
 
-class Character::SettingsController < Character::BaseController
+class Character::SettingsController < ActionController::Base
+  include InstanceHelper
+
+  include AuthHelper
+  before_filter :authenticate_user
+
+  layout :false
+
   def show
     scope         = params[:scope]
     template_name = scope.gsub('-', '_')
@@ -40,5 +47,13 @@ class Character::SettingsController < Character::BaseController
 
     # TODO: error handling
     render json: errors
+  end
+
+  private
+
+  def authenticate_user
+    if not auto_login!
+      if browserid_authenticated? then login! else render status: :unauthorized, json: { error: "Access denied." } end
+    end
   end
 end

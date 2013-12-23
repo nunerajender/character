@@ -14,14 +14,16 @@ module Character
                   :stylesheet_filename,
 
                   :logo_image,
-                  :login_background_image
+                  :login_background_image,
+                  :development_auto_login
 
     def initialize(name = Instance::DEFAULT_NAME)
-      @name                   = name.gsub(' ', '-').downcase #.to_url ? where this method is from? need to include in gemspec
+      @name                   = name.gsub(' ', '-').downcase
       @title                  = 'Character'
       @user_model             = 'Character::User'
       @logo_image             = 'rails.png'
       @login_background_image = 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
+      @development_auto_login = false
     end
 
     def title
