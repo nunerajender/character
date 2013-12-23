@@ -33,10 +33,8 @@
           return true
 
         error: (response) =>
-          Character.Plugins.parseError response, (html) =>
-            @ui.form_view.html(html)
-            @ui.action_save.hide()
-            @ui.actions.hide()
+          Character.Plugins.showErrorModal(response)
+          @setSavedState()
 
         success: (response) =>
           @setSavedState()
