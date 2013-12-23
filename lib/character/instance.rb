@@ -1,6 +1,6 @@
 module Character
-  class Namespace
-    DEFAULT_NAMESPACE = 'admin'
+  class Instance
+    DEFAULT_NAME = 'admin'
 
     attr_accessor :name,
                   :title,
@@ -16,7 +16,7 @@ module Character
                   :logo_image,
                   :login_background_image
 
-    def initialize(name = Namespace::DEFAULT_NAMESPACE)
+    def initialize(name = Instance::DEFAULT_NAME)
       @name                   = name.gsub(' ', '-').downcase #.to_url ? where this method is from? need to include in gemspec
       @title                  = 'Character'
       @user_model             = 'Character::User'
@@ -41,7 +41,7 @@ module Character
     end
 
     def default?
-      @name == Namespace::DEFAULT_NAMESPACE
+      @name == Instance::DEFAULT_NAME
     end
   end
 end

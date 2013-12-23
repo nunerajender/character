@@ -9,10 +9,10 @@ module TemplatesHelper
       template_folder.gsub!('character/', '')
 
       generic_template_folder    = "character/#{ template_folder }"
-      namespaced_template_folder = "character/#{ character_namespace.name }/#{ template_folder }"
+      instance_template_folder = "character/#{ character_instance.name }/#{ template_folder }"
 
-      if    template_exists?("form", namespaced_template_folder, false)
-        "#{ namespaced_template_folder }/form"
+      if    template_exists?("form", instance_template_folder, false)
+        "#{ instance_template_folder }/form"
       elsif template_exists?("form", generic_template_folder, false)
         "#{ generic_template_folder }/form"
       else
@@ -24,9 +24,9 @@ module TemplatesHelper
   def set_form_attributes
     # attributes required for generic form
     if @object.persisted?
-      @form_action_url = "/#{ character_namespace.name }/#{ model_slug }/#{ @object.id }"
+      @form_action_url = "/#{ character_instance.name }/#{ model_slug }/#{ @object.id }"
     else
-      @form_action_url = "/#{ character_namespace.name }/#{ model_slug }"
+      @form_action_url = "/#{ character_instance.name }/#{ model_slug }"
     end
 
     @model_name = model_name

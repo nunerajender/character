@@ -2,7 +2,7 @@ module ActionDispatch::Routing
   class Mapper
 
     def mount_character
-      Character.namespaces.each do |name, settings|
+      Character.instances.each do |name, settings|
 
         scope "/#{name}", :module => "character" do
 

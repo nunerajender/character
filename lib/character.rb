@@ -14,7 +14,7 @@ require 'nested_form'
 require 'kaminari'
 
 # character
-require 'character/namespace'
+require 'character/instance'
 require 'character/version'
 require 'character/engine'
 require 'character/routing'

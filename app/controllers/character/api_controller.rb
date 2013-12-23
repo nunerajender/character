@@ -2,7 +2,7 @@
 #         Slate, 2013
 
 class Character::ApiController < Character::BaseController
-  include NamespaceHelper
+  include InstanceHelper
   include ModelClassHelper
   include TemplatesHelper
   include JsonObjectHelper
@@ -61,8 +61,11 @@ class Character::ApiController < Character::BaseController
     end
 
 
-    if character_namespace.before_index
-      instance_exec &character_namespace.before_index
+
+    # TODO: generalize such callbacks and put them to the instance helper
+    # instance callback defined in initializer
+    if character_instance.before_index
+      instance_exec &character_instance.before_index
     end
 
 
@@ -110,8 +113,8 @@ class Character::ApiController < Character::BaseController
   def create
     @object = model_class.new params[form_attributes_namespace]
 
-    if character_namespace.before_save
-      instance_exec &character_namespace.before_save
+    if character_instance.before_save
+      instance_exec &character_instance.before_save
     end
 
     if @object.save
@@ -129,8 +132,8 @@ class Character::ApiController < Character::BaseController
     @object = model_class.find(params[:id])
     @object.assign_attributes params[form_attributes_namespace]
 
-    if character_namespace.before_save
-      instance_exec &character_namespace.before_save
+    if character_instance.before_save
+      instance_exec &character_instance.before_save
     end
 
     if @object.save

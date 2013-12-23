@@ -1,11 +1,11 @@
 <%= simple_form_for :objects, url: '/admin/settings/update' do |form| %>
-  <%= hidden_field_tag :class_name, 'Character::User' %>
+  <%= hidden_field_tag :class_name, character_instance.user_model %>
 
   <div class='row'>
     <div class='small-12 columns'>
 
             <template id='new_item_template'>
-              <%= form.simple_fields_for "[]", Character::User.new do |f| %>
+              <%= form.simple_fields_for "[]", character_instance.user_model.constantize.new do |f| %>
 
                 <div class='row'>
                   <%= f.input :email,
@@ -22,7 +22,7 @@
               <% end %>
             </template>
 
-      <% Character::User.all.each do |user| %>
+      <% character_instance.user_model.constantize.all.each do |user| %>
         <%= form.simple_fields_for "[]", user do |f| %>
 
           <div class='row'>

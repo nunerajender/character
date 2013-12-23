@@ -1,12 +1,12 @@
 module Character
   class << self
-    attr_writer :namespaces
+    attr_writer :instances
 
-    def namespaces
-      if @namespaces.blank?
-        @namespaces = { Namespace::DEFAULT_NAMESPACE => Namespace.new }
+    def instances
+      if @instances.blank?
+        @instances = { Instance::DEFAULT_NAME => Instance.new }
       else
-        @namespaces
+        @instances
       end
     end
 
@@ -14,24 +14,24 @@ module Character
       block.call(self)
     end
 
-    def namespace(name, &block)
-      @custom_namespace_used = true
-      raise StandardError.new("Please do not mix namespaced & default configurations") if @default_namespace_used
+    def instance(name, &block)
+      @custom_instance_name_used = true
+      raise StandardError.new("Please don't mix character instance configuration & default character configuration.") if @default_instance_name_used
 
-      block.call( @namespaces[name] ||= Namespace.new(name) )
+      block.call( @instances[name] ||= Instance.new(name) )
     end
 
     def method_missing(method, *args)
-      @default_namespace_used = true
-      raise StandardError.new("Please do not mix namespaced & default configurations") if @custom_namespace_used
+      @default_instance_name_used = true
+      raise StandardError.new("Please don't mix character instance configuration & default character configuration.") if @custom_instance_name_used
 
-      ( @namespaces[Namespace::DEFAULT_NAMESPACE] ||= Namespace.new ).send method, *args
+      ( @instances[Instance::DEFAULT_NAME] ||= Instance.new ).send method, *args
     end
   end
 
   class Engine < ::Rails::Engine
     config.before_configuration do
-      Character.namespaces = {}
+      Character.instances = {}
     end
   end
 end

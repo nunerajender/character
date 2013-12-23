@@ -2,7 +2,7 @@
 #         Slate, 2013
 
 class Character::ApplicationController < Character::BaseController
-  include NamespaceHelper
+  include InstanceHelper
 
   layout false
 
@@ -13,8 +13,8 @@ class Character::ApplicationController < Character::BaseController
       @browserid_email = browserid_email
 
       # if no users and this is first time login create an account to logged in user
-      if not character_namespace.user_class.first
-        @current_user = character_namespace.user_class.create(email: @browserid_email) if @browserid_email
+      if not character_instance.user_class.first
+        @current_user = character_instance.user_class.create(email: @browserid_email) if @browserid_email
       end
     end
   end
