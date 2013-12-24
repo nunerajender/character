@@ -12,12 +12,7 @@ class Character::SettingsController < ActionController::Base
   def show
     scope         = params[:scope]
     template_name = scope.gsub('-', '_')
-
-    if template_exists?(template_name, "character/settings", false)
-      render "character/settings/#{ template_name }"
-    else
-      render text: 'Settings template not found.'
-    end
+    render "character/settings/#{ template_name }"
   end
 
   def update

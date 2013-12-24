@@ -22,7 +22,7 @@
 
     @$el.addClass('edit') if @model
 
-    $.get @options.url, (html) => @updateContent(html)
+    $.get(@options.url, (html) => @updateContent(html)).error((response) -> Character.Plugins.showErrorModal(response))
 
   updateContent: (form_html) ->
     ( @ui.form_view.html(form_html) ; @onFormRendered() ) if @ui.form_view
@@ -43,6 +43,11 @@
           _(Character.Plugins.get_date_field_values(arr)).each (el) -> arr.push(el)
           @header_view.setSavingState()
           return true
+
+        error: (response) =>
+          Character.Plugins.showErrorModal(response)
+          @setSavedState()
+
         success: (resp) =>
           @header_view.setSavedState()
           @updateModel(resp)

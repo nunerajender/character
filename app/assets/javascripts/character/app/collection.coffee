@@ -80,7 +80,10 @@
     paramsChanged = @updateRequestParams()
 
     if paramsChanged or force
-      @fetch({ reset: true, success: -> callback?() })
+      @fetch
+        reset:   true
+        success: -> callback?()
+        error:   (collection, response, options) -> Character.Plugins.showErrorModal(response)
     else
       callback?()
 
@@ -99,7 +102,10 @@
   more: (callback) ->
     @page += 1
     @updateRequestParams()
-    @fetch({ remove: false, success: -> callback?() })
+    @fetch
+      remove:  false
+      success: -> callback?()
+      error:   (collection, response, options) -> Character.Plugins.showErrorModal(response)
 
 
   refetch: (callback) ->

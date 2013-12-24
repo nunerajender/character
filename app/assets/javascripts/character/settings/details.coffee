@@ -16,8 +16,8 @@
   onRender: ->
     @ui.title.html(@options.name)
     @ui.form_view.addClass(@options.path)
-    $.get "#{ chr.options.url }/settings/#{ @options.path }", (html) =>
-      ( @ui.form_view.html(html) ; @onFormRendered() )  if @ui.form_view
+    $.get("#{ chr.options.url }/settings/#{ @options.path }", (html) =>
+      ( @ui.form_view.html(html) ; @onFormRendered() ) if @ui.form_view).error((res) -> Character.Plugins.showErrorModal(res))
 
   onFormRendered: ->
     @ui.new_item_template = @ui.form_view.find('#new_item_template')

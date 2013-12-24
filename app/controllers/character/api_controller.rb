@@ -24,8 +24,6 @@ class Character::ApiController < ActionController::Base
 
     @objects = model_class.unscoped.all
 
-
-
     # filter with where
     scopes = params.keys.select { |s| s.starts_with? 'where__' }
     scopes.each do |s|
