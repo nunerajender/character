@@ -1,8 +1,8 @@
-# Character App
+## Generic App
 
 [Documentation Index](https://github.com/slate-studio/character/blob/master/README.md)
 
-## API
+### API
 
 API url endpoint for model: ```/admin/<ModelName>?```
 

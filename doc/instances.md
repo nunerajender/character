@@ -1,4 +1,4 @@
-# Character Instances
+## Instances
 
 Instances allow you to use several independent admins for one website. Each of them will be using separate configuration, styles and templates.
 

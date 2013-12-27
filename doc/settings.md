@@ -1,1 +1,1 @@
-# Character Settings
+## Settings
