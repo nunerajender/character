@@ -13,6 +13,7 @@ class Character::SettingsController < ActionController::Base
   def set_template_name
     @scope         = params[:scope]
     @template_name = @scope.gsub('-', '_')
+    @url           = "/#{ character_instance.name }/settings/#{ @scope }"
   end
 
   def show
@@ -20,14 +21,12 @@ class Character::SettingsController < ActionController::Base
   end
 
   def update
-    @errors    = {}
-    class_name = params[:class_name]
-    objects    = params[:objects].first
-
+    errors      = {}
+    class_name  = params[:class_name]
     model_class = class_name.constantize
+    @objects    = []
 
-    objects.each_pair do |id_or_slug, attributes|
-
+    params[:objects].first.each_pair do |id_or_slug, attributes|
       begin
         object = model_class.find id_or_slug
       rescue Mongoid::Errors::DocumentNotFound
@@ -37,11 +36,14 @@ class Character::SettingsController < ActionController::Base
       if attributes[:_destroy] == 'true'
         object.destroy
       else
-        unless object.update_attributes(attributes)
-          @errors[object_id] = object.errors
-        end
+        object.update_attributes(attributes)
+        @objects << object
       end
+    end
 
+    # Hack: this helps to save new objects using unique ids
+    @objects.each do |o|
+      o.new_record = false if o.new_record
     end
 
     render "character/settings/#{ @template_name }"

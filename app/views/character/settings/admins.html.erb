@@ -1,35 +1,19 @@
-<%= simple_form_for :objects, url: "/#{ character_instance.name }/settings/#{ @scope }" do |form| %>
-  <%= hidden_field_tag :class_name, character_instance.user_model %>
+<% @model = character_instance.user_model.constantize %>
+
+<%= simple_form_for :objects, url: @url do |form| %>
+  <%= hidden_field_tag :class_name, @model.to_s %>
 
   <div class='row'>
     <div class='small-12 columns'>
 
-            <template id='new_item_template'>
-              <%= form.simple_fields_for "[]", character_instance.user_model.constantize.new do |f| %>
-
-                <div class='row'>
-                  <%= f.input :email,
-                              as: :email,
-                              label: false,
-                              placeholder: 'Email',
-                              required: true,
-                              wrapper_class: 'large-5 large-offset-3 columns' %>
-
-                  <div class='large-4 columns chr-actions'>
-                    <i class='chr-action-pin'></i><a class='action_cancel' data-item-class='row'>Cancel</a>
-                  </div>
-                </div>
-
-              <% end %>
-            </template>
-
-      <% character_instance.user_model.constantize.all.each do |user| %>
+      <% (@objects || @model.all).each do |user| %>
         <%= form.simple_fields_for "[]", user do |f| %>
 
           <div class='row'>
             <div class='large-3 columns'><%= image_tag user.chr_thumbnail_url %></div>
 
             <%= f.input :email,
+                        required: true,
                         as: :email,
                         label: false,
                         placeholder: 'Email',
@@ -43,6 +27,28 @@
 
         <% end %>
       <% end %>
+
+
+            <template id='new_item_template'>
+              <%= form.simple_fields_for "[]", @model.new do |f| %>
+
+                <div class='row'>
+                  <%= f.input :email,
+                              required: true,
+                              as: :email,
+                              label: false,
+                              placeholder: 'Email',
+                              wrapper_class: 'large-5 large-offset-3 columns' %>
+
+                  <div class='large-4 columns chr-actions'>
+                    <i class='chr-action-pin'></i><a class='action_cancel' data-item-class='row'>Cancel</a>
+                  </div>
+                </div>
+
+              <% end %>
+            </template>
+
+
     </div>
   </div>
 <% end %>
