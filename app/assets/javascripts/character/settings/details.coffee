@@ -27,6 +27,10 @@
     @ui.form = @ui.form_view.find('form')
     if @ui.form.length > 0
       @ui.action_save.show()
+
+      # @ui.form.attr('data-abide', '')
+      # $(document).foundation('abide', 'init');
+
       @ui.form.ajaxForm
         beforeSerialize: ($form, options) =>
           # this does not submit template fields (Safari fix)

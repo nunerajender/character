@@ -1,3 +1,13 @@
+
+.field_with_errors                    { @extend .error;
+}
+
+
+
+// Old Foundation
+
+
+
 .chr-form-label                       { margin-bottom: $form-label-bottom-margin;
                                         font-size: $form-label-font-size;
                                         font-weight: bold;
@@ -70,7 +80,4 @@ input[type=text].chr-title-input      { background-color: transparent;
     .input.file input                 { margin-bottom: .5em;
     }
   }
-}
-
-.field_with_errors                    { @extend .error;
 }
