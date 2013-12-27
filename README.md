@@ -1,5 +1,11 @@
 # Character (α)
 
+## Dev notes
+
+Figure out if we can build apps easier on a top of http://harpjs.com
+Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
+See if we can make use of this: https://github.com/elclanrs/jq-idealforms
+
 **IN DEVELOPMENT**
 
 Character is a set of development tools (framework) for empowering administration applications with a clean and simple user interfaces. Main goal of Character is to make developers life easier while building modern administration applications.

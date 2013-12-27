@@ -6,17 +6,21 @@ class Character::SettingsController < ActionController::Base
 
   include AuthHelper
   before_filter :authenticate_user
+  before_filter :set_template_name
 
   layout :false
 
+  def set_template_name
+    @scope         = params[:scope]
+    @template_name = @scope.gsub('-', '_')
+  end
+
   def show
-    scope         = params[:scope]
-    template_name = scope.gsub('-', '_')
-    render "character/settings/#{ template_name }"
+    render "character/settings/#{ @template_name }"
   end
 
   def update
-    errors     = {}
+    @errors    = {}
     class_name = params[:class_name]
     objects    = params[:objects].first
 
@@ -34,14 +38,13 @@ class Character::SettingsController < ActionController::Base
         object.destroy
       else
         unless object.update_attributes(attributes)
-          errors[object_id] = object.errors
+          @errors[object_id] = object.errors
         end
       end
 
     end
 
-    # TODO: error handling
-    render json: errors
+    render "character/settings/#{ @template_name }"
   end
 
   private

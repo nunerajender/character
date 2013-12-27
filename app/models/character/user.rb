@@ -2,10 +2,11 @@ class Character::User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :email
-
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  field     :email
+  validates :email,
+            presence:   true,
+            uniqueness: true,
+            format:     { :with => /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i }
 
   index({ email: 1 }, { unique: true })
 

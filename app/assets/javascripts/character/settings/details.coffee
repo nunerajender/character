@@ -21,13 +21,17 @@
 
   onFormRendered: ->
     @ui.new_item_template = @ui.form_view.find('#new_item_template')
-    if @ui.new_item_template.length > 0
+    if @ui.new_item_template.length and not @ui.actions.find('.action_new').length
       @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
 
     @ui.form = @ui.form_view.find('form')
     if @ui.form.length > 0
       @ui.action_save.show()
       @ui.form.ajaxForm
+        beforeSerialize: ($form, options) =>
+          # this does not submit template fields (Safari fix)
+          @ui.new_item_template.remove()
+
         beforeSubmit: (arr, $form, options) =>
           @setSavingState()
           return true
@@ -38,7 +42,8 @@
 
         success: (response) =>
           @setSavedState()
-          #console.log response
+          @ui.form_view.html(response)
+          @onFormRendered()
 
     @afterFormRendered?()
 

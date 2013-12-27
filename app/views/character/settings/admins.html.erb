@@ -1,4 +1,4 @@
-<%= simple_form_for :objects, url: '/admin/settings/update' do |form| %>
+<%= simple_form_for :objects, url: "/#{ character_instance.name }/settings/#{ @scope }" do |form| %>
   <%= hidden_field_tag :class_name, character_instance.user_model %>
 
   <div class='row'>
@@ -12,6 +12,7 @@
                               as: :email,
                               label: false,
                               placeholder: 'Email',
+                              required: true,
                               wrapper_class: 'large-5 large-offset-3 columns' %>
 
                   <div class='large-4 columns chr-actions'>
