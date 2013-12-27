@@ -1,3 +1,63 @@
+//
+// Block Grid Mixins: modified to support child <div> tags
+//  - This is used for images layout.
+
+// We use this mixin to create different block-grids. You can apply per-row and spacing options.
+// Setting $base-style to false will ommit default styles.
+@mixin block-grid-div($per-row:false, $spacing:$block-grid-default-spacing, $base-style:true) {
+
+  @if $base-style {
+    display: block;
+    padding: 0;
+    margin: 0 (-$spacing/2);
+    @include clearfix;
+
+    &>div {
+      display: inline;
+      height: auto;
+      float: $default-float;
+      padding: 0 ($spacing/2) $spacing;
+    }
+  }
+
+  @if $per-row {
+    &>div {
+      width: 100%/$per-row;
+      padding: 0 ($spacing/2) $spacing;
+
+      &:nth-of-type(n) { clear: none; }
+      &:nth-of-type(#{$per-row}n+1) { clear: both; }
+    }
+  }
+
+}
+
+@if $include-html-grid-classes {
+  /* Foundation Block Grids for below small breakpoint */
+  @media only screen {
+    [class*="block-grid-"] { @include block-grid-div; }
+
+    @for $i from 1 through $block-grid-elements {
+      .small-block-grid-#{($i)} {
+        @include block-grid-div($i,$block-grid-default-spacing,false);
+      }
+    }
+  }
+
+  /* Foundation Block Grids for above small breakpoint */
+  @media #{$small} {
+    /* Remove small grid clearing */
+    @for $i from 1 through $block-grid-elements {
+      .small-block-grid-#{($i)} > div:nth-of-type(#{$i}n+1) { clear: none; }
+    }
+    @for $i from 1 through $block-grid-elements {
+      .large-block-grid-#{($i)} {
+        @include block-grid-div($i,$block-grid-default-spacing,false);
+      }
+    }
+  }
+}
+
 .chr-form-images                      { @include block-grid-div(4, $block-grid-default-spacing, true);
   .fields a                           { display: none;
                                         width: 2em;
