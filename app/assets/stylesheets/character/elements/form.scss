@@ -51,16 +51,16 @@
   }
 }
 
-input[type=text].chr-title-input      { background-color: transparent;
-                                        border: none;
-                                        line-height: 1;
-                                        padding: 0 0 1em 0;
-                                        border-bottom: 1px dashed $chr-border-color;
-                                        font-weight: bold;
-                                        font-size: 1.5em;
-  &:focus                             { box-shadow: none;
-  }
-}
+// input[type=text].chr-title-input      { background-color: transparent;
+//                                         border: none;
+//                                         line-height: 1;
+//                                         padding: 0 0 1em 0;
+//                                         border-bottom: 1px dashed $chr-border-color;
+//                                         font-weight: bold;
+//                                         font-size: 1.5em;
+//   &:focus                             { box-shadow: none;
+//   }
+// }
 
 .chr-form-group                       { margin-bottom: 1em;
   &.shown                             { background-color: $panel-bg;

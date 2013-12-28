@@ -28,6 +28,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'foundation-rails'
   gem.add_runtime_dependency 'font-awesome-rails'
   gem.add_runtime_dependency 'momentjs-rails'
+  gem.add_runtime_dependency 'autosize-rails'
 
   # auth method
   gem.add_runtime_dependency 'browserid-auth-rails'

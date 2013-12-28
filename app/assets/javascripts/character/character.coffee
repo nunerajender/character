@@ -3,12 +3,12 @@
 #= require jquery_ujs
 #= require jquery.form
 #= require jquery_nested_form
+#= require jquery.autosize
 #= require underscore
 #= require underscore.string
 #= require underscore.inflection
 #= require backbone
 #= require backbone.marionette
-# require foundation
 #= require moment
 
 #= require_self
