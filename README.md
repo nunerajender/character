@@ -1,8 +1,13 @@
 # Character (α)
 
-Character is a set of development tools (framework) for empowering administration applications with a clean and simple user interfaces. Main goal of Character is to make developers life easier while building modern administration applications.
+Character is an admin for **rails + mongoid** web applications. It has clean and simple user interface and written with CoffeeScript. Character is very similar to Django admin or Active Admin but is much easier to extend.
 
-Core technologies that Character is built with: [Backbone.js](http://backbonejs.org) + [Marionette.js](https://github.com/marionettejs/backbone.marionette), [Foundation 5](http://foundation.zurb.com) and [Rails](http://rubyonrails.org).
+Character is built on the top of:
+
+* [Rails](http://rubyonrails.org)
+* [Backbone.js](http://backbonejs.org)
+* [Marionette.js](https://github.com/marionettejs/backbone.marionette)
+* [Foundation 5](http://foundation.zurb.com)
 
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
 
@@ -57,6 +62,13 @@ Character generator does:
 3. Remove ```//= require_tree .``` and ```*= require_tree .``` string from ```app/assets/javascripts/application.js``` and ```app/assets/stylesheets/application.js``` — to do not include admin assets in the application assets
 4. Add character & foundation javascript assets to production environment in ```config/environment/production.rb```: ```config.assets.precompile += %w( admin.js admin.css foundation.js vendor/modernizr.js )```
 5. Create character initializer ```config/initializers/character.rb```
+
+
+### Blog
+
+Character includes basic blog application. To install blog please install character admin using instructions above and then run:
+
+    rails g character:blog:install
 
 
 ## Authentification
@@ -169,15 +181,6 @@ To run the tests use the following command in the gem's root directory:
     $ rspec
 
 
-## TODO
-
-* notifications
-* hotkeys
-* ipad
-* iphone
-* translations
-* annotate sources
-
 --
 * [Олександр Кравець](http://www.bits.in.ua) @ [Slate](http://www.slatestudio.com) - December 27, 2013
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
@@ -185,8 +188,6 @@ To run the tests use the following command in the gem's root directory:
 
 ## Notes
 
-Figure out if we can build apps easier on a top of http://harpjs.com
-
-Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
-
-See if we can make use of this: https://github.com/elclanrs/jq-idealforms
+* Figure out if we can build apps easier on a top of http://harpjs.com
+* Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
+* See if we can make use of this: https://github.com/elclanrs/jq-idealforms

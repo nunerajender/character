@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <%= display_meta_tags title:       @blog_title,
+                        description: @blog_description,
+                        keywords:    @blog_keywords,
+                        canonical:   "http://#{ @blog_domain }" %>
+  <link rel="alternate"
+        type="application/rss+xml"
+        title="RSS"
+        href="http://<%= @blog_domain %><%= blog_feed_path %>.rss" />
+
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class='antialiased'>
+  <%= link_to blog_index_path, class: 'logo' do %><%= image_tag 'rails.png' %><% end %>
+
+  <% if @post %>
+    <%= link_to blog_index_path, class: 'action-back' do %><i class='fa fa-angle-left'></i><% end %>
+
+    <% if @post.has_featured_image? %>
+    <div class='featured-image' data-img-src='<%= @post.featured_image %>'>
+      <img src="data:image/gif;base64,R0lGODlhMgAVAPAAAP///wAAACH5BAEAAAAALAAAAAAyABUAAAIfhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8dTAQA7" />
+      <%= image_tag @post.featured_image.cover.url, class: 'featured-image-source' %>
+    </div>
+    <% end %>
+  <% end %>
+
+  <div class='row'>
+    <div class='large-9 medium-9 small-12 large-centered medium-centered small-centered columns'>
+
+      <div class='row'>
+        <%= yield %>
+        <% if @post %>
+          <div class='post-date'><%= l @post.published_at, format: :long %></div>
+          <%= render partial: 'blog/posts/disqus' unless @blog_disqus_shortname.empty? %>
+        <% end %>
+      </div>
+
+      <footer class='footer'>© <%= Time.now.year %></footer>
+    </div>
+  </div>
+
+  <%= javascript_include_tag "application" %>
+</body>
+</html>

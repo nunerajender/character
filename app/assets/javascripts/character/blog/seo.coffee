@@ -1,0 +1,3 @@
+
+
+@CharacterBlogSEO = -> CharacterSettingsApp('Blog SEO')

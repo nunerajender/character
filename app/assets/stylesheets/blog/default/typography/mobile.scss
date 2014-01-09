@@ -1,0 +1,20 @@
+p                                     { line-height: 1.45em;
+}
+a                                     { border-bottom: 1px solid $blog-link-color;
+  &:hover                             { background-color: $blog-link-color;
+                                        border-bottom-color: $blog-link-color;
+                                        color: $blog-link-hover-color;
+  }
+}
+pre                                   { margin-bottom: 1.25em;
+                                        line-height: 1.2;
+                                        padding: .5em;
+                                        background: #f2f2f0;
+}
+blockquote                            { padding: 0;
+                                        margin: 1.5em 0;
+                                        border: none;
+                                        font-style: italic;
+                                        line-height: 1.45em;
+                                        text-align: center;
+}

@@ -1,0 +1,64 @@
+#character_blog_post_title              { @extend h1;
+                                          border: none;
+                                          margin-bottom: .25em;
+                                          -webkit-transition: none;
+                                          -moz-transition: none;
+                                          transition: none;
+}
+
+
+#character_blog_post_tagline            { @extend h2;
+                                          border: none;
+                                          margin-bottom: 1em;
+                                          -webkit-transition: none;
+                                          -moz-transition: none;
+                                          transition: none;
+}
+
+.chr-air-writer .redactor_box,
+.chr-air-writer .redactor_box.focus     {
+  .redactor_editor                      { padding: 0;
+  }
+}
+
+
+.chr-settings-view-form.blog-categories {
+  .category                             { padding: .25em 0;
+
+    & > .columns                        { padding: 0 6%;
+    }
+
+    .details                            { display: none;
+                                          margin-top: 1em;
+    }
+
+    &.selected                          { background-color: $chr-list-bg-color;
+      .details                          { display: block;
+      }
+      .title                            { text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+
+
+.chr-comments                         {
+  a                                   { text-decoration: underline;
+  }
+
+  .panel                              { padding: .5em;
+                                        padding-bottom: .2em;
+    aside                             { color: lighten(#000, 30%);
+    }
+    p                                 { margin-top: .5em;
+    }
+    .remove-comment                   { float: right;
+                                        color: lighten(#000, 30%);
+                                        text-decoration: none;
+      &:hover                         { color: $primary-color;
+      }
+    }
+  }
+}

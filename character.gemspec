@@ -38,6 +38,12 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'nested_form'
   gem.add_runtime_dependency 'kaminari'
 
+  # blog
+  gem.add_runtime_dependency 'mongoid_slug'
+  gem.add_runtime_dependency 'meta-tags'
+  gem.add_runtime_dependency 'mongoid_search'
+  gem.add_runtime_dependency 'mongoid-autoinc'
+
   # Test dependencies
   gem.add_development_dependency 'mongoid', '~> 3.0.0'
   gem.add_development_dependency 'rspec-rails'

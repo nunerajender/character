@@ -1,0 +1,50 @@
+.comments                             { @extend .small-12;
+                                        @extend .columns;
+                                        @extend .large-centered;
+                                        padding-top: 2em;
+                                        border-top: 1px dashed #dedede;
+
+  input[name='phone']                 { display: none; // fake input for bots
+  }
+  ol                                  { list-style:none;
+                                        margin-top:2em;
+    aside                             { color:#bbb;
+    }
+  }
+  a                                   { border-bottom: 1px solid rgb(204, 204, 204);
+    &:hover                           { background-color: #eee;
+                                        border-bottom-color: #eee;
+    }
+  }
+}
+.comments-field-group                 { @extend .row;
+}
+.comments-submit                      { @extend .large-4;
+                                        @extend .columns;
+  input                               { @include button-base;
+                                        @include button-size;
+                                        @include button-style($secondary-color, 3px, false);
+                                        width: 100%;
+                                        padding-top: .45em;
+                                        padding-bottom: .45em;
+  }
+}
+.character_blog_comment_text          {
+  textarea                            { font-size: 1em;
+  }
+}
+.character_blog_comment_website,
+.character_blog_comment_name          { @extend .large-4;
+                                        @extend .columns;
+  input                               { font-size: 1em;
+  }
+}
+@media #{$small}                      {
+  .character_blog_comment_website,
+  .character_blog_comment_name        { padding-right: 0em;
+  }
+}
+.comments-submit input:hover          { color: #fff;
+                                        background-color: #333332;
+                                        border-color: #333332;
+}

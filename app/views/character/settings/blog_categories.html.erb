@@ -1,0 +1,54 @@
+<% @model = Character::Blog::Category %>
+
+<%= simple_form_for :objects, url: @url do |form| %>
+  <%= hidden_field_tag :class_name, @model.to_s %>
+
+        <% @model.all.each do |category| %>
+          <%= form.simple_fields_for "[]", category do |f| %>
+
+            <div class='row category'>
+              <div class='small-12 columns'>
+
+                <%= f.input :_position, as: :hidden %>
+
+                <header>
+                  <a class='title action_select'><%= category.title %></a><span class='chr-actions'><i class='chr-action-pin'></i><a class='action_delete' data-item-class='category'>Delete</a>
+                  <%= f.input :_destroy, as: :hidden, value: false %>
+                  </span>
+                </header>
+
+                <section class='details'>
+                  <%= f.input :title, label: false, placeholder: 'Title', required: true %>
+                </section>
+
+              </div>
+            </div>
+
+          <% end %>
+        <% end %>
+
+
+        <template id='new_item_template'>
+          <%= form.simple_fields_for "[]", @model.new do |f| %>
+
+            <div class='row category selected'>
+              <div class='small-12 columns'>
+
+                <%= f.input :_position, as: :hidden %>
+
+                <header>
+                  <a class='title action_select'>New Category</a><span class='chr-actions'><i class='chr-action-pin'></i><a class='action_cancel' data-item-class='category'>Cancel</a>
+                  <%= f.input :_destroy, as: :hidden, value: false %>
+                  </span>
+                </header>
+
+                <section class='details'>
+                  <%= f.input :title, label: false, input_html: { value: 'New Category' }, required: true %>
+                </section>
+              </div>
+            </div>
+
+          <% end %>
+        </template>
+
+<% end %>

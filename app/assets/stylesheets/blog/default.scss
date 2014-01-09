@@ -1,0 +1,37 @@
+@import "compass/css3";
+@import "font-awesome";
+
+$blog-body-font-color:   #333332!default;
+$blog-primary-color:     #333332!default;
+$blog-header-font-color: #333332!default;
+$blog-border-color:      rgb(245, 245, 245) !default;
+$blog-link-color:        #333332!default;
+$blog-link-hover-color:  white!default;
+
+$body-font-color:   $blog-body-font-color;
+$header-font-color: $blog-header-font-color;
+$primary-color:     $blog-body-font-color;
+
+$header-font-weight: black;
+
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+$header-font-family: "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif !default;
+$paragraph-font-family: Georgia, Cambria, "Times New Roman", Times,serif !default;
+
+@import "foundation";
+
+@import "default/index";
+@import "default/post";
+@import "default/comments";
+@import "default/logo";
+@import "default/action_back";
+@import "default/footer";
+
+// Firefox font fix | TODO: imporove this
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot");
+  src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.woff") format("woff"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.ttf") format("truetype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

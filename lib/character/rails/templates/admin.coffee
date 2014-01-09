@@ -1,5 +1,4 @@
-#= require character/character
-#= require character/settings
+#= require character
 #= require_self
 
 CharacterSettingsApp('Admins')

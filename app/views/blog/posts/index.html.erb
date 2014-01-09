@@ -1,0 +1,22 @@
+<% set_meta_tags  title:       @blog_title,
+                  description: @blog_description,
+                  keywords:    @blog_keywords,
+                  canonical:   "//#{ @blog_domain }#{ blog_index_path }",
+                  open_graph:  { type:        'blog',
+                                 title:       @blog_title,
+                                 description: @blog_description,
+                                 url:         "//#{ @blog_domain }#{ blog_index_path }" } %>
+
+
+<div class='blog-index'>
+  <% @posts.each do |p| %>
+
+    <article class='post-item'>
+      <%= link_to blog_post_path(p), rel: 'bookmark', class: 'post-link' do %>
+        <h3><%= p.title %></h3>
+        <p class='post-item-snippet'><%= p.tagline.html_safe %></p>
+      <% end %>
+    </article>
+
+  <% end %>
+</div>
