@@ -14,7 +14,7 @@
     if @collection.size() == @collection.page * @collection.options.constant_params.pp
       if not @loading_more_items_in_progress
         @loading_more_items_in_progress = true
-        @collection.more =>
+        @collection.fetchNextPage =>
           @loading_more_items_in_progress = false
 
 

@@ -43,4 +43,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec-rails'
   gem.add_development_dependency 'database_cleaner'
   gem.add_development_dependency 'factory_girl_rails', '~> 4.0'
+  gem.add_development_dependency 'coffee-rails-source-maps'
 end

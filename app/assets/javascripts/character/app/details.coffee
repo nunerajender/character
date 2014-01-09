@@ -74,7 +74,7 @@
       @model.set(resp)
       @collection.sort()
     else
-      @collection.refetch()
+      @collection.fetchPage(1)
 
 
   onDelete: ->
@@ -82,6 +82,7 @@
       @close()
       @model.destroy
         success: =>
-          @collection.refetch()
           @router.navigate(chr.path)
+        error: (model, response, options) ->
+          Character.Plugins.showErrorModal(response)
     return false

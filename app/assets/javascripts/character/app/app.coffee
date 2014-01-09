@@ -20,6 +20,7 @@
       scope.slug  ||= slug
       scope.title ||= _(slug).titleize()
 
+  # This is old API option
   default_scope_order_by ?= options.default_scope_order_by
 
   options.model_fields ?= []

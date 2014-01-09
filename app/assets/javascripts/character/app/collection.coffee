@@ -7,8 +7,10 @@
 @Character.App.Model = Backbone.Model.extend
   idAttribute: '_id'
 
+
   urlRoot: ->
     @collection.options.collection_url
+
 
   toJSON: (options={}) ->
     if options.process_for_save
@@ -24,6 +26,7 @@
       object['__image'] = @getImage() || ''
     return object
 
+
   getTitle:    -> @get(@collection.options.item_title || _(@attributes).keys()[0])
   getMeta:     -> @get(@collection.options.item_meta) || ''
   getImage:    -> @get(@collection.options.item_image)
@@ -36,82 +39,65 @@
 @Character.App.Collection = Backbone.Collection.extend
   model: Character.App.Model
 
-  url: (params) ->
-    @options.collection_url + "?" + $.param(params || @requestParams || {}, true)
+  # Query parameters:
+  #
+  #   @page
+  #   @search_query
+  #   @order_by
 
-  updateRequestParams: ->
-    scopes = @options.scopes
-    params = {}
+  # Sort options:
+  #
+  #   @sortField
+  #   @sortDirection
 
-    # page
-    if @page
-      params.p = @page
+  url: (params={}) ->
+    params.p = @page
+    params.q = @search_query
+    params.o = @order_by
 
-    # search
-    if @search_query
-      params.q = @search_query
-
-    # order + filtering
-    if @scope_slug and scopes
-      scope  = scopes[@scope_slug]
-
-      if scope
-        [name, value] = scope.where.split('=')
-        params["where__#{name}"] = value
-        params.o ?= scope.order_by
-
-    params.o ||= @options.order_by
-
+    _.extend(params, @filter)
     _.extend(params, @options.constant_params)
 
-    if @url() != @url(params)
-      @requestParams = params
+    _.compactObject(params)
 
-      # collection sortBy settings
-      if @requestParams.o
-        [ @sortField, @sortDirection ] = @requestParams.o.split(':')
-
-      return true
-    else
-      return false
+    @options.collection_url + "?" + $.param(params, true)
 
 
-  update: (callback, force=false) ->
-    paramsChanged = @updateRequestParams()
-
-    if paramsChanged or force
-      @fetch
-        reset:   true
-        success: -> callback?()
-        error:   (collection, response, options) -> Character.Plugins.showErrorModal(response)
-    else
-      callback?()
+  setSearchQuery: (@search_query) ->
+    return @
 
 
-  scope: (@scope_slug, callback) ->
-    @page = 1
-    @search_query = false
-    @update(callback)
+  setScope: (slug) ->
+    @sortField     = null
+    @sortDirection = null
+    @order_by      = null
+    @filter        = {}
+
+    scope = @options.scopes?[slug]
+
+    @order_by = scope?.order_by || @options.order_by
+
+    if @order_by
+      [ @sortField, @sortDirection ] = @order_by.split(':')
+
+    if scope
+      [name, value] = scope.where.split('=')
+      @filter["where__#{name}"] = value
+
+    return @
 
 
-  search: (@search_query, callback) ->
-    @page = 1
-    @update(callback)
-
-
-  more: (callback) ->
-    @page += 1
-    @updateRequestParams()
+  fetchPage: (@page, callback=false, reset=true, remove=true) ->
     @fetch
-      remove:  false
-      success: -> callback?()
-      error:   (collection, response, options) -> Character.Plugins.showErrorModal(response)
+      reset: reset
+      remove: remove
+      success: (response) -> callback?(response)
+      error: (collection, response, options) -> Character.Plugins.showErrorModal(response)
 
 
-  refetch: (callback) ->
-    @page = 1
-    @search_query = false
-    @update(callback, true)
+  fetchNextPage: (callback) ->
+    after_fetch = (response) => ( @page += 1 if response.length > 0 ) ; callback?()
+    @fetchPage(@page + 1, after_fetch, false, false)
 
 
   # support of reverse sorting is taken from:
@@ -119,7 +105,7 @@
 
 
   comparator: (m) ->
-    if @requestParams.order_by
+    if @sortField
       return m.get(@sortField)
 
 

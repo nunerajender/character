@@ -6,8 +6,6 @@
 #  - underscore
 #  - underscore.string
 
-# TODO: update these plugins to use jquery selectors
-
 @Character.Plugins ||= {}
 
 @Character.Plugins.fix_date_field_layout = ->

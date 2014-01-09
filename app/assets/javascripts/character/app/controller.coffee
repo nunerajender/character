@@ -15,7 +15,7 @@
       chr.main.show(@app.main)
       @app.main.header.update(scope)
 
-      @app.collection.scope(scope, callback)
+      @app.collection.setScope(scope).fetchPage(1, callback)
     else
       @app.main.list.unselectCurrentItem()
       @app.main.details.close()

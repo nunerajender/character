@@ -1,9 +1,5 @@
 module TemplatesHelper
-  # this helper provides way to redefine default templates to be
-  # used for form-template based actions like new, edit, create, update
   def form_template
-    set_form_attributes
-
     @form_template ||= begin
       template_folder = model_class.name.underscore.to_s.pluralize
       template_folder.gsub!('character/', '')
@@ -21,16 +17,19 @@ module TemplatesHelper
     end
   end
 
-  def set_form_attributes
-    # attributes required for generic form
-    if @object.persisted?
-      @form_action_url = "/#{ character_instance.name }/#{ model_slug }/#{ @object.id }"
-    else
-      @form_action_url = "/#{ character_instance.name }/#{ model_slug }"
+  def form_action_url(object)
+    @form_action_url ||= begin
+      if @object.persisted?
+        "/#{ character_instance.name }/#{ model_slug }/#{ object.id }"
+      else
+        "/#{ character_instance.name }/#{ model_slug }"
+      end
     end
+  end
 
-    @model_name = model_name
-
-    @form_fields = model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
+  def form_fields
+    @form_fields ||= begin
+      model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
+    end
   end
 end

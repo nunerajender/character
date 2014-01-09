@@ -16,15 +16,8 @@ module ModelClassHelper
   end
 
 
-  # model name is used while template rendering
-  def model_name
-    @model_name ||= begin
-      model_slug.split('-').last.split(/(?=[A-Z])/).join(' ')
-    end
-  end
-
-
   # form_attributes_namespace is used while form processing
+  # in update and create methods
   def form_attributes_namespace
     @form_attributes_namespace ||= begin
       model_class.name.underscore.gsub('/', '_').to_sym

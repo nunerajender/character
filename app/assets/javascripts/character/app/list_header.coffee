@@ -30,17 +30,22 @@
 
     query = @ui.search_input.val()
 
+    search = =>
+      @options.app.collection.setSearchQuery(query).fetchPage(1)
+
     if e.keyCode == 13
-      @options.app.collection.search(query)
+      search()
     else
-      @search_on_type_timeout = setTimeout((=> @options.app.collection.search(query)), 800)
+      @search_on_type_timeout = setTimeout(search, 800)
 
 
   toggleSearchBar: ->
     if @ui.search.hasClass('shown')
       @ui.search.removeClass('shown')
       @ui.search_input.val('')
-      @options.app.collection.search(false)
+
+      @options.app.collection.setSearchQuery()
+      @options.app.collection.fetchPage(1)
     else
       @ui.search.addClass('shown')
       @ui.search_input.focus()

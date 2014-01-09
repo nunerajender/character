@@ -1,6 +1,6 @@
-<%= simple_form_for @object, url: @form_action_url do |f| %>
+<%= simple_form_for @object, url: form_action_url(@object) do |f| %>
   <div class='row'>
-    <% @form_fields.each do |name| %>
+    <% form_fields.each do |name| %>
       <%= f.input name, wrapper_class: 'small-12 columns' %>
     <% end %>
   </div>
