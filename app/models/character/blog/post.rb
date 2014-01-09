@@ -22,9 +22,6 @@ class Character::Blog::Post
 
   belongs_to :category, class_name: "Character::Blog::Category"
 
-  has_many :comments, class_name: "Character::Blog::Comment"
-  accepts_nested_attributes_for :comments, allow_destroy: true
-
   search_in :title, :tagline, :keywords, :body_html, :category => :title
 
   default_scope     order_by(published_at: :desc)
