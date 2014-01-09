@@ -1,12 +1,11 @@
-# Character (α)
+# Character
 
-Character is an admin for **rails + mongoid** web applications. It has clean and simple user interface and written with CoffeeScript. Character is very similar to Django admin or Active Admin but is much easier to extend.
+Character is an admin for **rails + mongoid** web applications. It has clean user interface and written with CoffeeScript.
 
-Character is built on the top of:
+Character is very similar to Django admin or Active Admin but is much easier to extend. It is built on the top of:
 
 * [Rails](http://rubyonrails.org)
-* [Backbone.js](http://backbonejs.org)
-* [Marionette.js](https://github.com/marionettejs/backbone.marionette)
+* [Backbone.js](http://backbonejs.org) + [Marionette.js](https://github.com/marionettejs/backbone.marionette)
 * [Foundation 5](http://foundation.zurb.com)
 
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
@@ -23,7 +22,6 @@ Character is built on the top of:
 * [Instances](#instances)
 * [Settings](#settings)
 * [Tests](#tests)
-* [Dependencies](#dependencies)
 * [TODO](#todo)
 
 
@@ -148,32 +146,6 @@ Settings application provides a generic way of expanding admin with editable set
 Settings could be used to provide a simple way of editing CTAs, webpage editable content, etc. Read more on Character Settings [here](https://github.com/slate-studio/character/blob/master/doc/settings.md).
 
 
-## Dependencies
-
-Frontend Javascript:
-
-* [jQuery](https://github.com/rails/jquery-rails)
-* [Underscore](https://github.com/rweng/underscore-rails)
-* [Underscore String](https://github.com/epeli/underscore.string)
-* [Backbone](http://backbonejs.org/)
-* [Backbone Marionette](https://github.com/chancancode/marionette-rails)
-* [jQuery UI](https://github.com/joliss/jquery-ui-rails)
-* [Moment.js](http://momentjs.com)
-
-Frontend CSS:
-
-* [Compass](https://github.com/Compass/compass-rails)
-* [Foundation](https://github.com/zurb/foundation/)
-* [Fontawesome](https://github.com/bokmann/font-awesome-rails)
-
-Backend:
-
-* [BrowserID](https://github.com/alexkravets/browserid-auth-rails)
-* [Simple Form](https://github.com/plataformatec/simple_form)
-* [Nested Forms](https://github.com/ryanb/nested_form)
-* [Kaminari](https://github.com/amatsuda/kaminari)
-
-
 ## Tests
 
 To run the tests use the following command in the gem's root directory:
@@ -182,7 +154,7 @@ To run the tests use the following command in the gem's root directory:
 
 
 --
-* [Олександр Кравець](http://www.bits.in.ua) @ [Slate](http://www.slatestudio.com) - December 27, 2013
+* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - January 9, 2014
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 * Мельник Максим @ [Slate](http://www.slatestudio.com) - October 23, 2013
 
