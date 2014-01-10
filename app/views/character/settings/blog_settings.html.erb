@@ -6,7 +6,7 @@
   <div class='row'>
     <div class='large-9 large-centered columns'>
 
-      <% Settings.group('Blog Settings').each do |name, object| %>
+      <% ::Settings.group('Blog Settings').each do |name, object| %>
         <%= render partial: 'variable_form', locals: { form: form, object: object }%>
       <% end %>
 

@@ -43,7 +43,7 @@ module Character
     end
 
     def settings
-      @settings ||= Settings.group(@name.capitalize + ' Settings')
+      @settings ||= ::Settings.group(@name.capitalize + ' Settings')
     end
 
     def logo
