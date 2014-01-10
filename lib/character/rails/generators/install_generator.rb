@@ -12,7 +12,7 @@ module Character
         end
 
         def copy_settings_file
-          copy_file "character_settings.yml", "config/character_settings.yml"
+          copy_file "settings.yml", "config/settings.yml"
         end
 
         def copy_assets

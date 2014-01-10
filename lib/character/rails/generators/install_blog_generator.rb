@@ -40,7 +40,7 @@ module Character
           inject_into_file "config/routes.rb", after: "  mount_character()\n" do <<-'RUBY'
 mount_blog_short_urls_at('/')
 mount_blog_at('/')
-          RUBY
+RUBY
           end
         end
 
@@ -49,7 +49,9 @@ mount_blog_at('/')
         end
 
         def add_settings
-          inject_into_file "config/character_settings.yml", before: "# --------------------------------------------------------------------------------\n" do <<-'RUBY'
+          inject_into_file "config/settings.yml", after: "# END" do <<-'RUBY'
+
+# Blog Settings
 
 Blog Settings:
   Doman:
@@ -77,6 +79,7 @@ Blog Settings:
     description: If defined disqus is used to comment blog posts.
     default_value: ''
 
+# END
 RUBY
           end
         end

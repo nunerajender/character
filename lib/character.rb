@@ -19,6 +19,7 @@ require 'meta_tags'
 require 'autoinc'
 
 # character
+require 'character/settings'
 require 'character/instance'
 require 'character/version'
 require 'character/engine'

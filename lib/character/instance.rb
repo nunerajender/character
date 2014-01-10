@@ -6,23 +6,23 @@ module Character
                   :title,
                   :user_model,
 
-                  :permissions_filter,
                   :before_index,
                   :before_save,
 
                   :javascript_filename,
                   :stylesheet_filename,
 
-                  :logo_image,
-                  :login_background_image,
-                  :development_auto_login
+                  :development_auto_login,
+
+                  # defined in config/settings.yml
+                  :settings,
+                  :logo,
+                  :login_background
 
     def initialize(name = Instance::DEFAULT_NAME)
       @name                   = name.gsub(' ', '-').downcase
       @title                  = 'Character'
       @user_model             = 'Character::User'
-      @logo_image             = 'rails.png'
-      @login_background_image = 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
       @development_auto_login = false
     end
 
@@ -42,8 +42,16 @@ module Character
       @user_class ||= @user_model.constantize
     end
 
-    def default?
-      @name == Instance::DEFAULT_NAME
+    def settings
+      @settings ||= Settings.groups[@name.capitalize + ' Settings']
+    end
+
+    def logo
+      @logo ||= settings['Logo'].value
+    end
+
+    def login_background
+      @login_background ||= settings['Login Background'].value
     end
   end
 end
