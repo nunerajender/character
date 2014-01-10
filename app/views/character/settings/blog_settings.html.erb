@@ -1,5 +1,15 @@
-<div class='row'>
-  <div class='large-12 columns'>
-    <h1>Blog Settings</h1>
+<% @model = Character::Settings::Variable %>
+
+<%= simple_form_for :objects, url: @url do |form| %>
+  <%= hidden_field_tag :class_name, @model.to_s %>
+
+  <div class='row'>
+    <div class='large-9 large-centered columns'>
+
+      <% Settings.group('Blog Settings').each do |name, object| %>
+        <%= render partial: 'variable_form', locals: { form: form, object: object }%>
+      <% end %>
+
+    </div>
   </div>
-</div>
+<% end %>

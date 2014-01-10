@@ -6,7 +6,7 @@ class Blog::PostsController < ApplicationController
   before_filter :set_blog_parameters
 
   def set_blog_parameters
-    settings = Settings.groups['Blog Settings']
+    settings = Settings.group('Blog Settings')
     @blog_domain            = settings['Domain'].value
     @blog_title             = settings['Title'].value
     @blog_description       = settings['Description'].value

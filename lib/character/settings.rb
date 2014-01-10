@@ -15,41 +15,36 @@ module Settings
     @settings_from_yml
   end
 
-  def self.groups
-    unless @groups
-      @groups = {}
-      settings_from_yml.each do |group, variables|
-        @groups[group] = {}
-        variables.each { |name, attrs| @groups[group][name] = Variable.new(group, name, attrs) }
-      end
+  def self.group(group_name)
+    group = {}
+    settings_from_yml[group_name].each do |name, attrs|
+      group[name] = Variable.new(group_name, name, attrs)
     end
-    @groups
+    group
   end
 
   def self.stored_variables
     @stored_variables ||= Character::Settings::Variable.all
+    Character::Settings::Variable.all
   end
 
   class Variable
     attr_accessor :type, :description, :default_value, :stored_object
 
     def initialize(group, name, attrs)
-      @type          = attrs['type']          || 'string'
-      @description   = attrs['description']   || ''
-      @default_value = attrs['default_value'] || ''
-      @stored_object = Settings.stored_variables.select{ |o| o.group == group and o.name == name }.first
+      @type            = attrs['type']          || 'string'
+      @description     = attrs['description']   || ''
+      @default_value   = attrs['default_value'] || ''
+      @stored_object   = Character::Settings::Variable.find_or_create_by(name: name, group: group)
     end
 
     def value
-      @value ||= begin
-        value = @stored_object.try(:value) || @default_value
-
-        # support for rails assets
-        if @type == 'file' and not value.empty? and not value.include? '//'
-          value = ActionController::Base.helpers.asset_path(value)
-        end
-
-        value
+      value = @stored_object.value || @default_value
+      # support for rails assets
+      if @type == 'file' and not value.empty? and not value.include? '//'
+        return ActionController::Base.helpers.asset_path(value)
+      else
+        return value
       end
     end
   end

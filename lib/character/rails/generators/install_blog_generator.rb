@@ -54,7 +54,7 @@ RUBY
 # Blog Settings
 
 Blog Settings:
-  Doman:
+  Domain:
     type: string
     description: Domain of the website where blog lives.
     default_value: www.my-domain.com
