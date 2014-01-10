@@ -6,11 +6,12 @@ class Blog::PostsController < ApplicationController
   before_filter :set_blog_parameters
 
   def set_blog_parameters
-    @blog_domain      = ''
-    @blog_title       = ''
-    @blog_description = ''
-    @blog_keywords    = ''
-    @blog_disqus_shortname = ''
+    settings = Settings.groups['Blog Settings']
+    @blog_domain            = settings['Domain'].value
+    @blog_title             = settings['Title'].value
+    @blog_description       = settings['Description'].value
+    @blog_keywords          = settings['Keywords'].value
+    @blog_disqus_shortname  = settings['Disqus Shortname'].value
   end
 
   def index
