@@ -31,14 +31,26 @@ module Settings
   end
 
   class Variable
-    attr_accessor :type, :description, :default_value, :stored_value, :value
+    attr_accessor :type, :description, :default_value, :stored_object
 
     def initialize(group, name, attrs)
       @type          = attrs['type']          || 'string'
       @description   = attrs['description']   || ''
       @default_value = attrs['default_value'] || ''
-      @stored_value  = nil
-      @value ||= @stored_value || @default_value || ''
+      @stored_object = Settings.stored_variables.select{ |o| o.group == group and o.name == name }.first
+    end
+
+    def value
+      @value ||= begin
+        value = @stored_object.try(:value) || @default_value
+
+        # support for rails assets
+        if @type == 'file' and not value.empty? and not value.include? '//'
+          value = ActionController::Base.helpers.asset_path(value)
+        end
+
+        value
+      end
     end
   end
 end
