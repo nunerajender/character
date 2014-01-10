@@ -1,0 +1,18 @@
+.chr-settings-view-form.post-categories {
+  .category                             { padding: .25em 0;
+
+    & > .columns                        { padding: 0 6%;
+    }
+
+    .details                            { display: none;
+                                          margin-top: 1em;
+    }
+
+    &.selected                          { background-color: $chr-list-bg-color;
+      .details                          { display: block;
+      }
+      .title                            { text-decoration: underline;
+      }
+    }
+  }
+}

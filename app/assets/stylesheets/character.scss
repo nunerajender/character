@@ -3,33 +3,7 @@
 @import "font-awesome";
 @import "compass/css3";
 
-$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-$primary-color: #232323;
-
-$input-border-color: #ddd;
-$input-focus-bg-color: #fff;
-$input-box-shadow: none;
-$input-prefix-bg: darken(#fff, 1%);
-$input-prefix-border-size: 1px;
-$input-prefix-font-color: #6f6f6f;
-$input-include-glowing-effect: false;
-$input-disabled-bg: #fafafa;
-
-//$form-label-font-color: $primary-color;
-//$form-label-font-size: .8em;
-//$form-label-font-weight: bold;
-//$form-label-bottom-margin: .5em;
-
-$chr-secondary-bg-color: #fafafa;
-
-$panel-bg: $chr-secondary-bg-color;
-$panel-border-style: none;
-
-$table-even-row-bg: $chr-secondary-bg-color;
-
-$f-dropdown-margin-top: 10px;
-
-@import "foundation";
+// Character Settings
 
 $chr-secondary-bg-color: #fafafa;
 $chr-border-color: #f1f1f1;
@@ -46,7 +20,6 @@ $chr-settings-list-item-active-color: #222;
 
 $chr-list-bg-color: $chr-secondary-bg-color;
 $chr-list-header-height: 68px;
-$chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
 
 $chr-list-item-height: 68px;
 $chr-list-item-active-bg: #f5f5f5;
@@ -57,6 +30,35 @@ $chr-list-item-active-meta-color: #555;
 
 $chr-action-color: #666;
 $chr-action-save-height: 68px;
+
+// Foundation Settings
+
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$primary-color: #232323;
+
+$input-border-color: #ddd;
+$input-focus-bg-color: #fff;
+$input-box-shadow: none;
+$input-prefix-bg: darken(#fff, 1%);
+$input-prefix-border-size: 1px;
+$input-prefix-font-color: #6f6f6f;
+$input-include-glowing-effect: false;
+$input-disabled-bg: #fafafa;
+
+$panel-bg: $chr-secondary-bg-color;
+$panel-border-style: none;
+
+$table-even-row-bg: $chr-secondary-bg-color;
+
+$f-dropdown-margin-top: 10px;
+
+@import "foundation";
+
+// Awkward
+
+$chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
+
+// Helpers
 
 @mixin position($left, $top, $right, $bottom, $z-index: 0) {
                                         position: absolute;
@@ -70,6 +72,8 @@ $chr-action-save-height: 68px;
 @mixin scrollable                     { overflow: hidden;
                                         overflow-y: auto;
 }
+
+// Imports
 
 @import "./character/app/details";
 @import "./character/app/list";
@@ -87,6 +91,11 @@ $chr-action-save-height: 68px;
 @import "./character/helpers/images";
 
 @import "./character/views";
+
+@import "./character/blog/post";
+@import "./character/blog/categories";
+
+// Other
 
 template                              { display: none;
 }

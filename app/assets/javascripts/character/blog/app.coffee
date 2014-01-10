@@ -1,7 +1,7 @@
 
 
-@CharacterBlogCategories = ->
-  CharacterSettingsApp 'Blog Categories',
+@CharacterSettingsPostCategories = ->
+  CharacterSettingsApp 'Post Categories',
     detailsViewClass: Character.BlogCategories.DetailsView
 
 

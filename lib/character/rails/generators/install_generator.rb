@@ -11,6 +11,10 @@ module Character
           copy_file "initializer.rb", "config/initializers/character.rb"
         end
 
+        def copy_settings_file
+          copy_file "character_settings.yml", "config/character_settings.yml"
+        end
+
         def copy_assets
           copy_file "admin.coffee", "app/assets/javascripts/admin.coffee"
           copy_file "admin.scss", "app/assets/stylesheets/admin.scss"

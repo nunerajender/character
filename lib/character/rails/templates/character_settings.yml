@@ -1,0 +1,14 @@
+# ================================================================================
+#   character_settings.yml ---configuration file v1.0---
+# ================================================================================
+# This file is used to store a list of character settings. Settings are split into
+# groups like this:
+#
+#   Group Name:
+#     Variable Title:
+#       type:            string (default) / text / file / link
+#       description:     setting one sentence description
+#       default_value:   default value is used when setting value is blank
+#
+# PS: Link value format: (link title) http://link.url
+# --------------------------------------------------------------------------------
