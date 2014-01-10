@@ -1,3 +1,0 @@
-
-
-@CharacterSettingsBlog = -> CharacterSettingsApp('Blog')

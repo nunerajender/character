@@ -1,0 +1,3 @@
+
+
+@CharacterSettingsBlog = -> CharacterSettingsApp('Blog Settings')
