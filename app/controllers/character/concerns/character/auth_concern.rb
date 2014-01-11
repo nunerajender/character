@@ -1,4 +1,6 @@
-module AuthHelper
+module Character::AuthConcern
+  extend ActiveSupport::Concern
+
   def auto_login!
     if ( character_instance.development_auto_login and Rails.env.development? ) or Rails.env.test?
       @browserid_email = 'developer@character.org'
@@ -21,18 +23,6 @@ module AuthHelper
     else
       @current_user = character_instance.user_class.create(email: @browserid_email) if @browserid_email
       return true
-    end
-  end
-
-  def browserid_config
-    @browserid_config ||= begin
-      config = Rails.configuration.browserid.clone
-      config.user_model       = character_instance.user_model
-      config.session_variable = "#{ character_instance.name }_browserid_email"
-      config.login.text       = 'Sign-in with Persona'
-      config.login.path       = "/#{ character_instance.name }/login"
-      config.logout.path      = "/#{ character_instance.name }/logout"
-      config
     end
   end
 end

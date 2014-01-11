@@ -32,6 +32,7 @@ module Character
   class Engine < ::Rails::Engine
     config.before_configuration do
       Character.instances = {}
+      config.autoload_paths += %W( #{config.root}/app/controllers/character/concerns )
     end
   end
 end

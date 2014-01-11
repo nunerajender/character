@@ -2,9 +2,8 @@
 #         Slate, 2013
 
 class Character::SettingsController < ActionController::Base
-  include InstanceHelper
-
-  include AuthHelper
+  include Character::InstanceConcern
+  include Character::AuthConcern
   before_filter :authenticate_user
   before_filter :set_template_name
 

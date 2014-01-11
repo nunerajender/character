@@ -1,4 +1,6 @@
-module InstanceHelper
+module Character::InstanceConcern
+  extend ActiveSupport::Concern
+
   def character_instance
     @character_instance ||= begin
       name = (/\/([^\/&]+)/.match request.path)[1]

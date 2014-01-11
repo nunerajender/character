@@ -1,4 +1,6 @@
-module ModelClassHelper
+module Character::ModelClassConcern
+  extend ActiveSupport::Concern
+
   def model_slug
     @model_slug ||= begin
       params[:model_slug]

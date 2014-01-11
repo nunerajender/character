@@ -1,4 +1,6 @@
-module JsonObjectHelper
+module Character::JsonObjectConcern
+  extend ActiveSupport::Concern
+
   def object_fields
     @object_fields ||= begin
       @object_fields = []

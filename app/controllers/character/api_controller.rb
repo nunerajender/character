@@ -2,12 +2,11 @@
 #         Slate, 2013
 
 class Character::ApiController < ActionController::Base
-  include InstanceHelper
-  include ModelClassHelper
-  include TemplatesHelper
-  include JsonObjectHelper
-
-  include AuthHelper
+  include Character::InstanceConcern
+  include Character::ModelClassConcern
+  include Character::TemplatesConcern
+  include Character::JsonObjectConcern
+  include Character::AuthConcern
   before_filter :authenticate_user
 
   layout :false
@@ -91,12 +90,14 @@ class Character::ApiController < ActionController::Base
 
   def new
     @object = model_class.new
+    @form_action_url = form_action_url(@object)
     render form_template
   end
 
 
   def edit
     @object = model_class.find(params[:id])
+    @form_action_url = form_action_url(@object)
     render form_template
   end
 

@@ -1,4 +1,6 @@
-module TemplatesHelper
+module Character::TemplatesConcern
+  extend ActiveSupport::Concern
+
   def form_template
     @form_template ||= begin
       template_folder = model_class.name.underscore.to_s.pluralize
@@ -12,24 +14,17 @@ module TemplatesHelper
       elsif template_exists?("form", generic_template_folder, false)
         "#{ generic_template_folder }/form"
       else
+        @generic_form_fields = model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
         "character/generic_form"
       end
     end
   end
 
   def form_action_url(object)
-    @form_action_url ||= begin
-      if @object.persisted?
-        "/#{ character_instance.name }/#{ model_slug }/#{ object.id }"
-      else
-        "/#{ character_instance.name }/#{ model_slug }"
-      end
-    end
-  end
-
-  def form_fields
-    @form_fields ||= begin
-      model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
+    if object.persisted?
+      "/#{ character_instance.name }/#{ model_slug }/#{ object.id }"
+    else
+      "/#{ character_instance.name }/#{ model_slug }"
     end
   end
 end
