@@ -1,5 +1,3 @@
-@Character.Settings ||= {}
-
 #
 # Marionette.js ItemView Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
@@ -30,29 +28,28 @@
       @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
 
     @ui.form = @ui.form_view.find('form')
-    if @ui.form.length > 0
+    if @ui.form.length
       @ui.action_save.show()
 
-      # @ui.form.attr('data-abide', '')
-      # $(document).foundation('abide', 'init');
+      @ui.form.submit =>
+        @updateState('Saving')
 
-      @ui.form.ajaxForm
-        beforeSerialize: ($form, options) =>
-          # this does not submit template fields (Safari fix)
-          @ui.new_item_template.remove()
+        # this does not allow to submit template fields (Safari fix)
+        @ui.new_item_template.remove()
 
-        beforeSubmit: (arr, $form, options) =>
-          @setSavingState()
-          return true
+        $.ajax
+          type: @ui.form.attr('method')
+          url:  @ui.form.attr('action')
+          data: @ui.form.serialize()
+          success: (data) =>
+            @updateState()
+            @ui.form_view.html(data)
+            @onFormRendered()
+          error: (data) =>
+            Character.Plugins.showErrorModal(data)
+            @updateState()
 
-        error: (response) =>
-          Character.Plugins.showErrorModal(response)
-          @setSavedState()
-
-        success: (response) =>
-          @setSavedState()
-          @ui.form_view.html(response)
-          @onFormRendered()
+        return false
 
     @afterFormRendered?()
 
@@ -89,12 +86,12 @@
       item.replaceWith(destroy_field)
     return false
 
-  setSavingState: ->
-    @ui.action_save.addClass('disabled')
-    @ui.action_save.html 'Saving...'
-
-  setSavedState: ->
-    setTimeout ( =>
-      @ui.action_save.removeClass('disabled')
-      @ui.action_save.html 'Save'
-    ), 500
+  updateState: (state) ->
+    if state == 'Saving'
+      @ui.action_save.addClass('disabled')
+      @ui.action_save.html 'Saving...'
+    else
+      setTimeout ( =>
+        @ui.action_save.removeClass('disabled')
+        @ui.action_save.html 'Save'
+      ), 500

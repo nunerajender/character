@@ -9,7 +9,7 @@ class Character::ApplicationController < ActionController::Base
   layout false
 
   def index
-    render 'character/application'
+    render 'character/character'
   end
 
   def login

@@ -163,3 +163,8 @@ To run the tests use the following command in the gem's root directory:
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms
+* Nice autocompletion tool: http://ichord.github.io/At.js/
+* For touch devices (no need for jQuery UI): http://pornel.net/slip/
+* Scrolling on iPad: http://iscrolljs.com/
+* Add to blog: https://github.com/jansepar/picturefill
+* for user input: https://github.com/loadfive/knwl.js

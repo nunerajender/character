@@ -1,4 +1,4 @@
-<% @model = character_instance.user_model.constantize %>
+<% @model = @character_instance.user_model.constantize %>
 
 <%= simple_form_for :objects, url: @url do |form| %>
   <%= hidden_field_tag :class_name, @model.to_s %>

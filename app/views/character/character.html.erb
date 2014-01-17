@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title><%= @character_instance.title %></title>
+
+  <%= stylesheet_link_tag @character_instance.stylesheet_filename, :media => 'all' %>
+  <style>.logo{ background-image: url('<%= image_path(@character_instance.logo) %>'); }</style>
+
+  <%= javascript_include_tag @character_instance.javascript_filename %>
+  <%= setup_browserid debug: false %>
+
+  <%= javascript_include_tag 'vendor/modernizr' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class='antialiased'>
+
+  <% if @current_user %>
+    <script>
+      $(function() {
+        var character_params = {
+          user_email: '<%= @current_user.email %>',
+          url:        '/<%= @character_instance.name %>'
+        };
+        chr.start(character_params);
+      });
+    </script>
+    <div id='character' class='character <%= @character_instance.name %>-instance'>
+      <div id='menu' class='chr-menu'>
+        <nav>
+          <%= image_tag @current_user.gravatar_url(36) %>
+          <ul id='menu_items'></ul>
+          <a href="#/settings" class="chr-menu-item-settings"><i class="fa fa-gears"></i> Settings</a>
+        </nav>
+      </div>
+      <div id='content' class='chr-content'></div>
+    </div>
+  <% else %>
+    <% if @browserid_email %>
+      <div class='row'>
+        <div class='large-8 columns large-centered'>
+          <p style='margin-top: 3em;'>You're signed in with <strong><%= @browserid_email %></strong>, but this account have no access to this area. You can ask administrator to provide access for this email or re-sign in with a different email.</p>
+
+          <%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>
+            <i class='fa fa-sign-out'></i> Sign out
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <div class='chr-login'
+           style='background-image: url("<%= @character_instance.login_background %>");'>
+        <%= link_to browserid_config.login.path, class: 'browserid_login' do %>
+          <i class='fa fa-sign-in'></i> Sign in <small>with Persona</small>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= javascript_include_tag 'foundation' %>
+</body>
+</html>

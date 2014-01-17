@@ -7,7 +7,23 @@
     <div class='large-9 large-centered columns'>
 
       <% ::Settings.group('Blog Settings').each do |name, object| %>
-        <%= render partial: 'variable_form', locals: { form: form, object: object }%>
+
+        <%= form.simple_fields_for "[]", object.stored_object do |f| %>
+          <% case object.type %>
+          <% when "text" %>
+          <%= f.input :value,
+                       as: :text,
+                       label: f.object.name,
+                       placeholder: object.description,
+                       input_html: { value: object.value } %>
+          <% else %>
+          <%= f.input :value,
+                       label: f.object.name,
+                       placeholder: object.description,
+                       input_html: { value: object.value } %>
+          <% end %>
+        <% end %>
+
       <% end %>
 
     </div>

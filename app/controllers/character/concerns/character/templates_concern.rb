@@ -15,7 +15,7 @@ module Character::TemplatesConcern
         "#{ generic_template_folder }/form"
       else
         @generic_form_fields = model_class.fields.keys - %w( _id _type created_at _position _keywords updated_at deleted_at )
-        "character/generic_form"
+        "character/generic/form"
       end
     end
   end

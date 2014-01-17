@@ -21,9 +21,11 @@ Gem::Specification.new do |gem|
   gem.rubyforge_project = 'nowarning'
 
   # javascripts & stylesheets
-  gem.add_runtime_dependency 'jquery-ui-rails'
   gem.add_runtime_dependency 'underscore-rails'
   gem.add_runtime_dependency 'marionette-rails'
+
+  gem.add_runtime_dependency 'jquery-ui-rails'
+
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'foundation-rails'
   gem.add_runtime_dependency 'font-awesome-rails'
@@ -49,5 +51,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec-rails'
   gem.add_development_dependency 'database_cleaner'
   gem.add_development_dependency 'factory_girl_rails', '~> 4.0'
-  gem.add_development_dependency 'coffee-rails-source-maps'
 end
