@@ -10,20 +10,18 @@ class Character::SettingsController < ActionController::Base
   layout :false
 
   def set_template_name
-    @scope         = params[:scope]
-    @template_name = @scope.gsub('-', '_')
-    @url           = "/#{ character_instance.name }/settings/#{ @scope }"
+    @action_url = "/#{ character_instance.name }/settings/#{ params[:template_name] }"
+    @template   = "character/settings/#{ params[:template_name] }"
   end
 
   def show
-    render "character/settings/#{ @template_name }"
+    render @template
   end
 
   def update
-    errors      = {}
+    @objects    = []
     class_name  = params[:class_name]
     model_class = class_name.constantize
-    @objects    = []
 
     params[:objects].first.each_pair do |id_or_slug, attributes|
       begin
@@ -45,7 +43,7 @@ class Character::SettingsController < ActionController::Base
       o.new_record = false if o.new_record
     end
 
-    render "character/settings/#{ @template_name }"
+    render @template
   end
 
   private

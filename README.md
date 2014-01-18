@@ -1,12 +1,10 @@
 # Character
 
-Character is an admin for **rails + mongoid** web applications. It has clean user interface and written with CoffeeScript.
+Character is an admin framework for **rails + mongoid** web applications. It has clean user interface and written with CoffeeScript. Character is very similar to [Django](http://djangoproject.com) admin or [Active Admin](http://www.activeadmin.info) but is much easier to extend. It is built on the top of:
 
-Character is very similar to Django admin or Active Admin but is much easier to extend. It is built on the top of:
-
-* [Rails](http://rubyonrails.org)
-* [Backbone.js](http://backbonejs.org) + [Marionette.js](https://github.com/marionettejs/backbone.marionette)
-* [Foundation 5](http://foundation.zurb.com)
+* Back-end: [Rails](http://rubyonrails.org)
+* Front-end Javascript: [Backbone.js](http://backbonejs.org) + [Marionette.js](https://github.com/marionettejs/backbone.marionette)
+* Front-end CSS: [Foundation 5](http://foundation.zurb.com)
 
 ![Character Demo](https://raw.github.com/slate-studio/character/master/doc/img/demo-1.jpg)
 

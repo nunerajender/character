@@ -17,41 +17,47 @@
     action_save:        '#action_save'
 
   onRender: ->
-    @ui.title.html(@options.name)
-    @ui.form_view.addClass(@options.path)
-    $.get("#{ chr.options.url }/settings/#{ @options.path }", (html) =>
-      ( @ui.form_view.html(html) ; @onFormRendered() ) if @ui.form_view).error((res) -> Character.Plugins.showErrorModal(res))
+    @ui.title.html(@options.title)
+    @ui.form_view.addClass(@options.name)
+    $.ajax
+      type: 'get'
+      url:  "#{ chr.options.url }/settings/#{ @options.name }"
+      success: (data) => @renderForm(data)
+      error: (data) => Character.Plugins.showErrorModal(data)
 
-  onFormRendered: ->
-    @ui.new_item_template = @ui.form_view.find('#new_item_template')
-    if @ui.new_item_template.length and not @ui.actions.find('.action_new').length
-      @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
+  renderForm: (html) ->
+    if @ui
+      @ui.form_view.html(html)
 
-    @ui.form = @ui.form_view.find('form')
-    if @ui.form.length
-      @ui.action_save.show()
+      @ui.form              = @ui.form_view.find('form')
+      @ui.new_item_template = @ui.form_view.find('#new_item_template')
 
-      @ui.form.submit =>
-        @updateState('Saving')
+      if @ui.new_item_template.length and not @ui.actions.find('.action_new').length
+        @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
 
-        # this does not allow to submit template fields (Safari fix)
-        @ui.new_item_template.remove()
+      if @ui.form.length
+        @ui.action_save.show()
 
-        $.ajax
-          type: @ui.form.attr('method')
-          url:  @ui.form.attr('action')
-          data: @ui.form.serialize()
-          success: (data) =>
-            @updateState()
-            @ui.form_view.html(data)
-            @onFormRendered()
-          error: (data) =>
-            Character.Plugins.showErrorModal(data)
-            @updateState()
+        @ui.form.submit =>
+          @updateState('Saving')
 
-        return false
+          # this does not allow to submit template fields (Safari fix)
+          @ui.new_item_template.remove()
 
-    @afterFormRendered?()
+          $.ajax
+            type: @ui.form.attr('method')
+            url:  @ui.form.attr('action')
+            data: @ui.form.serialize()
+            success: (data) =>
+              @updateState()
+              @renderForm(data)
+            error: (data) =>
+              Character.Plugins.showErrorModal(data)
+              @updateState()
+
+          return false
+
+      @afterFormRendered?()
 
   events:
     'click .chr-action-save': 'onSave'
@@ -87,11 +93,13 @@
     return false
 
   updateState: (state) ->
-    if state == 'Saving'
-      @ui.action_save.addClass('disabled')
-      @ui.action_save.html 'Saving...'
-    else
-      setTimeout ( =>
-        @ui.action_save.removeClass('disabled')
-        @ui.action_save.html 'Save'
-      ), 500
+    # TODO: we should block users navigation until state has changed again
+    if @ui
+      if state == 'Saving'
+        @ui.action_save.addClass('disabled')
+        @ui.action_save.html 'Saving...'
+      else
+        setTimeout ( =>
+          @ui.action_save.removeClass('disabled')
+          @ui.action_save.html 'Save'
+        ), 500

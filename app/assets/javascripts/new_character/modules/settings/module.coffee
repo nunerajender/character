@@ -8,7 +8,7 @@
 # Marionette.js Module Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.application.module.md
 #
-chr.module 'Settings', (Module, App) ->
+chr.module 'Settings', (Module) ->
   Module.addInitializer ->
     @layout    = new Character.Settings.Layout()
     controller = new Character.Settings.Controller({ module: @ })
@@ -20,8 +20,8 @@ chr.module 'Settings', (Module, App) ->
 #
 @Character.Settings.Router = Backbone.Marionette.AppRouter.extend
   appRoutes:
-    'settings':         'index'
-    'settings/:module': 'edit'
+    'settings': 'index'
+    'settings/:module_name': 'edit'
 
 #
 # Marionette.js Controller Documentation
@@ -36,18 +36,22 @@ chr.module 'Settings', (Module, App) ->
     chr.execute('selectMenuItem',  'settings')
     chr.execute('showContentView', @module.layout)
 
-  edit: (settings_app) ->
+  edit: (module_name) ->
     @index()
-    options      = @module.submodules[settings_app].options
+    options      = @module.submodules[module_name].options
     details_view = new options.detailsViewClass(options)
 
     @module.layout.details.show(details_view)
-    @module.layout.setActiveMenuItem(settings_app)
+    @module.layout.setActiveMenuItem(module_name)
 
+#
+# Character Settings Module
+# Initialize function
+#
+chr.settingsModule = (title, options={}) ->
+  options.title = title
+  options.name ?= _.underscored(options.title)
 
-chr.settingsModule = (name, options={}) ->
-  options.name               = name
-  options.path              ?= _.slugify(name)
-  options.detailsViewClass  ?= Character.Settings.DetailsView
+  options.detailsViewClass ?= Character.Settings.DetailsView
 
-  chr.module "Settings.#{options.path}", -> @options = options
+  chr.module "Settings.#{options.name}", -> @options = options

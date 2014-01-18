@@ -9,8 +9,8 @@ module ActionDispatch::Routing
           match '/login',   to: 'application#login'
           match '/logout',  to: 'application#logout'
 
-          get     '/settings/:scope(.:format)',      to: 'settings#show'
-          post    '/settings/:scope(.:format)',      to: 'settings#update'
+          get  '/settings/:template_name(.:format)', to: 'settings#show'
+          post '/settings/:template_name(.:format)', to: 'settings#update'
 
           get     '/:model_slug(.:format)',          to: 'api#index'
           get     '/:model_slug/new(.:format)',      to: 'api#new'

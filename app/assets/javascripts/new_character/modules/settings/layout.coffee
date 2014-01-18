@@ -31,9 +31,9 @@
     @ui.user_email.html(chr.options.user_email)
 
     _.each chr.Settings.submodules, (m) =>
-      path = m.options.path
-      name = m.options.name
-      @ui.list.append("<li><a href='#/settings/#{ path }' class='#{ path}'>#{ name }</a></li>")
+      title = m.options.title
+      name  = m.options.name
+      @ui.list.append("<li><a href='#/settings/#{ name }' class='#{ name }'>#{ title }</a></li>")
 
   setActiveMenuItem: (path) ->
     @ui.list.find('.active').removeClass('active')

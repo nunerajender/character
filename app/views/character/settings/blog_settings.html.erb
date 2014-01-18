@@ -1,6 +1,6 @@
 <% @model = Character::Settings::Variable %>
 
-<%= simple_form_for :objects, url: @url do |form| %>
+<%= simple_form_for :objects, url: @action_url do |form| %>
   <%= hidden_field_tag :class_name, @model.to_s %>
 
   <div class='row'>
