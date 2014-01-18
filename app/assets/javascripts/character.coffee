@@ -41,8 +41,9 @@ chr.settingsAdmins = ->
   chr.settingsModule('Admins')
 
 chr.settingsBlog = ->
-  chr.settingsModule('Blog Settings')
+  chr.settingsModule 'Blog Settings',
+    titleMenu: 'Blog'
 
-chr.settingsPostCategories = ->
-  chr.settingsModule 'Post Categories',
+chr.settingsBlogCategories = ->
+  chr.settingsModule 'Blog Categories',
     detailsViewClass: Character.Blog.CategoriesView

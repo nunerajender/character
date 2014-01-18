@@ -50,7 +50,7 @@ chr.module 'Settings', (module) ->
 # Initialize function
 #
 chr.settingsModule = (title, options={}) ->
-  options.titleMenu     = title
+  options.titleMenu    ?= title
   options.titleDetails ?= title
   options.moduleName   ?= _.underscored(title)
 
