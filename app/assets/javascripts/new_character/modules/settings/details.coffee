@@ -17,11 +17,11 @@
     action_save:        '#action_save'
 
   onRender: ->
-    @ui.title.html(@options.title)
-    @ui.form_view.addClass(@options.name)
+    @ui.title.html(@options.titleDetails)
+    @ui.form_view.addClass(@options.moduleName)
     $.ajax
       type: 'get'
-      url:  "#{ chr.options.url }/settings/#{ @options.name }"
+      url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
       success: (data) => @renderForm(data)
       error: (data) => Character.Plugins.showErrorModal(data)
 

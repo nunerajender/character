@@ -30,9 +30,10 @@
     @ui.action_logout.attr('href', chr.options.url + '/logout')
     @ui.user_email.html(chr.options.user_email)
 
+    # add left menu options
     _.each chr.Settings.submodules, (m) =>
-      title = m.options.title
-      name  = m.options.name
+      title = m.options.titleMenu
+      name  = m.options.moduleName
       @ui.list.append("<li><a href='#/settings/#{ name }' class='#{ name }'>#{ title }</a></li>")
 
   setActiveMenuItem: (path) ->

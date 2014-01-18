@@ -8,11 +8,11 @@
 # Marionette.js Module Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.application.module.md
 #
-chr.module 'Settings', (Module) ->
-  Module.addInitializer ->
-    @layout    = new Character.Settings.Layout()
-    controller = new Character.Settings.Controller({ module: @ })
-    router     = new Character.Settings.Router({ controller: controller })
+chr.module 'Settings', (module) ->
+  module.addInitializer ->
+    @layout     = new Character.Settings.Layout()
+    @controller = new Character.Settings.Controller({ module: @ })
+    @router     = new Character.Settings.Router({ controller: @controller })
 
 #
 # Marionette.js Router Documentation
@@ -38,7 +38,8 @@ chr.module 'Settings', (Module) ->
 
   edit: (module_name) ->
     @index()
-    options      = @module.submodules[module_name].options
+
+    options = @module.submodules[module_name].options
     details_view = new options.detailsViewClass(options)
 
     @module.layout.details.show(details_view)
@@ -49,9 +50,11 @@ chr.module 'Settings', (Module) ->
 # Initialize function
 #
 chr.settingsModule = (title, options={}) ->
-  options.title = title
-  options.name ?= _.underscored(options.title)
+  options.titleMenu     = title
+  options.titleDetails ?= title
+  options.moduleName   ?= _.underscored(title)
 
   options.detailsViewClass ?= Character.Settings.DetailsView
 
-  chr.module "Settings.#{options.name}", -> @options = options
+  chr.module "Settings.#{options.moduleName}", ->
+    @options = options
