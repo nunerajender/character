@@ -6,7 +6,6 @@
 #= require backbone
 #= require backbone.marionette
 #= require browserid
-#= require jquery.ui.sortable
 #= require new_character/character
 #= require_self
 

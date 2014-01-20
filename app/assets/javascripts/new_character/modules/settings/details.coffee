@@ -23,7 +23,7 @@
       type: 'get'
       url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
       success: (data) => @renderForm(data)
-      error: (response) => chr.execute('showErrorModal', response)
+      error: (xhr) => chr.execute('showError', xhr)
 
   renderForm: (html) ->
     if @ui
@@ -51,8 +51,8 @@
             success: (data) =>
               @updateState()
               @renderForm(data)
-            error: (data) =>
-              Character.Plugins.showErrorModal(data)
+            error: (xhr) =>
+              chr.execute('showError', xhr)
               @updateState()
 
           return false
@@ -93,7 +93,6 @@
     return false
 
   updateState: (state) ->
-    # TODO: we should block users navigation until state has changed again
     if @ui
       if state == 'Saving'
         @ui.action_save.addClass('disabled')

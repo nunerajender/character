@@ -104,7 +104,7 @@
       reset: reset
       remove: remove
       success: (response) -> callback?(response)
-      error: (collection, response, options) -> chr.execute('showErrorModal', response)
+      error: (collection, response, options) -> chr.execute('showError', response)
 
 
   fetchNextPage: (callback) ->

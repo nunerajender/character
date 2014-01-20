@@ -1,6 +1,7 @@
 #= require_self
 #= require ./model
 #= require ./layout
+#= require ./details
 
 @Character.Generic ||= {}
 
@@ -44,27 +45,27 @@
     #   callback?()
 
   new: (listScope) ->
-  #   @index(scope)
-  #   view = new @module.DetailsView
-  #     model:      no
-  #     name:       @options.name
-  #     url:        @module.collection.options.collection_url + "/new"
-  #     collection: @module.collection
-  #     app:        @module
-  #   @module.main.details.show(view)
+    @index(listScope)
+    detailsLayout = new @module.DetailsLayout
+      model:      no
+      collection: @collection
+      objectName: @options.objectName
+      module:     @module
+      formUrl:    "#{ chr.options.url }/#{ @options.modelName }/new"
+    @module.layout.details.show(detailsLayout)
 
   edit: (listScope, id) ->
-  #   @index scope, =>
-  #     doc = @module.collection.get(id)
-  #     @module.main.list.selectItem(id)
-  #     view = new @module.DetailsView
-  #       model:      doc
-  #       name:       @options.name
-  #       url:        @module.collection.options.collection_url + "/#{ id }/edit"
-  #       collection: @module.collection
-  #       app:        @module
-  #       deletable:  @options.deletable
-  #     @app.main.details.show(view)
+    @index(listScope, =>
+      @module.layout.list.selectItem(id)
+      doc = @collection.get(id)
+      detailsLayout = new @module.DetailsLayout
+        model:      doc
+        collection: @collection
+        formUrl:    "#{ chr.options.url }/#{ @options.modelName }/#{ id }/edit"
+        deletable:  @options.deletable
+        module:     @module
+      @module.layout.details.show(detailsLayout)
+    )
 
 #
 # Character Generic Module
@@ -82,6 +83,7 @@ chr.genericModule = (name, options={}) ->
 
   options.deletable  ?= true
   options.moduleName ?= _.underscored(_.pluralize(name))
+  options.objectName ?= name
   options.modelName  ?= name
   options.modelSlug  ?= _.underscored(name)
 

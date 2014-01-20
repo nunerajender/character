@@ -1,0 +1,193 @@
+//
+// Generic Module =========================================
+//
+.chr-module-generic                   {
+  .left-panel                         { @include position(0, 0, inherit, 0, 2);
+                                        width: 35%;
+  }
+
+  .right-panel                        { @include position(inherit, 0, 0, 0, 3);
+                                        width: 65%;
+                                        border-left: 1px solid $chr-border-color;
+                                        overflow: hidden;
+  }
+}
+
+.chr-module-generic-list              { @include position(0, $chr-list-header-height, 0, 0, 1);
+                                        @include scrollable;
+                                        background-color: $chr-list-bg-color;
+
+  ul                                  { @extend .no-bullet;
+                                        margin-bottom: 5em;
+  }
+
+  .empty                              { text-align: center;
+                                        line-height: 5;
+                                        color: #777;
+                                        font-size: .8em;
+                                        text-transform: uppercase;
+  }
+  .placeholder                        { background: #fff;
+                                        min-height: $chr-list-item-height;
+  }
+}
+
+.chr-module-generic-list-header       { @include position(0, 0, 0, inherit, 2);
+                                        height: $chr-list-header-height;
+                                        width: 100%;
+                                        padding: 1.25em 1.6em 0em;
+                                        line-height: 1.65;
+                                        border-bottom: 1px solid $chr-border-color;
+
+  .title.dropdown                     { border-bottom: 1px dashed $chr-action-color;
+                                        padding-bottom: .1em;
+  }
+
+  .search                             {
+    a                                 { color: $chr-action-color;
+                                        position: absolute;
+                                        right: 1.5em;
+      &:hover                         { color: $body-font-color;
+      }
+    }
+    .fa-times                         { display: none;
+    }
+    input                             { display: none;
+    }
+    &.shown                           {
+      .fa-search                      { display: none;
+      }
+      .fa-times                       { display: inline;
+      }
+      input                           { width: inherit;
+                                        position: absolute;
+                                        top: 1.05em;
+                                        left: 1em;
+                                        right: 1em;
+                                        display: block;
+      }
+    }
+  }
+}
+
+.chr-module-generic-list-item         {
+  &.has-thumbnail a img               { display: inline-block;
+  }
+  a img                               { display: none;
+                                        width: 36px;
+                                        height: 36px;
+                                        @include border-radius(18px);
+                                        float: left;
+                                        margin-right: 1em;
+  }
+
+  &.active a                          { background: $chr-list-item-active-bg;
+    .title                            { color: $chr-list-item-active-title-color;
+    }
+    .meta                             { color: $chr-list-item-active-meta-color;
+    }
+  }
+
+  a                                   { background: $chr-list-bg-color;
+                                        border-bottom: 1px solid $chr-border-color;
+                                        padding: 1em 1.3em 0em;
+                                        position: relative;
+                                        height: $chr-list-item-height;
+                                        display: block;
+    .meta,
+    .title                            { font-size:.9em;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        display: block;
+                                        line-height: 1.2;
+    }
+    .meta                             { font-size:.75em;
+                                        line-height: 2;
+                                        color: $chr-list-item-meta-color;
+    }
+    .title                            { color: $chr-list-item-title-color;
+    }
+  }
+
+  .has-image                          {
+    .container                        { padding: 0 0 0 2.5em;
+    }
+  }
+}
+
+.chr-module-generic-details-header    { @include position(0, 0, 0, inherit);
+                                        height: $chr-list-header-height;
+                                        border-bottom: 1px solid $chr-border-color;
+                                        padding: 1.5em 6% 0em;
+  .title                              { font-size:1.2em;
+  }
+}
+
+.chr-module-generic-details-form       { @include position(0, $chr-list-header-height, 0, 0);
+                                        @include scrollable;
+                                        background-color: #fff;
+}
+
+.chr-module-generic-details           {
+  .chr-module-generic-details-header  {
+    .chr-actions                      { display: none;
+    }
+  }
+}
+
+.chr-module-generic-details.edit      {
+  .chr-module-generic-details-header  { padding-top: .9em;
+    .title                            { font-size: .9em;
+                                        font-weight: bold;
+    }
+    .meta                             { font-size: .8em;
+                                        color: #777;
+                                        line-height: 2;
+    }
+  }
+  .chr-actions                        { display: inline;
+  }
+}
+
+.chr-module-generic-details           {
+  .field_with_errors                  { @extend .error;
+  }
+  form                                { margin: 3em 0;
+    & > .row > .columns               { padding: 0 6%;
+    }
+
+    // Simpleform layout fixes
+    //------------------------
+    // checkbox + label fix, to have in one line
+    label.boolean                     { display:inline-block;
+                                        margin-left: .5em;
+                                        margin-top: .2em;
+    }
+
+    // Foundation fix for textarea height
+    textarea                          { height: auto;
+    }
+
+    span.prefix, label.postfix        { line-height: 2.5em;
+                                        height: 2.5em;
+    }
+
+    label .note                       { font-weight: normal;
+                                        color: lighten($primary-color, 40%);
+    }
+
+    .chr-form-image-upload            { margin-bottom: 1em;
+      img                             { position: absolute;
+                                        width: 56px;
+                                        height: 56px;
+      }
+      aside                           { margin-left: 66px;
+                                        padding-top: .5em;
+                                        height: 56px;
+        .input.file input             { margin-bottom: .5em;
+        }
+      }
+    }
+  }
+}
