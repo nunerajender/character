@@ -1,4 +1,3 @@
-#= require moment
 
 #
 # Marionette.js Item View Documentation
@@ -98,19 +97,19 @@
 
           # # date fixes for rails
           # _(Character.Plugins.get_date_field_values(arr)).each (el) -> arr.push(el)
-          data = _(params).extend(@ui.form.serialize())
+
+          data = _(params).extend(@ui.form.serializeHash())
 
           $.ajax
             type: @ui.form.attr('method')
             url:  @ui.form.attr('action')
             data: data
-            success: (data) =>
+            success: (response) =>
               @headerView.updateState()
-              @renderContent(data)
+              @updateModel(response)
             error: (xhr) =>
               chr.execute('showError', xhr)
               @headerView.updateState()
-
           return false
 
         #$(document).trigger('rendered.chrForm', [ @ui.form ])

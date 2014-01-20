@@ -44,10 +44,13 @@
           # this does not allow to submit template fields (Safari fix)
           @ui.new_item_template.remove()
 
+          data = @ui.form.serializeHash()
+          console.log data
+
           $.ajax
             type: @ui.form.attr('method')
             url:  @ui.form.attr('action')
-            data: @ui.form.serialize()
+            data: data
             success: (data) =>
               @updateState()
               @renderForm(data)
@@ -66,7 +69,9 @@
     'click .action_delete':   'deleteItem'
 
   onSave: (e) ->
-    (unless $(e.currentTarget).hasClass('disabled') then @ui.form.submit()) ; return false
+    if not $(e.currentTarget).hasClass('disabled')
+      @ui.form.submit()
+    return false
 
   addItem: ->
     html = @ui.new_item_template.html()
