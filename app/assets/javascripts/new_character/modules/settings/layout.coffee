@@ -27,11 +27,13 @@
     action_logout: '.browserid_logout'
 
   onRender: ->
+    submodules = @options.module.submodules
+
     @ui.action_logout.attr('href', chr.options.url + '/logout')
     @ui.user_email.html(chr.options.user_email)
 
     # add left menu options
-    _.each chr.Settings.submodules, (m) =>
+    _.each submodules, (m) =>
       title = m.options.titleMenu
       name  = m.options.moduleName
       @ui.list.append("<li><a href='#/settings/#{ name }' class='#{ name }'>#{ title }</a></li>")

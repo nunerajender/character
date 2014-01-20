@@ -8,9 +8,9 @@
 # Marionette.js Module Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.application.module.md
 #
-chr.module 'Settings', (module) ->
+chr.module 'settings', (module) ->
   module.addInitializer ->
-    @layout     = new Character.Settings.Layout()
+    @layout     = new Character.Settings.Layout({ module: @ })
     @controller = new Character.Settings.Controller({ module: @ })
     @router     = new Character.Settings.Router({ controller: @controller })
 
@@ -21,7 +21,7 @@ chr.module 'Settings', (module) ->
 @Character.Settings.Router = Backbone.Marionette.AppRouter.extend
   appRoutes:
     'settings': 'index'
-    'settings/:settings_module_name': 'edit'
+    'settings/:settingsModuleName': 'edit'
 
 #
 # Marionette.js Controller Documentation
@@ -34,14 +34,14 @@ chr.module 'Settings', (module) ->
   index: ->
     chr.execute('showModule', @module)
 
-  edit: (settings_module_name) ->
+  edit: (settingsModuleName) ->
     @index()
 
-    options = @module.submodules[settings_module_name].options
-    details_view = new options.detailsViewClass(options)
+    options = @module.submodules[settingsModuleName].options
+    detailsView = new options.detailsViewClass(options)
 
-    @module.layout.details.show(details_view)
-    @module.layout.setActiveMenuItem(settings_module_name)
+    @module.layout.details.show(detailsView)
+    @module.layout.setActiveMenuItem(settingsModuleName)
 
 #
 # Character Settings Module
@@ -54,5 +54,5 @@ chr.settingsModule = (title, options={}) ->
 
   options.detailsViewClass ?= Character.Settings.DetailsView
 
-  chr.module "Settings.#{options.moduleName}", ->
+  chr.module "settings.#{options.moduleName}", ->
     @options = options
