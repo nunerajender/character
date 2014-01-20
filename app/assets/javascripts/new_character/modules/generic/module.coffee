@@ -1,6 +1,70 @@
 #= require_self
+#= require ./model
+#= require ./layout
 
 @Character.Generic ||= {}
+
+#
+# Marionette.js Router Documentation
+# https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.router.md
+#
+@Character.Generic.Router = Backbone.Marionette.AppRouter.extend
+  initialize: (options) ->
+    @appRoutes ||= {}
+    @appRoutes["#{ options.path }(/:listScope)/new"]      = "new"
+    @appRoutes["#{ options.path }(/:listScope)/edit/:id"] = "edit"
+    @appRoutes["#{ options.path }(/:listScope)"]          = "index"
+
+#
+# Marionette.js Controller Documentation
+# https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.controller.md
+#
+@Character.Generic.Controller = Backbone.Marionette.Controller.extend
+  initialize: ->
+    @module     = @options.module
+    @collection = @module.collection
+
+  index: (listScope, callback) ->
+    chr.execute('showModule', @module)
+
+    @module.layout.header.update(listScope)
+    @collection.setScope(listScope).fetchPage(1, callback)
+
+    # current_path = "#{ @options.path }" + ( if scope then "/#{ scope }" else '')
+    # if chr.path != current_path
+    #   chr.path = current_path
+    #   chr.menu.selectItem(@options.path)
+    #   chr.main.show(@module.layout)
+    #   @module.layout.header.update(scope)
+
+    #   @module.collection.setScope(scope).fetchPage(1, callback)
+    # else
+    #   @module.layout.list.unselectCurrentItem()
+    #   @module.layout.details.close()
+    #   callback?()
+
+  new: (listScope) ->
+  #   @index(scope)
+  #   view = new @module.DetailsView
+  #     model:      no
+  #     name:       @options.name
+  #     url:        @module.collection.options.collection_url + "/new"
+  #     collection: @module.collection
+  #     app:        @module
+  #   @module.main.details.show(view)
+
+  edit: (listScope, id) ->
+  #   @index scope, =>
+  #     doc = @module.collection.get(id)
+  #     @module.main.list.selectItem(id)
+  #     view = new @module.DetailsView
+  #       model:      doc
+  #       name:       @options.name
+  #       url:        @module.collection.options.collection_url + "/#{ id }/edit"
+  #       collection: @module.collection
+  #       app:        @module
+  #       deletable:  @options.deletable
+  #     @app.main.details.show(view)
 
 #
 # Character Generic Module
@@ -8,70 +72,73 @@
 #
 
 chr.genericModule = (name, options={}) ->
-  # looking
-  options.name            ?= name
-  options.icon            ?= 'bolt'
+  options.menuTitle ?= name
+  options.menuIcon  ?= 'bolt'
 
-  # behaviour
-  options.search          ?= false
-  options.reorder         ?= false
-  options.items_per_page  ?= 25
-  options.deletable       ?= true
+  options.listTitle        ?= _.pluralize(name) # extend with scope options by adding All
+  options.listSearch       ?= false
+  options.listReorder      ?= false
+  options.listItemsPerPage ?= 25
 
-  # internals
-  options.model_slug      ?= _.slugify(options.name)
-  options.pluralized_name ?= _.pluralize(options.name)
-  options.path            ?= _.slugify(options.pluralized_name)
-  options.implementation  ?= Character.Generic
+  options.deletable  ?= true
+  options.moduleName ?= _.underscored(_.pluralize(name))
+  options.modelName  ?= name
+  options.modelSlug  ?= _.underscored(name)
 
-  # scopes
-  if options.scopes
-    if options.scopes.default
-      default_scope_order_by = options.scopes.default.order_by
-      delete options.scopes['default']
+  options.implementation ?= Character.Generic
 
-    _(options.scopes).each (scope, slug) ->
+  # list scopes
+  if options.listScopes
+    if options.listScopes.default
+
+      listDefaultOrderBy = options.listScopes.default.orderBy
+      delete options.listScopes['default']
+
+    _(options.listScopes).each (scope, slug) ->
       scope.title ||= _(slug).titleize()
       scope.slug  ||= slug
 
-  default_scope_order_by ?= options.default_scope_order_by
+  listDefaultOrderBy ?= options.listDefaultOrderBy
+
+  # include model fields
+  imf = options.includeModelFields || []
 
   # list item template
-  #  - options.item_title
-  #  - options.item_meta
-  #  - options.item_image
-  options.model_fields ?= []
-  options.model_fields.push(options.item_title)
-  options.model_fields.push(options.item_meta)
-  options.model_fields.push(options.item_image)
-  options.model_fields = _.compact(options.model_fields)
-  options.model_fields = _.uniq(options.model_fields)
+  #  - options.listItem.titleField
+  #  - options.listItem.metaField
+  #  - options.listItem.thumbField
+  imf.push( options.listItem.titleField )
+  imf.push( options.listItem.metaField )
+  imf.push( options.listItem.thumbField )
 
-  chr.module options.path, (module) =>
+  options.includeModelFields = _.uniq(_.compact(imf))
+
+
+  chr.module options.moduleName, (module) ->
 
     module = _(module).extend(options.implementation)
 
-    module.on 'start', =>
-      collection_url = options.collection_url || "#{ chr.options.url }/#{ options.name }"
-      module.collection = new module.Collection()
-      module.collection.options =
-        collection_url: collection_url
-        scopes:         options.scopes
-        model_slug:     options.model_slug
-        order_by:       default_scope_order_by
-        reorder:        options.reorder
-        search:         options.search
-        item_title:     options.item_title
-        item_meta:      options.item_meta
-        item_image:     options.item_image
-        constant_params:
-          f:  options.model_fields.join(',')
-          pp: options.items_per_page
+    module.on 'start', ->
 
-      options.app = module
+      @collection = new @Collection()
+      @collection.options =
+        orderBy:          listDefaultOrderBy
+        modelSlug:        options.modelSlug
+        collectionUrl:    options.collectionUrl || "#{ chr.options.url }/#{ options.modelName }"
+        scopes:           options.listScopes
+        reorder:          options.listReorder
+        search:           options.listSearch
+        titleField:       options.listItem.titleField
+        metaField:        options.listItem.metaField
+        thumbField:       options.listItem.thumbField
+        constantParams:
+          f:              options.includeModelFields.join(',')
+          pp:             options.listItemsPerPage
 
-      module.controller = new module.Controller(options)
-      module.main       = new module.MainView(options)
-      module.router     = new module.Router({ path: options.path, controller: app.controller })
+      options.module = module
 
-      chr.menu.addItem(options.path, options.icon, options.pluralized_name)
+      @controller = new @Controller(options)
+      @layout     = new @Layout(options)
+      @router     = new @Router({ path: options.moduleName, controller: @controller })
+
+      chr.execute('addMenuItem', options.moduleName, options.menuIcon, options.menuTitle)

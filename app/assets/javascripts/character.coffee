@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require underscore
 #= require underscore.string
+#= require underscore.inflection
 #= require backbone
 #= require backbone.marionette
 #= require browserid
@@ -14,24 +15,26 @@
 #
 
 chr.blogPosts = (opts) ->
-  module_opts =
-    icon:                   'quote-left'
-    item_title:             'title'
-    item_meta:              'tagline'
-    collection_url:         "/admin/Character-Blog-Post"
-    search:                 true
-    default_scope_order_by: 'published_at:desc'
-    scopes:
+  moduleOpts =
+    menuIcon:     'quote-left'
+    listItem:
+      titleField: 'title'
+      metaField:  'tagline'
+    modelName:    'Character-Blog-Post'
+    listSearch:   true
+    listScopes:
+      default:
+        orderBy:  'published_at:desc'
       published:
-        where:              'published=true'
-        order_by:           'published_at:desc'
+        where:    'published=true'
+        orderBy:  'published_at:desc'
       drafts:
-        where:              'published=false'
-        order_by:           'published_at:desc'
+        where:    'published=false'
+        orderBy:  'published_at:desc'
 
-  _(module_opts).extend(opts)
+  _(moduleOpts).extend(opts)
 
-  chr.genericModule('Post', module_opts)
+  chr.genericModule('Post', moduleOpts)
 
 #
 # Settings Helpers

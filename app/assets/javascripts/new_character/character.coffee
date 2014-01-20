@@ -1,4 +1,6 @@
 #= require_self
+#= require_tree ./plugins
+#= require ./modules/generic/module
 #= require ./modules/settings/module
 #= require ./modules/blog/module
 
@@ -20,19 +22,27 @@ _.mixin(_.str.exports())
   content: '#content'
 
 @chr.commands.setHandler 'addMenuItem', (path, icon, title) ->
-  @ui.items.append """<li>
-                        <a href='#/#{ path }' class='chr-menu-item-#{ path }'>
-                          <i class='fa fa-#{ icon }'></i>#{ title }
-                        </a>
-                      </li>"""
+  $menuItems = $('#menu_items')
+  $menuItems.append """<li>
+                         <a href='#/#{ path }' class='chr-menu-item-#{ path }'>
+                           <i class='fa fa-#{ icon }'></i>#{ title }
+                         </a>
+                       </li>"""
 
-@chr.commands.setHandler 'selectMenuItem', (item_class) ->
-  $menu_el = $('#menu')
-  $menu_el.find('a.active').removeClass('active')
-  $menu_el.find("a.chr-menu-item-#{item_class}").addClass('active')
+@chr.commands.setHandler 'showModule', (module) ->
+  chr.currentModuleName = module.moduleName
 
-@chr.commands.setHandler 'showContentView', (view) ->
-  chr.getRegion('content').show(view)
+  name   = module.moduleName
+  layout = module.layout
+
+  $menuEl = $('#menu')
+  $menuEl.find('a.active').removeClass('active')
+  $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
+
+  chr.content.show(layout)
+
+@chr.commands.setHandler 'showError', (response) ->
+  Character.Utils.errorModal(response)
 
 @chr.on "initialize:before", (@options) ->
 

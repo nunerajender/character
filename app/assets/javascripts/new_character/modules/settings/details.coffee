@@ -23,7 +23,7 @@
       type: 'get'
       url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
       success: (data) => @renderForm(data)
-      error: (data) => Character.Plugins.showErrorModal(data)
+      error: (response) => chr.execute('showErrorModal', response)
 
   renderForm: (html) ->
     if @ui

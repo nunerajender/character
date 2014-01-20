@@ -21,7 +21,7 @@ chr.module 'Settings', (module) ->
 @Character.Settings.Router = Backbone.Marionette.AppRouter.extend
   appRoutes:
     'settings': 'index'
-    'settings/:module_name': 'edit'
+    'settings/:settings_module_name': 'edit'
 
 #
 # Marionette.js Controller Documentation
@@ -32,18 +32,16 @@ chr.module 'Settings', (module) ->
     @module = @options.module
 
   index: ->
-    chr.path = 'settings'
-    chr.execute('selectMenuItem',  'settings')
-    chr.execute('showContentView', @module.layout)
+    chr.execute('showModule', @module)
 
-  edit: (module_name) ->
+  edit: (settings_module_name) ->
     @index()
 
-    options = @module.submodules[module_name].options
+    options = @module.submodules[settings_module_name].options
     details_view = new options.detailsViewClass(options)
 
     @module.layout.details.show(details_view)
-    @module.layout.setActiveMenuItem(module_name)
+    @module.layout.setActiveMenuItem(settings_module_name)
 
 #
 # Character Settings Module
