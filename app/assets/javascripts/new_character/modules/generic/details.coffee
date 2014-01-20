@@ -84,6 +84,7 @@
       @ui.content.html(html)
 
       @ui.form = @ui.content.find('form')
+      Character.Utils.fixRailsDateSelect(@ui.form)
 
       if @ui.form.length
 
@@ -96,7 +97,7 @@
           @headerView.updateState('saving')
 
           # # date fixes for rails
-          # _(Character.Plugins.get_date_field_values(arr)).each (el) -> arr.push(el)
+          # _(Character.Utils.getRailsDateValues(arr)).each (el) -> arr.push(el)
 
           data = _(params).extend(@ui.form.serializeHash())
 
