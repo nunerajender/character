@@ -10,6 +10,7 @@
 #= require jquery.ui.sortable
 #= require jquery.nested-form
 #= require jquery.serialize-hash
+#= require jquery.autosize
 #= require new_character/character
 #= require_self
 

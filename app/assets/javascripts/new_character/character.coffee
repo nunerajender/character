@@ -30,10 +30,6 @@ _.mixin(_.str.exports())
                          </a>
                        </li>"""
 
-@chr.commands.setHandler 'startDetailsFormPlugins', ($form) ->
-  Character.Utils.fixRailsDateSelect($form)
-  Character.Utils.imagesHelper($form)
-
 @chr.commands.setHandler 'showModule', (module) ->
   if chr.currentModuleName != module.moduleName
     chr.currentModuleName = module.moduleName
@@ -49,6 +45,15 @@ _.mixin(_.str.exports())
 
 @chr.commands.setHandler 'showError', (response) ->
   Character.Utils.errorModal(response)
+
+@chr.commands.setHandler 'startDetailsFormPlugins', ($form) ->
+  Character.Utils.fixRailsDateSelect($form)
+  Character.Utils.startImagesHelper($form)
+  Character.Utils.startAutosizeTextarea($form)
+
+@chr.commands.setHandler 'stopDetailsFormPlugins', ($form) ->
+  Character.Utils.stopImagesHelper($form)
+  Character.Utils.stopAutosizeTextarea($form)
 
 @chr.on "initialize:before", (@options) ->
 

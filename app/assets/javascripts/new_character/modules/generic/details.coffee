@@ -143,3 +143,6 @@
         error: (model, response, options) ->
           chr.execute('showError', response)
     return false
+
+  onClose: ->
+    chr.execute('stopDetailsFormPlugins', @ui.form)

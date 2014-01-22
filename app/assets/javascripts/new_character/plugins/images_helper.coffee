@@ -1,6 +1,6 @@
 
 @Character.Utils ||= {}
-@Character.Utils.imagesHelper = ($holderEl) ->
+@Character.Utils.startImagesHelper = ($holderEl) ->
   $holderEl.find('.chr-helper-images').each (index, element) ->
     $list = $(element)
     if $list.hasClass('reorderable')
@@ -21,3 +21,10 @@
       new_val = prompt("Enter new title for image", val)
       if new_val or new_val == ''
         $title_input.val(new_val)
+
+@Character.Utils.stopImagesHelper = ($holderEl) ->
+  $holderEl.find('.chr-helper-images').each (index, element) ->
+    $list = $(element)
+    if $list.hasClass('reorderable')
+      $list.sortable("destroy")
+    $list.off 'click'
