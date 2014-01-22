@@ -28,21 +28,14 @@
   index: (listScope, callback) ->
     chr.execute('showModule', @module)
 
-    @module.layout.header.update(listScope)
-    @collection.setScope(listScope).fetchPage(1, callback)
+    path = @options.moduleName + ( if listScope then "/#{ listScope }" else '' )
 
-    # current_path = "#{ @options.path }" + ( if scope then "/#{ scope }" else '')
-    # if chr.path != current_path
-    #   chr.path = current_path
-    #   chr.menu.selectItem(@options.path)
-    #   chr.main.show(@module.layout)
-    #   @module.layout.header.update(scope)
-
-    #   @module.collection.setScope(scope).fetchPage(1, callback)
-    # else
-    #   @module.layout.list.unselectCurrentItem()
-    #   @module.layout.details.close()
-    #   callback?()
+    if chr.currentPath != path
+      chr.currentPath = path
+      @module.layout.updateListScope(listScope, callback)
+    else
+      @module.layout.closeDetails()
+      callback?()
 
   new: (listScope) ->
     @index(listScope)
@@ -71,12 +64,11 @@
 # Character Generic Module
 # Initialize function
 #
-
 chr.genericModule = (name, options={}) ->
   options.menuTitle ?= name
   options.menuIcon  ?= 'bolt'
 
-  options.listTitle        ?= _.pluralize(name) # extend with scope options by adding All
+  options.listTitle        ?= _.pluralize(name) # TODO: extend with scope options by adding All
   options.listSearch       ?= false
   options.listReorder      ?= false
   options.listItemsPerPage ?= 25

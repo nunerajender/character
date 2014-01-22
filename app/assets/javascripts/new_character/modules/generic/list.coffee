@@ -81,7 +81,7 @@
     @addScopesDropdown()
 
   addScopesDropdown: ->
-    if @scopes
+    if @scopes and not @ui.title.hasClass('dropdown')
       @ui.title.addClass('dropdown').attr('data-dropdown', 'scopes')
 
       @ui.scopes.append """<li>
@@ -96,7 +96,7 @@
       $(document).foundation('dropdown', 'init')
 
   onClose: ->
-    if @scopes
+    if @ui.title.hasClass('dropdown')
       $(document).foundation('dropdown', 'off')
 
 
@@ -132,7 +132,7 @@
     link: 'a'
 
   onRender: ->
-    path = chr.currentModuleName
+    path = chr.currentPath
 
     if @model.getThumb()
       @$el.addClass('has-thumbnail')
@@ -149,6 +149,9 @@
 #
 @Character.Generic.ListView = Backbone.Marionette.CollectionView.extend
   tagName: 'ul'
+
+  itemViewOptions: (model, index) ->
+    module: @options.module
 
   initialize: ->
     @itemView  = @options.module.ListItemView

@@ -96,9 +96,6 @@
         @ui.form.submit =>
           @headerView.updateState('saving')
 
-          # # date fixes for rails
-          # _(Character.Utils.getRailsDateValues(arr)).each (el) -> arr.push(el)
-
           data = _(params).extend(@ui.form.serializeHash())
 
           $.ajax

@@ -30,16 +30,17 @@ _.mixin(_.str.exports())
                        </li>"""
 
 @chr.commands.setHandler 'showModule', (module) ->
-  chr.currentModuleName = module.moduleName
+  if chr.currentModuleName != module.moduleName
+    chr.currentModuleName = module.moduleName
 
-  name   = module.moduleName
-  layout = module.layout
+    name   = module.moduleName
+    layout = module.layout
 
-  $menuEl = $('#menu')
-  $menuEl.find('a.active').removeClass('active')
-  $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
+    $menuEl = $('#menu')
+    $menuEl.find('a.active').removeClass('active')
+    $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
 
-  chr.content.show(layout)
+    chr.content.show(layout)
 
 @chr.commands.setHandler 'showError', (response) ->
   Character.Utils.errorModal(response)
