@@ -1,4 +1,4 @@
-<div class='chr-form-images <% if reorderable %>reorderable<% end %>' id='images_helper'>
+<div class='chr-helper-images <% if reorderable %>reorderable<% end %>' id='images_helper'>
   <%= form.fields_for fields_for, form.object.try(fields_for) do |m| %>
       <% if m.object.persisted? %>
         <%= m.link_to_remove do %><i class='fa fa-times'></i><% end %>
@@ -7,7 +7,7 @@
         <%= m.input :_position, as: :hidden, input_html: { class: 'position' } if reorderable %>
         <a href='#' class='action-edit-title' title='Edit image title'><i class='fa fa-edit'></i></a>
       <% else %>
-              <div class='row chr-form-images-new'>
+              <div class='row chr-helper-images-new'>
                 <%= m.input :title, placeholder: 'Alt', label: false, wrapper_class: 'large-6 columns' %>
                 <%= m.input :image, label: false, wrapper_class: 'large-4 columns' %>
                 <%= m.input :_position, as: :hidden, input_html: { class: 'position' } if reorderable %>

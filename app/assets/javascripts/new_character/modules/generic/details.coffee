@@ -59,8 +59,9 @@
     content: '#details_content'
 
   initialize: ->
-    @DetailsHeaderView = @options.module.DetailsHeaderView
-    @router = @options.module.router
+    @module            = @options.module
+    @DetailsHeaderView = @module.DetailsHeaderView
+    @router            = @module.router
 
   onRender: ->
     @headerView = new @DetailsHeaderView
@@ -84,9 +85,9 @@
       @ui.content.html(html)
 
       @ui.form = @ui.content.find('form')
-      Character.Utils.fixRailsDateSelect(@ui.form)
 
       if @ui.form.length
+        chr.execute('startDetailsFormPlugins', @ui.form)
 
         # include fields to properly update item in a list and sort
         params = @collection.options.constantParams
@@ -110,8 +111,8 @@
               @headerView.updateState()
           return false
 
-        #$(document).trigger('rendered.chrForm', [ @ui.form ])
-        @afterFormRendered?()
+        $(document).trigger("rendered.chr-#{ @module.moduleName }-details-content", [ @ui.content ])
+        @afterContentRendered?()
 
   events:
     'click #action_save':   'onSave'

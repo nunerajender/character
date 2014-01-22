@@ -7,7 +7,6 @@
 #  - underscore.string
 
 @Character.Utils ||= {}
-
 @Character.Utils.fixRailsDateSelect = ($form)->
   setDateValue = ($dateElement, $hiddenDateField) ->
     day   = $( $dateElement.find('select')[0] ).val()

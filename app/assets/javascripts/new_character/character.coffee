@@ -4,6 +4,7 @@
 #= require ./modules/settings/module
 #= require ./modules/blog/module
 
+@Character ||= {}
 _.mixin(_.str.exports())
 
 #
@@ -29,6 +30,10 @@ _.mixin(_.str.exports())
                          </a>
                        </li>"""
 
+@chr.commands.setHandler 'startDetailsFormPlugins', ($form) ->
+  Character.Utils.fixRailsDateSelect($form)
+  Character.Utils.imagesHelper($form)
+
 @chr.commands.setHandler 'showModule', (module) ->
   if chr.currentModuleName != module.moduleName
     chr.currentModuleName = module.moduleName
@@ -50,5 +55,3 @@ _.mixin(_.str.exports())
 @chr.on "initialize:after", ->
   if Backbone.history
     Backbone.history.start()
-
-@Character ||= {}

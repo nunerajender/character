@@ -1,7 +1,6 @@
 
 
 @Character.Utils ||= {}
-
 @Character.Utils.disableListReorder = (el) ->
   el.sortable( "destroy" )
 
