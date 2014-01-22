@@ -88,3 +88,40 @@
                                         text-align: right;
   }
 }
+
+//
+// Drawer Helper
+//
+
+.chr-helper-drawer                    { @extend .row;
+                                        margin-bottom: 1.4em;
+                                        margin-top: -3em;
+                                        padding-bottom: 0;
+                                        background-color: #fff;
+  &:hover                             { background-color: $panel-bg;
+  }
+
+  .action-show-drawer                 { display: block;
+                                        text-align: center;
+                                        opacity: .3;
+                                        line-height: 1.5;
+                                        width: 100%;
+                                        float: left;
+  }
+
+  .drawer-content                     { display: none;
+    > .columns                        { padding: 0 6%;
+    }
+  }
+
+  &.shown                             { background-color: $panel-bg;
+                                        padding-top: 1.25em;
+    .action-show-drawer i:before      { content: '\f106';
+    }
+    .drawer-content                   { display: block;
+    }
+  }
+
+  select                              { background-color: #fff;
+  }
+}

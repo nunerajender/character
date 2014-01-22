@@ -111,6 +111,7 @@
               @headerView.updateState()
           return false
 
+        $(document).trigger("rendered.chr-generic-details-content", [ @ui.content ])
         $(document).trigger("rendered.chr-#{ @module.moduleName }-details-content", [ @ui.content ])
         @afterContentRendered?()
 
@@ -146,3 +147,5 @@
 
   onClose: ->
     chr.execute('stopDetailsFormPlugins', @ui.form)
+    $(document).trigger("closed.chr-generic-details-content", [ @ui.content ])
+    $(document).trigger("closed.chr-#{ @module.moduleName }-details-content", [ @ui.content ])

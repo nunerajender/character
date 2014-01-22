@@ -153,7 +153,7 @@
 .chr-module-generic-details           {
   .field_with_errors                  { @extend .error;
   }
-  form                                { margin: 3em 0;
+  form                                { margin: 3em 0 12em;
     & > .row > .columns               { padding: 0 6%;
     }
 

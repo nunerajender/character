@@ -28,6 +28,6 @@
 
     # wrap date input elements into Foundation grid and attach events
     $(date_el).find('select').each (select_el_index, select_el) ->
-      $(select_el).wrap("<div class='small-#{ select_el_index + 3 } columns chr-date-day' />")
+      $(select_el).wrap("<div class='small-#{ 4 } columns chr-date-day' />")
       $(select_el).on 'change', -> setDateValue( $(date_el), $dateFieldInput )
       setDateValue( $(date_el), $dateFieldInput )

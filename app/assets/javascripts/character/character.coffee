@@ -52,10 +52,12 @@ _.mixin(_.str.exports())
   Character.Utils.fixRailsDateSelect($form)
   Character.Utils.startImagesHelper($form)
   Character.Utils.startAutosizeTextarea($form)
+  Character.Utils.startDrawerHelper($form)
 
 @chr.commands.setHandler 'stopDetailsFormPlugins', ($form) ->
   Character.Utils.stopImagesHelper($form)
   Character.Utils.stopAutosizeTextarea($form)
+  Character.Utils.stopDrawerHelper($form)
 
 @chr.on "initialize:before", (@options) ->
 

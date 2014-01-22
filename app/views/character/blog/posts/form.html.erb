@@ -1,5 +1,5 @@
 <%= simple_nested_form_for @object, url: @form_action_url do |f| %>
-  <div class='chr-top-drawer'>
+  <div class='chr-helper-drawer'>
     <div class='drawer-content'>
       <div class='small-12 columns chr-form-image-upload'>
         <% if @object.has_featured_image? %>
@@ -63,6 +63,6 @@
                 label: false,
                 as: :text,
                 placeholder: 'Start typing here...',
-                wrapper_class: 'small-12 columns chr-air-writer' %>
+                wrapper_class: 'small-12 columns chr-redactor-air' %>
   </div>
 <% end %>

@@ -11,7 +11,7 @@
 #= require jquery.nested-form
 #= require jquery.serialize-hash
 #= require jquery.autosize
-#= require new_character/character
+#= require character/character
 #= require_self
 
 #
