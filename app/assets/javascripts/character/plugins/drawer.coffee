@@ -1,6 +1,6 @@
-@Character.Plugins ||= {}
+@Character.Utils ||= {}
 
-@Character.Plugins.enableDrawers = () ->
+@Character.Utils.enableDrawers = () ->
   $('.chr-top-drawer').each (i, el) ->
     $(el).append("<a class='action-show-drawer' href='#'><i class='fa fa-angle-down'></i></a>")
 
