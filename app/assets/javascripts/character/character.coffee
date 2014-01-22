@@ -64,3 +64,6 @@ _.mixin(_.str.exports())
 @chr.on "initialize:after", ->
   if Backbone.history
     Backbone.history.start()
+
+  if location.hash == ''
+    location.hash = $('#menu a:eq(0)').attr('href')
