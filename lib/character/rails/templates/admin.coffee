@@ -1,4 +1,5 @@
 #= require character
 #= require_self
 
-CharacterSettingsApp('Admins')
+# Settings Modules ========================================
+chr.settingsAdmins()

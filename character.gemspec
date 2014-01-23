@@ -45,9 +45,13 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'kaminari'
 
   # blog backend
+  gem.add_runtime_dependency 'mongoid'
+  gem.add_runtime_dependency 'bson_ext'
   gem.add_runtime_dependency 'mongoid_slug'
   gem.add_runtime_dependency 'mongoid_search'
   gem.add_runtime_dependency 'mongoid-autoinc'
+  gem.add_runtime_dependency 'carrierwave-mongoid'
+  gem.add_runtime_dependency 'mini_magick'
 
   # blog seo
   gem.add_runtime_dependency 'meta-tags'
@@ -55,6 +59,5 @@ Gem::Specification.new do |gem|
   # testing
   gem.add_development_dependency 'rspec-rails'
   gem.add_development_dependency 'database_cleaner'
-  gem.add_development_dependency 'mongoid', '~> 3.0.0'
   gem.add_development_dependency 'factory_girl_rails', '~> 4.0'
 end

@@ -31,15 +31,11 @@ Start new Rails project:
 
 Add following gems to the ```Gemfile```:
 
-    gem 'bson_ext'
-    gem 'mongoid'
-    gem 'asset_sync'
     gem 'character', github: 'slate-studio/character'
-    # gem 'character', path: '../character'
 
 Run ```bundle``` from projects root.
 
-Create mongo database config, initialize Foundation (not required if it's not used in the project) and install Character assets and fixes:
+Create mongo database config, initialize Foundation (not required if it's not used in the project) and install Character assets:
 
     rails g mongoid:config
     rails g foundation:install
@@ -49,7 +45,11 @@ In one line:
 
     rails g mongoid:config ; rails g foundation:install ; rails g character:install
 
-Done! Check out ```localhost:3000/admin``` in the browser.
+Run local Rails server:
+
+    rails s
+
+Done! Open [http://localhost:3000/admin](http://localhost:3000/admin) in the browser.
 
 Character generator does:
 
@@ -62,7 +62,14 @@ Character generator does:
 
 ### Blog
 
-Character includes basic blog application. To install blog please install character admin using instructions above and then run:
+Character includes basic blog application. To install blog please install character admin using instructions above.
+
+Add redactor.js plugin to ```Gemfile```:
+
+    gem 'character_redactor',  github: 'slate-studio/character_redactor'
+
+
+Run blog generator:
 
     rails g character:blog:install
 

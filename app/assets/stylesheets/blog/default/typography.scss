@@ -1,3 +1,6 @@
+
+// Mobile
+
 p                                     { line-height: 1.45em;
 }
 a                                     { border-bottom: 1px solid $blog-link-color;
@@ -17,4 +20,17 @@ blockquote                            { padding: 0;
                                         font-style: italic;
                                         line-height: 1.45em;
                                         text-align: center;
+}
+
+// Desktop
+
+@media #{$small}                      {
+  p                                   { font-size: 22px;
+  }
+  blockquote                          { font-size: 22px * 1.25;
+                                        margin: 1.5 -100px;
+  }
+  pre                                 { padding: 1em;
+                                        font-size: 1.3em;
+  }
 }

@@ -5,7 +5,6 @@ module Character
     module Generators
       class InstallGenerator < ::Rails::Generators::Base
         desc "This generator adds character blog assets and routes to the new project."
-        #source_root File.expand_path("../../templates", __FILE__)
         source_root File.join(File.dirname(__FILE__), '..', 'templates')
 
         def add_assets
@@ -15,24 +14,16 @@ module Character
 
           # Character JS
           insert_into_file  "app/assets/javascripts/admin.coffee",
-                            "#= require character/redactor\n",
-                            :after => "character/settings\n"
+                            "#= require character/plugins/redactor\n",
+                            :after => "character\n"
 
           insert_into_file  "app/assets/javascripts/admin.coffee",
-                            "#= require character/blog\n",
-                            :after => "character/settings\n"
-
-          insert_into_file  "app/assets/javascripts/admin.coffee",
-                            "\nBlogPosts()\n",
+                            "\nchr.blogPosts()\n",
                             :after => "require_self\n"
 
           # Character CSS
           insert_into_file  "app/assets/stylesheets/admin.scss",
-                            "@import \"character/redactor\";\n",
-                            :after => "\"character\";\n"
-
-          insert_into_file  "app/assets/stylesheets/admin.scss",
-                            "@import \"character/blog\";\n",
+                            "@import \"character/plugins/redactor\";\n",
                             :after => "\"character\";\n"
         end
 

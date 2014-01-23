@@ -20,12 +20,7 @@ $paragraph-font-family: Georgia, Cambria, "Times New Roman", Times,serif !defaul
 
 @import "foundation";
 
-@import "default/index";
-@import "default/post";
-@import "default/comments";
-@import "default/logo";
-@import "default/action_back";
-@import "default/footer";
+@import "default/layout";
 
 // Firefox font fix | TODO: imporove this
 @font-face {
