@@ -32,15 +32,6 @@ class Blog::PostsController < ApplicationController
     render layout: 'application'
   end
 
-  def get_by_num
-    @post = Character::Blog::Post.where(number: params[:num]).first
-    if @post
-      redirect_to blog_post_url(@post), status: :found
-    else
-      render text: 'Not found.', status: 404, layout: false
-    end
-  end
-
   def feed
     @posts = Character::Blog::Post.published
 

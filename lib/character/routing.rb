@@ -19,12 +19,6 @@ module ActionDispatch::Routing
       end
     end
 
-    def mount_blog_short_urls_at(mount_location)
-      scope mount_location, :module => 'blog' do
-        get '/:num', to: 'posts#get_by_num', as: :blog_post_short_url, constraints: { :num => /\d/ }
-      end
-    end
-
     def mount_blog_at(mount_location)
       scope mount_location, :module => 'blog' do
         get  '/'                    => 'posts#index',    as: :blog_index
