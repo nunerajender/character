@@ -37,13 +37,7 @@ Run ```bundle``` from projects root.
 
 Create mongo database config, initialize Foundation (not required if it's not used in the project) and install Character assets:
 
-    rails g mongoid:config
-    rails g foundation:install
-    rails g character:install
-
-In one line:
-
-    rails g mongoid:config ; rails g foundation:install ; rails g character:install
+    rails g mongoid:config ; rails g foundation:install ; rails g character:install ; rm public/index.html
 
 Run local Rails server:
 
