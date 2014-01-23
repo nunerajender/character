@@ -102,10 +102,8 @@ class Character::ApiController < ActionController::Base
   end
 
 
-  # this method requires a fix in Rails 4:
-  # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   def create
-    @object = model_class.new params[form_attributes_namespace]
+    @object = model_class.new(permit_params)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
@@ -119,11 +117,9 @@ class Character::ApiController < ActionController::Base
   end
 
 
-  # this method requires a fix in Rails 4:
-  # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   def update
     @object = model_class.find(params[:id])
-    @object.assign_attributes params[form_attributes_namespace]
+    @object.assign_attributes(permit_params)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
@@ -144,6 +140,11 @@ class Character::ApiController < ActionController::Base
   end
 
   private
+
+  def permit_params
+    permit_fields = params[form_attributes_namespace].keys
+    params.require(form_attributes_namespace).permit(permit_fields)
+  end
 
   def authenticate_user
     if not auto_login!

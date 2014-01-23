@@ -19,7 +19,7 @@ Admin Settings:
   Logo:
     type: string
     description: Logo image for the character instance.
-    default_value: 'rails.png'
+    default_value: 'character/character.jpg'
 
   Login Background:
     type: string

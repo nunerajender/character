@@ -31,3 +31,6 @@
       $(select_el).wrap("<div class='small-#{ 4 } columns chr-date-day' />")
       $(select_el).on 'change', -> setDateValue( $(date_el), $dateFieldInput )
       setDateValue( $(date_el), $dateFieldInput )
+
+      # remove names from select to be submitted
+      $(select_el).attr('name', '')
