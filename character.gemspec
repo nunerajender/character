@@ -45,12 +45,10 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'kaminari'
 
   # blog backend
-  gem.add_runtime_dependency 'mongoid'
-  gem.add_runtime_dependency 'bson_ext'
+  # gem.add_runtime_dependency 'mongoid' <- for now you have to pick github version manually for Rails 4
+  # gem.add_runtime_dependency 'bson_ext'
   gem.add_runtime_dependency 'mongoid_slug'
   gem.add_runtime_dependency 'mongoid_search'
-  gem.add_runtime_dependency 'mongoid-autoinc'
-  gem.add_runtime_dependency 'carrierwave-mongoid'
   gem.add_runtime_dependency 'mini_magick'
 
   # blog seo

@@ -16,9 +16,6 @@ require 'kaminari'
 require 'mongoid_slug'
 require 'mongoid_search'
 require 'meta_tags'
-require 'autoinc'
-require 'mongoid'
-require 'carrierwave/mongoid'
 require 'mini_magick'
 
 # character

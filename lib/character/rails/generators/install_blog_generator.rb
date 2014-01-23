@@ -28,9 +28,9 @@ module Character
         end
 
         def add_routes
-          inject_into_file "config/routes.rb", after: "  mount_character()\n" do <<-'RUBY'
-mount_blog_short_urls_at('/')
-mount_blog_at('/')
+          inject_into_file "config/routes.rb", after: "  mount_character_instance('admin')\n" do <<-'RUBY'
+  mount_blog_short_urls_at('/')
+  mount_blog_at('/')
 RUBY
           end
         end

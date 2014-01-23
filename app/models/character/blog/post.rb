@@ -4,12 +4,9 @@ class Character::Blog::Post
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Search
-  include Mongoid::Autoinc
 
   field :title
   slug  :title
-  field      :number, type: Integer
-  increments :number
 
   field :tagline,      default: ''
   field :keywords,     default: ''
@@ -24,12 +21,11 @@ class Character::Blog::Post
 
   search_in :title, :tagline, :keywords, :body_html, :category => :title
 
-  default_scope     order_by(published_at: :desc)
-  scope :published, where(published: true)
-  scope :drafts,    where(published: false)
+  default_scope     -> { order_by(published_at: :desc) }
+  scope :published, -> { where(published: true) }
+  scope :drafts,    -> { where(published: false) }
 
   index({ slug: 1 })
-  index({ number: 1 })
   index({ published: 1, date: -1 })
 
   def has_featured_image?

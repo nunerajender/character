@@ -102,6 +102,8 @@ class Character::ApiController < ActionController::Base
   end
 
 
+  # this method requires a fix in Rails 4:
+  # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   def create
     @object = model_class.new params[form_attributes_namespace]
 
@@ -117,6 +119,8 @@ class Character::ApiController < ActionController::Base
   end
 
 
+  # this method requires a fix in Rails 4:
+  # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   def update
     @object = model_class.find(params[:id])
     @object.assign_attributes params[form_attributes_namespace]

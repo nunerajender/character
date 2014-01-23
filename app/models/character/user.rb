@@ -1,12 +1,13 @@
 class Character::User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic # required to make it possible remove users with _delete form field
 
   field     :email
   validates :email,
             presence:   true,
-            uniqueness: true,
-            format:     { :with => /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i }
+            uniqueness: true#,
+            #format:     { :with => /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i }
 
   index({ email: 1 }, { unique: true })
 

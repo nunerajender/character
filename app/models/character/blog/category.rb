@@ -11,7 +11,7 @@ class Character::Blog::Category
 
   has_many :posts, class_name: 'Character::Blog::Post'
 
-  default_scope order_by(_position: :desc)
+  default_scope -> { order_by(_position: :desc) }
 
   index({ slug: 1 })
   index({ _position: -1 })

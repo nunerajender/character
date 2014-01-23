@@ -24,7 +24,7 @@ module Character::JsonObjectConcern
   end
 
   def build_json_object(o)
-    hash = { _id: o.id }
+    hash = { _id: o.id.to_s }
     object_fields.each { |f| hash[f] = o.try(f) }
     hash
   end

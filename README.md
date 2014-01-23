@@ -25,19 +25,28 @@ Character is an admin framework for **rails + mongoid** web applications. It has
 
 ## New Project
 
-Start new Rails project:
+Start new Rails 4 project:
 
-    rails _3.2.16_ new ProjectName -T -O
+    rails new ProjectName -T -O
 
 Add following gems to the ```Gemfile```:
 
+    # ORM
+    gem 'mongoid', github: 'mongoid/mongoid'
+    gem 'bson_ext'
+
+    # File uploader
+    gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
+    gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
+
     gem 'character', github: 'slate-studio/character'
+    gem 'character_redactor',  github: 'slate-studio/character_redactor'
 
 Run ```bundle``` from projects root.
 
 Create mongo database config, initialize Foundation (not required if it's not used in the project) and install Character assets:
 
-    rails g mongoid:config ; rails g foundation:install ; rails g character:install ; rm public/index.html
+    rails g mongoid:config ; rails g foundation:install ; rails g character:install
 
 Run local Rails server:
 
@@ -56,17 +65,11 @@ Character generator does:
 
 ### Blog
 
-Character includes basic blog application. To install blog please install character admin using instructions above.
-
-Add redactor.js plugin to ```Gemfile```:
-
-    gem 'character_redactor',  github: 'slate-studio/character_redactor'
-
-
-Run blog generator:
+Character includes basic blog application. To install blog please install character admin using instructions above. And then run blog generator:
 
     rails g character:blog:install
 
+Done! Open [http://localhost:3000/](http://localhost:3000/) in the browser.
 
 ## Authentification
 
@@ -153,7 +156,7 @@ To run the tests use the following command in the gem's root directory:
 
 
 --
-* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - January 9, 2014
+* [Олександр Кравець](http://www.akravets.com) @ [Slate](http://www.slatestudio.com) - January 23, 2014
 * Роман Лупійчук @ [Slate](http://www.slatestudio.com) - August 9, 2013
 * Мельник Максим @ [Slate](http://www.slatestudio.com) - October 23, 2013
 
@@ -166,4 +169,4 @@ To run the tests use the following command in the gem's root directory:
 * For touch devices (no need for jQuery UI): http://pornel.net/slip/
 * Scrolling on iPad: http://iscrolljs.com/
 * Add to blog: https://github.com/jansepar/picturefill
-* for user input: https://github.com/loadfive/knwl.js
+* For user input: https://github.com/loadfive/knwl.js

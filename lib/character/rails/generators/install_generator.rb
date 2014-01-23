@@ -21,8 +21,8 @@ module Character
         end
 
         def add_routes
-          inject_into_file "config/routes.rb", before: "  # The priority is based upon order of creation:\n" do <<-'RUBY'
-  mount_character()
+          inject_into_file "config/routes.rb", before: "  # The priority is based upon order of creation: first created -> highest priority.\n" do <<-'RUBY'
+  mount_character_instance('admin')
           RUBY
           end
         end
