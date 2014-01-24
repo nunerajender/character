@@ -44,6 +44,8 @@ _.mixin(_.str.exports())
     $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
 
     chr.content.show(layout)
+    $('#content').attr('class', "chr-content #{name}-module")
+
 
 @chr.commands.setHandler 'showError', (response) ->
   Character.Utils.errorModal(response)
