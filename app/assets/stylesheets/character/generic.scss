@@ -39,6 +39,8 @@
                                         line-height: 1.65;
                                         border-bottom: 1px solid $chr-border-color;
 
+  .title                              { color: $body-font-color;
+  }
   .title.dropdown                     { border-bottom: 1px dashed $chr-action-color;
                                         padding-bottom: .1em;
   }

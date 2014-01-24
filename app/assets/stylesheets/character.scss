@@ -2,6 +2,7 @@
 
 @import "font-awesome";
 @import "compass/css3";
+@import "foundation";
 
 // Character Settings =====================================
 
@@ -30,29 +31,6 @@ $chr-list-item-active-meta-color: #555;
 
 $chr-action-color: #666;
 $chr-action-save-height: 68px;
-
-// Foundation Settings ====================================
-
-$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-$primary-color: #232323;
-
-$input-border-color: #ddd;
-$input-focus-bg-color: #fff;
-$input-box-shadow: none;
-$input-prefix-bg: darken(#fff, 1%);
-$input-prefix-border-size: 1px;
-$input-prefix-font-color: #6f6f6f;
-$input-include-glowing-effect: false;
-$input-disabled-bg: #fafafa;
-
-$panel-bg: $chr-secondary-bg-color;
-$panel-border-style: none;
-
-$table-even-row-bg: $chr-secondary-bg-color;
-
-$f-dropdown-margin-top: 10px;
-
-@import "foundation";
 
 // Awkward
 

@@ -27,6 +27,7 @@
 
   index: (listScope, callback) ->
     chr.execute('showModule', @module)
+    @module.layout.closeDetails()
 
     path = @options.moduleName + ( if listScope then "/#{ listScope }" else '' )
 
@@ -34,7 +35,6 @@
       chr.currentPath = path
       @module.layout.updateListScope(listScope, callback)
     else
-      @module.layout.closeDetails()
       callback?()
 
   new: (listScope) ->

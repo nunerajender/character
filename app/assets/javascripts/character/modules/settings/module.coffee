@@ -33,6 +33,7 @@ chr.module 'settings', (module) ->
 
   index: ->
     chr.execute('showModule', @module)
+    chr.currentPath = "settings"
 
   edit: (settingsModuleName) ->
     @index()
