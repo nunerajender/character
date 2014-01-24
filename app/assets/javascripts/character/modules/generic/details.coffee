@@ -50,7 +50,7 @@
 @Character.Generic.DetailsLayout = Backbone.Marionette.Layout.extend
   className: 'chr-module-generic-details'
   template: -> "<header id=details_header class='chr-module-generic-details-header'></header>
-                <div id=details_content class='chr-module-generic-details-form'></div>"
+                <div id=details_content class='chr-module-generic-details-content'></div>"
 
   regions:
     header: '#details_header'

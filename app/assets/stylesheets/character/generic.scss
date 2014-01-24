@@ -126,7 +126,7 @@
   }
 }
 
-.chr-module-generic-details-form       { @include position(0, $chr-list-header-height, 0, 0);
+.chr-module-generic-details-content   { @include position(0, $chr-list-header-height, 0, 0);
                                         @include scrollable;
                                         background-color: #fff;
 }
