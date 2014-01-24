@@ -84,7 +84,7 @@
     if @ui
       @ui.content.html(html)
 
-      @ui.form = @ui.content.find('form')
+      @ui.form = @ui.content.find('form.simple_form')
 
       if @ui.form.length
         chr.execute('startDetailsFormPlugins', @ui.form)
@@ -120,7 +120,8 @@
     'click #action_delete': 'onDelete'
 
   onSave: ->
-    @ui.form.submit()
+    if @ui.form.length
+      @ui.form.submit()
     return false
 
   updateModel: (resp) ->
