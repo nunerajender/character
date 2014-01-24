@@ -111,9 +111,9 @@
               @headerView.updateState()
           return false
 
-        $(document).trigger("chr-generic-details-content.rendered", [ @ui.content ])
-        $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
-        @afterContentRendered?()
+      $(document).trigger("chr-generic-details-content.rendered", [ @ui.content ])
+      $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
+      @afterContentRendered?()
 
   events:
     'click #action_save':   'onSave'
