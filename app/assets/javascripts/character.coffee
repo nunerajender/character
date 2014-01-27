@@ -10,7 +10,6 @@
 #= require jquery.ui.sortable
 #= require jquery.nested-form
 #= require jquery.serialize-hash
-#= require jquery.autosize
 #= require character/character
 #= require_self
 
@@ -21,6 +20,7 @@
 chr.blogPosts = (opts) ->
   moduleOpts =
     menuIcon:     'quote-left'
+    menuTitle:    'Posts'
     listItem:
       titleField: 'title'
       metaField:  'tagline'
@@ -39,6 +39,20 @@ chr.blogPosts = (opts) ->
   _(moduleOpts).extend(opts)
 
   chr.genericModule('Post', moduleOpts)
+
+
+chr.flatPages = (opts) ->
+  moduleOpts =
+    menuIcon:  'file-o'
+    menuTitle: 'Pages'
+    modelName: 'Character-FlatPage'
+    listItem:
+      titleField: 'title'
+      metaField:  'path'
+  _(moduleOpts).extend(opts)
+
+  chr.genericModule('Page', moduleOpts)
+
 
 #
 # Settings Helpers

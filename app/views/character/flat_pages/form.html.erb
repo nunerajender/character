@@ -1,0 +1,30 @@
+<% if @object.persisted? %>
+
+  <%= simple_nested_form_for @object, url: @form_action_url do |f| %>
+    <div class='chr-helper-drawer'>
+      <div class='drawer-content'>
+        <%= f.input :title, wrapper_class: 'small-12 columns' %>
+        <%= f.input :path,  wrapper_class: 'small-12 columns' %>
+      </div>
+    </div>
+
+    <%#= f.input :template_content, as: :hidden %>
+
+    <div class='row'>
+      <div class='large-12 columns' style='padding: 0 6%;'>
+        <%= render partial: @object.template_path %>
+      </div>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <%= simple_form_for @object, url: @form_action_url do |f| %>
+    <div class='row'>
+      <%= f.input :title, wrapper_class: 'small-12 columns' %>
+      <%= f.input :path,  wrapper_class: 'small-12 columns' %>
+      <%= f.input :template_name, wrapper_class: 'small-12 columns' %>
+    </div>
+  <% end %>
+
+<% end %>

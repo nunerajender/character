@@ -170,3 +170,5 @@ To run the tests use the following command in the gem's root directory:
 * Scrolling on iPad: http://iscrolljs.com/
 * Add to blog: https://github.com/jansepar/picturefill
 * For user input: https://github.com/loadfive/knwl.js
+* Touch guestures: http://eightmedia.github.io/hammer.js/
+* Spinner: http://viduthalai1947.github.io/loaderskit/

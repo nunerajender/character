@@ -3,6 +3,7 @@
 #= require ./modules/generic/module
 #= require ./modules/settings/module
 #= require ./modules/blog/module
+#= require character/plugins/medium_editor
 
 @Character ||= {}
 _.mixin(_.str.exports())
@@ -53,12 +54,13 @@ _.mixin(_.str.exports())
 @chr.commands.setHandler 'startDetailsFormPlugins', ($form) ->
   Character.Utils.fixRailsDateSelect($form)
   Character.Utils.startImagesHelper($form)
-  Character.Utils.startAutosizeTextarea($form)
   Character.Utils.startDrawerHelper($form)
+
+@chr.commands.setHandler 'beforeFormSubmit', ($form) ->
+  Character.Utils.syncInputs($form)
 
 @chr.commands.setHandler 'stopDetailsFormPlugins', ($form) ->
   Character.Utils.stopImagesHelper($form)
-  Character.Utils.stopAutosizeTextarea($form)
   Character.Utils.stopDrawerHelper($form)
 
 @chr.on "initialize:before", (@options) ->

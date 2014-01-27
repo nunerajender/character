@@ -27,7 +27,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'jquery-ui-rails'
   ## helpers
   gem.add_runtime_dependency 'momentjs-rails'
-  gem.add_runtime_dependency 'autosize-rails'
 
   # css
   gem.add_runtime_dependency 'compass-rails'

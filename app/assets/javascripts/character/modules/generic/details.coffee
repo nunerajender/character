@@ -97,6 +97,8 @@
         @ui.form.submit =>
           @headerView.updateState('saving')
 
+          chr.execute('beforeFormSubmit', @ui.form)
+
           data = _(params).extend(@ui.form.serializeHash())
 
           $.ajax

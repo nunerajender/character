@@ -44,25 +44,19 @@
     </div>
   </div>
 
+  <%= f.input :title, as: :hidden %>
+  <%= f.input :body_html, as: :hidden %>
+
   <div class='row'>
-    <%= f.input :title,
-                as: :text,
-                input_html: { rows: 1, class: 'autosize normal' },
-                placeholder: 'Title',
-                label: false,
-                wrapper_class: 'small-12 columns' %>
-
-    <%= f.input :tagline,
-                as: :text,
-                input_html: { rows: 1, class: 'autosize normal' },
-                placeholder: 'Subtitle',
-                label: false,
-                wrapper_class: 'small-12 columns' %>
-
-    <%= f.input :body_html,
-                label: false,
-                as: :text,
-                placeholder: 'Start typing here...',
-                wrapper_class: 'small-12 columns chr-redactor-air' %>
+    <div class='large-12 columns'>
+      <article>
+        <header>
+          <h1 id='post_title' data-input-id='character_blog_post_title'><%= f.object.title %></h1>
+        </header>
+        <section id='post_body' data-input-id='character_blog_post_body_html'>
+          <%= f.object.body_html.try(:html_safe) %>
+        </section>
+      </article>
+    </div>
   </div>
 <% end %>
