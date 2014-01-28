@@ -38,28 +38,6 @@
       if @ui.form.length
         @ui.action_save.show()
 
-        @ui.form.submit =>
-          @updateState('Saving')
-
-          # this does not allow to submit template fields (Safari fix)
-          @ui.new_item_template.remove()
-
-          data = @ui.form.serializeHash()
-          console.log data
-
-          $.ajax
-            type: @ui.form.attr('method')
-            url:  @ui.form.attr('action')
-            data: data
-            success: (data) =>
-              @updateState()
-              @renderForm(data)
-            error: (xhr) =>
-              chr.execute('showError', xhr)
-              @updateState()
-
-          return false
-
       @afterFormRendered?()
 
   events:
@@ -70,7 +48,21 @@
 
   onSave: (e) ->
     if not $(e.currentTarget).hasClass('disabled')
-      @ui.form.submit()
+
+      # this does not allow to submit template fields (Safari fix)
+      @ui.new_item_template.remove()
+
+      @ui.form.ajaxSubmit
+        beforeSubmit: (arr, $form, options) =>
+          @updateState('Saving')
+          return true
+        error: (xhr) =>
+          chr.execute('showError', xhr)
+          @updateState()
+        success: (responseText, statusText, xhr, $form) =>
+          @updateState()
+          @renderForm(responseText)
+
     return false
 
   addItem: ->

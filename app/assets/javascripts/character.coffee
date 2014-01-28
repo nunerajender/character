@@ -1,5 +1,8 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery.form
+#= require jquery.ui.sortable
+#= require jquery.nested-form
 #= require browserid
 #= require underscore
 #= require underscore.string
@@ -7,9 +10,6 @@
 #= require backbone
 #= require backbone.marionette
 #= require moment
-#= require jquery.ui.sortable
-#= require jquery.nested-form
-#= require jquery.serialize-hash
 #= require character/character
 #= require_self
 

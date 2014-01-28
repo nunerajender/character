@@ -77,8 +77,10 @@
     $.ajax
       type: 'get'
       url:  @options.formUrl
-      success: (data) => @renderContent(data)
-      error: (xhr, ajaxOptions, thrownError) => chr.execute('showError', xhr)
+      success: (data) =>
+        @renderContent(data)
+      error: (xhr, ajaxOptions, thrownError) =>
+        chr.execute('showError', xhr)
 
   renderContent: (html) ->
     if @ui
@@ -88,30 +90,6 @@
 
       if @ui.form.length
         chr.execute('startDetailsFormPlugins', @ui.form)
-
-        # include fields to properly update item in a list and sort
-        params = @collection.options.constantParams
-        if @collection.sortField
-          params.f = _([ params.f, @collection.sortField ]).uniq().join(',')
-
-        @ui.form.submit =>
-          @headerView.updateState('saving')
-
-          chr.execute('beforeFormSubmit', @ui)
-
-          data = _(params).extend(@ui.form.serializeHash())
-
-          $.ajax
-            type: @ui.form.attr('method')
-            url:  @ui.form.attr('action')
-            data: data
-            success: (response) =>
-              @headerView.updateState()
-              @updateModel(response)
-            error: (xhr) =>
-              chr.execute('showError', xhr)
-              @headerView.updateState()
-          return false
 
       $(document).trigger("chr-generic-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -123,7 +101,25 @@
 
   onSave: ->
     if @ui.form.length
-      @ui.form.submit()
+      chr.execute('beforeFormSubmit', @ui)
+
+      # include fields to properly update item in a list and sort
+      params = @collection.options.constantParams
+      if @collection.sortField
+        params.f = _([ params.f, @collection.sortField ]).uniq().join(',')
+
+      @ui.form.ajaxSubmit
+        data: params
+        beforeSubmit: (arr, $form, options) =>
+          @headerView.updateState('saving')
+          return true
+        error: (xhr) =>
+          chr.execute('showError', xhr)
+          @headerView.updateState()
+        success: (responseText, statusText, xhr, $form) =>
+          @headerView.updateState()
+          @updateModel(responseText)
+
     return false
 
   updateModel: (resp) ->
