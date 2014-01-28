@@ -27,6 +27,7 @@
         chr.start(character_params);
       });
     </script>
+
     <div id='character' class='character <%= @character_instance.name %>-instance'>
       <div id='menu' class='chr-menu'>
         <nav>
@@ -36,6 +37,11 @@
         </nav>
       </div>
       <div id='content' class='chr-content'></div>
+    </div>
+
+    <div id='error_modal' class='chr-error-modal' data-reveal style='height: 75%;'>
+      <div id='error_modal_content' style='height: 100%;'></div>
+      <a class='close-reveal-modal'>&#215;</a>
     </div>
   <% else %>
     <% if @browserid_email %>

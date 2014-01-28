@@ -66,6 +66,8 @@ _.mixin(_.str.exports())
 @chr.on "initialize:before", (@options) ->
 
 @chr.on "initialize:after", ->
+  $('#error_modal').foundation('reveal')
+
   if Backbone.history
     Backbone.history.start()
 

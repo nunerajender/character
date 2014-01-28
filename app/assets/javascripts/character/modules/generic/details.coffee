@@ -149,6 +149,8 @@
     return false
 
   onClose: ->
-    chr.execute('stopDetailsFormPlugins', @ui.form)
-    $(document).trigger("chr-generic-details-content.closed", [ @ui.content ])
-    $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
+    if @ui
+      if @ui.form
+        chr.execute('stopDetailsFormPlugins', @ui.form)
+      $(document).trigger("chr-generic-details-content.closed", [ @ui.content ])
+      $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])

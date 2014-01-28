@@ -183,6 +183,14 @@ template                              { display: none;
   }
 }
 
+.chr-error-modal                      { @extend .reveal-modal;
+                                        padding: 0;
+  a.close-reveal-modal                { right: 30px;
+                                        color: #fff;
+                                        font-size:1.6em;
+  }
+}
+
 @import "./character/generic";
 @import "./character/settings";
 @import "./character/blog";
