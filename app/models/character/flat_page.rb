@@ -8,8 +8,6 @@ class Character::FlatPage
   field :template_name, default: 'default'
   field :template_content, type: Hash, default: {}
 
-  #field :published, default: true
-
   def template_path
     "flat_pages/#{ template_name }"
   end

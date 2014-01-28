@@ -51,9 +51,13 @@
     <div class='large-12 columns'>
       <article>
         <header>
-          <h1 id='post_title' data-input-id='character_blog_post_title'><%= f.object.title %></h1>
+          <h1 class='chr-medium-editor-inline'
+              data-input-name='character_blog_post[title]'
+              data-placeholder='Post Title'><%= f.object.title %></h1>
         </header>
-        <section id='post_body' data-input-id='character_blog_post_body_html'>
+        <section class='chr-medium-editor'
+                 data-target-blanks='true'
+                 data-input-name='character_blog_post[body_html]'>
           <%= f.object.body_html.try(:html_safe) %>
         </section>
       </article>

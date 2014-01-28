@@ -56,8 +56,8 @@ _.mixin(_.str.exports())
   Character.Utils.startImagesHelper($form)
   Character.Utils.startDrawerHelper($form)
 
-@chr.commands.setHandler 'beforeFormSubmit', ($form) ->
-  Character.Utils.syncInputs($form)
+@chr.commands.setHandler 'beforeFormSubmit', (ui) ->
+  Character.Utils.syncMediumEditorInputs(ui)
 
 @chr.commands.setHandler 'stopDetailsFormPlugins', ($form) ->
   Character.Utils.stopImagesHelper($form)

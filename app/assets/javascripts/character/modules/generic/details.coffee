@@ -97,7 +97,7 @@
         @ui.form.submit =>
           @headerView.updateState('saving')
 
-          chr.execute('beforeFormSubmit', @ui.form)
+          chr.execute('beforeFormSubmit', @ui)
 
           data = _(params).extend(@ui.form.serializeHash())
 

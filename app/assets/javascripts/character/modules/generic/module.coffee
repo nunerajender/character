@@ -73,6 +73,7 @@ chr.genericModule = (name, options={}) ->
   options.listReorder      ?= false
   options.listItemsPerPage ?= 25
 
+  options.newItems   ?= true
   options.deletable  ?= true
   options.moduleName ?= _.underscored(_.pluralize(name))
   options.objectName ?= name

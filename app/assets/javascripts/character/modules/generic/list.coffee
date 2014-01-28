@@ -17,7 +17,7 @@
   ui:
     title:         '.title'
     actions:       '.actions'
-    new_action:    '.new'
+    newAction:    '.new'
     search:        '.search'
     searchInput:   '.search input'
     scopes:        '#scopes'
@@ -59,6 +59,9 @@
     @scopes     = @options.listScopes
     @path       = "#/#{ @options.moduleName }"
 
+    if not @options.newItems
+      @ui.newAction.hide().prev().hide()
+
     if @options.listSearch
       @ui.search.show()
     else
@@ -76,7 +79,7 @@
 
     @ui.title.html(title).attr('href', path)
 
-    @ui.new_action.attr('href', path + "/new")
+    @ui.newAction.attr('href', path + "/new")
 
     @addScopesDropdown()
 

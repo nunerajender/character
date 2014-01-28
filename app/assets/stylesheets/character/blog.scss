@@ -1,9 +1,6 @@
-#post_title,
-#post_body                            { cursor: text;
-  &:focus                             { outline:none;
-  }
-}
-
+//
+// Blog Module ============================================
+//
 .blog_categories                      {
   .row.category                       { max-width: 100%;
   }
