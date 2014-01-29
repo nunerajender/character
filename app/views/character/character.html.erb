@@ -6,7 +6,10 @@
   <title><%= @character_instance.title %></title>
 
   <%= stylesheet_link_tag @character_instance.stylesheet_filename, :media => 'all' %>
-  <style>.logo{ background-image: url('<%= image_path(@character_instance.logo) %>'); }</style>
+  <style>
+  .logo { background-image: url('<%= image_path(@character_instance.logo) %>'); }
+  .chr-login { background-image: url("<%= @character_instance.login_background %>"); }
+  </style>
 
   <%= javascript_include_tag @character_instance.javascript_filename %>
   <%= setup_browserid debug: false %>
@@ -55,10 +58,9 @@
         </div>
       </div>
     <% else %>
-      <div class='chr-login'
-           style='background-image: url("<%= @character_instance.login_background %>");'>
+      <div class='chr-login'>
         <%= link_to browserid_config.login.path, class: 'browserid_login' do %>
-          <i class='fa fa-sign-in'></i> Sign in <small>with Persona</small>
+          Sign in <span>/</span> Sign up
         <% end %>
       </div>
     <% end %>

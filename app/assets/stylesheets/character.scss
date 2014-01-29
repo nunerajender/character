@@ -85,15 +85,12 @@ template                              { display: none;
 
   .browserid_login                    { @include button-base;
                                         @include button-size;
-                                        @include button-style($secondary-color, 0px, false);
+                                        @include button-style($success-color, 10px, false);
                                         position: absolute;
-                                        bottom: 1em;
-                                        right: 2em;
+                                        top: 1rem;
+                                        right: 1rem;
                                         font-size: 1.5em;
-    i                                 { margin-right: .2em;
-    }
-    small                             { font-size: 70%;
-                                        opacity: .75;
+    span                              { opacity: .5;
     }
   }
 }
