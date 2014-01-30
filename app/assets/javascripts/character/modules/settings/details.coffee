@@ -9,36 +9,40 @@
                   </header>
                   <section id='form_view' class='chr-module-settings-details-form'></section>"""
 
+
   ui:
     title:              '#title'
     actions:            '#actions'
-    new_item_template:  '#new_item_template'
-    form_view:          '#form_view'
-    action_save:        '#action_save'
+    newItemTemplate:  '#new_item_template'
+    formView:          '#form_view'
+    actionSave:        '#action_save'
+
 
   onRender: ->
     @ui.title.html(@options.titleDetails)
-    @ui.form_view.addClass(@options.moduleName)
+    @ui.formView.addClass(@options.moduleName)
     $.ajax
       type: 'get'
       url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
       success: (data) => @renderForm(data)
       error: (xhr) => chr.execute('showError', xhr)
 
+
   renderForm: (html) ->
     if @ui
-      @ui.form_view.html(html)
+      @ui.formView.html(html)
 
-      @ui.form              = @ui.form_view.find('form')
-      @ui.new_item_template = @ui.form_view.find('#new_item_template')
+      @ui.form              = @ui.formView.find('form')
+      @ui.newItemTemplate = @ui.formView.find('#new_item_template')
 
-      if @ui.new_item_template.length and not @ui.actions.find('.action_new').length
+      if @ui.newItemTemplate.length and not @ui.actions.find('.action_new').length
         @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
 
       if @ui.form.length
-        @ui.action_save.show()
+        @ui.actionSave.show()
 
       @afterFormRendered?()
+
 
   events:
     'click .chr-action-save': 'onSave'
@@ -46,11 +50,12 @@
     'click .action_cancel':   'cancelItem'
     'click .action_delete':   'deleteItem'
 
+
   onSave: (e) ->
     if not $(e.currentTarget).hasClass('disabled')
 
       # this does not allow to submit template fields (Safari fix)
-      @ui.new_item_template.remove()
+      @ui.newItemTemplate.remove()
 
       @ui.form.ajaxSubmit
         beforeSubmit: (arr, $form, options) =>
@@ -60,26 +65,34 @@
           chr.execute('showError', xhr)
           @updateState()
         success: (responseText, statusText, xhr, $form) =>
-          @updateState()
-          @renderForm(responseText)
+          if @onSaved
+            @onSaved responseText, =>
+              @updateState()
+              @renderForm(responseText)
+          else
+            @updateState()
+            @renderForm(responseText)
 
     return false
 
+
   addItem: ->
-    html = @ui.new_item_template.html()
+    html = @ui.newItemTemplate.html()
     html = html.replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
-    @ui.new_item_template.before(html)
+    @ui.newItemTemplate.before(html)
 
     @afterAddItem?()
 
+
   cancelItem: (e) ->
-    item_cls = $(e.currentTarget).attr('data-item-class')
-    $(e.currentTarget).closest(".#{ item_cls }").remove() ; return false
+    itemCls = $(e.currentTarget).attr('data-item-class')
+    $(e.currentTarget).closest(".#{ itemCls }").remove() ; return false
+
 
   deleteItem: (e) ->
     if confirm("Are you sure about deleting this?")
-      item_cls = $(e.currentTarget).attr('data-item-class')
-      item     = $(e.currentTarget).closest(".#{ item_cls }")
+      itemCls = $(e.currentTarget).attr('data-item-class')
+      item    = $(e.currentTarget).closest(".#{ itemCls }")
 
       destroy_field = _.find item.find("input[type=hidden]"), (f) ->
         name = $(f).attr('name')
@@ -89,13 +102,14 @@
       item.replaceWith(destroy_field)
     return false
 
+
   updateState: (state) ->
     if @ui
       if state == 'Saving'
-        @ui.action_save.addClass('disabled')
-        @ui.action_save.html 'Saving...'
+        @ui.actionSave.addClass('disabled')
+        @ui.actionSave.html 'Saving...'
       else
         setTimeout ( =>
-          @ui.action_save.removeClass('disabled')
-          @ui.action_save.html 'Save'
+          @ui.actionSave.removeClass('disabled')
+          @ui.actionSave.html 'Save'
         ), 500

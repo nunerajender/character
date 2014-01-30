@@ -16,7 +16,7 @@
 
   ui:
     title:         '.title'
-    actions:       '.actions'
+    actions:       '.chr-actions'
     newAction:    '.new'
     search:        '.search'
     searchInput:   '.search input'
