@@ -51,15 +51,16 @@
     <div class='large-12 columns'>
       <article>
         <header>
-          <h1 class='chr-medium-editor-inline'
+          <h1 class='chr-medium-editor-inline chr-blog-post-title'
               data-input-name='character_blog_post[title]'
-              data-placeholder='Post Title'><%= f.object.title %></h1>
+              data-placeholder='Post Title'
+          ><%= f.object.title %></h1>
         </header>
-        <section class='chr-medium-editor'
+        <section class='chr-medium-editor chr-blog-post-body'
                  data-target-blanks='true'
-                 data-input-name='character_blog_post[body_html]'>
-          <%= f.object.body_html.try(:html_safe) %>
-        </section>
+                 data-input-name='character_blog_post[body_html]'
+                 data-placeholder='Type text here...'
+        ><%= f.object.body_html.try(:html_safe) %></section>
       </article>
     </div>
   </div>

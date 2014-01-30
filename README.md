@@ -172,3 +172,6 @@ To run the tests use the following command in the gem's root directory:
 * For user input: https://github.com/loadfive/knwl.js
 * Touch guestures: http://eightmedia.github.io/hammer.js/
 * Spinner: http://viduthalai1947.github.io/loaderskit/
+* Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
+* On item actions support: http://github.hubspot.com/tether/docs/welcome/
+* Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide

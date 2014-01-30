@@ -4,15 +4,20 @@ class Character::Blog::Category
   include Mongoid::Timestamps
   include Mongoid::Slug
 
+  # attributes
   field :title
-  slug  :title
-
   field :_position, type: Float, default: 0.0
 
+  # relations
   has_many :posts, class_name: 'Character::Blog::Post'
 
+  # slugs
+  slug :title, history: true
+
+  # scopes
   default_scope -> { order_by(_position: :desc) }
 
+  # indexes
   index({ slug: 1 })
   index({ _position: -1 })
 end
