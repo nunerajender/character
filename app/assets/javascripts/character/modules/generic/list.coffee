@@ -84,7 +84,7 @@
     @addScopesDropdown()
 
   addScopesDropdown: ->
-    if @scopes and not @ui.title.hasClass('dropdown')
+    if @scopes and _(@scopes).keys().length > 0 and not @ui.title.hasClass('dropdown')
       @ui.title.addClass('dropdown').attr('data-dropdown', 'scopes')
 
       @ui.scopes.append """<li>
