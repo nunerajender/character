@@ -43,9 +43,10 @@ chr.blogPosts = (opts) ->
 
 chr.flatPages = (opts) ->
   moduleOpts =
-    menuIcon:  'edit'
-    menuTitle: 'Pages'
-    modelName: 'Character-FlatPage'
+    menuIcon:     'edit'
+    menuTitle:    'Pages'
+    modelName:    'Character-FlatPage'
+    listReorder:  true
     listItem:
       titleField: 'title'
       metaField:  'path'
