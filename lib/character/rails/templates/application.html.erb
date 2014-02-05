@@ -37,7 +37,6 @@
         <%= yield %>
         <% if @post %>
           <div class='post-date'><%= l @post.published_at, format: :long %></div>
-          <%= render partial: 'blog/posts/disqus' unless @blog_disqus_shortname.empty? %>
         <% end %>
       </div>
 
