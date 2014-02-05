@@ -93,6 +93,10 @@ chr.genericModule = (name, options={}) ->
       scope.title ||= _(slug).titleize()
       scope.slug  ||= slug
 
+  # when reorder, consider of using _position field with desc sorting
+  if options.listReorder
+    listDefaultOrderBy = '_position:desc'
+
   listDefaultOrderBy ?= options.listDefaultOrderBy
 
   # include model fields

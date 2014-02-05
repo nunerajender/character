@@ -15,7 +15,7 @@
     delay:       150
     placeholder: 'placeholder'
 
-    # TODO: we have a problem here: when all items have same position, e.g. 0
+    # NOTE: when all items have same position, e.g. 0 -> nothing happens
     update: (e, ui) =>
       prev = ui.item.prev()
       next = ui.item.next()

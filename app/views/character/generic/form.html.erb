@@ -4,4 +4,8 @@
       <%= f.input name, wrapper_class: 'small-12 columns' %>
     <% end %>
   </div>
+
+  <% if @object.class.fields.keys.include? '_position' %>
+    <%= f.input :_position, as: :hidden %>
+  <% end %>
 <% end %>
