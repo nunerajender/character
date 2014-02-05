@@ -60,12 +60,12 @@ Blog Settings:
     default_value: My Blog two-three sentences description. What is this all about.
 
   Keywords:
-    type: text
+    type: string
     description: Split keywords by comma. They are used by Google and other search engines.
     default_value: 'web, blog, internet'
 
   Disqus Shortname:
-    type: text
+    type: string
     description: If defined disqus is used to comment blog posts.
     default_value: ''
 
