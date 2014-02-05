@@ -11,7 +11,6 @@ class Blog::PostsController < ApplicationController
     @blog_title             = settings['Title'].value
     @blog_description       = settings['Description'].value
     @blog_keywords          = settings['Keywords'].value
-    @blog_disqus_shortname  = settings['Disqus Shortname'].value
   end
 
   def index

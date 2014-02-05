@@ -64,11 +64,6 @@ Blog Settings:
     description: Split keywords by comma. They are used by Google and other search engines.
     default_value: 'web, blog, internet'
 
-  Disqus Shortname:
-    type: string
-    description: If defined disqus is used to comment blog posts.
-    default_value: ''
-
 # END
 RUBY
           end
