@@ -22,18 +22,7 @@
   getPosition: ->
     @get('_position')
 
-  toRailsJSON: ->
-    object = {}
-
-    modelSlug         = @collection.options.modelSlug
-    object[modelSlug] = _.clone(@attributes)
-
-    return object
-
   toJSON: (options={}) ->
-    if options.processForRails
-      return @toRailsJSON()
-
     # add helpers for list item template
     object = _.clone(@attributes)
 

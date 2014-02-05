@@ -117,7 +117,25 @@ class Character::ApiController < ActionController::Base
   end
 
 
-  def update
+  # process backbone model patch save
+  def patch_update
+    @object = model_class.find(params[:id])
+    @object.assign_attributes(permit_api_params)
+
+    if character_instance.before_save
+      instance_exec &character_instance.before_save
+    end
+
+    if @object.save
+      render json: :ok
+    else
+      render json: @object.errors
+    end
+  end
+
+
+  # process serialized form, object attributes are in the namespace
+  def post_update
     @object = model_class.find(params[:id])
     @object.assign_attributes(permit_params)
 
@@ -155,6 +173,11 @@ class Character::ApiController < ActionController::Base
     end
 
     params.require(form_attributes_namespace).permit(permit_fields)
+  end
+
+  # this goes only one level deep
+  def permit_api_params
+    params.require('api').permit(params['api'].keys)
   end
 
   def authenticate_user

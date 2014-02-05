@@ -9,12 +9,13 @@
     id    = $el.attr 'data-id'
     model = collection.get(id)
 
-    model.save({ _position: position }, { processForRails: true })
+    model.save({ _position: position }, { patch: true })
 
   options =
     delay:       150
     placeholder: 'placeholder'
 
+    # TODO: we have a problem here: when all items have same position, e.g. 0
     update: (e, ui) =>
       prev = ui.item.prev()
       next = ui.item.next()
