@@ -1,4 +1,4 @@
-<%= simple_nested_form_for @object, url: @form_action_url do |f| %>
+<%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
   <div class='chr-helper-drawer'>
     <div class='drawer-content'>
       <div class='small-12 columns chr-form-image-upload'>
@@ -44,7 +44,8 @@
     </div>
   </div>
 
-  <%= f.input :title, as: :hidden %>
+  <%= f.input :title,     as: :hidden %>
+  <%= f.input :subtitle,  as: :hidden %>
   <%= f.input :body_html, as: :hidden %>
 
   <div class='row'>

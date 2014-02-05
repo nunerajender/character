@@ -1,6 +1,6 @@
 <% @model = Character::Blog::Category %>
 
-<%= simple_form_for :objects, url: @action_url do |form| %>
+<%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
   <%= hidden_field_tag :class_name, @model.to_s %>
 
         <% @model.all.each do |category| %>

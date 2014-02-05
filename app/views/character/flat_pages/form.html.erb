@@ -1,6 +1,6 @@
 <% if @object.persisted? %>
 
-  <%= simple_nested_form_for @object, url: @form_action_url do |f| %>
+  <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
     <div class='chr-helper-drawer'>
       <div class='drawer-content'>
         <%= f.input :title, wrapper_class: 'small-12 columns' %>
