@@ -17,29 +17,6 @@
 # Module Helpers
 #
 
-chr.blogPosts = (opts) ->
-  moduleOpts =
-    menuIcon:     'quote-left'
-    menuTitle:    'Posts'
-    listItem:
-      titleField: 'title'
-      metaField:  'subtitle'
-    modelName:    'Character-Blog-Post'
-    listSearch:   true
-    listScopes:
-      default:
-        orderBy:  'published_at:desc'
-      published:
-        where:    'published=true'
-        orderBy:  'published_at:desc'
-      drafts:
-        where:    'published=false'
-        orderBy:  'published_at:desc'
-
-  _(moduleOpts).extend(opts)
-
-  chr.genericModule('Post', moduleOpts)
-
 
 chr.flatPages = (opts) ->
   moduleOpts =
