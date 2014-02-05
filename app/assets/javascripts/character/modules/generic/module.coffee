@@ -68,7 +68,7 @@ chr.genericModule = (name, options={}) ->
   options.menuTitle ?= name
   options.menuIcon  ?= 'bolt'
 
-  options.listTitle        ?= _.pluralize(name) # TODO: extend with scope options by adding All
+  options.listTitle        ?= _.pluralize(name)
   options.listSearch       ?= false
   options.listReorder      ?= false
   options.listItemsPerPage ?= 25
@@ -85,12 +85,11 @@ chr.genericModule = (name, options={}) ->
   # list scopes
   if options.listScopes
     if options.listScopes.default
-
       listDefaultOrderBy = options.listScopes.default.orderBy
       delete options.listScopes['default']
 
     _(options.listScopes).each (scope, slug) ->
-      scope.title ||= _(slug).titleize()
+      scope.title ||= scope.title || _(slug).titleize()
       scope.slug  ||= slug
 
   # when reorder, consider of using _position field with desc sorting

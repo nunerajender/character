@@ -1,4 +1,4 @@
-<%= simple_form_for @object, url: @form_action_url do |f| %>
+<%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
   <div class='row'>
     <% @generic_form_fields.each do |name| %>
       <%= f.input name, wrapper_class: 'small-12 columns' %>
