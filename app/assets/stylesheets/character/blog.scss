@@ -2,20 +2,6 @@
 // Blog Module ============================================
 //
 
-.chr-blog-post-body,
-.chr-blog-post-title                  { min-height: 61px;
-  &:empty                             {
-    &:after                           { content: attr(data-placeholder);
-                                        font-style: italic;
-                                        color: #ddd;
-    }
-  }
-}
-
-.chr-blog-post-body                   { width: 100%;
-                                        min-height: 1em;
-}
-
 .blog_categories                      {
   .row.category                       { max-width: 100%;
   }

@@ -56,7 +56,7 @@ _.mixin(_.str.exports())
   Character.Utils.startDrawerHelper($form)
 
 @chr.commands.setHandler 'beforeFormSubmit', (ui) ->
-  #Character.Utils.syncActiveMediumEditor(ui.content)
+  Character.Utils.serializeDataInputs(ui.content, ui.form)
 
 @chr.commands.setHandler 'stopDetailsFormPlugins', ($form) ->
   Character.Utils.stopImagesHelper($form)
