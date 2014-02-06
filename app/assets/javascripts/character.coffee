@@ -2,16 +2,20 @@
 #= require jquery_ujs
 #= require jquery.form
 #= require jquery.ui.sortable
-#= require jquery.nested-form
-#= require browserid
+#= require jquery_nested_form
+
 #= require underscore
 #= require underscore.string
 #= require underscore.inflection
 #= require backbone
 #= require backbone.marionette
+
 #= require moment
+#= require browserid
+#= require character_editor
+
 #= require character/character
-#= require_self
+
 
 #
 # Module Helpers

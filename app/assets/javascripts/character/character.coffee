@@ -3,7 +3,6 @@
 #= require ./modules/generic/module
 #= require ./modules/settings/module
 #= require ./modules/blog/module
-#= require character/plugins/medium_editor
 
 @Character ||= {}
 _.mixin(_.str.exports())
@@ -57,7 +56,7 @@ _.mixin(_.str.exports())
   Character.Utils.startDrawerHelper($form)
 
 @chr.commands.setHandler 'beforeFormSubmit', (ui) ->
-  Character.Utils.syncActiveMediumEditor(ui.content)
+  #Character.Utils.syncActiveMediumEditor(ui.content)
 
 @chr.commands.setHandler 'stopDetailsFormPlugins', ($form) ->
   Character.Utils.stopImagesHelper($form)
