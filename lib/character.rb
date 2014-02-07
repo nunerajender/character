@@ -6,7 +6,7 @@ require 'jquery-ui-rails'
 require 'underscore-rails'
 require 'marionette-rails'
 require 'momentjs-rails'
-#require 'character_medium_editor'
+require 'character_editor'
 
 # backend
 require 'browserid-rails'

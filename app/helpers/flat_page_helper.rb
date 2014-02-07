@@ -2,14 +2,16 @@ module FlatPageHelper
   def inline_editable(template_content_key, placeholder='', default_content='')
     if @object
       flat_page = @object
+      class_underscore = @object.class.name.underscore.gsub('/', '_')
 
       content = flat_page.template_content[template_content_key]
       content ||= default_content
 
       if @form_action_url
-        """<span class='chr-medium-editor-inline'
-                 data-input-name='character_flat_page[template_content][#{ template_content_key }]'
-                 data-placeholder='#{ placeholder }'>#{ content }</span>""".html_safe
+        """<span class='character-editor'
+                 data-input-name='#{class_underscore}[template_content][#{ template_content_key }]'
+                 data-options=\"placeholder:'#{ placeholder }';disableReturn:true;disableToolbar:true;\"
+           >#{ content }</span>""".html_safe
       else
         content.html_safe
       end
@@ -18,15 +20,17 @@ module FlatPageHelper
 
   def editable(template_content_key, placeholder='', default_content='')
     if @object
-      flat_page = @object
+      flat_page  = @object
+      class_underscore = @object.class.name.underscore.gsub('/', '_')
 
       content = flat_page.template_content[template_content_key]
       content ||= default_content
 
       if @form_action_url
-        """<div class='chr-medium-editor'
-                data-input-name='character_flat_page[template_content][#{ template_content_key }]'
-                data-placeholder='#{ placeholder }'>#{ content }</div>""".html_safe
+        """<div class='character-editor'
+                data-input-name='#{class_underscore}[template_content][#{ template_content_key }]'
+                data-options=\"placeholder:'#{ placeholder }';targetBlanks:true;\"
+           >#{ content }</div>""".html_safe
       else
         content.html_safe
       end
