@@ -97,7 +97,7 @@
 
 
   fetchNextPage: (callback) ->
-    after_fetch = (response) => ( @page += 1 if response.length > 0 ) ; callback?()
+    after_fetch = (response) => callback?()
     @fetchPage(@page + 1, after_fetch, false, false)
 
 
