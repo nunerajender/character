@@ -1,5 +1,11 @@
 #= require character
-#= require_self
+
+# Modules =================================================
+
+chr.blogPosts()
+chr.flatPages()
 
 # Settings Modules ========================================
+
+chr.settingsBlog()
 chr.settingsAdmins()

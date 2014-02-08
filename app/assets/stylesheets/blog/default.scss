@@ -1,32 +1,42 @@
-@import "compass/css3";
-@import "font-awesome";
+//= require normalize
 
-$blog-body-font-color:   #333332!default;
-$blog-primary-color:     #333332!default;
-$blog-header-font-color: #333332!default;
-$blog-border-color:      rgb(245, 245, 245) !default;
-$blog-link-color:        #333332!default;
-$blog-link-hover-color:  white!default;
+$base_color: #333332!default;
+$base_font: Georgia!default;
+$header_font: "Myriad Pro", Verdana, sans-serif!default;
 
-$body-font-color:   $blog-body-font-color;
-$header-font-color: $blog-header-font-color;
-$primary-color:     $blog-body-font-color;
+// generic
 
-$header-font-weight: black;
+.blog-post-link                       { text-decoration: none;
+                                        color: $base_color;
+}
 
-$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
-$header-font-family: "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif !default;
-$paragraph-font-family: Georgia, Cambria, "Times New Roman", Times,serif !default;
+.blog-index, .blog-post               { font-family: $base_font;
+                                        color: $base_color;
+                                        max-width: 700px;
+                                        margin: 0 auto;
+                                        padding: 10px;
+                                        -webkit-font-smoothing: antialiased;
+}
 
-@import "foundation";
+// index
 
-@import "default/layout";
+.blog-index .item h3                  { font-family: $header_font; font-size: 26px;
+                                        margin-bottom: 0;
+}
 
-// Firefox font fix | TODO: imporove this
-@font-face {
-  font-family: 'FontAwesome';
-  src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot");
-  src: url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.woff") format("woff"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.ttf") format("truetype"), url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
+.blog-index .item p                   { font-size: 18px; line-height: 1.5;
+                                        margin: 0 0 2em;
+}
+
+// post
+
+.blog-post h1                         { font-family: $header_font; font-size: 3em;
+                                        margin-bottom: 0;
+}
+
+.blog-post h3                         { font-size: 36px; font-weight: 400; font-style: italic; line-height: 1.2;
+                                        margin: 10px 0 20px;
+}
+
+.blog-post p                          { font-size: 22px; line-height: 1.4;
 }

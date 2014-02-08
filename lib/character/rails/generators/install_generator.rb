@@ -4,8 +4,12 @@ module Character
   # module Rails
     module Generators
       class InstallGenerator < ::Rails::Generators::Base
-        desc "This generator adds character admin assets and routes to the new project."
+        desc "Setup blog, flat_pages and admin."
         source_root File.expand_path("../../templates", __FILE__)
+
+        def override_layout
+          copy_file 'application.html.erb', 'app/views/layouts/application.html.erb'
+        end
 
         def copy_initializer_file
           copy_file "initializer.rb", "config/initializers/character.rb"
@@ -15,15 +19,20 @@ module Character
           copy_file "settings.yml", "config/settings.yml"
         end
 
-        def copy_assets
+        def setup_assets
           copy_file "admin.coffee", "app/assets/javascripts/admin.coffee"
           copy_file "admin.scss", "app/assets/stylesheets/admin.scss"
+
+          insert_into_file  "app/assets/stylesheets/application.css",
+                            " *= require blog/default\n",
+                            :after => " *= require_self\n"
         end
 
         def add_routes
           inject_into_file "config/routes.rb", before: "  # The priority is based upon order of creation: first created -> highest priority.\n" do <<-'RUBY'
-  mount_character_instance('admin')
-          RUBY
+  mount_character_instance 'admin'
+  mount_blog_at 'blog'
+RUBY
           end
         end
 

@@ -1,6 +1,10 @@
 module FlatPageHelper
   def inline_editable(template_content_key, placeholder='', default_content='')
     if @object
+      if placeholder.empty?
+        placeholder = template_content_key + '...'
+      end
+
       flat_page = @object
       class_underscore = @object.class.name.underscore.gsub('/', '_')
 
@@ -20,6 +24,10 @@ module FlatPageHelper
 
   def editable(template_content_key, placeholder='', default_content='')
     if @object
+      if placeholder.empty?
+        placeholder = template_content_key + '...'
+      end
+
       flat_page  = @object
       class_underscore = @object.class.name.underscore.gsub('/', '_')
 

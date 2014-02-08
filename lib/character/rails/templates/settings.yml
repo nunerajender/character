@@ -27,3 +27,28 @@ Admin Settings:
     default_value: 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
 
 # END
+
+# Blog Settings
+
+Blog Settings:
+  Domain:
+    type: string
+    description: Domain of the website where blog lives.
+    default_value: www.my-domain.com
+
+  Title:
+    type: string
+    description: Shown for blog index page in browser title.
+    default_value: My Blog Title
+
+  Description:
+    type: text
+    description: Indexed by Google and is shown in search results.
+    default_value: My Blog two-three sentences description. What is this all about.
+
+  Keywords:
+    type: string
+    description: Split keywords by comma. They are used by Google and other search engines.
+    default_value: 'web, blog, internet'
+
+# END

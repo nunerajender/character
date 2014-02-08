@@ -7,16 +7,15 @@
                                  description: @blog_description,
                                  url:         "//#{ @blog_domain }#{ blog_index_path }" } %>
 
-
-<div class='blog-index'>
+<section class='blog-index'>
   <% @posts.each do |p| %>
 
-    <article class='post-item'>
-      <%= link_to blog_post_path(p), rel: 'bookmark', class: 'post-link' do %>
+    <article class='item'>
+      <%= link_to blog_post_path(p), rel: 'bookmark', class: 'blog-post-link' do %>
         <h3><%= p.title %></h3>
-        <p class='post-item-snippet'><%= p.subtitle.html_safe %></p>
+        <p><%= p.subtitle.html_safe %></p>
       <% end %>
     </article>
 
   <% end %>
-</div>
+</section>
