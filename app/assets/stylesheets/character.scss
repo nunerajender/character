@@ -43,10 +43,7 @@ $chr-list-header-dropdown-color: #333;//$dropdown-button-pip-color-alt;
 
 @mixin position($left, $top, $right, $bottom, $z-index: 0) {
                                         position: absolute;
-                                        left: $left;
-                                        top: $top;
-                                        right: $right;
-                                        bottom: $bottom;
+                                        left: $left; top: $top; right: $right; bottom: $bottom;
                                         z-index: $z-index;
 }
 
@@ -57,6 +54,9 @@ $chr-list-header-dropdown-color: #333;//$dropdown-button-pip-color-alt;
 @mixin reset-list                     { margin: 0;
                                         padding: 0;
                                         @include reset-list-style;
+}
+
+@mixin font                          { font-family: 'Open Sans', sans-serif;
 }
 
 // NEW STYLES
@@ -90,11 +90,12 @@ $menu_active_color: #28344d;
 $menu_icon_color:   #8b97ad;
 
 .chr-menu                             { position: absolute;
-                                        width: 100px;
+                                        width: 90px;
                                         height: 100%;
                                         z-index: 1;
                                         background-color: $menu_color;
                                         text-align: center;
+                                        @include font;
 
   ul                                  { @include reset-list;
                                         border-bottom: 1px solid $menu_border_color;
@@ -102,11 +103,11 @@ $menu_icon_color:   #8b97ad;
 
   a                                   { border-top: 1px solid $menu_border_color;
                                         display: block;
-                                        width: 100px;
+                                        width: 90px;
                                         color: #fff;
                                         font-weight: 600;
                                         font-size: 10px;
-                                        padding: 22px 0 19px;
+                                        padding: 21px 0 18px;
   }
   a.active                            { background-color: $menu_active_color;
   }
@@ -142,7 +143,7 @@ $menu_icon_color:   #8b97ad;
 
 
 // company logo
-.logo                                 { background-position: 50% 50%;
+.chr-logo                             { background-position: 50% 50%;
                                         background-repeat: no-repeat no-repeat;
 }
 

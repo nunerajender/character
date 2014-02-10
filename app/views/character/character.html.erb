@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width" />
   <title><%= @character_instance.title %></title>
 
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag @character_instance.stylesheet_filename, :media => 'all' %>
   <style>
-  .logo { background-image: url('<%= image_path(@character_instance.logo) %>'); }
+  .chr-logo  { background-image: url('<%= image_path(@character_instance.logo) %>'); }
   .chr-login { background-image: url("<%= @character_instance.login_background %>"); }
   </style>
 
