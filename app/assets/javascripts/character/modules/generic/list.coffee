@@ -122,7 +122,7 @@
   className: 'chr-module-generic-list-item'
 
   template: (item) ->  """<a title='#{ item.__title }'>
-                            <img src='#{ item.__thumb }' />
+                            <img src='#{ item.__thumb }' class='thumbnail' />
                             <div class='container'>
                               <div class='title'>#{ item.__title }</div>
                               <div class='meta'>#{ item.__meta }</div>

@@ -81,6 +81,11 @@ a                                     { text-decoration: none;
 .chr-content                          { @include position(90px, 0, 0, 0, 2);
 }
 
+.chr-logo                             { background-position: 50% 50%;
+                                        background-repeat: no-repeat no-repeat;
+}
+
+
 
 // MENU
 
@@ -129,26 +134,8 @@ $menu_icon_color:   #8b97ad;
 
 
 
+// LOGIN
 
-
-
-
-
-
-
-
-
-
-
-
-
-// company logo
-.chr-logo                             { background-position: 50% 50%;
-                                        background-repeat: no-repeat no-repeat;
-}
-
-
-// login screen: background and login button
 .chr-login                            { position: fixed;
                                         width: 100%;
                                         height: 100%;
@@ -269,7 +256,7 @@ $header_border_color:    #108cb5;
 $list_color:             #edf1f5;
 $list_border_color:      #d1d6e0;
 $list_item_color:        #fafbfc;
-$list_item_active_color: #edf1f5;
+$list_item_active_color: #ffffff;
 
 .chr-module-generic                   {
   .left-panel                         { @include position(0, 0, inherit, 0, 2);
@@ -338,18 +325,6 @@ $list_item_active_color: #edf1f5;
   &.active a                          { background: $list_item_active_color;
   }
 
-  // list item thumbnail
-  a img                               { width: 36px;
-                                        height: 36px;
-                                        border-radius: 18px;
-                                        // margin-right: 1em;
-                                        float: left;
-                                        display: none;
-  }
-
-  &.has-thumbnail a img               { display: inline-block;
-  }
-
   // Default list item layout
   .title,
   .meta                               { white-space: nowrap;
@@ -357,7 +332,6 @@ $list_item_active_color: #edf1f5;
                                         overflow: hidden;
                                         font-size: 12px;
                                         color: #8c9092;
-                                        //line-height: 2;
   }
 
   .title                              { font-size: 14px;
@@ -366,34 +340,28 @@ $list_item_active_color: #edf1f5;
                                         margin-bottom: 4px;
   }
 
-  // &.active a                          { background: $chr-list-item-active-bg;
-  //   .title                            { color: $chr-list-item-active-title-color;
-  //   }
-  //   .meta                             { color: $chr-list-item-active-meta-color;
-  //   }
-  // }
+  .thumbnail                          { width: 36px;
+                                        height: 36px;
+                                        border-radius: 18px;
+                                        margin-right: 25px;
+                                        float: left;
+                                        display: none;
+  }
 
-//                                        padding: 1em 1.3em 0em;
-//                                        position: relative;
-//                                        height: $chr-list-item-height;
-  //   .meta,
-  //   .title                            { font-size:.9em;
-  //                                       white-space: nowrap;
-  //                                       text-overflow: ellipsis;
-  //                                       overflow: hidden;
-  //                                       display: block;
-  //                                       line-height: 1.2;
-  //   }
-  //   .meta                             { font-size:.75em;
-  //                                       line-height: 2;
-  //                                       color: $chr-list-item-meta-color;
-  //   }
-  //   .title                            { color: $chr-list-item-title-color;
-  //   }
-  // }
+  &.has-thumbnail .thumbnail          { display: inline-block;
+  }
 
-  // .has-image                          {
-  //   .container                        { padding: 0 0 0 2.5em;
-  //   }
-  // }
+  .has-image                          {
+  }
+}
+
+// SETTINGS
+
+.settings-module                      {
+  .left-panel                         { width: 25%;
+  }
+  .right-panel                        { width: 75%;
+  }
+  .chr-module-generic-list-item a     { height: 60px - 20px * 2;
+  }
 }

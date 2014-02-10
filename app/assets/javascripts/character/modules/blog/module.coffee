@@ -9,7 +9,7 @@ chr.blogPosts = (opts) ->
     menuTitle:    'Posts'
     listItem:
       titleField: 'title'
-      metaField:  'subtitle'
+      metaField:  'updated_ago'
     modelName:    'Character-Blog-Post'
     listSearch:   true
     listScopes:

@@ -4,6 +4,7 @@ class Character::Blog::Post
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Search
+  include ActionView::Helpers::DateHelper
 
   # attributes
   field :title
@@ -32,5 +33,9 @@ class Character::Blog::Post
 
   def has_featured_image?
     not ( featured_image.to_s.ends_with?('_old_') or featured_image.to_s.empty? )
+  end
+
+  def updated_ago
+    "updated #{time_ago_in_words(updated_at)}"
   end
 end

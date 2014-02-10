@@ -4,17 +4,16 @@
 #
 @Character.Settings.Layout = Backbone.Marionette.Layout.extend
   tagName: 'section'
-  className: 'chr-module-settings'
+  className: 'chr-module-generic'
 
   template: -> """<aside class='left-panel'>
-                    <header class='chr-module-settings-list-header'>Settings</header>
+                    <header class='chr-module-generic-list-header'>
+                      Settings <a href='' class='browserid_logout button radius secondary small'>Sign out</a>
+                    </header>
+                    <div id=list_content class='chr-module-generic-list'>
+                      <ul id=list></ul>
 
-                    <ul id=list class='chr-module-settings-list'></ul>
-
-                    <a href='' class='browserid_logout button radius secondary small'>
-                      <strong>Sign out</strong><br><span id='user_email' class='user-email'></span>
-                    </a>
-
+                    </div>
                   </aside>
                   <div id=details class='right-panel chr-logo'></div>"""
 
@@ -36,8 +35,10 @@
     _.each submodules, (m) =>
       title = m.options.titleMenu
       name  = m.options.moduleName
-      @ui.list.append("<li><a href='#/settings/#{ name }' class='#{ name }'>#{ title }</a></li>")
+      @ui.list.append """<li class='chr-module-generic-list-item'>
+                           <a href='#/settings/#{ name }' class='#{ name }'><div class='title'>#{ title }</div></a>
+                         </li>"""
 
   setActiveMenuItem: (path) ->
     @ui.list.find('.active').removeClass('active')
-    @ui.list.find("a.#{ path }").addClass('active')
+    @ui.list.find("a.#{ path }").parent().addClass('active')

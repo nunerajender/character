@@ -2,21 +2,21 @@
 // Settings Module ========================================
 //
 .chr-module-settings                  {
-  .left-panel                         { position: absolute;
-                                        width: 25%;
-                                        bottom: 0;
-                                        top: 0;
-                                        z-index: 2;
-  }
+  // .left-panel                         { position: absolute;
+  //                                       width: 25%;
+  //                                       bottom: 0;
+  //                                       top: 0;
+  //                                       z-index: 2;
+  // }
 
-  .right-panel                        { position: absolute;
-                                        width: 75%;
-                                        bottom: -10px;
-                                        top: 0;
-                                        right: 0;
-                                        z-index: 3;
-                                        border-left: 1px solid $chr-border-color;
-  }
+  // .right-panel                        { position: absolute;
+  //                                       width: 75%;
+  //                                       bottom: -10px;
+  //                                       top: 0;
+  //                                       right: 0;
+  //                                       z-index: 3;
+  //                                       border-left: 1px solid $chr-border-color;
+  // }
 
   .browserid_logout                   { position: absolute;
                                         bottom: 0px;
@@ -45,12 +45,12 @@
   }
 }
 
-.chr-module-settings-list-header      { height: $chr-settings-header-height;
-                                        color: $chr-settings-header-color;
-                                        padding: 1em 1em 0em;
-                                        font-size: 1.3em;
-                                        box-sizing: border-box;
-}
+// .chr-module-settings-list-header      { height: $chr-settings-header-height;
+//                                         color: $chr-settings-header-color;
+//                                         padding: 1em 1em 0em;
+//                                         font-size: 1.3em;
+//                                         box-sizing: border-box;
+// }
 
 .chr-module-settings-details-header   { padding: 1.5em 6% 0;
                                         border-bottom: 1px solid $chr-border-color;

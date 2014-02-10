@@ -3,11 +3,11 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Settings.DetailsView = Backbone.Marionette.ItemView.extend
-  template: -> """<header id='header' class='chr-module-settings-details-header'>
+  template: -> """<header id='header' class='chr-module-generic-details-header'>
                     <span class='title' id='title'></span><span class='chr-actions' id='actions'></span>
                     <a id='action_save' class='chr-action-save' style='display:none;'>Save</a>
                   </header>
-                  <section id='form_view' class='chr-module-settings-details-form'></section>"""
+                  <section id='form_view' class='chr-module-generic-details-form'></section>"""
 
 
   ui:
