@@ -108,7 +108,9 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.ListEmtpyView = Backbone.Marionette.ItemView.extend
-  template: -> """<div class='empty'>No items found</div>"""
+  tagName:   'li'
+  className: 'empty'
+  template: -> "No items found"
 
 
 #
@@ -122,8 +124,8 @@
   template: (item) ->  """<a title='#{ item.__title }'>
                             <img src='#{ item.__thumb }' />
                             <div class='container'>
-                              <strong class='title'>#{ item.__title }</strong>
-                              <span class='meta'>#{ item.__meta }</span>
+                              <div class='title'>#{ item.__title }</div>
+                              <div class='meta'>#{ item.__meta }</div>
                             </div>
                           </a>"""
 

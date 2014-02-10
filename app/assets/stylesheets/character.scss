@@ -78,7 +78,7 @@ template                              { display: none;
 a                                     { text-decoration: none;
 }
 
-.chr-content                          { @include position(100px, 0, 0, 0, 2);
+.chr-content                          { @include position(90px, 0, 0, 0, 2);
 }
 
 
@@ -158,16 +158,16 @@ $menu_icon_color:   #8b97ad;
                                         background-attachment: fixed;
 
   // TODO: abstract this out as button
-  .browserid_login                    { background: #222;
-                                        color: #f1f1f1;
+  .browserid_login                    { background: $menu_color;
+                                        color: #fff;
                                         padding: 20px 30px;
                                         position: absolute;
                                         top: 1rem;
                                         right: 1rem;
                                         font-size: 1.5em;
-    span                              { opacity: .5;
+    span                              { color: $menu_icon_color;
     }
-    &:hover                           { opacity: .9;
+    &:hover                           { background-color: $menu_active_color;
     }
   }
 }
@@ -239,3 +239,161 @@ $menu_icon_color:   #8b97ad;
 @import "./character/settings";
 @import "./character/blog";
 @import "./character/helpers";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// GENERIC
+
+$header_color:           #12a0ce;
+$header_border_color:    #108cb5;
+$list_color:             #edf1f5;
+$list_border_color:      #d1d6e0;
+$list_item_color:        #fafbfc;
+$list_item_active_color: #edf1f5;
+
+.chr-module-generic                   {
+  .left-panel                         { @include position(0, 0, inherit, 0, 2);
+                                        width: 35%;
+  }
+
+  .right-panel                        { @include position(inherit, 0, 0, 0, 3);
+                                        width: 65%;
+                                        overflow: hidden;
+  }
+}
+
+.chr-module-generic-list,
+.chr-module-generic-list-header,
+.chr-module-generic-details-header    { @include font;
+}
+
+.chr-module-generic-list-header,
+.chr-module-generic-details-header    { background: $header_color;
+                                        box-sizing: border-box;
+                                        height: 71px;
+                                        border-bottom: 1px solid $header_border_color;
+  a                                   { color: #fff;
+  }
+}
+
+.chr-module-generic-list-header       { @include position(0, 0, 0, inherit, 2);
+                                        border-right: 1px solid $header_border_color;
+}
+
+.chr-module-generic-details-header    { @include position(0, 0, 0, inherit);
+}
+
+.chr-module-generic-list              { @include position(0, 71px, 0, 0, 1);
+                                        @include scrollable;
+                                        background-color: $list_color;
+                                        border-right: 1px solid $list_border_color;
+
+  ul                                  { @include reset-list;
+                                        margin-bottom: 5em;
+  }
+  .empty                              { text-align: center;
+                                        line-height: 5;
+                                        color: rgba(0,0,0,.25);
+                                        font-size: 13px;
+                                        text-transform: uppercase;
+  }
+  .placeholder                        { background: #fff;
+                                        min-height: $chr-list-item-height;
+  }
+}
+
+.chr-module-generic-details-content   { @include position(0, 71px, 0, 0, 1);
+                                        @include scrollable;
+                                        background-color: #fff;
+}
+
+.chr-module-generic-list-item         {
+  a                                   { background: $list_item_color;
+                                        border-bottom: 1px solid $list_border_color;
+                                        display: block;
+                                        height: 80px - 20px * 2;
+                                        padding: 20px 25px;
+  }
+
+  &.active a                          { background: $list_item_active_color;
+  }
+
+  // list item thumbnail
+  a img                               { width: 36px;
+                                        height: 36px;
+                                        border-radius: 18px;
+                                        // margin-right: 1em;
+                                        float: left;
+                                        display: none;
+  }
+
+  &.has-thumbnail a img               { display: inline-block;
+  }
+
+  // Default list item layout
+  .title,
+  .meta                               { white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        font-size: 12px;
+                                        color: #8c9092;
+                                        //line-height: 2;
+  }
+
+  .title                              { font-size: 14px;
+                                        font-weight: bold;
+                                        color: #474a4c;
+                                        margin-bottom: 4px;
+  }
+
+  // &.active a                          { background: $chr-list-item-active-bg;
+  //   .title                            { color: $chr-list-item-active-title-color;
+  //   }
+  //   .meta                             { color: $chr-list-item-active-meta-color;
+  //   }
+  // }
+
+//                                        padding: 1em 1.3em 0em;
+//                                        position: relative;
+//                                        height: $chr-list-item-height;
+  //   .meta,
+  //   .title                            { font-size:.9em;
+  //                                       white-space: nowrap;
+  //                                       text-overflow: ellipsis;
+  //                                       overflow: hidden;
+  //                                       display: block;
+  //                                       line-height: 1.2;
+  //   }
+  //   .meta                             { font-size:.75em;
+  //                                       line-height: 2;
+  //                                       color: $chr-list-item-meta-color;
+  //   }
+  //   .title                            { color: $chr-list-item-title-color;
+  //   }
+  // }
+
+  // .has-image                          {
+  //   .container                        { padding: 0 0 0 2.5em;
+  //   }
+  // }
+}
