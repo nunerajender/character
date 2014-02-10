@@ -16,7 +16,7 @@
                     </a>
 
                   </aside>
-                  <div id=details class='right-panel logo'></div>"""
+                  <div id=details class='right-panel chr-logo'></div>"""
 
   regions:
     details: '#details'

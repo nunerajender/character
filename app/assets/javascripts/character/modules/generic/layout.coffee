@@ -11,7 +11,7 @@
                   <div id=list_header class='chr-module-generic-list-header'></div>
                   <div id=list_content class='chr-module-generic-list'></div>
                 </div>
-                <div id=details class='right-panel logo'>
+                <div id=details class='right-panel chr-logo'>
                 </div>"
 
   regions:
