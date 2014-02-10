@@ -32,13 +32,11 @@
     </script>
 
     <div id='character' class='character <%= @character_instance.name %>-instance'>
-      <div id='menu' class='chr-menu'>
-        <nav>
-          <%= image_tag @current_user.gravatar_url(36) %>
-          <ul id='menu_items'></ul>
-          <a href="#/settings" class="chr-menu-item-settings"><i class="fa fa-gears"></i> Settings</a>
-        </nav>
-      </div>
+      <nav id='menu' class='chr-menu'>
+        <%= image_tag @current_user.gravatar_url(36), class: 'chr-menu-user' %>
+        <ul id='menu_items'></ul>
+        <a href="#/settings" class="chr-menu-settings"><i class="chr-menu-icon fa fa-gears"></i> Settings</a>
+      </nav>
       <div id='content' class='chr-content'></div>
     </div>
 

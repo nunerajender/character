@@ -28,7 +28,7 @@ _.mixin(_.str.exports())
   $menuItems = $('#menu_items')
   $menuItems.append """<li>
                          <a href='#/#{ path }' class='chr-menu-item-#{ path }'>
-                           <i class='fa fa-#{ icon }'></i>#{ title }
+                           <i class='chr-menu-icon fa fa-#{ icon }'></i>#{ title }
                          </a>
                        </li>"""
 
