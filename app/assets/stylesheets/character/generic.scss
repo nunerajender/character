@@ -17,7 +17,8 @@
                                         @include scrollable;
                                         background-color: $chr-list-bg-color;
 
-  ul                                  { @extend .no-bullet;
+  ul                                  { margin:0;
+                                        padding:0;
                                         margin-bottom: 5em;
   }
 
@@ -38,8 +39,9 @@
                                         padding: 1.25em 1.6em 0em;
                                         line-height: 1.65;
                                         border-bottom: 1px solid $chr-border-color;
+                                        box-sizing: border-box;
 
-  .title                              { color: $body-font-color;
+  .title                              { color: #222; //$body-font-color;
   }
   .title.dropdown                     { border-bottom: 1px dashed $chr-action-color;
                                         padding-bottom: .1em;
@@ -49,7 +51,7 @@
     a                                 { color: $chr-action-color;
                                         position: absolute;
                                         right: 1.5em;
-      &:hover                         { color: $body-font-color;
+      &:hover                         { color: #222; //$body-font-color;
       }
     }
     .fa-times                         { display: none;
@@ -124,6 +126,7 @@
                                         height: $chr-list-header-height;
                                         border-bottom: 1px solid $chr-border-color;
                                         padding: 1.5em 6% 0em;
+                                        box-sizing: border-box;
   .title                              { font-size:1.2em;
   }
 }
@@ -178,7 +181,7 @@
     }
 
     label .note                       { font-weight: normal;
-                                        color: lighten($primary-color, 40%);
+                                        color: lighten(blue, 40%); //lighten($primary-color, 40%);
     }
 
     .chr-form-image-upload            { margin-bottom: 1em;

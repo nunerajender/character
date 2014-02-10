@@ -1,8 +1,9 @@
+//= require normalize
 //= require character_editor
+//= require font-awesome
 
-@import "font-awesome";
 @import "compass/css3";
-@import "foundation";
+//@import "foundation";
 
 // Character Settings =====================================
 
@@ -34,7 +35,9 @@ $chr-action-save-height: 68px;
 
 // Awkward
 
-$chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
+$chr-list-header-dropdown-color: #333;//$dropdown-button-pip-color-alt;
+
+.f-dropdown { display: none; }
 
 // Helpers ================================================
 
@@ -57,18 +60,23 @@ $chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
 html                                  { overflow: hidden;
 }
 
-// override Foundations default relative position
-body                                  { position: inherit;
+// antialiased fonts on webkit browsers
+body                                  { -webkit-font-smoothing: antialiased;
 }
 
 // hiding template for Safari
 template                              { display: none;
 }
 
+a                                     { text-decoration: none;
+}
+
+// company logo
 .logo                                 { background-position: 50% 50%;
                                         background-repeat: no-repeat no-repeat;
 }
 
+// login screen: background and login button
 .chr-login                            { position: fixed;
                                         width: 100%;
                                         height: 100%;
@@ -77,17 +85,16 @@ template                              { display: none;
                                         background-position: center center;
                                         background-attachment: fixed;
 
-  .icon-user                          { margin-right: .3em;
-  }
-
-  .browserid_login                    { @include button-base;
-                                        @include button-size;
-                                        @include button-style($success-color, 10px, false);
+  .browserid_login                    { background: #222;
+                                        color: #f1f1f1;
+                                        padding: 20px 30px;
                                         position: absolute;
                                         top: 1rem;
                                         right: 1rem;
                                         font-size: 1.5em;
     span                              { opacity: .5;
+    }
+    &:hover                           { opacity: .9;
     }
   }
 }
@@ -113,7 +120,8 @@ template                              { display: none;
                                         border-radius: 18px;
   }
 
-  ul                                  { @extend .no-bullet;
+  ul                                  { margin: 0;
+                                        padding: 0;
                                         border-bottom: 1px solid $chr-menu-divider-color;
   }
 
@@ -177,7 +185,7 @@ template                              { display: none;
   }
 }
 
-.chr-error-modal                      { @extend .reveal-modal;
+.chr-error-modal                      { //@extend .reveal-modal;
                                         padding: 0;
   a.close-reveal-modal                { right: 30px;
                                         color: #fff;

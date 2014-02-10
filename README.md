@@ -27,6 +27,13 @@ Start development server and open website in a browser.
 
 ## Character development notes
 
+### TODO
+
+* check item removal
+* check list pagination
+
+### Tools
+
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms

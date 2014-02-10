@@ -50,16 +50,16 @@
 
   <div class='row'>
     <div class='large-12 columns'>
-      <article>
+      <article class='blog-post'>
 
         <header>
-          <h1 class='character-editor chr-blog-post-title'
+          <h1 class='character-editor'
               data-input-name='character_blog_post[title]'
               data-options="placeholder:'Post Title';disableReturn:true;disableToolbar:true;"
           ><%= f.object.title %></h1>
         </header>
 
-        <section class='character-editor chr-blog-post-body'
+        <section class='character-editor'
                  data-input-name='character_blog_post[body_html]'
                  data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;"
         ><%= f.object.body_html.try(:html_safe) %></section>

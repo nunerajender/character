@@ -2,6 +2,7 @@
 
 $base_color: #333332!default;
 $base_font: Georgia!default;
+$code_font: Monaco, 'Courier New', 'Courier', monospace!default;
 $header_font: "Myriad Pro", Verdana, sans-serif!default;
 
 // generic
@@ -14,7 +15,7 @@ $header_font: "Myriad Pro", Verdana, sans-serif!default;
                                         color: $base_color;
                                         max-width: 700px;
                                         margin: 0 auto;
-                                        padding: 10px;
+                                        padding: 20px;
                                         -webkit-font-smoothing: antialiased;
 }
 
@@ -30,13 +31,5 @@ $header_font: "Myriad Pro", Verdana, sans-serif!default;
 
 // post
 
-.blog-post h1                         { font-family: $header_font; font-size: 3em;
-                                        margin-bottom: 0;
-}
-
-.blog-post h3                         { font-size: 36px; font-weight: 400; font-style: italic; line-height: 1.2;
-                                        margin: 10px 0 20px;
-}
-
-.blog-post p                          { font-size: 22px; line-height: 1.4;
+.blog-post                            { @import "_typography";
 }

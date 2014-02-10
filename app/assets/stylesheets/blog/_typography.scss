@@ -1,0 +1,39 @@
+// default typography based on normalize.css
+
+$text_size: 22px!default;
+$text_margin: 20px!default;
+$border_color: $base_color;
+
+h1                                    { font-family: $header_font; font-size: $text_size*2.2;
+                                        margin-bottom: 0;
+}
+
+h3                                    { font-size: $text_size*1.65; font-weight: normal; font-style: italic; line-height: 1.2;
+                                        margin: $text_margin/2 0 $text_margin;
+}
+
+h4                                    { font-family: $header_font; font-size: $text_size*1.28; font-weight: bold;
+                                        margin-bottom: $text_margin;
+}
+
+li, blockquote, p                     { font-size: $text_size; line-height: 1.5;
+}
+
+blockquote                            { font-style: italic;
+                                        margin: $text_margin 0;
+                                        margin-left: -$text_margin;
+                                        padding-left: $text_margin;
+                                        border-left: 3px solid lighten($border_color, 50%);
+}
+
+ol                                    { padding-left: $text_margin*1.5;
+}
+
+ol, ul                                { margin: $text_margin 0;
+}
+
+pre                                   { font-family: $code_font; font-size: $text_size*0.73;
+                                        background: rgba(0,0,0,0.05%);
+                                        margin: $text_margin 0;
+                                        padding: $text_margin;
+}

@@ -2,6 +2,19 @@
 // Blog Module ============================================
 //
 
+$base_color: #333332!default;
+$base_font: Georgia!default;
+$code_font: Monaco, 'Courier New', 'Courier', monospace!default;
+$header_font: "Myriad Pro", Verdana, sans-serif!default;
+
+.blog-post                            { font-family: $base_font;
+                                        color: $base_color;
+                                        max-width: 700px;
+                                        margin: 0 auto;
+                                        padding: 20px;
+                                        @import "blog/_typography";
+}
+
 .blog_categories                      {
   .row.category                       { max-width: 100%;
   }
