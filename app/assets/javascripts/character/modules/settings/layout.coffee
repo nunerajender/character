@@ -8,7 +8,8 @@
 
   template: -> """<aside class='left-panel'>
                     <header class='chr-module-generic-list-header'>
-                      Settings <a href='' class='browserid_logout button radius secondary small'>Sign out</a>
+                      <span class='title'>Settings</span>
+                      <a href='' class='browserid_logout button radius secondary small'>Sign out</a>
                     </header>
                     <div id=list_content class='chr-module-generic-list'>
                       <ul id=list></ul>

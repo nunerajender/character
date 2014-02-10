@@ -183,10 +183,13 @@ $menu_icon_color:   #8b97ad;
 
 
 
+.chr-actions { display: none; }
+.search { display: none; }
 
 .chr-action,
 .chr-actions a                        { color: $chr-action-color;
                                         font-size: 12px;
+                                        display: none;
   &.active,
   &:hover                             { text-decoration: underline;
   }
@@ -222,8 +225,8 @@ $menu_icon_color:   #8b97ad;
   }
 }
 
-@import "./character/generic";
-@import "./character/settings";
+// @import "./character/generic";
+// @import "./character/settings";
 @import "./character/blog";
 @import "./character/helpers";
 
@@ -279,15 +282,23 @@ $list_item_active_color: #ffffff;
                                         box-sizing: border-box;
                                         height: 71px;
                                         border-bottom: 1px solid $header_border_color;
-  a                                   { color: #fff;
+
+  .title                              { font-size: 16px;
+                                        font-weight: bold;
+                                        color: #fff;
+  }
+  .meta                               { font-size: 12px;
+                                        color: #97e4f4;
   }
 }
 
 .chr-module-generic-list-header       { @include position(0, 0, 0, inherit, 2);
                                         border-right: 1px solid $header_border_color;
+                                        padding: 23px 25px 27px;
 }
 
 .chr-module-generic-details-header    { @include position(0, 0, 0, inherit);
+                                        padding: 15px 25px;
 }
 
 .chr-module-generic-list              { @include position(0, 71px, 0, 0, 1);
@@ -307,11 +318,6 @@ $list_item_active_color: #ffffff;
   .placeholder                        { background: #fff;
                                         min-height: $chr-list-item-height;
   }
-}
-
-.chr-module-generic-details-content   { @include position(0, 71px, 0, 0, 1);
-                                        @include scrollable;
-                                        background-color: #fff;
 }
 
 .chr-module-generic-list-item         {
@@ -355,6 +361,13 @@ $list_item_active_color: #ffffff;
   }
 }
 
+.chr-module-generic-details-content   { @include position(0, 71px, 0, 0, 1);
+                                        @include scrollable;
+                                        background-color: #fff;
+}
+
+
+
 // SETTINGS
 
 .settings-module                      {
@@ -363,5 +376,7 @@ $list_item_active_color: #ffffff;
   .right-panel                        { width: 75%;
   }
   .chr-module-generic-list-item a     { height: 60px - 20px * 2;
+  }
+  .chr-module-generic-details-header  { padding: 23px 25px 27px;
   }
 }

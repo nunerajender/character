@@ -4,7 +4,7 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.ListHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<a class='title'></a>
+  template: -> "<a><span class='title'></span></a>
                 <span class='chr-actions'>
                   <i class='chr-action-pin'></i><a class='new'>New</a>
                 </span>
@@ -77,7 +77,7 @@
       title = @scopes[scopeSlug].title
       path += '/' + @scopes[scopeSlug].slug
 
-    @ui.title.html(title).attr('href', path)
+    @ui.title.html(title).parent().attr('href', path)
 
     @ui.newAction.attr('href', path + "/new")
 

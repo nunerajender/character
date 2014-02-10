@@ -30,7 +30,7 @@ chr.flatPages = (opts) ->
     listReorder:  true
     listItem:
       titleField: 'title'
-      metaField:  'path'
+      metaField:  'updated_ago'
   _(moduleOpts).extend(opts)
 
   chr.genericModule('Page', moduleOpts)

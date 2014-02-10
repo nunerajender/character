@@ -1,3 +1,65 @@
+  .chr-module-generic-details-header  {
+    .chr-actions                      { display: none;
+    }
+  }
+}
+
+.chr-module-generic-details.edit      {
+  .chr-module-generic-details-header  { padding-top: .9em;
+    .title                            { font-size: .9em;
+                                        font-weight: bold;
+    }
+    .meta                             { font-size: .8em;
+                                        color: #777;
+                                        line-height: 2;
+    }
+  }
+  .chr-actions                        { display: inline;
+  }
+}
+
+.chr-module-generic-details           {
+  .field_with_errors                  { @extend .error;
+  }
+  form                                { margin: 3em 0 12em;
+    & > .row > .columns               { padding: 0 6%;
+    }
+
+    // Simpleform layout fixes
+    //------------------------
+    // checkbox + label fix, to have in one line
+    label.boolean                     { display:inline-block;
+                                        margin-left: .5em;
+                                        margin-top: .2em;
+    }
+
+    // Foundation fix for textarea height
+    textarea                          { height: auto;
+    }
+
+    span.prefix, label.postfix        { line-height: 2.5em;
+                                        height: 2.5em;
+    }
+
+    label .note                       { font-weight: normal;
+                                        color: lighten(blue, 40%); //lighten($primary-color, 40%);
+    }
+
+    .chr-form-image-upload            { margin-bottom: 1em;
+      img                             { position: absolute;
+                                        width: 56px;
+                                        height: 56px;
+      }
+      aside                           { margin-left: 66px;
+                                        padding-top: .5em;
+                                        height: 56px;
+        .input.file input             { margin-bottom: .5em;
+        }
+      }
+    }
+  }
+}
+
 //
 // Generic Module =========================================
 //
@@ -101,64 +163,3 @@
 // }
 
 .chr-module-generic-details           {
-  .chr-module-generic-details-header  {
-    .chr-actions                      { display: none;
-    }
-  }
-}
-
-.chr-module-generic-details.edit      {
-  .chr-module-generic-details-header  { padding-top: .9em;
-    .title                            { font-size: .9em;
-                                        font-weight: bold;
-    }
-    .meta                             { font-size: .8em;
-                                        color: #777;
-                                        line-height: 2;
-    }
-  }
-  .chr-actions                        { display: inline;
-  }
-}
-
-.chr-module-generic-details           {
-  .field_with_errors                  { @extend .error;
-  }
-  form                                { margin: 3em 0 12em;
-    & > .row > .columns               { padding: 0 6%;
-    }
-
-    // Simpleform layout fixes
-    //------------------------
-    // checkbox + label fix, to have in one line
-    label.boolean                     { display:inline-block;
-                                        margin-left: .5em;
-                                        margin-top: .2em;
-    }
-
-    // Foundation fix for textarea height
-    textarea                          { height: auto;
-    }
-
-    span.prefix, label.postfix        { line-height: 2.5em;
-                                        height: 2.5em;
-    }
-
-    label .note                       { font-weight: normal;
-                                        color: lighten(blue, 40%); //lighten($primary-color, 40%);
-    }
-
-    .chr-form-image-upload            { margin-bottom: 1em;
-      img                             { position: absolute;
-                                        width: 56px;
-                                        height: 56px;
-      }
-      aside                           { margin-left: 66px;
-                                        padding-top: .5em;
-                                        height: 56px;
-        .input.file input             { margin-bottom: .5em;
-        }
-      }
-    }
-  }
-}

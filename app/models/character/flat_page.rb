@@ -1,6 +1,7 @@
 class Character::FlatPage
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActionView::Helpers::DateHelper
 
   # attributes
   field :title
@@ -18,5 +19,9 @@ class Character::FlatPage
   # helpers
   def template_path
     "flat_pages/#{ template_name }"
+  end
+
+  def updated_ago
+    "updated #{time_ago_in_words(updated_at)} ago"
   end
 end

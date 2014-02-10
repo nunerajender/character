@@ -36,6 +36,6 @@ class Character::Blog::Post
   end
 
   def updated_ago
-    "updated #{time_ago_in_words(updated_at)}"
+    "updated #{time_ago_in_words(updated_at)} ago"
   end
 end

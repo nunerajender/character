@@ -8,7 +8,7 @@
   className: 'chr-module-generic'
 
   template: -> "<div class='left-panel'>
-                  <div id=list_header class='chr-module-generic-list-header'></div>
+                  <header id=list_header class='chr-module-generic-list-header'></header>
                   <div id=list_content class='chr-module-generic-list'></div>
                 </div>
                 <div id=details class='right-panel chr-logo'>
