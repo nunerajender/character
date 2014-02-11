@@ -4,19 +4,18 @@
 #
 @Character.Settings.Layout = Backbone.Marionette.Layout.extend
   tagName: 'section'
-  className: 'chr-module-generic'
+  className: 'chr-layout'
 
-  template: -> """<aside class='left-panel'>
-                    <header class='chr-module-generic-list-header'>
+  template: -> """<aside class='left'>
+                    <header class='chr-list-header'>
                       <span class='title'>Settings</span>
-                      <a href='' class='browserid_logout button radius secondary small'>Sign out</a>
+                      <button class='browserid_logout'>Sign out</button>
                     </header>
-                    <div id=list_content class='chr-module-generic-list'>
+                    <div id=list_content class='chr-list'>
                       <ul id=list></ul>
-
                     </div>
                   </aside>
-                  <div id=details class='right-panel chr-logo'></div>"""
+                  <div id=details class='right chr-logo'></div>"""
 
   regions:
     details: '#details'
@@ -36,7 +35,7 @@
     _.each submodules, (m) =>
       title = m.options.titleMenu
       name  = m.options.moduleName
-      @ui.list.append """<li class='chr-module-generic-list-item'>
+      @ui.list.append """<li class='chr-list-item'>
                            <a href='#/settings/#{ name }' class='#{ name }'><div class='title'>#{ title }</div></a>
                          </li>"""
 

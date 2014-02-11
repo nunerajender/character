@@ -96,11 +96,11 @@
                                <a href='#{ @path }/#{ scope.slug }'>#{ scope.title }</a>
                              </li>"""
 
-      $(document).foundation('dropdown', 'init')
+      #$(document).foundation('dropdown', 'init')
 
   onClose: ->
-    if @ui.title.hasClass('dropdown')
-      $(document).foundation('dropdown', 'off')
+    #if @ui.title.hasClass('dropdown')
+    #  $(document).foundation('dropdown', 'off')
 
 
 #
@@ -119,7 +119,7 @@
 #
 @Character.Generic.ListItemView = Backbone.Marionette.ItemView.extend
   tagName:   'li'
-  className: 'chr-module-generic-list-item'
+  className: 'chr-list-item'
 
   template: (item) ->  """<a title='#{ item.__title }'>
                             <img src='#{ item.__thumb }' class='thumbnail' />

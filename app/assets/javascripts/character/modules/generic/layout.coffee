@@ -5,13 +5,13 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md
 #
 @Character.Generic.Layout = Backbone.Marionette.Layout.extend
-  className: 'chr-module-generic'
+  className: 'chr-layout'
 
-  template: -> "<div class='left-panel'>
-                  <header id=list_header class='chr-module-generic-list-header'></header>
-                  <div id=list_content class='chr-module-generic-list'></div>
+  template: -> "<div class='left'>
+                  <header id=list_header class='chr-list-header'></header>
+                  <div id=list_content class='chr-list'></div>
                 </div>
-                <div id=details class='right-panel chr-logo'>
+                <div id=details class='right chr-logo'>
                 </div>"
 
   regions:

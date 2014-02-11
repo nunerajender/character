@@ -3,19 +3,19 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Settings.DetailsView = Backbone.Marionette.ItemView.extend
-  template: -> """<header id='header' class='chr-module-generic-details-header'>
-                    <span class='title' id='title'></span><span class='chr-actions' id='actions'></span>
-                    <a id='action_save' class='chr-action-save' style='display:none;'>Save</a>
+  template: -> """<header id=header class='chr-details-header'>
+                    <span id=title class=title></span>
+                    <button id=save class=save style='display: none;'>Save</button>
                   </header>
                   <section id='form_view' class='chr-module-generic-details-form'></section>"""
 
 
   ui:
-    title:              '#title'
-    actions:            '#actions'
-    newItemTemplate:  '#new_item_template'
-    formView:          '#form_view'
-    actionSave:        '#action_save'
+    title:           '#title'
+    newItemTemplate: '#new_item_template'
+    formView:        '#form_view'
+    actionSave:      '#save'
+    # actions:            '#actions'
 
 
   onRender: ->
@@ -35,8 +35,8 @@
       @ui.form              = @ui.formView.find('form')
       @ui.newItemTemplate = @ui.formView.find('#new_item_template')
 
-      if @ui.newItemTemplate.length and not @ui.actions.find('.action_new').length
-        @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
+      # if @ui.newItemTemplate.length and not @ui.actions.find('.action_new').length
+      #   @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
 
       if @ui.form.length
         @ui.actionSave.show()

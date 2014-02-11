@@ -44,7 +44,7 @@ _.mixin(_.str.exports())
     $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
 
     chr.content.show(layout)
-    $('#content').attr('class', "chr-content #{name}-module")
+    $('#content').attr('class', "chr-content #{name}")
 
 
 @chr.commands.setHandler 'showError', (response) ->
@@ -65,7 +65,7 @@ _.mixin(_.str.exports())
 @chr.on "initialize:before", (@options) ->
 
 @chr.on "initialize:after", ->
-  $('#error_modal').foundation('reveal')
+  #$('#error_modal').foundation('reveal')
 
   if Backbone.history
     Backbone.history.start()
