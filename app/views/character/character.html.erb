@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title><%= @character_instance.title %></title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title><%= @character_instance.title %></title>
 
-  <!-- Stylesheets -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag @character_instance.stylesheet_filename, :media => 'all' %>
-  <style>
-  .chr-logo  { background-image: url('<%= image_path(@character_instance.logo) %>'); }
-  .chr-login { background-image: url("<%= @character_instance.login_background %>"); }
-  </style>
+    <!-- Stylesheets -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag @character_instance.stylesheet_filename, :media => 'all' %>
+    <style>
+    .chr-logo  { background-image: url('<%= image_path(@character_instance.logo) %>'); }
+    .chr-login { background-image: url("<%= @character_instance.login_background %>"); }
+    </style>
 
-  <!-- Javascripts -->
-  <%= javascript_include_tag @character_instance.javascript_filename %>
-  <%= setup_browserid debug: false %>
-  <%= csrf_meta_tags %>
-</head>
+    <!-- Javascripts -->
+    <%= javascript_include_tag @character_instance.javascript_filename %>
+    <%= setup_browserid debug: false %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<body>
-  <% if @current_user %>
-    <script>
-      $(function() {
-        var chrParams = { user_email: '<%= @current_user.email %>', url: '/<%= @character_instance.name %>' };
-        chr.start(chrParams);
-      });
-    </script>
+  <body>
+    <% if @current_user %>
+      <script>
+        $(function() {
+          var chrParams = { user_email: '<%= @current_user.email %>', url: '/<%= @character_instance.name %>' };
+          chr.start(chrParams);
+        });
+      </script>
 
-    <div id='character' class='character <%= @character_instance.name %>-instance'>
-      <nav id='menu' class='chr-menu'>
-        <%= image_tag @current_user.gravatar_url(36), class: 'chr-menu-user' %>
-        <ul id='menu_items'></ul>
-        <a href="#/settings" class="chr-menu-settings"><i class="chr-menu-icon fa fa-gears"></i> Settings</a>
-      </nav>
-      <div id='content' class='chr-content'></div>
-    </div>
+      <div id='character' class='character <%= @character_instance.name %>-instance'>
+        <nav id='menu' class='chr-menu'>
+          <%= image_tag @current_user.gravatar_url(36), class: 'chr-menu-user' %>
+          <ul id='menu_items'></ul>
+          <a href="#/settings" class="chr-menu-settings"><i class="chr-menu-icon fa fa-gears"></i> Settings</a>
+        </nav>
+        <div id='content' class='chr-content'></div>
+      </div>
 
-    <div id='error_modal' class='chr-error-modal' data-reveal style='height: 75%;'>
-      <div id='error_modal_content' style='height: 100%;'></div>
-      <a class='close-reveal-modal'>&#215;</a>
-    </div>
-  <% else %>
-    <% if @browserid_email %>
-      <div class='row'>
-        <div class='large-8 columns large-centered'>
-          <p style='margin-top: 3em;'>You're signed in with <strong><%= @browserid_email %></strong>, but this account have no access to this area. You can ask administrator to provide access for this email or re-sign in with a different email.</p>
+      <!-- TODO: fix error_modal -->
+      <div id='error_modal' class='chr-error-modal' data-reveal style='height: 75%;'>
+        <div id='error_modal_content' style='height: 100%;'></div>
+        <a class='close-reveal-modal'>&#215;</a>
+      </div>
 
-          <%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>
-            <i class='fa fa-sign-out'></i> Sign out
+    <% else %>
+      <% if @browserid_email %>
+        <p>You're signed in with <strong><%= @browserid_email %></strong>, but this account have no access to this area. You can ask administrator to provide access for this email or re-sign in with a different email.</p>
+
+        <p><%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>Sign out<% end %></p>
+      <% else %>
+        <div class='chr-login'>
+          <%= link_to browserid_config.login.path, class: 'browserid_login' do %>
+            Sign in <span>/</span> Sign up
           <% end %>
         </div>
-      </div>
-    <% else %>
-      <div class='chr-login'>
-        <%= link_to browserid_config.login.path, class: 'browserid_login' do %>
-          Sign in <span>/</span> Sign up
-        <% end %>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-</body>
+  </body>
 </html>

@@ -1,70 +1,49 @@
 <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
-  <div class='chr-helper-drawer'>
-    <div class='drawer-content'>
-      <div class='small-12 columns chr-form-image-upload'>
-        <% if @object.has_featured_image? %>
-          <%= image_tag @object.featured_image.chr_list_thumbnail.url %>
-          <aside>
-            <%= f.input :featured_image, label: false, as: :file %>
-            <%= f.input :remove_featured_image, as: :boolean, label: 'Remove featured image' %>
-          </aside>
-        <% else %>
-          <%= f.input :featured_image, as: :file %>
-        <% end %>
-      </div>
 
-      <%= f.input :keywords,
-                  placeholder: 'Keywords, splitted with comma',
-                  wrapper_class: 'small-12 columns' %>
+  <% if @object.has_featured_image? %>
+    <%= image_tag @object.featured_image.chr_list_thumbnail.url %>
+    <aside>
+      <%= f.input :featured_image, label: false, as: :file %>
+      <%= f.input :remove_featured_image, as: :boolean, label: 'Remove featured image' %>
+    </aside>
+  <% else %>
+    <%= f.input :featured_image, as: :file %>
+  <% end %>
 
-      <% if Character::Blog::Category.all.size > 0 %>
-        <%= f.input :category_id,
-                    wrapper_class: 'small-12 large-7 large-uncentered columns',
-                    include_blank: true,
-                    label: false,
-                    collection: Character::Blog::Category.all,
-                    prompt: "Select category" %>
-      <% end %>
+  <%= f.input :keywords, placeholder: 'Keywords, splitted with comma' %>
 
-      <div class='small-12 large-7 large-uncentered columns'>
-        <%= f.input :published_at,
-                    as: :date,
-                    wrapper_html: { class: 'row chr-date-dmy' },
-                    label: false,
-                    order: [:day, :month, :year],
-                    start_year: Date.today.year - 5,
-                    end_year: Date.today.year + 1
-        %>
-      </div>
+  <% if Character::Blog::Category.all.size > 0 %>
+    <%= f.input :category_id, include_blank: true, label: false, collection: Character::Blog::Category.all,
+                prompt: "Select category" %>
+  <% end %>
 
-      <%= f.input :published,
-                  as: :boolean,
-                  labels: %w( Draft Published ),
-                  wrapper_class: 'small-12 columns' %>
-    </div>
-  </div>
+  <%= f.input :published_at,
+              as: :date,
+              wrapper_html: { class: 'chr-date-dmy' },
+              label: false,
+              order: [:day, :month, :year],
+              start_year: Date.today.year - 5,
+              end_year: Date.today.year + 1 %>
+
+  <%= f.input :published, as: :boolean, labels: %w( Draft Published ) %>
 
   <%= f.input :title,     as: :hidden %>
   <%= f.input :subtitle,  as: :hidden %>
   <%= f.input :body_html, as: :hidden %>
 
-  <div class='row'>
-    <div class='large-12 columns'>
-      <article class='blog-post'>
+  <article class='blog-post'>
 
-        <header>
-          <h1 class='character-editor'
-              data-input-name='character_blog_post[title]'
-              data-options="placeholder:'Post Title';disableReturn:true;disableToolbar:true;"
-          ><%= f.object.title %></h1>
-        </header>
+    <header>
+      <h1 class='character-editor'
+          data-input-name='character_blog_post[title]'
+          data-options="placeholder:'Post Title';disableReturn:true;disableToolbar:true;"
+      ><%= f.object.title %></h1>
+    </header>
 
-        <section class='character-editor'
-                 data-input-name='character_blog_post[body_html]'
-                 data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;"
-        ><%= f.object.body_html.try(:html_safe) %></section>
+    <section class='character-editor'
+             data-input-name='character_blog_post[body_html]'
+             data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;"
+    ><%= f.object.body_html.try(:html_safe) %></section>
 
-      </article>
-    </div>
-  </div>
+  </article>
 <% end %>

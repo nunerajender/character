@@ -1,29 +1,16 @@
 <% if @object.persisted? %>
-
   <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
-    <div class='chr-helper-drawer'>
-      <div class='drawer-content'>
-        <%= f.input :title, wrapper_class: 'small-12 columns' %>
-        <%= f.input :path,  wrapper_class: 'small-12 columns' %>
-      </div>
-    </div>
-
-    <div class='row'>
-      <div class='large-12 columns chr-pages-template' style='padding: 0 6%;'>
-        <%= render partial: @object.template_path %>
-      </div>
-    </div>
+    <%= f.input :title %>
+    <%= f.input :path %>
+    <%= render partial: @object.template_path %>
   <% end %>
 
 <% else %>
 
   <%= simple_form_for @object, url: @form_action_url do |f| %>
-    <div class='row'>
-      <%= f.input :title, wrapper_class: 'small-12 columns' %>
-      <%= f.input :path,  wrapper_class: 'small-12 columns' %>
-      <!-- TODO: add available templates list here -->
-      <%= f.input :template_name, wrapper_class: 'small-12 columns' %>
+      <%= f.input :title %>
+      <%= f.input :path %>
+      <%= f.input :template_name %> <!-- TODO: add available templates list here -->
     </div>
   <% end %>
-
 <% end %>

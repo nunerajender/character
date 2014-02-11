@@ -1,9 +1,7 @@
 <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
-  <div class='row'>
-    <% @generic_form_fields.each do |name| %>
-      <%= f.input name, wrapper_class: 'small-12 columns' %>
-    <% end %>
-  </div>
+  <% @generic_form_fields.each do |name| %>
+    <%= f.input name %>
+  <% end %>
 
   <% if @object.class.fields.keys.include? '_position' %>
     <%= f.input :_position, as: :hidden %>
