@@ -22,6 +22,11 @@
 @mixin font                           { font-family: 'Open Sans', sans-serif;
 }
 
+@mixin no-focus-border                {
+  &:focus                             { outline: none;
+  }
+}
+
 // https://github.com/michaelsacca/Compass-Placeholder-Text-Mixin
 @mixin input-placeholder {
     &.placeholder { @content; }

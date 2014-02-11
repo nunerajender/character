@@ -3,24 +3,24 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Settings.DetailsView = Backbone.Marionette.ItemView.extend
-  template: -> """<header id=header class='chr-details-header'>
+  template: -> """<header class='chr-details-header'>
                     <span id=title class=title></span>
                     <button id=save class=save style='display: none;'>Save</button>
                   </header>
-                  <section id=form_view class=chr-details-content></section>"""
+                  <section id=details_content class=chr-details-content></section>"""
 
 
   ui:
     title:           '#title'
     newItemTemplate: '#new_item_template'
-    formView:        '#form_view'
+    content:         '#details_content'
     actionSave:      '#save'
     # actions:            '#actions'
 
 
   onRender: ->
     @ui.title.html(@options.titleDetails)
-    @ui.formView.addClass(@options.moduleName)
+    @ui.content.addClass(@options.moduleName)
     $.ajax
       type: 'get'
       url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
@@ -30,10 +30,10 @@
 
   renderForm: (html) ->
     if @ui
-      @ui.formView.html(html)
+      @ui.content.html(html)
 
-      @ui.form              = @ui.formView.find('form')
-      @ui.newItemTemplate = @ui.formView.find('#new_item_template')
+      @ui.form              = @ui.content.find('form')
+      @ui.newItemTemplate = @ui.content.find('#new_item_template')
 
       # if @ui.newItemTemplate.length and not @ui.actions.find('.action_new').length
       #   @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")

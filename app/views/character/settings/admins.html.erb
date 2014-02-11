@@ -3,59 +3,27 @@
 <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
   <%= hidden_field_tag :class_name, @model.to_s %>
 
-  <div class='row'>
-    <div class='small-12 columns'>
-
-      <% (@objects || @model.all).each do |user| %>
-        <%= form.simple_fields_for "[]", user do |f| %>
-
-          <div class='row'>
-            <div class='large-3 columns'><%= image_tag user.chr_thumbnail_url %></div>
-
-            <%= f.input :email,
-                        required: true,
-                        as: :email,
-                        label: false,
-                        placeholder: 'Email',
-                        wrapper_class: 'large-5 columns' %>
-
-            <div class='large-4 columns chr-actions'>
-              <i class='chr-action-pin'></i><a class='action_delete' data-item-class='row'>Delete</a>
-              <%= f.input :_destroy, as: :hidden, value: false %>
-            </div>
-          </div>
-
+  <% (@objects || @model.all).each do |user| %>
+    <div class='admin'>
+      <%= form.simple_fields_for "[]", user do |f| %>
+        <%= link_to 'http://gravatar.com', title: 'Change picture', target: '_blank', class: 'picture' do %>
+          <%= image_tag user.gravatar_url(62) %>
         <% end %>
+
+        <a class='action_delete' data-item-class='admin' href='#'><i class='fa fa-times'></i></a>
+        <%= f.input :_destroy, as: :hidden, value: false %>
+
+        <%= f.input :email, as: :email, required: true, label: false, placeholder: 'Email address...' %>
       <% end %>
-
-
-            <template id='new_item_template'>
-              <%= form.simple_fields_for "[]", @model.new do |f| %>
-
-                <div class='row'>
-                  <%= f.input :email,
-                              required: true,
-                              as: :email,
-                              label: false,
-                              placeholder: 'Email',
-                              wrapper_class: 'large-5 large-offset-3 columns' %>
-
-                  <div class='large-4 columns chr-actions'>
-                    <i class='chr-action-pin'></i><a class='action_cancel' data-item-class='row'>Cancel</a>
-                  </div>
-                </div>
-
-              <% end %>
-            </template>
-
-
     </div>
-  </div>
+  <% end %>
 
-  <div class='row margin-top-1em'>
-    <div class='small-12 columns text-center'>
-      <h3><small>To change your picture visit <%= link_to 'http://gravatar.com', 'http://gravatar.com', target: '_blank' %>.</small></h3>
+  <template id='new_item_template'>
+    <div class='admin'>
+      <%= form.simple_fields_for "[]", @model.new do |f| %>
+        <%= f.input :email, required: true, as: :email, label: false, placeholder: 'Email address...' %>
+        <a class='action_cancel' data-item-class='admin' href='#'><i class='fa fa-times'></i></a>
+      <% end %>
     </div>
-  </div>
-
+  </template>
 <% end %>

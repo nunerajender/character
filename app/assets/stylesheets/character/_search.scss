@@ -16,8 +16,7 @@
                                         color: #fff;
                                         width: 80%;
                                         @include input-placeholder { color: $meta_color; }
-    &:focus                           { outline: none;
-    }
+                                        @include no-focus-border;
   }
   a                                   { float: right;
   }

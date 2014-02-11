@@ -14,3 +14,45 @@
     }
   }
 }
+
+// ADMINS
+.chr-details-content.admins           {
+  form                                { padding: 60px;
+                                        @include font;
+  }
+
+  .admin                              { border-bottom: 1px solid #edeff1;
+                                        margin-left: 62px + 20px;
+    input                             { color: #414d64;
+                                        font-size: 24px;
+                                        font-weight: bold;
+                                        padding: 25px 0;
+                                        border: none;
+                                        @include no-focus-border;
+    }
+  }
+
+  .picture                          { float: left;
+                                      margin-top: 10px;
+                                      margin-left: -(62px + 15px);
+                                      display: inline-block;
+                                      width: 62px;
+                                      height: 62px;
+    img                             { border-radius: 31px;
+
+    }
+  }
+
+  .action_delete                    { display: inline-block;
+                                      font-size: 22px;
+                                      color: #d1d6e0;
+                                      height: 26px;
+                                      width: 26px;
+                                      text-align: center;
+                                      margin: 27px 10px 0 0;
+                                      float: left;
+  }
+
+  a:hover                             { color: #414d64;
+  }
+}
