@@ -17,7 +17,7 @@
     </div>
   <% end %>
 
-  <div class='admin template'>
+  <div id='template' class='admin'>
     <%= form.simple_fields_for "[]", @model.new do |f| %>
       <i class='fa fa-plus'></i>
       <a class='action_delete' data-item-class='admin' href='#' style='display:none;'><i class='fa fa-times'></i></a>
