@@ -5,6 +5,7 @@
 #
 @Character.Generic.ListHeaderView = Backbone.Marionette.ItemView.extend
   template: -> "<aside id=list_search class=chr-list-search>
+                  <i class='fa fa-search'></i>
                   <input type=search placeholder='Search...' />
                   <a id=list_search_hide href='#'><i class='fa fa-times'></i></a>
                 </aside>
