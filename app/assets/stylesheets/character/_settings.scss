@@ -7,6 +7,10 @@
   }
   .chr-layout .right                  { width: 75%;
   }
-  .chr-list-item a                    { height: 60px - 20px * 2;
+  .chr-list-item                      {
+    a                                 { height: 60px - 20px * 2;
+    }
+    &:before                          { margin: 15px 25px 0 0;
+    }
   }
 }

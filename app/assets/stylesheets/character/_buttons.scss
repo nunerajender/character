@@ -34,3 +34,16 @@
     }
   }
 }
+
+.chr-list-item                        {
+  &:before                            { font-family: FontAwesome;
+                                        content: "\f105";
+                                        float: right;
+                                        margin: 25px 25px 0 0;
+                                        font-size: 28px;
+                                        color: #e0e3ea;
+  }
+
+  &.active:before                     { color: $list_item_meta_color;
+  }
+}

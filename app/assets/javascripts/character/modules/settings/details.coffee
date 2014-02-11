@@ -7,7 +7,7 @@
                     <span id=title class=title></span>
                     <button id=save class=save style='display: none;'>Save</button>
                   </header>
-                  <section id='form_view' class='chr-module-generic-details-form'></section>"""
+                  <section id=form_view class=chr-details-content></section>"""
 
 
   ui:
