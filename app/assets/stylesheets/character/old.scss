@@ -1,0 +1,322 @@
+  .chr-module-generic-details-header  {
+    .chr-actions                      { display: none;
+    }
+  }
+}
+
+.chr-module-generic-details.edit      {
+  .chr-module-generic-details-header  { padding-top: .9em;
+    .title                            { font-size: .9em;
+                                        font-weight: bold;
+    }
+    .meta                             { font-size: .8em;
+                                        color: #777;
+                                        line-height: 2;
+    }
+  }
+  .chr-actions                        { display: inline;
+  }
+}
+
+.chr-module-generic-details           {
+  .field_with_errors                  { @extend .error;
+  }
+  form                                { margin: 3em 0 12em;
+    & > .row > .columns               { padding: 0 6%;
+    }
+
+    // Simpleform layout fixes
+    //------------------------
+    // checkbox + label fix, to have in one line
+    label.boolean                     { display:inline-block;
+                                        margin-left: .5em;
+                                        margin-top: .2em;
+    }
+
+    // Foundation fix for textarea height
+    textarea                          { height: auto;
+    }
+
+    span.prefix, label.postfix        { line-height: 2.5em;
+                                        height: 2.5em;
+    }
+
+    label .note                       { font-weight: normal;
+                                        color: lighten(blue, 40%); //lighten($primary-color, 40%);
+    }
+
+    .chr-form-image-upload            { margin-bottom: 1em;
+      img                             { position: absolute;
+                                        width: 56px;
+                                        height: 56px;
+      }
+      aside                           { margin-left: 66px;
+                                        padding-top: .5em;
+                                        height: 56px;
+        .input.file input             { margin-bottom: .5em;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// Image helpers ==========================================
+//
+
+//
+// Block Grid Mixins: modified to support child <div> tags
+//  - This is used for images layout.
+
+// We use this mixin to create different block-grids. You can apply per-row and spacing options.
+// Setting $base-style to false will ommit default styles.
+// @mixin block-grid-div($per-row:false, $spacing:$block-grid-default-spacing, $base-style:true) {
+
+//   @if $base-style {
+//     display: block;
+//     padding: 0;
+//     margin: 0 (-$spacing/2);
+//     @include clearfix;
+
+//     &>div {
+//       display: inline;
+//       height: auto;
+//       float: $default-float;
+//       padding: 0 ($spacing/2) $spacing;
+//     }
+//   }
+
+//   @if $per-row {
+//     &>div {
+//       width: 100%/$per-row;
+//       padding: 0 ($spacing/2) $spacing;
+
+//       &:nth-of-type(n) { clear: none; }
+//       &:nth-of-type(#{$per-row}n+1) { clear: both; }
+//     }
+//   }
+
+// }
+
+// @if $include-html-grid-classes {
+//   /* Foundation Block Grids for below small breakpoint */
+//   @media only screen {
+//     [class*="block-grid-"] { @include block-grid-div; }
+
+//     @for $i from 1 through $block-grid-elements {
+//       .small-block-grid-#{($i)} {
+//         @include block-grid-div($i,$block-grid-default-spacing,false);
+//       }
+//     }
+//   }
+
+//   /* Foundation Block Grids for above small breakpoint */
+//   @media #{$small} {
+//     /* Remove small grid clearing */
+//     @for $i from 1 through $block-grid-elements {
+//       .small-block-grid-#{($i)} > div:nth-of-type(#{$i}n+1) { clear: none; }
+//     }
+//     @for $i from 1 through $block-grid-elements {
+//       .large-block-grid-#{($i)} {
+//         @include block-grid-div($i,$block-grid-default-spacing,false);
+//       }
+//     }
+//   }
+// }
+
+.chr-helper-images                    { //@include block-grid-div(4, $block-grid-default-spacing, true);
+  .fields a                           { display: none;
+                                        width: 2em;
+                                        height: 2em;
+                                        position: absolute;
+                                        background: #222;
+                                        color: white;
+                                        padding: .4em .6em;
+    &.action-edit-title               { margin-top: -31px; //-2em;
+                                        padding-top: 0.5em;
+    }
+  }
+  .fields:hover a                     { display: block;
+  }
+}
+
+.chr-helper-images-new                {
+  .file input                         { margin-top: .9em;
+                                        margin-bottom: 0;
+  }
+  .cancel                             { margin-top: .6em;
+                                        text-align: right;
+  }
+}
+
+//
+// Drawer Helper  =========================================
+//
+
+.chr-helper-drawer                    { @extend .row;
+                                        margin-bottom: 1.4em;
+                                        margin-top: -3em;
+                                        padding-bottom: 0;
+                                        background-color: #fff;
+  &:hover                             { background-color: gray; //$panel-bg;
+  }
+
+  .action-show-drawer                 { display: block;
+                                        text-align: center;
+                                        opacity: .3;
+                                        line-height: 1.5;
+                                        width: 100%;
+                                        float: left;
+                                        color: #222; //$body-font-color;
+  }
+
+  .drawer-content                     { display: none;
+    > .columns                        { padding: 0 6%;
+    }
+  }
+
+  &.shown                             { background-color: gray; //$panel-bg;
+                                        padding-top: 1.25em;
+    .action-show-drawer i:before      { content: '\f106';
+    }
+    .drawer-content                   { display: block;
+    }
+  }
+
+  select                              { background-color: #fff;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chr-module-settings-details-header   { padding: 1.5em 6% 0;
+                                        border-bottom: 1px solid $chr-border-color;
+                                        height: $chr-settings-header-height;
+                                        position: absolute; left: 0; top: 0; right: 0;
+  .title                              { font-size: 1.2em;
+  }
+}
+
+.chr-module-settings-details-form     { @include position(0, $chr-settings-header-height, 0, inherit);
+                                        @include scrollable;
+                                        padding-top: 3em;
+                                        min-height: 100%;
+                                        background-color: white;
+}
+
+.chr-module-settings-details-form     {
+  &.admins                            {
+    img                               { @include border-radius(28px);
+                                        margin-top: -.5em;
+                                        width: 46px;
+                                        height: 46px;
+                                        float: right;
+    }
+
+    .row .column.chr-actions,
+    .row .columns.chr-actions         { line-height: 1.8;
+                                        padding-left: 0;
+    }
+
+    .row .row                         { margin-bottom: 1em;
+                                        margin-top: 1em;
+    }
+  }
+
+  &.blog_categories {
+    .category                         { padding: .25em 0;
+
+      & > .columns                    { padding: 0 6%;
+      }
+
+      .details                        { display: none;
+                                        margin-top: 1em;
+      }
+
+      &.selected                      { background-color: $chr-list-bg-color;
+        .details                      { display: block;
+        }
+        .title                        { text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+//
+// Settings Module ========================================
+//
+// .chr-module-settings                  {
+//   // .left-panel                         { position: absolute;
+//   //                                       width: 25%;
+//   //                                       bottom: 0;
+//   //                                       top: 0;
+//   //                                       z-index: 2;
+//   // }
+
+//   // .right-panel                        { position: absolute;
+//   //                                       width: 75%;
+//   //                                       bottom: -10px;
+//   //                                       top: 0;
+//   //                                       right: 0;
+//   //                                       z-index: 3;
+//   //                                       border-left: 1px solid $chr-border-color;
+//   // }
+
+//   .browserid_logout                   { position: absolute;
+//                                         bottom: 0px;
+//                                         left: 0px;
+//                                         right: 0px;
+//                                         margin: 0 1em 1em;
+//                                         line-height: 1.3;
+//     .user-email                       { font-weight: normal;
+//                                         color: $chr-settings-header-color;
+//     }
+//   }
+// }
+
+// .chr-module-settings-list             { @extend .no-bullet;
+//   a                                   { display: block;
+//                                         color: $chr-settings-header-color;
+//                                         line-height: 2.5;
+//                                         padding: 0 1.4em 0;
+//     &.active, &:hover                 { color: $chr-settings-list-item-active-color;
+//       &:after                         { content: "\f105";
+//                                         font-family: FontAwesome;
+//                                         position: absolute;
+//                                         right: 1.4em;
+//       }
+//     }
+//   }
+// }
+
+// .chr-module-settings-list-header      { height: $chr-settings-header-height;
+//                                         color: $chr-settings-header-color;
+//                                         padding: 1em 1em 0em;
+//                                         font-size: 1.3em;
+//                                         box-sizing: border-box;
+// }
+

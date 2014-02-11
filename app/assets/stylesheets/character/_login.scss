@@ -1,0 +1,26 @@
+//---------------------------------------------------------
+// LOGIN
+//---------------------------------------------------------
+
+.chr-login                            { position: fixed;
+                                        width: 100%;
+                                        height: 100%;
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                        background-position: center center;
+                                        background-attachment: fixed;
+
+  // TODO: abstract this out as button
+  .browserid_login                    { background: $menu_color;
+                                        color: #fff;
+                                        padding: 20px 30px;
+                                        position: absolute;
+                                        top: 1rem;
+                                        right: 1rem;
+                                        font-size: 1.5em;
+    span                              { color: $menu_icon_color;
+    }
+    &:hover                           { background-color: $menu_active_color;
+    }
+  }
+}

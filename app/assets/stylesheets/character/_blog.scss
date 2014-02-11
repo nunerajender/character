@@ -1,10 +1,10 @@
-//
-// Blog Module ============================================
-//
+//---------------------------------------------------------
+// BUTTONS
+//---------------------------------------------------------
 
-$base_color: #333332!default;
-$base_font: Georgia!default;
-$code_font: Monaco, 'Courier New', 'Courier', monospace!default;
+$base_color:  #333332!default;
+$base_font:   Georgia!default;
+$code_font:   Monaco, 'Courier New', 'Courier', monospace!default;
 $header_font: "Myriad Pro", Verdana, sans-serif!default;
 
 .blog-post                            { font-family: $base_font;
@@ -15,7 +15,7 @@ $header_font: "Myriad Pro", Verdana, sans-serif!default;
                                         @import "blog/_typography";
 }
 
-.blog_categories                      {
-  .row.category                       { max-width: 100%;
-  }
-}
+// .blog_categories                      {
+//   .row.category                       { max-width: 100%;
+//   }
+// }

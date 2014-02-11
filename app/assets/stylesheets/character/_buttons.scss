@@ -1,0 +1,36 @@
+//---------------------------------------------------------
+// BUTTONS
+//---------------------------------------------------------
+
+.chr-list-header button,
+.chr-details-header button            { background: $header_color;
+                                        color: #fff;
+                                        font-size: 12px;
+                                        font-weight: bold;
+                                        border: 2px solid #fff;
+                                        border-radius: 4px;
+                                        width: 120px;
+                                        padding: 6px 0;
+  &:hover                             { background-color: $header_border_color;
+  }
+}
+
+.chr-list-header .new,
+.chr-list-header .search,
+.chr-details-header .save             { float: right;
+}
+
+.chr-list-header                      {
+  .new, .search                       { margin-left: 10px;
+  }
+}
+
+.chr-details-header .save             { margin-top: -5px;
+}
+
+.chr-details.update                   {
+  .chr-details-header                 { padding: 15px 25px;
+    .save                             { margin-top: 3px;
+    }
+  }
+}
