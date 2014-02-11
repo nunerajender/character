@@ -25,14 +25,14 @@
     if @model
       title = @model.getTitle()
       updatedFromNow = moment(@model.get('updated_at')).fromNow()
-      @ui.meta.html("Updated #{ updatedFromNow }")
+      @ui.meta.html("updated #{ updatedFromNow }")
     else
       title = @options.title
 
     @ui.title.html(title)
 
     if not @options.deletable
-      @ui.actionDelete.hide().prev().hide()
+      @ui.actionDelete.hide()
 
   updateState: (state) ->
     if @ui
@@ -74,8 +74,7 @@
 
     @header.show(@headerView)
 
-    if @model
-      @$el.addClass('edit')
+    if @model then @$el.addClass('update')
 
     $.ajax
       type: 'get'

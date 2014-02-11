@@ -2,44 +2,7 @@
 //= require character_editor
 //= require font-awesome
 
-@import "compass/css3";
-//@import "foundation";
-
-// Character Settings =====================================
-
-$chr-secondary-bg-color: #fafafa;
-$chr-border-color: #f1f1f1;
-
-$chr-menu-width: 100px;
-$chr-menu-divider-color: #222;
-$chr-menu-bg-color: #111;
-$chr-menu-item-color: #ccc;
-$chr-menu-item-active-color: #fff;
-
-$chr-settings-header-height: 68px;
-$chr-settings-header-color: #777;
-$chr-settings-list-item-active-color: #222;
-
-$chr-list-bg-color: $chr-secondary-bg-color;
-$chr-list-header-height: 68px;
-
-$chr-list-item-height: 68px;
-$chr-list-item-active-bg: #f5f5f5;
-$chr-list-item-title-color: #666;
-$chr-list-item-meta-color: #999;
-$chr-list-item-active-title-color: #333;
-$chr-list-item-active-meta-color: #555;
-
-$chr-action-color: #666;
-$chr-action-save-height: 68px;
-
-// Awkward
-
-$chr-list-header-dropdown-color: #333;//$dropdown-button-pip-color-alt;
-
-.f-dropdown { display: none; }
-
-// Helpers ================================================
+@import "compass/reset/utilities";
 
 @mixin position($left, $top, $right, $bottom, $z-index: 0) {
                                         position: absolute;
@@ -59,11 +22,7 @@ $chr-list-header-dropdown-color: #333;//$dropdown-button-pip-color-alt;
 @mixin font                          { font-family: 'Open Sans', sans-serif;
 }
 
-// NEW STYLES
-
-@import "compass/reset/utilities";
-
-// this makes no bouncing effect when scrolling
+// this makes no bouncing effect when scrolling on mac with touchpad
 html                                  { overflow: hidden;
 }
 
@@ -87,7 +46,9 @@ a                                     { text-decoration: none;
 
 
 
+//---------------------------------------------------------
 // MENU
+//---------------------------------------------------------
 
 $menu_color:        #414d64;
 $menu_border_color: #4b5872;
@@ -134,7 +95,9 @@ $menu_icon_color:   #8b97ad;
 
 
 
+//---------------------------------------------------------
 // LOGIN
+//---------------------------------------------------------
 
 .chr-login                            { position: fixed;
                                         width: 100%;
@@ -162,61 +125,6 @@ $menu_icon_color:   #8b97ad;
 
 
 
-
-
-
-
-
-
-
-// OLD STYLES
-
-
-
-
-
-
-
-
-
-
-
-
-
-.chr-actions { display: none; }
-.search { display: none; }
-
-// .chr-action,
-// .chr-actions a                        { color: $chr-action-color;
-//                                         font-size: 12px;
-//                                         display: none;
-//   &.active,
-//   &:hover                             { text-decoration: underline;
-//   }
-// }
-
-// .chr-action:hover                     { text-decoration: none;
-//                                         color: $chr-action-color;
-//   .lb                                 { text-decoration: underline;
-//   }
-// }
-
-// .chr-action-pin                       { margin-left: 5px;
-//                                         margin-right: 4px;
-//   &:before                            { content: '\00B7';
-//                                         font-size: 17px;
-//                                         color: $chr-action-color;
-//   }
-// }
-
-// .chr-action-save                      { position: absolute; top: 0; right: 0;
-//                                         color: $chr-action-color;
-//                                         line-height: $chr-action-save-height;
-//                                         padding: 0 1.5em;
-//   &.disabled                          { color: lighten($chr-action-color, 30%);
-//   }
-// }
-
 // .chr-error-modal                      { //@extend .reveal-modal;
 //                                         padding: 0;
 //   a.close-reveal-modal                { right: 30px;
@@ -225,34 +133,17 @@ $menu_icon_color:   #8b97ad;
 //   }
 // }
 
-// @import "./character/generic";
-// @import "./character/settings";
 @import "./character/blog";
-@import "./character/helpers";
+// @import "./character/helpers";
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//---------------------------------------------------------
 // GENERIC
+//---------------------------------------------------------
 
 $header_color:           #12a0ce;
 $header_border_color:    #108cb5;
@@ -302,7 +193,7 @@ $list_item_active_color: #ffffff;
 }
 
 .chr-details-header                   { @include position(0, 0, 0, inherit);
-                                        padding: 15px 25px;
+                                        padding: 23px 25px 27px;
 }
 
 .chr-list                             { @include position(0, 71px, 0, 0, 1);
@@ -320,7 +211,7 @@ $list_item_active_color: #ffffff;
                                         text-transform: uppercase;
   }
   .placeholder                        { background: #fff;
-                                        min-height: $chr-list-item-height;
+                                        min-height: 80px;
   }
 }
 
@@ -372,7 +263,9 @@ $list_item_active_color: #ffffff;
 
 
 
+//---------------------------------------------------------
 // SETTINGS
+//---------------------------------------------------------
 
 .chr-content.settings                 {
   .chr-layout .left                   { width: 25%;
@@ -381,15 +274,15 @@ $list_item_active_color: #ffffff;
   }
   .chr-list-item a                    { height: 60px - 20px * 2;
   }
-  .chr-details-header                 { padding: 23px 25px 27px;
-  }
-  .chr-details-header .save           { margin-top: -5px;
-  }
+
 }
 
 
 
+//---------------------------------------------------------
 // BUTTONS
+//---------------------------------------------------------
+
 .chr-list-header button,
 .chr-details-header button            { background: $header_color;
                                         color: #fff;
@@ -403,10 +296,19 @@ $list_item_active_color: #ffffff;
   }
 }
 
-.chr-details-header .save             { margin-top: 3px;
-                                        float: right;
+.chr-list-header .new,
+.chr-details-header .save             { float: right;
+}
+
+.chr-details-header .save             { margin-top: -5px;
+}
+
+.chr-details.update                   {
+  .chr-details-header                 { padding: 15px 25px;
+    .save                             { margin-top: 3px;
+    }
+  }
 }
 
 .browserid_logout { display: none; }
-
 

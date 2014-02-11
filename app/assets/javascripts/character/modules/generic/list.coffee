@@ -4,23 +4,23 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.ListHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<a><span class='title'></span></a>
-                <span class='chr-actions'>
-                  <i class='chr-action-pin'></i><a class='new'>New</a>
-                </span>
-                <aside class='right search'>
-                  <input type='text' placeholder='Type your search here...' />
-                  <a href='#'><i class='fa fa-times'></i><i class='fa fa-search'></i></a>
-                </aside>
-                <ul id='scopes' class='f-dropdown' data-dropdown-content></ul>"
+  template: -> "<a id=new class=new title='Create new item' href='#'><i class='fa fa-plus'></i></a>
+                <div id=list_title class=title></div>
+                <aside id=list_search class=search>
+                  <input type=text placeholder='Search...' />
+                  <a href='#'>
+                    <i class='fa fa-times'></i>
+                    <i class='fa fa-search'></i>
+                  </a>
+                </aside>"
+                #<ul id='scopes' class='f-dropdown' data-dropdown-content></ul>
 
   ui:
-    title:         '.title'
-    actions:       '.chr-actions'
-    newAction:    '.new'
-    search:        '.search'
-    searchInput:   '.search input'
+    title:         '#list_title'
+    search:        '#list_search'
+    searchInput:   '#list_search input'
     scopes:        '#scopes'
+    newAction:     '#new'
 
   events:
     'click .search a':     'toggleSearchBar'
