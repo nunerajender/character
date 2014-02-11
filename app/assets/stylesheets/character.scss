@@ -19,7 +19,7 @@
                                         @include reset-list-style;
 }
 
-@mixin font                          { font-family: 'Open Sans', sans-serif;
+@mixin font                           { font-family: 'Open Sans', sans-serif;
 }
 
 // this makes no bouncing effect when scrolling on mac with touchpad
@@ -151,6 +151,7 @@ $list_color:             #edf1f5;
 $list_border_color:      #d1d6e0;
 $list_item_color:        #fafbfc;
 $list_item_active_color: #ffffff;
+$meta_color:             #8c9092;
 
 .chr-layout .left                     { @include position(0, 0, inherit, 0, 2);
                                         width: 35%;
@@ -232,7 +233,7 @@ $list_item_active_color: #ffffff;
                                         text-overflow: ellipsis;
                                         overflow: hidden;
                                         font-size: 12px;
-                                        color: #8c9092;
+                                        color: $meta_color;
   }
 
   .title                              { font-size: 14px;
@@ -297,7 +298,13 @@ $list_item_active_color: #ffffff;
 }
 
 .chr-list-header .new,
+.chr-list-header .search,
 .chr-details-header .save             { float: right;
+}
+
+.chr-list-header                      {
+  .new, .search                       { margin-left: 10px;
+  }
 }
 
 .chr-details-header .save             { margin-top: -5px;
@@ -309,6 +316,34 @@ $list_item_active_color: #ffffff;
     }
   }
 }
+
+
+
+//---------------------------------------------------------
+// SEARCH
+//---------------------------------------------------------
+
+.chr-list-search                      { position: absolute;
+                                        margin-left: -25px;
+                                        width: 100%;
+                                        display: none;
+                                        background-color: $header_color;
+                                        padding: 0 25px;
+                                        box-sizing: border-box;
+  &.active                            { display: block;
+  }
+  input                               { background-color: transparent;
+                                        border: none;
+                                        color: #fff;
+                                        width: 80%;
+    &:focus                           { outline: none;
+    }
+  }
+  a                                   { float: right;
+  }
+}
+
+
 
 .browserid_logout { display: none; }
 

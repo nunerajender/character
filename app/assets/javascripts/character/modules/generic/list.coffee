@@ -4,27 +4,27 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.ListHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<a id=new class=new title='Create new item' href='#'><i class='fa fa-plus'></i></a>
-                <div id=list_title class=title></div>
-                <aside id=list_search class=search>
-                  <input type=text placeholder='Search...' />
-                  <a href='#'>
-                    <i class='fa fa-times'></i>
-                    <i class='fa fa-search'></i>
-                  </a>
-                </aside>"
+  template: -> "<aside id=list_search class=chr-list-search>
+                  <input type=search placeholder='Search...' />
+                  <a id=list_search_hide href='#'><i class='fa fa-times'></i></a>
+                </aside>
+                <a id=list_search_show class=search title='Search' href='#'><i class='fa fa-search'></i></a>
+                <a id=new class=new title='Create new item' href='#'><i class='fa fa-plus'></i></a>
+                <div id=list_title class=title></div>"
                 #<ul id='scopes' class='f-dropdown' data-dropdown-content></ul>
 
   ui:
     title:         '#list_title'
     search:        '#list_search'
     searchInput:   '#list_search input'
+    searchShow:    '#list_search_show'
     scopes:        '#scopes'
     newAction:     '#new'
 
   events:
-    'click .search a':     'toggleSearchBar'
-    'keyup .search input': 'onKeyup'
+    'click #list_search_hide':  'hideSearch'
+    'click #list_search_show':  'showSearch'
+    'keyup #list_search input': 'onKeyup'
 
   onKeyup: (e) ->
     if @searchTypeTimeout
@@ -42,16 +42,16 @@
     else
       @searchTypeTimeout = setTimeout(search, 800)
 
-  toggleSearchBar: ->
-    if @ui.search.hasClass('shown')
-      @ui.search.removeClass('shown')
-      @ui.searchInput.val('')
+  showSearch: ->
+    @ui.search.addClass('active')
+    @ui.searchInput.focus()
+    false
 
-      @collection.setSearchQuery()
-      @collection.fetchPage(1)
-    else
-      @ui.search.addClass('shown')
-      @ui.searchInput.focus()
+  hideSearch: ->
+    @ui.search.removeClass('active')
+    @ui.searchInput.val('')
+    @collection.setSearchQuery()
+    @collection.fetchPage(1)
     false
 
   onRender: ->
@@ -60,12 +60,12 @@
     @path       = "#/#{ @options.moduleName }"
 
     if not @options.newItems
-      @ui.newAction.hide().prev().hide()
+      @ui.newAction.hide()
 
     if @options.listSearch
-      @ui.search.show()
+      @ui.searchShow.show()
     else
-      @ui.search.hide()
+      @ui.searchShow.hide()
 
     @afterOnRender() if @afterOnRender
 
