@@ -33,7 +33,7 @@ _.mixin(_.str.exports())
     Backbone.history.start()
 
   if location.hash == ''
-    location.hash = $('#menu a:eq(0)').attr('href')
+    location.hash = $('#menu a:eq(1)').attr('href')
 
 characterApi =
   addMenuItem: (path, icon, title) ->
