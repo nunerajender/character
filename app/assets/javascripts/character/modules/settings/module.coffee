@@ -65,12 +65,12 @@ chr.settingsModule = (title, options={}) ->
 
 @newSettingsItem = ($input) ->
   $item = $('#template').clone()
-  $item.attr('id', '')
+  $item.removeAttr('id')
   $item.html $item.html().replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
   $('#template').before($item)
   $item.find('input').val($input.val())
-  $item.find('.action_delete').show()
   $item.find('.fa-plus').hide()
+  $item.find('.action_delete').show()
   $input.val('')
 
 #
