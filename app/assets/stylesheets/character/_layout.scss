@@ -11,6 +11,9 @@ body                                  { -webkit-font-smoothing: antialiased;
                                         background-color: $menu_color;
 }
 
+b, strong                             { font-weight: 700;
+}
+
 .chr-content                          { @include position(90px, 0, 0, 0, 2);
                                         background-color: #fff;
 }
@@ -40,7 +43,7 @@ body                                  { -webkit-font-smoothing: antialiased;
                                         border-bottom: 1px solid $header_border_color;
 
   .title                              { font-size: 16px;
-                                        font-weight: bold;
+                                        font-weight: 700;
                                         color: #fff;
   }
   .meta                               { font-size: 12px;
@@ -103,7 +106,7 @@ body                                  { -webkit-font-smoothing: antialiased;
   }
 
   .title                              { font-size: 14px;
-                                        font-weight: bold;
+                                        font-weight: 700;
                                         color: #474a4c;
                                         margin-bottom: 4px;
   }
