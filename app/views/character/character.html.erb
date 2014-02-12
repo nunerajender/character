@@ -44,15 +44,20 @@
 
     <% else %>
       <% if @browserid_email %>
-        <p>You're signed in with <strong><%= @browserid_email %></strong>, but this account have no access to this area. You can ask administrator to provide access for this email or re-sign in with a different email.</p>
 
-        <p><%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>Sign out<% end %></p>
-      <% else %>
-        <div class='chr-login'>
-          <%= link_to browserid_config.login.path, class: 'browserid_login' do %>
-            Sign in <span>/</span> Sign up
-          <% end %>
+        <div class='chr-no-access'>
+          <h2>Hi!</h2>
+          <p>You're signed in with <strong><%= @browserid_email %></strong>. This account has no access to this website area. Please ask administrator to grand you access.</p>
+
+          <%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>Sign out<% end %>
         </div>
+
+      <% else %>
+
+        <div class='chr-login'>
+          <%= link_to browserid_config.login.path, class: 'browserid_login' do %>Sign in<% end %>
+        </div>
+
       <% end %>
     <% end %>
   </body>

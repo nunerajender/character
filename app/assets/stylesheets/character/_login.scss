@@ -2,25 +2,42 @@
 // LOGIN
 //---------------------------------------------------------
 
-.chr-login                            { position: fixed;
+@mixin login-button                   { color: #fff;
+                                        display: block;
+                                        width: 200px;
+                                        border: 2px solid #fff;
+                                        padding: 10px 0;
+                                        border-radius: 4px;
+                                        font-weight: 600;
+                                        text-align: center;
+                                        opacity: .7;
+  &:hover                             { opacity: 1;
+  }
+}
+
+.chr-login                            { @include font;
+                                        position: fixed;
                                         width: 100%;
                                         height: 100%;
                                         background-size: cover;
                                         background-repeat: no-repeat;
                                         background-position: center center;
                                         background-attachment: fixed;
+  .browserid_login                    { position: absolute;
+                                        top: 20px;
+                                        right: 20px;
+                                        @include login-button;
+  }
+}
 
-  // TODO: abstract this out as button
-  .browserid_login                    { background: $menu_color;
+.chr-no-access                        { @include font;
                                         color: #fff;
-                                        padding: 20px 30px;
-                                        position: absolute;
-                                        top: 1rem;
-                                        right: 1rem;
-                                        font-size: 1.5em;
-    span                              { color: $menu_icon_color;
-    }
-    &:hover                           { background-color: $menu_active_color;
-    }
+                                        max-width: 400px;
+                                        margin: 50px auto;
+                                        text-align: center;
+  .browserid_logout                   { @include login-button;
+                                        margin: 50px auto;
+  }
+  h2                                  { margin-bottom: 0;
   }
 }
