@@ -34,6 +34,7 @@
     if not @options.deletable
       @ui.actionDelete.hide()
 
+  # TODO: update this method
   updateState: (state) ->
     if @ui
       if state == 'saving'
