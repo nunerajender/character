@@ -2,19 +2,23 @@
 //= require character_editor
 //= require font-awesome
 
-$menu_color:             #414d64;
-$menu_border_color:      #4b5872;
-$menu_active_color:      #28344d;
-$menu_icon_color:        #8b97ad;
+$menu_color:             #414d64!default;
+$menu_border_color:      #4b5872!default;
+$menu_active_color:      #28344d!default;
+$menu_icon_color:        #8b97ad!default;
 
-$header_color:           #12a0ce;
-$header_border_color:    #108cb5;
-$list_color:             #edf1f5;
-$list_border_color:      #d1d6e0;
-$list_item_color:        #fafbfc;
-$list_item_active_color: #ffffff;
-$list_item_meta_color:   #8c9092;
-$meta_color:             #97e4f4;
+$header_color:           #12a0ce!default;
+$header_border_color:    #108cb5!default;
+$list_color:             #edf1f5!default;
+$list_border_color:      #d1d6e0!default;
+$list_item_color:        #fafbfc!default;
+$list_item_active_color: #ffffff!default;
+$list_item_meta_color:   #8c9092!default;
+$meta_color:             #97e4f4!default;
+
+$font_regular:   400!default;
+$font_semi_bold: 600!default;
+$font_bold:      700!default;
 
 @import "character/_mixins";
 @import "character/_menu";

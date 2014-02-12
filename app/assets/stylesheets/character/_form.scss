@@ -14,12 +14,12 @@
   label.file,
   label.string,
   label.text                            { color: #a1a7b2;
-                                          font-weight: 700;
+                                          font-weight: $font_semi_bold;
                                           display: block;
                                           margin-bottom: 5px;
   }
 
-  label.boolean                         { font-weight: 700;
+  label.boolean                         { font-weight: $font_semi_bold;
   }
 
   input[type='checkbox'],
@@ -55,7 +55,7 @@
   input[type=text],
   input[type=email],                    { font-size: 24px;
                                           color: #414d64;
-                                          font-weight: 700;
+                                          font-weight: $font_semi_bold;
                                           border: none;
                                           border-bottom: 1px solid #e6e9f0;
                                           box-shadow: none;

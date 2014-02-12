@@ -11,7 +11,7 @@ body                                  { -webkit-font-smoothing: antialiased;
                                         background-color: $menu_color;
 }
 
-b, strong                             { font-weight: 700;
+b, strong                             { font-weight: $font_bold;
 }
 
 .chr-content                          { @include position(90px, 0, 0, 0, 2);
@@ -43,7 +43,7 @@ b, strong                             { font-weight: 700;
                                         border-bottom: 1px solid $header_border_color;
 
   .title                              { font-size: 16px;
-                                        font-weight: 700;
+                                        font-weight: $font_bold;
                                         color: #fff;
   }
   .meta                               { font-size: 12px;
@@ -106,7 +106,7 @@ b, strong                             { font-weight: 700;
   }
 
   .title                              { font-size: 14px;
-                                        font-weight: 700;
+                                        font-weight: $font_bold;
                                         color: #474a4c;
                                         margin-bottom: 4px;
   }

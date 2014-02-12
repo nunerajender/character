@@ -3,7 +3,7 @@
 //---------------------------------------------------------
 
 @mixin font                           { font-family: 'Open Sans', sans-serif;
-                                        font-weight: 400;
+                                        font-weight: $font_regular;
 }
 
 @mixin position($left, $top, $right, $bottom, $z-index: 0) {
