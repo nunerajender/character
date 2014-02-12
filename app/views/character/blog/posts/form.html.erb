@@ -10,7 +10,7 @@
     <%= f.input :featured_image, as: :file %>
   <% end %>
 
-  <%= f.input :keywords, placeholder: 'Keywords, splitted with comma' %>
+  <%= f.input :keywords, placeholder: 'Keywords, split with comma' %>
 
   <% if Character::Blog::Category.all.size > 0 %>
     <%= f.input :category_id, include_blank: true, label: false, collection: Character::Blog::Category.all,

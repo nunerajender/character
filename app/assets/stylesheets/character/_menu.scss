@@ -2,16 +2,10 @@
 // MENU
 //---------------------------------------------------------
 
-$menu_color:        #414d64;
-$menu_border_color: #4b5872;
-$menu_active_color: #28344d;
-$menu_icon_color:   #8b97ad;
-
 .chr-menu                             { position: absolute;
                                         width: 90px;
                                         height: 100%;
                                         z-index: 1;
-                                        background-color: $menu_color;
                                         text-align: center;
                                         @include font;
 
@@ -44,5 +38,3 @@ $menu_icon_color:   #8b97ad;
 
 .chr-menu-settings                    { @include position(0, inherit, inherit, 0, 1);
 }
-
-

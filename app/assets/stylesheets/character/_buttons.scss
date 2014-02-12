@@ -2,6 +2,9 @@
 // BUTTONS
 //---------------------------------------------------------
 
+a                                     { text-decoration: none;
+}
+
 .chr-list-header button,
 .chr-details-header button            { background: $header_color;
                                         color: #fff;

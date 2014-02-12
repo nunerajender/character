@@ -2,16 +2,17 @@
 // LAYOUT
 //---------------------------------------------------------
 
-$header_color:           #12a0ce;
-$header_border_color:    #108cb5;
-$list_color:             #edf1f5;
-$list_border_color:      #d1d6e0;
-$list_item_color:        #fafbfc;
-$list_item_active_color: #ffffff;
-$list_item_meta_color:   #8c9092;
-$meta_color: #97e4f4;
+// this makes no bouncing effect when scrolling on mac with touchpad
+html                                  { overflow: hidden;
+}
+
+// antialiased fonts on webkit browsers
+body                                  { -webkit-font-smoothing: antialiased;
+                                        background-color: $menu_color;
+}
 
 .chr-content                          { @include position(90px, 0, 0, 0, 2);
+                                        background-color: #fff;
 }
 
 .chr-logo                             { background-position: 50% 50%;

@@ -31,7 +31,6 @@ Gem::Specification.new do |gem|
 
   # css
   gem.add_runtime_dependency 'compass-rails'
-  gem.add_runtime_dependency 'foundation-rails'
   gem.add_runtime_dependency 'font-awesome-rails'
 
   # authentication

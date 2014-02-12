@@ -82,7 +82,7 @@
       success: (data) =>
         @renderContent(data)
       error: (xhr, ajaxOptions, thrownError) =>
-        chr.execute('showError', xhr)
+        chr.execute('error', xhr)
 
   renderContent: (html) ->
     if @ui
@@ -116,7 +116,7 @@
           @headerView.updateState('saving')
           return true
         error: (xhr) =>
-          chr.execute('showError', xhr)
+          chr.execute('error', xhr)
           @headerView.updateState()
         success: (responseText, statusText, xhr, $form) =>
           @headerView.updateState()
@@ -143,7 +143,7 @@
         success: =>
           @router.navigate(chr.path)
         error: (model, response, options) ->
-          chr.execute('showError', response)
+          chr.execute('error', response)
     return false
 
   onClose: ->

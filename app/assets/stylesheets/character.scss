@@ -2,60 +2,35 @@
 //= require character_editor
 //= require font-awesome
 
-@import "compass/reset/utilities";
+$menu_color:             #414d64;
+$menu_border_color:      #4b5872;
+$menu_active_color:      #28344d;
+$menu_icon_color:        #8b97ad;
 
-@mixin position($left, $top, $right, $bottom, $z-index: 0) {
-                                        position: absolute;
-                                        left: $left; top: $top; right: $right; bottom: $bottom;
-                                        z-index: $z-index;
-}
+$header_color:           #12a0ce;
+$header_border_color:    #108cb5;
+$list_color:             #edf1f5;
+$list_border_color:      #d1d6e0;
+$list_item_color:        #fafbfc;
+$list_item_active_color: #ffffff;
+$list_item_meta_color:   #8c9092;
+$meta_color:             #97e4f4;
 
-@mixin scrollable                     { overflow: hidden;
-                                        overflow-y: auto;
-}
-
-@mixin reset-list                     { margin: 0;
-                                        padding: 0;
-                                        @include reset-list-style;
-}
-
-@mixin font                           { font-family: 'Open Sans', sans-serif;
-}
-
-@mixin no-focus-border                {
-  &:focus                             { outline: none;
-  }
-}
-
-// https://github.com/michaelsacca/Compass-Placeholder-Text-Mixin
-@mixin input-placeholder {
-    &.placeholder { @content; }
-    &:-moz-placeholder { @content; }
-    &::-moz-placeholder { @content; }
-    &:-ms-input-placeholder { @content; }
-    &::-webkit-input-placeholder { @content; }
-}
-
-// this makes no bouncing effect when scrolling on mac with touchpad
-html                                  { overflow: hidden;
-}
-
-// antialiased fonts on webkit browsers
-body                                  { -webkit-font-smoothing: antialiased;
-}
-
-a                                     { text-decoration: none;
-}
-
-// order matters
+@import "character/_mixins";
 @import "character/_menu";
 @import "character/_layout";
 @import "character/_login";
 @import "character/_buttons";
 @import "character/_search";
 @import "character/_settings";
+@import "character/_error";
 @import "character/_blog";
 
+
+
+
+
+.browserid_logout { display: none; }
 
 // .chr-error-modal                      { //@extend .reveal-modal;
 //                                         padding: 0;
@@ -64,6 +39,3 @@ a                                     { text-decoration: none;
 //                                         font-size:1.6em;
 //   }
 // }
-
-
-.browserid_logout { display: none; }

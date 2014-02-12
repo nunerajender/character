@@ -47,8 +47,8 @@ _.mixin(_.str.exports())
     $('#content').attr('class', "chr-content #{name}")
 
 
-@chr.commands.setHandler 'showError', (response) ->
-  Character.Utils.errorModal(response)
+@chr.commands.setHandler 'error', (response) ->
+  Character.Utils.error(response)
 
 @chr.commands.setHandler 'startDetailsFormPlugins', ($form) ->
   Character.Utils.fixRailsDateSelect($form)
