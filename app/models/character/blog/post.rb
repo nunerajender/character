@@ -31,8 +31,13 @@ class Character::Blog::Post
   index({ slug: 1 })
   index({ published: 1, date: -1 })
 
+  # helpers
   def has_featured_image?
     not ( featured_image.to_s.ends_with?('_old_') or featured_image.to_s.empty? )
+  end
+
+  def chr_thumbnail_url
+    has_featured_image? ? featured_image.chr_list_thumbnail.url : ''
   end
 
   def updated_ago

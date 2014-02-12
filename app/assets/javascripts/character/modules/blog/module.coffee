@@ -3,11 +3,12 @@
 
 chr.blogPosts = (opts) ->
   moduleOpts =
-    menuIcon:     'quote-left'
+    menuIcon:     'rss'
     menuTitle:    'Posts'
     listItem:
-      titleField: 'title'
-      metaField:  'updated_ago'
+      titleField:     'title'
+      metaField:      'updated_ago'
+      thumbField: 'chr_thumbnail_url'
     modelName:    'Character-Blog-Post'
     listSearch:   true
     listScopes:

@@ -2,6 +2,8 @@
 // FORMS
 //
 
+@import "compass/utilities/general/clearfix";
+
 .chr-form-small                         { @include font;
                                           font-size: 12px;
                                           color: #474a4c;
@@ -11,18 +13,25 @@
                                           margin: 0 auto;
   }
 
-  label.file,
-  label.string,
-  label.text,
-  label.url                             { color: #a1a7b2;
+  .input                                {
+    & > label.file,
+    & > label.date,
+    & > label.string,
+    & > label.text,
+    & > label.url,
+    & > label.radio_buttons,
+    & > label.select                    { color: #a1a7b2;
                                           font-weight: $font_semi_bold;
                                           display: block;
                                           margin-bottom: 5px;
+    }
   }
 
-  label.boolean                         { font-weight: $font_semi_bold;
+  .radio label.radio_buttons,
+  label.boolean                         { margin-right: 10px;
   }
 
+  .radio input.radio_buttons,
   input[type='checkbox'],
   select                                { margin-bottom: 20px;
                                           margin-right: 5px;
@@ -46,6 +55,20 @@
   }
 
   textarea                              { min-height: 52px;
+  }
+
+  .image-upload                         { margin-bottom: 20px;
+                                          @include clearfix;
+    img                                 { float: left;
+                                          margin-right: 10px;
+                                          border-radius: 4px;
+                                          width: 56px;
+                                          height: 56px;
+    }
+    input[type='file']                  { margin: 8px 0;
+    }
+    input[type='checkbox']              { margin-bottom: 0;
+    }
   }
 }
 
