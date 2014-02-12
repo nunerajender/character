@@ -9,7 +9,6 @@
   template: -> """<aside class='left'>
                     <header class='chr-list-header'>
                       <span class='title'>Settings</span>
-                      <button class='browserid_logout'>Sign out</button>
                     </header>
                     <div id=list_content class='chr-list'>
                       <ul id=list></ul>

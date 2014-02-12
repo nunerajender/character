@@ -23,6 +23,26 @@
   }
   a.active                            { background-color: $menu_active_color;
   }
+  .browserid_logout                   { padding: 0;
+    &:before                          { content: 'Sign out';
+                                        width: 90px;
+                                        height: 71px - 25px;
+                                        background: rgba(0,0,0, .75);
+                                        color: #fff;
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        padding-top: 25px;
+                                        opacity: 0;
+                                        transition: opacity 0.25s;
+    }
+    &:hover                           {
+      &:before                        { opacity: 1;
+      }
+    }
+  }
 }
 
 .chr-menu-user                        { margin: 18px 0 16px;
