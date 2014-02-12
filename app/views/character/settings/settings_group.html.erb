@@ -1,6 +1,6 @@
 <% @model = Character::Settings::Variable %>
 
-<div class='chr-form-default'>
+<div class='chr-form-small'>
   <%= simple_form_for :objects, url: @action_url, method: :post, class: :default do |form| %>
     <%= hidden_field_tag :class_name, @model.to_s %>
     <% ::Settings.group(@settings_group_name).each do |name, object| %>

@@ -1,4 +1,4 @@
-<div class='chr-form-default'>
+<div class='chr-form-small'>
   <% if @object.persisted? %>
     <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
       <%= f.input :title %>

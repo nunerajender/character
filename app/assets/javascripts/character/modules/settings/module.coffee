@@ -60,20 +60,40 @@ chr.settingsModule = (title, options={}) ->
 
 
 #
+# Helpers
+#
+
+@newSettingsItem = ($input) ->
+  $item = $('#template').clone()
+  $item.attr('id', '')
+  $item.html $item.html().replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
+  $('#template').before($item)
+  $item.find('input').val($input.val())
+  $item.find('.action_delete').show()
+  $item.find('.fa-plus').hide()
+  $input.val('')
+
+#
 # Admin Settings
 # Feature: add new admin list item
 #
-$(document).on 'chr-admins-details-content.rendered', (e) ->
+
+$(document).on 'chr-admins-details-content.rendered', (e, $content) ->
   $('.objects_email input').on 'keyup', (e) ->
     if e.which == 13
-      $item = $('#template').clone()
-      $item.attr('id', '')
-      $item.html $item.html().replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
-      $('#template').before($item)
-      $item.find('input').val($(e.currentTarget).val())
-      $item.find('.action_delete').show()
-      $item.find('.fa-plus').hide()
-      $(e.currentTarget).val('')
+      newSettingsItem($(e.currentTarget))
 
-$(document).on 'chr-admins-details-content.closed', (e) ->
+$(document).on 'chr-admins-details-content.closed', (e, $content) ->
   $('.objects_email input').off 'keyup'
+
+#
+# Categories Settings
+# Feature: add new category list item
+#
+$(document).on 'chr-blog_categories-details-content.rendered', (e, $content) ->
+  $('.objects_title input').on 'keyup', (e) ->
+    if e.which == 13
+      newSettingsItem($(e.currentTarget))
+
+$(document).on 'chr-blog_categories-details-content.closed', (e, $content) ->
+  $('.objects_title input').off 'keyup'

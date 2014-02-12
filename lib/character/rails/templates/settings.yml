@@ -49,6 +49,6 @@ Blog Settings:
   Keywords:
     type: string
     description: Keywords split by comma
-    default_value: 'web, blog, internet'
+    default_value: ''
 
 # END

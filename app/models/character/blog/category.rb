@@ -3,6 +3,7 @@ class Character::Blog::Category
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::Attributes::Dynamic # required to remove users using _delete field
 
   # attributes
   field :title

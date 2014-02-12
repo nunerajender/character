@@ -2,7 +2,7 @@
 // FORMS
 //
 
-.chr-form-default                       { @include font;
+.chr-form-small                         { @include font;
                                           font-size: 12px;
                                           color: #474a4c;
 
@@ -12,9 +12,9 @@
   }
 
   label.file,
-  label.string                          { color: #a1a7b2;
+  label.string,
+  label.text                            { color: #a1a7b2;
                                           font-weight: 700;
-                                          font-size: 12px;
                                           display: block;
                                           margin-bottom: 5px;
   }
@@ -35,7 +35,6 @@
   input[type=email],                    { margin-bottom: 20px;
                                           border: 1px solid #e6e9f0;
                                           border-radius: 4px;
-                                          font-size: 12px;
                                           padding: 6px 4px;
                                           width: 100%;
                                           box-shadow: 0px 0px 3px 0px #e6e9f0;
@@ -48,3 +47,21 @@
   }
 }
 
+
+.chr-form-large                         { @extend .chr-form-small;
+                                          font-size: 14px;
+
+  textarea,
+  input[type=text],
+  input[type=email],                    { font-size: 24px;
+                                          color: #414d64;
+                                          font-weight: 700;
+                                          border: none;
+                                          border-bottom: 1px solid #e6e9f0;
+                                          box-shadow: none;
+                                          border-radius: 0px;
+                                          padding: 10px 0;
+    &:focus                             { border-color: #e6e9f0;
+    }
+  }
+}

@@ -15,7 +15,7 @@
                                         border: none;
                                         color: #fff;
                                         width: 80%;
-                                        @include input-placeholder { color: $meta_color; }
+                                        @include input-placeholder { color: $meta_color; @include font; }
                                         @include no-focus-border;
   }
   a                                   { float: right;

@@ -12,7 +12,7 @@ class Character::Blog::Post
   mount_uploader :featured_image, Character::Blog::FeaturedImageUploader
   field :published_at, type: Date
   field :published,    type: Boolean, default: false
-  field :subtitle,  default: ''
+  field :subtitle, default: ''
   field :keywords, default: ''
 
   # relations

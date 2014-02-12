@@ -1,7 +1,7 @@
 class Character::User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Attributes::Dynamic # required to make it possible remove users with _delete form field
+  include Mongoid::Attributes::Dynamic # required to remove users using _delete field
 
   field     :email
   validates :email,
