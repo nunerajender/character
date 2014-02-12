@@ -1,6 +1,5 @@
 
-@Character.Utils ||= {}
-@Character.Utils.startImagesHelper = ($holderEl) ->
+@Character.Plugins.startImagesHelper = ($holderEl) ->
   $holderEl.find('.chr-helper-images').each (index, element) ->
     $list = $(element)
     if $list.hasClass('reorderable')
@@ -22,7 +21,7 @@
       if new_val or new_val == ''
         $title_input.val(new_val)
 
-@Character.Utils.stopImagesHelper = ($holderEl) ->
+@Character.Plugins.stopImagesHelper = ($holderEl) ->
   $holderEl.find('.chr-helper-images').each (index, element) ->
     $list = $(element)
     if $list.hasClass('reorderable')

@@ -6,8 +6,7 @@
 #  - underscore
 #  - underscore.string
 
-@Character.Utils ||= {}
-@Character.Utils.fixRailsDateSelect = ($form)->
+@Character.Plugins.fixRailsDateSelect = ($form)->
   setDateValue = ($dateElement, $hiddenDateField) ->
     day   = $( $dateElement.find('select')[0] ).val()
     month = $( $dateElement.find('select')[1] ).val()

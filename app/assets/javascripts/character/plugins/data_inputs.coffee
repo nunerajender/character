@@ -1,6 +1,5 @@
-@Character.Utils ||= {}
 
-@Character.Utils.serializeDataInputs = ($content, $form) ->
+@Character.Plugins.serializeDataInputs = ($content, $form) ->
   if $content and $form
     $content.find('[data-input-name]').each (i, el) ->
       dataInputName = $(el).attr('data-input-name')

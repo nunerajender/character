@@ -5,6 +5,8 @@
 #= require ./modules/blog/module
 
 @Character ||= {}
+@Character.Plugins ||= {}
+
 _.mixin(_.str.exports())
 
 #
@@ -57,18 +59,18 @@ characterApi =
       $('#content').attr('class', "chr-content #{name}")
 
   error: (response) ->
-    Character.Utils.error(response)
+    Character.Plugins.error(response)
 
   beforeFormSubmit: (ui) ->
-    Character.Utils.serializeDataInputs(ui.content, ui.form)
+    Character.Plugins.serializeDataInputs(ui.content, ui.form)
 
   startDetailsFormPlugins: ($form) ->
-    Character.Utils.fixRailsDateSelect($form)
-    Character.Utils.startImagesHelper($form)
-    Character.Utils.startDrawerHelper($form)
+    Character.Plugins.fixRailsDateSelect($form)
+    Character.Plugins.startImagesHelper($form)
+    Character.Plugins.startDrawerHelper($form)
 
   stopDetailsFormPlugins: ($form) ->
-    Character.Utils.stopImagesHelper($form)
-    Character.Utils.stopDrawerHelper($form)
+    Character.Plugins.stopImagesHelper($form)
+    Character.Plugins.stopDrawerHelper($form)
 
 _.map characterApi, (method, name) => @chr.commands.setHandler(name, method)

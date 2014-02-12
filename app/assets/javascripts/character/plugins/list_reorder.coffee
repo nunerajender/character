@@ -1,10 +1,9 @@
 
 
-@Character.Utils ||= {}
-@Character.Utils.disableListReorder = (el) ->
+@Character.Plugins.disableListReorder = (el) ->
   el.sortable( "destroy" )
 
-@Character.Utils.enableListReorder = (el, collection) ->
+@Character.Plugins.enableListReorder = (el, collection) ->
   updateModelPosition = ($el, position) ->
     id    = $el.attr 'data-id'
     model = collection.get(id)

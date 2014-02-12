@@ -1,17 +1,14 @@
+# ---------------------------------------------------------
+# ERROR
+# ---------------------------------------------------------
 
-
-
-
-@Character.Utils ||= {}
-@Character.Utils.error = (response) ->
+@Character.Plugins.error = (response) ->
   entityMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '/': '&#x2F;' }
   escapeHtml = (string) -> String(string).replace(/[&<>"'\/]/g, (s) -> entityMap[s])
   responseText = escapeHtml(response.responseText)
 
   $('#error_message').html("""<iframe srcdoc='#{ responseText }'></iframe>""")
   window.showErrorOverlay()
-
-
 
 $ ->
   $container = $('#character')
