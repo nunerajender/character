@@ -47,7 +47,7 @@
 
         <div class='chr-no-access'>
           <h2>Hi!</h2>
-          <p>You're signed in with <strong><%= @browserid_email %></strong>. This account has no access to this website area. Please ask administrator to grand you access.</p>
+          <p>You're signed in with <strong><%= @browserid_email %></strong>. Your account has no access to this section of the website. Please ask the administrator to grant you access.</p>
 
           <%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>Sign out<% end %>
         </div>
