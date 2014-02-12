@@ -2,7 +2,7 @@
 
 <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
   <%= hidden_field_tag :class_name, @model.to_s %>
-  <% ::Settings.group('Blog Settings').each do |name, object| %>
+  <% ::Settings.group(@settings_group_name).each do |name, object| %>
 
     <%= form.simple_fields_for "[]", object.stored_object do |f| %>
       <% case object.type %>

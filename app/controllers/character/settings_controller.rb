@@ -12,6 +12,12 @@ class Character::SettingsController < ActionController::Base
   def set_template_name
     @action_url = "/#{ character_instance.name }/settings/#{ params[:template_name] }"
     @template   = "character/settings/#{ params[:template_name] }"
+
+    # if there is no template use settings group template
+    if not template_exists?(@template)
+      @settings_group_name = params[:template_name].gsub('_', ' ').titleize
+      @template            = "character/settings/settings_group"
+    end
   end
 
   def show
