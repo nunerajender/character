@@ -4,17 +4,19 @@
   <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
     <%= hidden_field_tag :class_name, @model.to_s %>
 
-    <% @model.all.each do |category| %>
-      <%= form.simple_fields_for "[]", category do |f| %>
-        <div class='category'>
-          <i class='action_sort fa fa-sort'></i>
-          <a class='action_delete' data-item-class='category' href='#'><i class='fa fa-trash-o'></i></a>
-          <%= f.input :title, label: false, placeholder: 'Category title', required: true %>
-          <%= f.input :_destroy, as: :hidden, value: false %>
-          <%= f.input :_position, as: :hidden %>
-        </div>
+    <div class='sortable-list'>
+      <% @model.all.each do |category| %>
+        <%= form.simple_fields_for "[]", category do |f| %>
+          <div class='category'>
+            <i class='action_sort fa fa-sort'></i>
+            <a class='action_delete' data-item-class='category' href='#'><i class='fa fa-trash-o'></i></a>
+            <%= f.input :title, label: false, placeholder: 'Category title', required: true %>
+            <%= f.input :_destroy, as: :hidden, value: false %>
+            <%= f.input :_position, as: :hidden %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
     <div id='template' class='category'>
       <i class='action_sort fa fa-sort' style='display: none;'></i>

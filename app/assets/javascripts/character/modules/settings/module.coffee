@@ -63,11 +63,13 @@ chr.settingsModule = (title, options={}) ->
 # Helpers
 #
 
-@newSettingsItem = ($input) ->
+@newSettingsItem = ($input, $list) ->
   $item = $('#template').clone()
   $item.removeAttr('id')
   $item.html $item.html().replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
-  $('#template').before($item)
+
+  if $list.length then $list.append($item) else $('#template').before($item)
+
   $item.find('input').val($input.val())
   $item.find('.fa-plus').hide()
   $item.find('.action_delete').show()
@@ -92,21 +94,27 @@ $(document).on 'chr-admins-details-content.closed', (e, $content) ->
 # Feature: add new category list item & reorder categories
 #
 $(document).on 'chr-blog_categories-details-content.rendered', (e, $content) ->
+  $list = $content.find('.sortable-list')
+
   $('.objects_title input').on 'keyup', (e) ->
     if e.which == 13
-      newSettingsItem($(e.currentTarget))
+      newSettingsItem($(e.currentTarget), $list)
 
   options =
     delay:  150
     items:  '> .category'
     handle: '.action_sort'
     update: (e, ui) =>
-      # position_fields = _.select @ui.form.find("input[type=hidden]"), (f) ->
-      # _( $(f).attr('name') ).endsWith('[_position]')
-      # total_elements = position_fields.length
-      # _.each position_fields, (el, index, list) -> $(el).val(total_elements - index)
-  $content.find('form').sortable(options).disableSelection()
+      # TODO: seems like this could be done much simpler with regex
+      positionFields = _.select $list.find("input[type=hidden]"), (f) ->
+        _( $(f).attr('name') ).endsWith('[_position]')
+      _.each positionFields, (el, index, list) ->
+        $(el).val(positionFields.length - index)
+
+  $list.sortable(options).disableSelection()
 
 $(document).on 'chr-blog_categories-details-content.closed', (e, $content) ->
   $('.objects_title input').off 'keyup'
-  $content.find('form').sortable( "destroy" )
+  $list = $content.find('.sortable-list')
+  if $list.length
+    $list.sortable( "destroy" )
