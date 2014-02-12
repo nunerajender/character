@@ -3,24 +3,24 @@
 
 ## Setup new project (Rails 4)
 
-  rails new ProjectName -T -O
+    rails new ProjectName -T -O
 
 Add gems to the ```Gemfile```:
 
-  # ORM
-  gem 'mongoid', github: 'mongoid/mongoid'
-  gem 'bson_ext'
+    # ORM
+    gem 'mongoid', github: 'mongoid/mongoid'
+    gem 'bson_ext'
 
-  # File uploader
-  gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
-  gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
+    # File uploader
+    gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
+    gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
 
-  # Character
-  gem 'character', github: 'slate-studio/character'
+    # Character
+    gem 'character', github: 'slate-studio/character'
 
 Run bundle and run generators:
 
-  bundle ; rails g mongoid:config ; rails g character:install
+    bundle ; rails g mongoid:config ; rails g character:install
 
 Start development server and open website in a browser.
 
