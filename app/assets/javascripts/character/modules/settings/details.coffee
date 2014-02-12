@@ -105,6 +105,6 @@
   onClose: ->
     if @ui
       if @ui.form
-        chr.execute('stopDetailsFormPlugins', @ui.form)
+        chr.execute('stopFormPlugins', @ui.form)
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @options.moduleName }-details-content.closed", [ @ui.content ])

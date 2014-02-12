@@ -91,7 +91,7 @@
       @ui.form = @ui.content.find('form.simple_form')
 
       if @ui.form.length
-        chr.execute('startDetailsFormPlugins', @ui.form)
+        chr.execute('startFormPlugins', @ui.form)
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -149,6 +149,6 @@
   onClose: ->
     if @ui
       if @ui.form
-        chr.execute('stopDetailsFormPlugins', @ui.form)
+        chr.execute('stopFormPlugins', @ui.form)
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])

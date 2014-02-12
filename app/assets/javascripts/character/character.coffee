@@ -64,12 +64,13 @@ characterApi =
   beforeFormSubmit: (ui) ->
     Character.Plugins.serializeDataInputs(ui.content, ui.form)
 
-  startDetailsFormPlugins: ($form) ->
-    Character.Plugins.fixRailsDateSelect($form)
+  startFormPlugins: ($form) ->
+    Character.Plugins.startDateSelect($form)
     Character.Plugins.startImagesHelper($form)
     Character.Plugins.startDrawerHelper($form)
 
-  stopDetailsFormPlugins: ($form) ->
+  stopFormPlugins: ($form) ->
+    Character.Plugins.stopDateSelect($form)
     Character.Plugins.stopImagesHelper($form)
     Character.Plugins.stopDrawerHelper($form)
 

@@ -1,49 +1,46 @@
-<%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
+<div class='chr-form-default'>
+  <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
 
-  <% if @object.has_featured_image? %>
-    <%= image_tag @object.featured_image.chr_list_thumbnail.url %>
-    <aside>
-      <%= f.input :featured_image, label: false, as: :file %>
-      <%= f.input :remove_featured_image, as: :boolean, label: 'Remove featured image' %>
-    </aside>
-  <% else %>
-    <%= f.input :featured_image, as: :file %>
+    <% if @object.has_featured_image? %>
+      <%= image_tag @object.featured_image.chr_list_thumbnail.url %>
+      <aside>
+        <%= f.input :featured_image, label: false, as: :file %>
+        <%= f.input :remove_featured_image, as: :boolean, label: 'Remove featured image' %>
+      </aside>
+    <% else %>
+      <%= f.input :featured_image, as: :file %>
+    <% end %>
+
+    <%= f.input :keywords, placeholder: 'Split with comma' %>
+
+    <% if Character::Blog::Category.all.size > 0 %>
+      <%= f.input :category_id, include_blank: true, label: false, collection: Character::Blog::Category.all,
+                  prompt: "Select category" %>
+    <% end %>
+
+    <%= f.input :published_at, as: :date, wrapper_html: { class: 'chr-date-dmy' }, label: false,
+                order: [:day, :month, :year], start_year: Date.today.year - 5, end_year: Date.today.year + 1 %>
+
+    <%= f.input :published, as: :boolean, labels: %w( Draft Published ) %>
+
+    <%= f.input :title,     as: :hidden %>
+    <%= f.input :subtitle,  as: :hidden %>
+    <%= f.input :body_html, as: :hidden %>
   <% end %>
+</div>
 
-  <%= f.input :keywords, placeholder: 'Keywords, split with comma' %>
+<article class='blog-post'>
 
-  <% if Character::Blog::Category.all.size > 0 %>
-    <%= f.input :category_id, include_blank: true, label: false, collection: Character::Blog::Category.all,
-                prompt: "Select category" %>
-  <% end %>
+  <header>
+    <h1 class='character-editor'
+        data-input-name='character_blog_post[title]'
+        data-options="placeholder:'Post Title';disableReturn:true;disableToolbar:true;"
+    ><%= @object.title %></h1>
+  </header>
 
-  <%= f.input :published_at,
-              as: :date,
-              wrapper_html: { class: 'chr-date-dmy' },
-              label: false,
-              order: [:day, :month, :year],
-              start_year: Date.today.year - 5,
-              end_year: Date.today.year + 1 %>
+  <section class='character-editor'
+           data-input-name='character_blog_post[body_html]'
+           data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;"
+  ><%= @object.body_html.try(:html_safe) %></section>
 
-  <%= f.input :published, as: :boolean, labels: %w( Draft Published ) %>
-
-  <%= f.input :title,     as: :hidden %>
-  <%= f.input :subtitle,  as: :hidden %>
-  <%= f.input :body_html, as: :hidden %>
-
-  <article class='blog-post'>
-
-    <header>
-      <h1 class='character-editor'
-          data-input-name='character_blog_post[title]'
-          data-options="placeholder:'Post Title';disableReturn:true;disableToolbar:true;"
-      ><%= f.object.title %></h1>
-    </header>
-
-    <section class='character-editor'
-             data-input-name='character_blog_post[body_html]'
-             data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;"
-    ><%= f.object.body_html.try(:html_safe) %></section>
-
-  </article>
-<% end %>
+</article>

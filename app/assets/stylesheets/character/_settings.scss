@@ -16,9 +16,10 @@
 }
 
 // ADMINS
-.chr-details-content.admins           {
+.chr-details-content.admins           { @include font;
   form                                { padding: 60px;
-                                        @include font;
+                                        max-width: 540px;
+                                        margin: 0 auto;
   }
 
   .admin                              { border-bottom: 1px solid #edeff1;
