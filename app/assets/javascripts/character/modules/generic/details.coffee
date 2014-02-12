@@ -142,7 +142,7 @@
       @close()
       @model.destroy
         success: =>
-          @router.navigate(chr.path)
+          @router.navigate(chr.currentPath)
         error: (model, response, options) ->
           chr.execute('error', response)
     return false
