@@ -1,16 +1,18 @@
-<% if @object.persisted? %>
-  <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
-    <%= f.input :title %>
-    <%= f.input :path %>
-    <%= render partial: @object.template_path %>
-  <% end %>
-
-<% else %>
-
-  <%= simple_form_for @object, url: @form_action_url do |f| %>
+<div class='chr-form-default'>
+  <% if @object.persisted? %>
+    <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
       <%= f.input :title %>
       <%= f.input :path %>
-      <%= f.input :template_name %> <!-- TODO: add available templates list here -->
-    </div>
+      <%= render partial: @object.template_path %>
+    <% end %>
+
+  <% else %>
+
+    <%= simple_form_for @object, url: @form_action_url do |f| %>
+        <%= f.input :title %>
+        <%= f.input :path %>
+        <%= f.input :template_name %> <!-- TODO: add available templates list here -->
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
