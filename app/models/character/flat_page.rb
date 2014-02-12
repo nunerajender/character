@@ -8,7 +8,7 @@ class Character::FlatPage
   field :path
   field :template_name, default: 'default'
   field :template_content, type: Hash, default: {}
-  field :_position, type: Float, default: 0.0
+  field :_position, type: Float, default: ->{ (Character::FlatPage.all.first.try(:_position) || 1000) + 10 }
 
   # scopes
   default_scope -> { order_by(_position: :desc) }

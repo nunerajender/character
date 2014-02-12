@@ -1,20 +1,19 @@
+# ---------------------------------------------------------
+# LIST REORDER
+# ---------------------------------------------------------
 
-
-@Character.Plugins.disableListReorder = (el) ->
+@Character.Plugins.stopListReorder = (el) ->
   el.sortable( "destroy" )
 
-@Character.Plugins.enableListReorder = (el, collection) ->
+@Character.Plugins.startListReorder = (el, collection) ->
   updateModelPosition = ($el, position) ->
-    id    = $el.attr 'data-id'
-    model = collection.get(id)
-
-    model.save({ _position: position }, { patch: true })
+    object_id = $el.attr('data-id')
+    object    = collection.get(object_id)
+    object.save({ _position: position }, { patch: true })
 
   options =
-    delay:       150
+    delay: 150
     placeholder: 'placeholder'
-
-    # NOTE: when all items have same position, e.g. 0 -> nothing happens
     update: (e, ui) =>
       prev = ui.item.prev()
       next = ui.item.next()
@@ -22,29 +21,16 @@
       if prev.length > 0 and next.length > 0
         prevPosition = parseFloat prev.attr('data-position')
         nextPosition = parseFloat next.attr('data-position')
-
         newPosition  = (prevPosition + nextPosition) / 2
-        updateModelPosition(ui.item, newPosition)
 
-      else if prev.length > 0
-        prevPosition = parseFloat prev.attr('data-position')
-        prevPrevPosition = if prev.prev().length > 0 then parseFloat(prev.prev().attr('data-position')) else 100000
+      else if prev.length > 0 # bottom of the list
+        lastPosition = parseFloat prev.attr('data-position')
+        newPosition  = lastPosition - 10
 
-        newPosition = prevPosition
-        updateModelPosition(ui.item, newPosition)
+      else if next.length > 0 # top of the list
+        firstPosition = parseFloat next.attr('data-position')
+        newPosition   = firstPosition + 10
 
-        newPosition = (prevPosition + prevPrevPosition) / 2
-        updateModelPosition(prev, newPosition)
-
-      else if next.length > 0
-        nextPosition = parseFloat next.attr('data-position')
-        nextNextPosition = if next.next().length > 0 then parseFloat(next.next().attr('data-position')) else 100000
-
-        newPosition = nextPosition
-        updateModelPosition(ui.item, newPosition)
-
-        newPosition = (nextPosition + nextNextPosition) / 2
-        updateModelPosition(next, newPosition)
-
+      updateModelPosition(ui.item, newPosition)
 
   el.sortable(options).disableSelection()

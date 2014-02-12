@@ -7,7 +7,7 @@ class Character::Blog::Category
 
   # attributes
   field :title
-  field :_position, type: Float, default: 0.0
+  field :_position, type: Float, default: ->{ (Character::Blog::Category.all.first.try(:_position) || 1000) + 10 }
 
   # relations
   has_many :posts, class_name: 'Character::Blog::Post'
