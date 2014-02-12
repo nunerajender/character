@@ -71,6 +71,7 @@ chr.settingsModule = (title, options={}) ->
   $item.find('input').val($input.val())
   $item.find('.fa-plus').hide()
   $item.find('.action_delete').show()
+  $item.find('.action_sort').show()
   $input.val('')
 
 #
@@ -88,12 +89,24 @@ $(document).on 'chr-admins-details-content.closed', (e, $content) ->
 
 #
 # Categories Settings
-# Feature: add new category list item
+# Feature: add new category list item & reorder categories
 #
 $(document).on 'chr-blog_categories-details-content.rendered', (e, $content) ->
   $('.objects_title input').on 'keyup', (e) ->
     if e.which == 13
       newSettingsItem($(e.currentTarget))
 
+  options =
+    delay:  150
+    items:  '> .category'
+    handle: '.action_sort'
+    update: (e, ui) =>
+      # position_fields = _.select @ui.form.find("input[type=hidden]"), (f) ->
+      # _( $(f).attr('name') ).endsWith('[_position]')
+      # total_elements = position_fields.length
+      # _.each position_fields, (el, index, list) -> $(el).val(total_elements - index)
+  $content.find('form').sortable(options).disableSelection()
+
 $(document).on 'chr-blog_categories-details-content.closed', (e, $content) ->
   $('.objects_title input').off 'keyup'
+  $content.find('form').sortable( "destroy" )

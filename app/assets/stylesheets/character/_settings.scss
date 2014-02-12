@@ -33,6 +33,7 @@
                                         @include input-placeholder { color: #cbd0d3; }
                                         width: 100%;
                                         padding-left: 37px;
+                                        box-sizing: border-box;
     }
   }
 
@@ -61,7 +62,7 @@
 .chr-details-content.blog_categories  {
   .fa                                 { color: #d1d6e0;
                                         font-size: 22px;
-                                        padding: 16px 20px 0 0;
+                                        padding: 21px 20px 0 0;
                                         position: absolute;
   }
   a:hover .fa                         { color: #414d64;
@@ -70,6 +71,16 @@
     input                             { padding-left: 37px;
                                         padding-right: 37px;
                                         margin-bottom: 0;
+                                        box-sizing: border-box;
+    }
+  }
+  .action_sort                        { position: relative;
+                                        float: right;
+                                        margin-right: -40px;
+                                        left: -45px;
+                                        padding: 21px 0px;
+                                        cursor: pointer;
+    &:hover                           { color: #414d64;
     }
   }
 }
