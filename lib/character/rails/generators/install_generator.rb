@@ -43,7 +43,7 @@ RUBY
 
         def add_production_configuration
           application(nil, env: "production") do
-            "config.assets.precompile += %w( admin.js admin.css vendor/modernizr.js foundation.js )"
+            "config.assets.precompile += %w( admin.js admin.css )"
           end
         end
       end

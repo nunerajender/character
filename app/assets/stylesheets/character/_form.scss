@@ -13,7 +13,8 @@
 
   label.file,
   label.string,
-  label.text                            { color: #a1a7b2;
+  label.text,
+  label.url                             { color: #a1a7b2;
                                           font-weight: $font_semi_bold;
                                           display: block;
                                           margin-bottom: 5px;
@@ -32,6 +33,7 @@
 
   textarea,
   input[type=text],
+  input[type=url],
   input[type=email],                    { margin-bottom: 20px;
                                           border: 1px solid #e6e9f0;
                                           border-radius: 4px;
