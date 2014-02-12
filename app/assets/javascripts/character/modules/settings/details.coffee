@@ -55,18 +55,18 @@
 
       @ui.form.ajaxSubmit
         beforeSubmit: (arr, $form, options) =>
-          #@updateState('Saving')
+          @updateState('Saving')
           return true
         error: (xhr) =>
           chr.execute('error', xhr)
-          #@updateState()
+          @updateState()
         success: (responseText, statusText, xhr, $form) =>
           if @onSaved
             @onSaved responseText, =>
-              #@updateState()
+              @updateState()
               @renderContent(responseText)
           else
-            #@updateState()
+            @updateState()
             @renderContent(responseText)
 
     return false
@@ -88,19 +88,16 @@
 
     return false
 
-
-  # TODO: style this and syncronize with generic app
-  # updateState: (state) ->
-  #   if @ui
-  #     if state == 'Saving'
-  #       @ui.actionSave.addClass('disabled')
-  #       @ui.actionSave.html 'Saving...'
-  #     else
-  #       setTimeout ( =>
-  #         @ui.actionSave.removeClass('disabled')
-  #         @ui.actionSave.html 'Save'
-  #       ), 500
-
+  updateState: (state) ->
+    if @ui
+      if state == 'Saving'
+        @ui.actionSave.addClass('disabled')
+        @ui.actionSave.html 'Saving...'
+      else
+        setTimeout ( =>
+          @ui.actionSave.removeClass('disabled')
+          @ui.actionSave.html 'Save'
+        ), 500
 
   onClose: ->
     if @ui
