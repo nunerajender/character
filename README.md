@@ -29,7 +29,6 @@ Start development server and open website in a browser.
 
 ### TODO
 
-* check item removal
 * check list pagination
 
 ### Tools

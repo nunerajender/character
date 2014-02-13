@@ -29,7 +29,7 @@ chr.blogPosts = (opts) ->
   $ ->
     getSubtitleValue = ->
       # TODO: add case when image is posted first or nothing is posted
-      $('.chr-blog-post-body').children().first().text()
+      $('.blog-post .content').children().first().text()
 
     $(document).on 'chr-posts-details-content.rendered', (e, $content) ->
       $subtitleField = $('#character_blog_post_subtitle')

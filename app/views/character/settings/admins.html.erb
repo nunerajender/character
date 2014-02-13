@@ -7,7 +7,7 @@
     <div class='admin'>
       <%= form.simple_fields_for "[]", user do |f| %>
         <%= link_to 'http://gravatar.com', title: 'Change picture', target: '_blank', class: 'picture' do %>
-          <%= image_tag user.gravatar_url(62) %>
+          <%= image_tag user.gravatar_url(62), width: '62px', height: '62px' %>
         <% end %>
 
         <a class='action_delete' data-item-class='admin' href='#'><i class='fa fa-times'></i></a>

@@ -1,13 +1,15 @@
 //= require normalize
-//= require character_editor
 //= require font-awesome
+
+$primary_color:          #12a0ce!default;
+$secondary_color:        #1fc776!default;
 
 $menu_color:             #414d64!default;
 $menu_border_color:      #4b5872!default;
 $menu_active_color:      #28344d!default;
 $menu_icon_color:        #8b97ad!default;
 
-$header_color:           #12a0ce!default;
+$header_color:           $primary_color;
 $header_border_color:    #108cb5!default;
 $list_color:             #edf1f5!default;
 $list_border_color:      #d1d6e0!default;
@@ -30,3 +32,5 @@ $font_bold:      700!default;
 @import "character/_settings";
 @import "character/_error";
 @import "character/_blog";
+
+@import "character_editor";

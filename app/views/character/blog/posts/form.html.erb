@@ -38,7 +38,7 @@
     ><%= @object.title %></h1>
   </header>
 
-  <section class='character-editor'
+  <section class='character-editor content'
            data-input-name='character_blog_post[body_html]'
            data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;"
   ><%= @object.body_html.try(:html_safe) %></section>
