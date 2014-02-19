@@ -142,9 +142,6 @@ class Character::ApiController < ActionController::Base
 
     @object.assign_attributes( permit_params(form_attributes_namespace) )
 
-    # render text: permit_params
-    # return
-
     if character_instance.before_save
       instance_exec &character_instance.before_save
     end
