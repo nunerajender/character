@@ -40,3 +40,9 @@ Start development server and open website in a browser.
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
 * On item actions support: http://github.hubspot.com/tether/docs/welcome/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
+
+# TODO:
+
+* fix error when embeds_one document is in the form
+* handle validation errors after update
+*

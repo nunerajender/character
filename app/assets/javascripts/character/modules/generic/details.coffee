@@ -104,7 +104,7 @@
       chr.execute('beforeFormSubmit', @ui)
 
       # include fields to properly update item in a list and sort
-      params = @collection.options.constantParams
+      params = _.clone(@collection.options.constantParams)
       if @collection.sortField
         params.f = _([ params.f, @collection.sortField ]).uniq().join(',')
 
@@ -125,7 +125,7 @@
   updateModel: (resp) ->
     # when response is a string, that means form with errors returned
     if typeof(resp) == 'string'
-      return @updateContent(resp)
+      return @renderContent(resp)
 
     # assuming response is json
     if @model
