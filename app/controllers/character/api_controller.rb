@@ -104,6 +104,7 @@ class Character::ApiController < ActionController::Base
 
   def create
     @object = model_class.new(permit_params)
+    @form_action_url = form_action_url(@object)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
@@ -137,6 +138,8 @@ class Character::ApiController < ActionController::Base
   # process serialized form, object attributes are in the namespace
   def post_update
     @object = model_class.find(params[:id])
+    @form_action_url = form_action_url(@object)
+
     @object.assign_attributes(permit_params)
 
     if character_instance.before_save
