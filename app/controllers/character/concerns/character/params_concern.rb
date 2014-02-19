@@ -3,24 +3,20 @@ module Character::ParamsConcern
 
   private
 
-  # this hack allows to permit for mass assigment everything that
-  # is sent with a form, with hashs it only goes 1 level deep.
-  def permit_params
-    permit_fields = []
-    params[form_attributes_namespace].each do |key, value|
-      if value.is_a?(Hash)
-        h = {} ; h[key] = value.keys
-        permit_fields << h
-      else
-        permit_fields << key
-      end
+  def attr_name_or_map(attr_name, val)
+    # RECURSION is used to map all hashes in params to update nested documents
+    if val.is_a?(Hash)
+      map = {} ; map[attr_name] = []
+      val.each { |hsh_key, hsh_value| map[attr_name] << attr_name_or_map(hsh_key, hsh_value) }
+      return map
+    else
+      return attr_name
     end
-
-    params.require(form_attributes_namespace).permit(permit_fields)
   end
 
-  # this goes only one level deep
-  def permit_api_params
-    params.require('api').permit(params['api'].keys)
+  def permit_params(namespace='api')
+    permit_fields = []
+    params[namespace].each { |key, value| permit_fields << attr_name_or_map(key, value) }
+    params.require(namespace).permit(permit_fields)
   end
 end

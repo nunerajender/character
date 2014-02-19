@@ -121,7 +121,7 @@ class Character::ApiController < ActionController::Base
   # process backbone model patch save
   def patch_update
     @object = model_class.find(params[:id])
-    @object.assign_attributes(permit_api_params)
+    @object.assign_attributes(permit_params)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
@@ -140,11 +140,10 @@ class Character::ApiController < ActionController::Base
     @object = model_class.find(params[:id])
     @form_action_url = form_action_url(@object)
 
+    @object.assign_attributes( permit_params(form_attributes_namespace) )
 
-    @object.assign_attributes(permit_params)
-
-    #render text: permit_params
-    #return
+    # render text: permit_params
+    # return
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
