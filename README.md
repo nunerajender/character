@@ -44,5 +44,6 @@ Start development server and open website in a browser.
 # TODO:
 
 * fix error when embeds_one document is in the form
-* handle validation errors after update
+* handle validation errors after update: simple_fields_for doesn't show errors
+* remove form send when enter key hit
 *
