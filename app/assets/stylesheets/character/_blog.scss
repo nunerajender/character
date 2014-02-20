@@ -1,11 +1,11 @@
 //---------------------------------------------------------
-// BUTTONS
+// BLOG
 //---------------------------------------------------------
 
-$base_color:  #333332!default;
-$base_font:   Georgia!default;
-$code_font:   Monaco, 'Courier New', 'Courier', monospace!default;
-$header_font: "Myriad Pro", Verdana, sans-serif!default;
+$base_color:  #333332;
+$base_font:   'Georgia';
+$code_font:   'Monaco', 'Courier New', 'Courier', 'monospace';
+$header_font: "Myriad Pro", 'Verdana', 'sans-serif';
 
 .blog-post                            { font-family: $base_font;
                                         color: $base_color;
@@ -14,8 +14,3 @@ $header_font: "Myriad Pro", Verdana, sans-serif!default;
                                         padding: 20px;
                                         @import "blog/_typography";
 }
-
-// .blog_categories                      {
-//   .row.category                       { max-width: 100%;
-//   }
-// }
