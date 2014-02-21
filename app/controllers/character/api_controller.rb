@@ -1,5 +1,5 @@
 # Author: Alexander Kravets
-#         Slate, 2013
+#         Slate, 2014
 
 class Character::ApiController < ActionController::Base
   include Character::InstanceConcern
@@ -7,10 +7,10 @@ class Character::ApiController < ActionController::Base
   include Character::TemplatesConcern
   include Character::JsonObjectConcern
   include Character::AuthConcern
+  include Character::ParamsConcern
+
   before_filter :authenticate_user
-
   layout :false
-
 
   # Actions -----------------------------------------------
 
@@ -103,7 +103,7 @@ class Character::ApiController < ActionController::Base
 
 
   def create
-    @object = model_class.new(permit_params)
+    @object = model_class.new( permit_params(form_attributes_namespace) )
     @form_action_url = form_action_url(@object)
 
     if character_instance.before_save
@@ -119,9 +119,9 @@ class Character::ApiController < ActionController::Base
 
 
   # process backbone model patch save
-  def patch_update
+  def patch
     @object = model_class.find(params[:id])
-    @object.assign_attributes(permit_api_params)
+    @object.assign_attributes(permit_params)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
@@ -136,11 +136,10 @@ class Character::ApiController < ActionController::Base
 
 
   # process serialized form, object attributes are in the namespace
-  def post_update
+  def update
     @object = model_class.find(params[:id])
+    @object.assign_attributes( permit_params(form_attributes_namespace) )
     @form_action_url = form_action_url(@object)
-
-    @object.assign_attributes(permit_params)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save
@@ -161,27 +160,6 @@ class Character::ApiController < ActionController::Base
   end
 
   private
-
-  # this hack allows to permit for mass assigment everything that
-  # is sent with a form, with hashs it only goes 1 level deep.
-  def permit_params
-    permit_fields = []
-    params[form_attributes_namespace].each do |key, value|
-      if value.is_a?(Hash)
-        h = {} ; h[key] = value.keys
-        permit_fields << h
-      else
-        permit_fields << key
-      end
-    end
-
-    params.require(form_attributes_namespace).permit(permit_fields)
-  end
-
-  # this goes only one level deep
-  def permit_api_params
-    params.require('api').permit(params['api'].keys)
-  end
 
   def authenticate_user
     if not auto_login!

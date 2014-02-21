@@ -30,6 +30,8 @@ Start development server and open website in a browser.
 * check list pagination
 * no page refresh on login
 * hotkeys
+* hide errors when update is succesful: as an option we can close the details view on save
+* remove form send when enter key hit
 
 
 ### Tools
