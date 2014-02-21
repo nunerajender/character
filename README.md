@@ -25,11 +25,12 @@ Run bundle and run generators:
 Start development server and open website in a browser.
 
 
-## Character development notes
-
 ### TODO
 
 * check list pagination
+* no page refresh on login
+* hotkeys
+
 
 ### Tools
 
