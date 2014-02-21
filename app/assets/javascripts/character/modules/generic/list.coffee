@@ -4,27 +4,28 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.ListHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<a class='title'></a>
-                <span class='chr-actions'>
-                  <i class='chr-action-pin'></i><a class='new'>New</a>
-                </span>
-                <aside class='right search'>
-                  <input type='text' placeholder='Type your search here...' />
-                  <a href='#'><i class='fa fa-times'></i><i class='fa fa-search'></i></a>
+  template: -> "<aside id=list_search class=chr-list-search>
+                  <i class='fa fa-search'></i>
+                  <input type=search placeholder='Search...' />
+                  <a id=list_search_hide href='#'><i class='fa fa-times'></i></a>
                 </aside>
-                <ul id='scopes' class='f-dropdown' data-dropdown-content></ul>"
+                <a id=list_search_show class=search title='Search' href='#'><i class='fa fa-search'></i></a>
+                <a id=new class=new title='Create new item' href='#'><i class='fa fa-plus'></i></a>
+                <div id=list_title class=title></div>"
+                #<ul id='scopes' class='f-dropdown' data-dropdown-content></ul>
 
   ui:
-    title:         '.title'
-    actions:       '.chr-actions'
-    newAction:    '.new'
-    search:        '.search'
-    searchInput:   '.search input'
+    title:         '#list_title'
+    search:        '#list_search'
+    searchInput:   '#list_search input'
+    searchShow:    '#list_search_show'
     scopes:        '#scopes'
+    newAction:     '#new'
 
   events:
-    'click .search a':     'toggleSearchBar'
-    'keyup .search input': 'onKeyup'
+    'click #list_search_hide':  'hideSearch'
+    'click #list_search_show':  'showSearch'
+    'keyup #list_search input': 'onKeyup'
 
   onKeyup: (e) ->
     if @searchTypeTimeout
@@ -42,16 +43,16 @@
     else
       @searchTypeTimeout = setTimeout(search, 800)
 
-  toggleSearchBar: ->
-    if @ui.search.hasClass('shown')
-      @ui.search.removeClass('shown')
-      @ui.searchInput.val('')
+  showSearch: ->
+    @ui.search.addClass('active')
+    @ui.searchInput.focus()
+    false
 
-      @collection.setSearchQuery()
-      @collection.fetchPage(1)
-    else
-      @ui.search.addClass('shown')
-      @ui.searchInput.focus()
+  hideSearch: ->
+    @ui.search.removeClass('active')
+    @ui.searchInput.val('')
+    @collection.setSearchQuery()
+    @collection.fetchPage(1)
     false
 
   onRender: ->
@@ -60,12 +61,12 @@
     @path       = "#/#{ @options.moduleName }"
 
     if not @options.newItems
-      @ui.newAction.hide().prev().hide()
+      @ui.newAction.hide()
 
     if @options.listSearch
-      @ui.search.show()
+      @ui.searchShow.show()
     else
-      @ui.search.hide()
+      @ui.searchShow.hide()
 
     @afterOnRender() if @afterOnRender
 
@@ -77,7 +78,7 @@
       title = @scopes[scopeSlug].title
       path += '/' + @scopes[scopeSlug].slug
 
-    @ui.title.html(title).attr('href', path)
+    @ui.title.html(title).parent().attr('href', path)
 
     @ui.newAction.attr('href', path + "/new")
 
@@ -96,11 +97,11 @@
                                <a href='#{ @path }/#{ scope.slug }'>#{ scope.title }</a>
                              </li>"""
 
-      $(document).foundation('dropdown', 'init')
+      #$(document).foundation('dropdown', 'init')
 
   onClose: ->
-    if @ui.title.hasClass('dropdown')
-      $(document).foundation('dropdown', 'off')
+    #if @ui.title.hasClass('dropdown')
+    #  $(document).foundation('dropdown', 'off')
 
 
 #
@@ -108,7 +109,9 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.ListEmtpyView = Backbone.Marionette.ItemView.extend
-  template: -> """<div class='empty'>No items found</div>"""
+  tagName:   'li'
+  className: 'empty'
+  template: -> "No items found"
 
 
 #
@@ -117,13 +120,13 @@
 #
 @Character.Generic.ListItemView = Backbone.Marionette.ItemView.extend
   tagName:   'li'
-  className: 'chr-module-generic-list-item'
+  className: 'chr-list-item'
 
   template: (item) ->  """<a title='#{ item.__title }'>
-                            <img src='#{ item.__thumb }' />
+                            <img src='#{ item.__thumb }' class='thumbnail' />
                             <div class='container'>
-                              <strong class='title'>#{ item.__title }</strong>
-                              <span class='meta'>#{ item.__meta }</span>
+                              <div class='title'>#{ item.__title }</div>
+                              <div class='meta'>#{ item.__meta }</div>
                             </div>
                           </a>"""
 
@@ -179,7 +182,7 @@
       @selectItem(@selected_item_id)
 
     if @collection.options.reorder
-      Character.Utils.enableListReorder(@$el, @collection)
+      Character.Plugins.startListReorder(@$el, @collection)
 
   selectItem: (id) ->
     @selected_item_id = id
@@ -192,4 +195,4 @@
 
   onClose: ->
     if @collection.options.reorder
-      Character.Utils.disableListReorder(@$el)
+      Character.Plugins.stopListReorder(@$el)

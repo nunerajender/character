@@ -1,0 +1,52 @@
+//---------------------------------------------------------
+// BUTTONS
+//---------------------------------------------------------
+
+a                                     { text-decoration: none;
+}
+
+.chr-list-header button,
+.chr-details-header button            { background: $header_color;
+                                        color: #fff;
+                                        font-size: 12px;
+                                        font-weight: $font_semi_bold;
+                                        border: 2px solid #fff;
+                                        border-radius: 4px;
+                                        width: 120px;
+                                        padding: 6px 0;
+  &:hover                             { background-color: $header_border_color;
+  }
+}
+
+.chr-list-header .new,
+.chr-list-header .search,
+.chr-details-header .save             { float: right;
+}
+
+.chr-list-header                      {
+  .new, .search                       { margin-left: 10px;
+  }
+}
+
+.chr-details-header .save             { margin-top: -5px;
+}
+
+.chr-details.update                   {
+  .chr-details-header                 { padding: 12px 25px;
+    .save                             { margin-top: 7px;
+    }
+  }
+}
+
+.chr-list-item                        {
+  &:before                            { font-family: FontAwesome;
+                                        content: "\f105";
+                                        float: right;
+                                        margin: 25px 25px 0 0;
+                                        font-size: 28px;
+                                        color: #e0e3ea;
+  }
+
+  &.active:before                     { color: $list_item_meta_color;
+  }
+}

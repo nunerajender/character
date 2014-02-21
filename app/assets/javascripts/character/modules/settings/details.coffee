@@ -3,52 +3,48 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Settings.DetailsView = Backbone.Marionette.ItemView.extend
-  template: -> """<header id='header' class='chr-module-settings-details-header'>
-                    <span class='title' id='title'></span><span class='chr-actions' id='actions'></span>
-                    <a id='action_save' class='chr-action-save' style='display:none;'>Save</a>
+  template: -> """<header class='chr-details-header'>
+                    <span id=title class=title></span>
+                    <button id=save class=save style='display: none;'>Save</button>
                   </header>
-                  <section id='form_view' class='chr-module-settings-details-form'></section>"""
+                  <section id=details_content class=chr-details-content></section>"""
 
 
   ui:
-    title:              '#title'
-    actions:            '#actions'
-    newItemTemplate:  '#new_item_template'
-    formView:          '#form_view'
-    actionSave:        '#action_save'
+    title:           '#title'
+    content:         '#details_content'
+    actionSave:      '#save'
 
 
   onRender: ->
     @ui.title.html(@options.titleDetails)
-    @ui.formView.addClass(@options.moduleName)
+    @ui.content.addClass(@options.moduleName)
     $.ajax
       type: 'get'
       url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
-      success: (data) => @renderForm(data)
-      error: (xhr) => chr.execute('showError', xhr)
+      success: (data) => @renderContent(data)
+      error: (xhr) => chr.execute('error', xhr)
 
 
-  renderForm: (html) ->
+  renderContent: (html) ->
     if @ui
-      @ui.formView.html(html)
+      @ui.content.html(html)
 
-      @ui.form              = @ui.formView.find('form')
-      @ui.newItemTemplate = @ui.formView.find('#new_item_template')
-
-      if @ui.newItemTemplate.length and not @ui.actions.find('.action_new').length
-        @ui.actions.append("<i class='chr-action-pin'></i><a class='action_new'>New</a>")
+      @ui.form            = @ui.content.find('form')
+      @ui.newItemTemplate = @ui.content.find('#template')
 
       if @ui.form.length
         @ui.actionSave.show()
+
+      $(document).trigger("chr-details-content.rendered", [ @ui.content ])
+      $(document).trigger("chr-#{ @options.moduleName }-details-content.rendered", [ @ui.content ])
 
       @afterFormRendered?()
 
 
   events:
-    'click .chr-action-save': 'onSave'
-    'click .action_new':      'addItem'
-    'click .action_cancel':   'cancelItem'
-    'click .action_delete':   'deleteItem'
+    'click #save':          'onSave'
+    'click .action_delete': 'deleteItem'
 
 
   onSave: (e) ->
@@ -62,46 +58,35 @@
           @updateState('Saving')
           return true
         error: (xhr) =>
-          chr.execute('showError', xhr)
+          chr.execute('error', xhr)
           @updateState()
         success: (responseText, statusText, xhr, $form) =>
           if @onSaved
             @onSaved responseText, =>
               @updateState()
-              @renderForm(responseText)
+              @renderContent(responseText)
           else
             @updateState()
-            @renderForm(responseText)
+            @renderContent(responseText)
 
     return false
-
-
-  addItem: ->
-    html = @ui.newItemTemplate.html()
-    html = html.replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
-    @ui.newItemTemplate.before(html)
-
-    @afterAddItem?()
-
-
-  cancelItem: (e) ->
-    itemCls = $(e.currentTarget).attr('data-item-class')
-    $(e.currentTarget).closest(".#{ itemCls }").remove() ; return false
 
 
   deleteItem: (e) ->
-    if confirm("Are you sure about deleting this?")
-      itemCls = $(e.currentTarget).attr('data-item-class')
-      item    = $(e.currentTarget).closest(".#{ itemCls }")
+    itemCls = $(e.currentTarget).attr('data-item-class')
+    item    = $(e.currentTarget).closest(".#{ itemCls }")
 
-      destroy_field = _.find item.find("input[type=hidden]"), (f) ->
-        name = $(f).attr('name')
-        _(name).endsWith('[_destroy]')
+    # TODO: query could be optimized with one regex
+    destroy_field = _.find item.find("input[type=hidden]"), (f) ->
+      name = $(f).attr('name') ; _(name).endsWith('[_destroy]')
 
+    if destroy_field
       $(destroy_field).attr('value', 'true')
       item.replaceWith(destroy_field)
-    return false
+    else
+      item.remove()
 
+    return false
 
   updateState: (state) ->
     if @ui
@@ -113,3 +98,10 @@
           @ui.actionSave.removeClass('disabled')
           @ui.actionSave.html 'Save'
         ), 500
+
+  onClose: ->
+    if @ui
+      if @ui.form
+        chr.execute('stopFormPlugins', @ui.form)
+      $(document).trigger("chr-details-content.closed", [ @ui.content ])
+      $(document).trigger("chr-#{ @options.moduleName }-details-content.closed", [ @ui.content ])

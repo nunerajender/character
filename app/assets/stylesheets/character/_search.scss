@@ -1,0 +1,26 @@
+//---------------------------------------------------------
+// SEARCH
+//---------------------------------------------------------
+
+.chr-list-search                      { position: absolute;
+                                        margin-left: -25px;
+                                        width: 100%;
+                                        display: none;
+                                        background-color: $header_color;
+                                        padding: 0 25px;
+                                        box-sizing: border-box;
+  &.active                            { display: block;
+  }
+  input                               { background-color: transparent;
+                                        border: none;
+                                        color: #fff;
+                                        width: 80%;
+                                        @include input-placeholder { color: $meta_color; @include font; }
+                                        @include no-focus-border;
+  }
+  a                                   { float: right;
+  }
+  .fa-search                          { margin-right: 5px;
+                                        color: #fff;
+  }
+}

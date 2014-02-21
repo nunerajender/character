@@ -1,11 +1,11 @@
-<%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
-  <div class='row'>
+<div class='chr-form-small'>
+  <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
     <% @generic_form_fields.each do |name| %>
-      <%= f.input name, wrapper_class: 'small-12 columns' %>
+      <%= f.input name %>
     <% end %>
-  </div>
 
-  <% if @object.class.fields.keys.include? '_position' %>
-    <%= f.input :_position, as: :hidden %>
+    <% if @object.class.fields.keys.include? '_position' %>
+      <%= f.input :_position, as: :hidden %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

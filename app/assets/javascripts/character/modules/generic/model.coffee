@@ -93,7 +93,7 @@
       reset: reset
       remove: remove
       success: (response) -> callback?(response)
-      error: (collection, response, options) -> chr.execute('showError', response)
+      error: (collection, response, options) -> chr.execute('error', response)
 
 
   fetchNextPage: (callback) ->

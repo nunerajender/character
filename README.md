@@ -3,29 +3,38 @@
 
 ## Setup new project (Rails 4)
 
-  rails new ProjectName -T -O
+    rails new ProjectName -T -O
 
 Add gems to the ```Gemfile```:
 
-  # ORM
-  gem 'mongoid', github: 'mongoid/mongoid'
-  gem 'bson_ext'
+    # ORM
+    gem 'mongoid', github: 'mongoid/mongoid'
+    gem 'bson_ext'
 
-  # File uploader
-  gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
-  gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
+    # File uploader
+    gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
+    gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
 
-  # Character
-  gem 'character', github: 'slate-studio/character'
+    # Character
+    gem 'character', github: 'slate-studio/character'
 
 Run bundle and run generators:
 
-  bundle ; rails g mongoid:config ; rails g character:install
+    bundle ; rails g mongoid:config ; rails g character:install
 
 Start development server and open website in a browser.
 
 
-## Character development notes
+### TODO
+
+* check list pagination
+* no page refresh on login
+* hotkeys
+* hide errors when update is succesful: as an option we can close the details view on save
+* remove form send when enter key hit
+
+
+### Tools
 
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
@@ -40,9 +49,3 @@ Start development server and open website in a browser.
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
 * On item actions support: http://github.hubspot.com/tether/docs/welcome/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
-
-# TODO:
-
-* hide errors when update is succesful: as an option we can close the details view on save
-* remove form send when enter key hit
-*

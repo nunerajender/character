@@ -1,15 +1,14 @@
-#= require_self
-#= require ./categories
 
 @Character.Blog ||= {}
 
 chr.blogPosts = (opts) ->
   moduleOpts =
-    menuIcon:     'quote-left'
+    menuIcon:     'rss'
     menuTitle:    'Posts'
     listItem:
-      titleField: 'title'
-      metaField:  'subtitle'
+      titleField:     'title'
+      metaField:      'updated_ago'
+      thumbField: 'chr_thumbnail_url'
     modelName:    'Character-Blog-Post'
     listSearch:   true
     listScopes:
@@ -30,7 +29,7 @@ chr.blogPosts = (opts) ->
   $ ->
     getSubtitleValue = ->
       # TODO: add case when image is posted first or nothing is posted
-      $('.chr-blog-post-body').children().first().text()
+      $('.blog-post .content').children().first().text()
 
     $(document).on 'chr-posts-details-content.rendered', (e, $content) ->
       $subtitleField = $('#character_blog_post_subtitle')

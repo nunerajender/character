@@ -1,0 +1,86 @@
+//---------------------------------------------------------
+// SETTINGS
+//---------------------------------------------------------
+
+.chr-content.settings                 {
+  .chr-layout .left                   { width: 25%;
+  }
+  .chr-layout .right                  { width: 75%;
+  }
+  .chr-list-item                      {
+    a                                 { height: 60px - 20px * 2;
+    }
+    &:before                          { margin: 15px 25px 0 0;
+    }
+  }
+}
+
+// ADMINS
+.chr-details-content.admins           { @include font;
+  form                                { padding: 60px;
+                                        max-width: 540px;
+                                        margin: 0 auto;
+  }
+
+  .admin                              { border-bottom: 1px solid #edeff1;
+                                        margin-left: 62px + 20px;
+    input                             { color: #414d64;
+                                        font-size: 24px;
+                                        font-weight: $font_semi_bold;
+                                        padding: 25px 0;
+                                        border: none;
+                                        @include no-focus-border;
+                                        @include input-placeholder { color: #cbd0d3; }
+                                        width: 100%;
+                                        padding-left: 37px;
+                                        box-sizing: border-box;
+    }
+  }
+
+  .picture                            { float: left;
+                                        margin-top: 10px;
+                                        margin-left: -80px;
+                                        display: inline-block;
+                                        width: 62px;
+                                        height: 62px;
+    img                               { border-radius: 31px;
+
+    }
+  }
+
+  a:hover .fa                         { color: #414d64;
+  }
+
+  .fa                                 { color: #d1d6e0;
+                                        font-size: 22px;
+                                        padding: 33px 20px 0 0;
+                                        position: absolute;
+  }
+}
+
+// CATEGORIES
+.chr-details-content.blog_categories  {
+  .fa                                 { color: #d1d6e0;
+                                        font-size: 22px;
+                                        padding: 21px 20px 0 0;
+                                        position: absolute;
+  }
+  a:hover .fa                         { color: #414d64;
+  }
+  .category                           {
+    input                             { padding-left: 37px;
+                                        padding-right: 37px;
+                                        margin-bottom: 0;
+                                        box-sizing: border-box;
+    }
+  }
+  .action_sort                        { position: relative;
+                                        float: right;
+                                        margin-right: -40px;
+                                        left: -45px;
+                                        padding: 21px 0px;
+                                        cursor: pointer;
+    &:hover                           { color: #414d64;
+    }
+  }
+}

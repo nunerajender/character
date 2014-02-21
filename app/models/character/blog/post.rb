@@ -4,6 +4,7 @@ class Character::Blog::Post
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Search
+  include ActionView::Helpers::DateHelper
 
   # attributes
   field :title
@@ -11,7 +12,7 @@ class Character::Blog::Post
   mount_uploader :featured_image, Character::Blog::FeaturedImageUploader
   field :published_at, type: Date
   field :published,    type: Boolean, default: false
-  field :subtitle,  default: ''
+  field :subtitle, default: ''
   field :keywords, default: ''
 
   # relations
@@ -30,7 +31,16 @@ class Character::Blog::Post
   index({ slug: 1 })
   index({ published: 1, date: -1 })
 
+  # helpers
   def has_featured_image?
     not ( featured_image.to_s.ends_with?('_old_') or featured_image.to_s.empty? )
+  end
+
+  def chr_thumbnail_url
+    has_featured_image? ? featured_image.chr_list_thumbnail.url : ''
+  end
+
+  def updated_ago
+    "updated #{time_ago_in_words(updated_at)} ago"
   end
 end

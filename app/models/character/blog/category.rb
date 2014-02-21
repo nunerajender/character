@@ -3,10 +3,11 @@ class Character::Blog::Category
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::Attributes::Dynamic # required to remove users using _delete field
 
   # attributes
   field :title
-  field :_position, type: Float, default: 0.0
+  field :_position, type: Float, default: ->{ (Character::Blog::Category.all.first.try(:_position) || 1000) + 10 }
 
   # relations
   has_many :posts, class_name: 'Character::Blog::Post'

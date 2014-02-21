@@ -1,191 +1,35 @@
-//= require character_editor
+//= require normalize
+//= require font-awesome
 
-@import "font-awesome";
-@import "compass/css3";
-@import "foundation";
+$primary_color:          #12a0ce!default;
+$secondary_color:        #1fc776!default;
 
-// Character Settings =====================================
+$menu_color:             #414d64!default;
+$menu_border_color:      #4b5872!default;
+$menu_active_color:      #28344d!default;
+$menu_icon_color:        #8b97ad!default;
 
-$chr-secondary-bg-color: #fafafa;
-$chr-border-color: #f1f1f1;
+$header_color:           $primary_color;
+$header_border_color:    #108cb5!default;
+$list_color:             #edf1f5!default;
+$list_border_color:      #d1d6e0!default;
+$list_item_color:        #fafbfc!default;
+$list_item_active_color: #ffffff!default;
+$list_item_meta_color:   #8c9092!default;
+$meta_color:             #97e4f4!default;
 
-$chr-menu-width: 100px;
-$chr-menu-divider-color: #222;
-$chr-menu-bg-color: #111;
-$chr-menu-item-color: #ccc;
-$chr-menu-item-active-color: #fff;
+$font_regular:   400!default;
+$font_semi_bold: 600!default;
+$font_bold:      700!default;
 
-$chr-settings-header-height: 68px;
-$chr-settings-header-color: #777;
-$chr-settings-list-item-active-color: #222;
+@import "character/_mixins";
+@import "character/_menu";
+@import "character/_layout";
+@import "character/_login";
+@import "character/_buttons";
+@import "character/_search";
+@import "character/_form";
+@import "character/_settings";
+@import "character/_error";
 
-$chr-list-bg-color: $chr-secondary-bg-color;
-$chr-list-header-height: 68px;
-
-$chr-list-item-height: 68px;
-$chr-list-item-active-bg: #f5f5f5;
-$chr-list-item-title-color: #666;
-$chr-list-item-meta-color: #999;
-$chr-list-item-active-title-color: #333;
-$chr-list-item-active-meta-color: #555;
-
-$chr-action-color: #666;
-$chr-action-save-height: 68px;
-
-// Awkward
-
-$chr-list-header-dropdown-color: $dropdown-button-pip-color-alt;
-
-// Helpers ================================================
-
-@mixin position($left, $top, $right, $bottom, $z-index: 0) {
-                                        position: absolute;
-                                        left: $left;
-                                        top: $top;
-                                        right: $right;
-                                        bottom: $bottom;
-                                        z-index: $z-index;
-}
-
-@mixin scrollable                     { overflow: hidden;
-                                        overflow-y: auto;
-}
-
-// Character Layout =======================================
-
-// this makes no bouncing effect when scrolling
-html                                  { overflow: hidden;
-}
-
-// override Foundations default relative position
-body                                  { position: inherit;
-}
-
-// hiding template for Safari
-template                              { display: none;
-}
-
-.logo                                 { background-position: 50% 50%;
-                                        background-repeat: no-repeat no-repeat;
-}
-
-.chr-login                            { position: fixed;
-                                        width: 100%;
-                                        height: 100%;
-                                        background-size: cover;
-                                        background-repeat: no-repeat;
-                                        background-position: center center;
-                                        background-attachment: fixed;
-
-  .icon-user                          { margin-right: .3em;
-  }
-
-  .browserid_login                    { @include button-base;
-                                        @include button-size;
-                                        @include button-style($success-color, 10px, false);
-                                        position: absolute;
-                                        top: 1rem;
-                                        right: 1rem;
-                                        font-size: 1.5em;
-    span                              { opacity: .5;
-    }
-  }
-}
-
-.chr-content                          { position: absolute;
-                                        left: 100px;
-                                        top: 0;
-                                        bottom: 0;
-                                        right: 0;
-                                        z-index: 2;
-}
-
-
-.chr-menu nav                         { position: absolute;
-                                        width: $chr-menu-width;
-                                        height: 100%;
-                                        z-index: 1;
-                                        background-color: $chr-menu-bg-color;
-                                        text-align: center;
-  img                                 { margin: 16px 0;
-                                        width: 36px;
-                                        height: 36px;
-                                        border-radius: 18px;
-  }
-
-  ul                                  { @extend .no-bullet;
-                                        border-bottom: 1px solid $chr-menu-divider-color;
-  }
-
-  a                                   { display: block;
-                                        width: 100px;
-                                        height: 74px;
-                                        border-top: 1px solid $chr-menu-divider-color;
-                                        color: $chr-menu-item-color;
-                                        font-weight: 600;
-                                        font-size: 0.7em;
-    &:hover i                         { opacity: 1;
-    }
-
-    &.active                          { background-color: $chr-menu-divider-color;
-                                        color: $chr-menu-item-active-color;
-      i                               { opacity: 1;
-      }
-    }
-  }
-
-  & > a                               { position: absolute;
-                                        bottom: 0;
-                                        left: 0;
-  }
-
-  i                                   { display: block;
-                                        font-size: 2em;
-                                        opacity: 0.4;
-                                        margin-bottom: .2em;
-                                        margin-top: .6em;
-  }
-}
-
-.chr-action,
-.chr-actions a                        { color: $chr-action-color;
-                                        font-size: 12px;
-  &.active,
-  &:hover                             { text-decoration: underline;
-  }
-}
-
-.chr-action:hover                     { text-decoration: none;
-                                        color: $chr-action-color;
-  .lb                                 { text-decoration: underline;
-  }
-}
-
-.chr-action-pin                       { margin-left: 5px;
-                                        margin-right: 4px;
-  &:before                            { content: '\00B7';
-                                        font-size: 17px;
-                                        color: $chr-action-color;
-  }
-}
-
-.chr-action-save                      { position: absolute; top: 0; right: 0;
-                                        color: $chr-action-color;
-                                        line-height: $chr-action-save-height;
-                                        padding: 0 1.5em;
-  &.disabled                          { color: lighten($chr-action-color, 30%);
-  }
-}
-
-.chr-error-modal                      { @extend .reveal-modal;
-                                        padding: 0;
-  a.close-reveal-modal                { right: 30px;
-                                        color: #fff;
-                                        font-size:1.6em;
-  }
-}
-
-@import "./character/generic";
-@import "./character/settings";
-@import "./character/blog";
-@import "./character/helpers";
+@import "character_editor";

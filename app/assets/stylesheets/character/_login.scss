@@ -1,0 +1,43 @@
+//---------------------------------------------------------
+// LOGIN
+//---------------------------------------------------------
+
+@mixin login-button                   { color: #fff;
+                                        display: block;
+                                        width: 200px;
+                                        border: 2px solid #fff;
+                                        padding: 10px 0;
+                                        border-radius: 4px;
+                                        font-weight: $font_bold;
+                                        text-align: center;
+                                        opacity: .7;
+  &:hover                             { opacity: 1;
+  }
+}
+
+.chr-login                            { @include font;
+                                        position: fixed;
+                                        width: 100%;
+                                        height: 100%;
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                        background-position: center center;
+                                        background-attachment: fixed;
+  .browserid_login                    { position: absolute;
+                                        top: 20px;
+                                        right: 20px;
+                                        @include login-button;
+  }
+}
+
+.chr-no-access                        { @include font;
+                                        color: #fff;
+                                        max-width: 400px;
+                                        margin: 50px auto;
+                                        text-align: center;
+  .browserid_logout                   { @include login-button;
+                                        margin: 50px auto;
+  }
+  h2                                  { margin-bottom: 0;
+  }
+}

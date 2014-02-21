@@ -1,42 +1,11 @@
 //= require normalize
 
-$base_color: #333332!default;
-$base_font: Georgia!default;
-$header_font: "Myriad Pro", Verdana, sans-serif!default;
+$base_color:  #333332;
+$base_font:   'Georgia';
+$code_font:   'Monaco', 'Courier New', 'Courier', 'monospace';
+$header_font: 'Myriad Pro', 'Verdana', 'sans-serif';
 
-// generic
+@import "_layout";
 
-.blog-post-link                       { text-decoration: none;
-                                        color: $base_color;
-}
-
-.blog-index, .blog-post               { font-family: $base_font;
-                                        color: $base_color;
-                                        max-width: 700px;
-                                        margin: 0 auto;
-                                        padding: 10px;
-                                        -webkit-font-smoothing: antialiased;
-}
-
-// index
-
-.blog-index .item h3                  { font-family: $header_font; font-size: 26px;
-                                        margin-bottom: 0;
-}
-
-.blog-index .item p                   { font-size: 18px; line-height: 1.5;
-                                        margin: 0 0 2em;
-}
-
-// post
-
-.blog-post h1                         { font-family: $header_font; font-size: 3em;
-                                        margin-bottom: 0;
-}
-
-.blog-post h3                         { font-size: 36px; font-weight: 400; font-style: italic; line-height: 1.2;
-                                        margin: 10px 0 20px;
-}
-
-.blog-post p                          { font-size: 22px; line-height: 1.4;
+.blog-post                            { @import "_typography";
 }

@@ -138,12 +138,8 @@ class Character::ApiController < ActionController::Base
   # process serialized form, object attributes are in the namespace
   def update
     @object = model_class.find(params[:id])
-    @form_action_url = form_action_url(@object)
-
     @object.assign_attributes( permit_params(form_attributes_namespace) )
-
-    # render text: permit_params(form_attributes_namespace)
-    # return
+    @form_action_url = form_action_url(@object)
 
     if character_instance.before_save
       instance_exec &character_instance.before_save

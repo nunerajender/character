@@ -1,6 +1,5 @@
 # frontend assets
 require 'compass-rails'
-require 'foundation-rails'
 require 'font-awesome-rails'
 require 'jquery-ui-rails'
 require 'underscore-rails'

@@ -30,7 +30,7 @@ chr.flatPages = (opts) ->
     listReorder:  true
     listItem:
       titleField: 'title'
-      metaField:  'path'
+      metaField:  'updated_ago'
   _(moduleOpts).extend(opts)
 
   chr.genericModule('Page', moduleOpts)
@@ -43,10 +43,11 @@ chr.flatPages = (opts) ->
 chr.settingsAdmins = ->
   chr.settingsModule('Admins')
 
-chr.settingsBlog = ->
+chr.settingsBlog = (titleMenu = 'Blog') ->
   chr.settingsModule 'Blog Settings',
-    titleMenu: 'Blog'
+    titleMenu: titleMenu
 
-chr.settingsBlogCategories = ->
+chr.settingsBlogCategories = (titleMenu = 'Categories') ->
   chr.settingsModule 'Blog Categories',
+    titleMenu: titleMenu
     detailsViewClass: Character.Blog.CategoriesView

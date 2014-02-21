@@ -18,13 +18,13 @@
 Admin Settings:
   Logo:
     type: string
-    description: Logo image for the character instance.
+    description: Company logo
     default_value: 'character/character.jpg'
 
   Login Background:
     type: file
-    description: Image used as background on login page.
-    default_value: 'http://images.nationalgeographic.com/exposure/core_media/ngphoto/image/68263_0_1040x660.jpg'
+    description: Background for login page
+    default_value: ''
 
 # END
 
@@ -33,22 +33,22 @@ Admin Settings:
 Blog Settings:
   Domain:
     type: string
-    description: Domain of the website where blog lives.
-    default_value: www.my-domain.com
+    description: Website domain
+    default_value: www.blog.com
 
   Title:
     type: string
-    description: Shown for blog index page in browser title.
-    default_value: My Blog Title
+    description: Blog title
+    default_value: Blog
 
   Description:
     type: text
-    description: Indexed by Google and is shown in search results.
-    default_value: My Blog two-three sentences description. What is this all about.
+    description: Blog description for search engines
+    default_value: 'This is default blog description, please update it.'
 
   Keywords:
     type: string
-    description: Split keywords by comma. They are used by Google and other search engines.
-    default_value: 'web, blog, internet'
+    description: Keywords split by comma
+    default_value: ''
 
 # END

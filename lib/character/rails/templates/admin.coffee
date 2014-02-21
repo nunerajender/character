@@ -8,4 +8,5 @@ chr.flatPages()
 # Settings Modules ========================================
 
 chr.settingsBlog()
+chr.settingsBlogCategories()
 chr.settingsAdmins()

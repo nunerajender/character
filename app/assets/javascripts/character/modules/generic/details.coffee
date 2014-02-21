@@ -4,15 +4,18 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.DetailsHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<span id=details_title class='title'></span><span class='chr-actions'><i class='chr-action-pin'></i><a id=action_delete>Delete</a></span>
-                <div id=details_meta class='meta'></div>
-                <a id='action_save' class='chr-action-save'><span class='save'>Save</span></a>"
+  template: -> "<button id=save class=save title='Save changes'>Save</button>
+                <div id=details_title class=title></div>
+                <a id=delete class=delete href='#' title='Delete this item'>
+                  <i class='fa fa-trash-o'></i>
+                </a>
+                <span id=details_meta class=meta></span>"
 
   ui:
     title:        '#details_title'
     meta:         '#details_meta'
-    actionSave:   '#action_save'
-    actionDelete: '#action_delete'
+    actionSave:   '#save'
+    actionDelete: '#delete'
 
   initialize: ->
     if @model
@@ -22,15 +25,16 @@
     if @model
       title = @model.getTitle()
       updatedFromNow = moment(@model.get('updated_at')).fromNow()
-      @ui.meta.html("Updated #{ updatedFromNow }")
+      @ui.meta.html("updated #{ updatedFromNow }")
     else
       title = @options.title
 
     @ui.title.html(title)
 
     if not @options.deletable
-      @ui.actionDelete.hide().prev().hide()
+      @ui.actionDelete.hide()
 
+  # TODO: update this method
   updateState: (state) ->
     if @ui
       if state == 'saving'
@@ -48,9 +52,9 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.DetailsLayout = Backbone.Marionette.Layout.extend
-  className: 'chr-module-generic-details'
-  template: -> "<header id=details_header class='chr-module-generic-details-header'></header>
-                <div id=details_content class='chr-module-generic-details-content'></div>"
+  className: 'chr-details'
+  template: -> "<header id=details_header class='chr-details-header'></header>
+                <section id=details_content class='chr-details-content'></section>"
 
   regions:
     header: '#details_header'
@@ -71,8 +75,7 @@
 
     @header.show(@headerView)
 
-    if @model
-      @$el.addClass('edit')
+    if @model then @$el.addClass('update')
 
     $.ajax
       type: 'get'
@@ -80,7 +83,7 @@
       success: (data) =>
         @renderContent(data)
       error: (xhr, ajaxOptions, thrownError) =>
-        chr.execute('showError', xhr)
+        chr.execute('error', xhr)
 
   renderContent: (html) ->
     if @ui
@@ -89,15 +92,15 @@
       @ui.form = @ui.content.find('form.simple_form')
 
       if @ui.form.length
-        chr.execute('startDetailsFormPlugins', @ui.form)
+        chr.execute('startFormPlugins', @ui.form)
 
-      $(document).trigger("chr-generic-details-content.rendered", [ @ui.content ])
+      $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
       @afterContentRendered?()
 
   events:
-    'click #action_save':   'onSave'
-    'click #action_delete': 'onDelete'
+    'click #save':   'onSave'
+    'click #delete': 'onDelete'
 
   onSave: ->
     if @ui.form.length
@@ -114,7 +117,7 @@
           @headerView.updateState('saving')
           return true
         error: (xhr) =>
-          chr.execute('showError', xhr)
+          chr.execute('error', xhr)
           @headerView.updateState()
         success: (responseText, statusText, xhr, $form) =>
           @headerView.updateState()
@@ -139,14 +142,14 @@
       @close()
       @model.destroy
         success: =>
-          @router.navigate(chr.path)
+          @router.navigate(chr.currentPath)
         error: (model, response, options) ->
-          chr.execute('showError', response)
+          chr.execute('error', response)
     return false
 
   onClose: ->
     if @ui
       if @ui.form
-        chr.execute('stopDetailsFormPlugins', @ui.form)
-      $(document).trigger("chr-generic-details-content.closed", [ @ui.content ])
+        chr.execute('stopFormPlugins', @ui.form)
+      $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
