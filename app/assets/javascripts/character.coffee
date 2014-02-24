@@ -50,4 +50,3 @@ chr.settingsBlog = (titleMenu = 'Blog') ->
 chr.settingsBlogCategories = (titleMenu = 'Categories') ->
   chr.settingsModule 'Blog Categories',
     titleMenu: titleMenu
-    detailsViewClass: Character.Blog.CategoriesView

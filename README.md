@@ -27,11 +27,14 @@ Start development server and open website in a browser.
 
 ### TODO
 
-* check list pagination
-* no page refresh on login
-* hotkeys
-* hide errors when update is succesful: as an option we can close the details view on save
-* remove form send when enter key hit
+* elements: dropdown for scopes;
+* blog: new post (or not yet published post) takes 90% of screen (fullscreen mode);
+* images app, which is integrated with blog and editor;
+* remove form send when enter key hit;
+* forms: hide errors when update is succesful; as an option we can close the details view on save;
+* hotkeys: character and editor;
+* no page refresh on login;
+* posterous posting options via email (https://posthaven.com/);
 
 
 ### Tools
