@@ -37,3 +37,15 @@
   &:-ms-input-placeholder             { @content; }
   &::-webkit-input-placeholder        { @content; }
 }
+
+@mixin triangle($dir, $size, $color)  { display: inline-block;
+                                        width: 0px;
+                                        height: 0px;
+                                        border-style: solid;
+                                        content: '';
+  @if ( $dir == "down" )              { border-width: $size $size 0 $size;
+                                        border-color:  $color transparent transparent transparent;
+  } @else                             { border-width: 0 $size $size $size;
+                                        border-color: transparent transparent $color transparent;
+  }
+}

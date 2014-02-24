@@ -11,21 +11,20 @@
                 </aside>
                 <a id=list_search_show class=search title='Search' href='#'><i class='fa fa-search'></i></a>
                 <a id=new class=new title='Create new item' href='#'><i class='fa fa-plus'></i></a>
-                <div id=list_title class=title></div>"
-                #<ul id='scopes' class='f-dropdown' data-dropdown-content></ul>
+                <div class=scope><span id=list_title class=title></span></div>"
 
   ui:
     title:         '#list_title'
     search:        '#list_search'
     searchInput:   '#list_search input'
     searchShow:    '#list_search_show'
-    scopes:        '#scopes'
     newAction:     '#new'
 
   events:
     'click #list_search_hide':  'hideSearch'
     'click #list_search_show':  'showSearch'
     'keyup #list_search input': 'onKeyup'
+    'click #list_title':        'toggleScopesMenu'
 
   onKeyup: (e) ->
     if @searchTypeTimeout
@@ -85,24 +84,28 @@
     @addScopesDropdown()
 
   addScopesDropdown: ->
-    if @scopes and _(@scopes).keys().length > 0 and not @ui.title.hasClass('dropdown')
-      @ui.title.addClass('dropdown').attr('data-dropdown', 'scopes')
+    if @scopes and _(@scopes).keys().length > 0
+      if not @ui.scopes
+        @ui.scopes = $('<ul />')
+        @ui.scopes.append """<li><a href='#{ @path }'>#{ @options.listTitle }</a></li>"""
 
-      @ui.scopes.append """<li>
-                             <a href='#{ @path }'>#{ @options.listTitle }</a>
-                           </li>"""
+        _.each @scopes, (scope, key) =>
+          @ui.scopes.append """<li><a href='#{ @path }/#{ scope.slug }'>#{ scope.title }</a></li>"""
 
-      _.each @scopes, (scope, key) =>
-        @ui.scopes.append """<li>
-                               <a href='#{ @path }/#{ scope.slug }'>#{ scope.title }</a>
-                             </li>"""
+        @ui.title.after(@ui.scopes).addClass('dropdown')
 
-      #$(document).foundation('dropdown', 'init')
+      # update active scope link
+      currentScopeTitle = @ui.title.html()
+      @ui.scopes.find('a').each (i, el) ->
+        if $(el).html() == currentScopeTitle then $(el).addClass('active') else $(el).removeClass('active')
+
+      # hide scopes menu
+      @ui.scopes.removeClass 'show'
+
+  toggleScopesMenu: ->
+    @ui.scopes.toggleClass 'show'
 
   onClose: ->
-    #if @ui.title.hasClass('dropdown')
-    #  $(document).foundation('dropdown', 'off')
-
 
 #
 # Marionette.js Item View Documentation
