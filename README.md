@@ -28,7 +28,6 @@ Start development server and open website in a browser.
 ### TODO
 
 * images app, which is integrated with blog and editor;
-* remove form send when enter key hit;
 * forms: hide errors when update is succesful; as an option we can close the details view on save;
 * hotkeys: character and editor;
 * no page refresh on login;
