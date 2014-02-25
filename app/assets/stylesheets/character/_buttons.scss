@@ -50,3 +50,19 @@ a                                     { text-decoration: none;
   &.active:before                     { color: $list_item_meta_color;
   }
 }
+
+.chr-list .ui-sortable .chr-list-item {
+  a                                   {
+    &:before                          { font-family: FontAwesome;
+                                        content: "\f142";
+                                        float: left;
+                                        font-size: 20px;
+                                        color: #e0e3ea;
+                                        margin: 12px 0px 0 -15px;
+    }
+    &:hover                           {
+      &:before                        { color: $list_item_meta_color;
+      }
+    }
+  }
+}
