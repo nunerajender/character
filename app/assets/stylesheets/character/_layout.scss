@@ -61,9 +61,10 @@ b, strong                             { font-weight: $font_bold;
                                         color: $meta_color;
   }
 
-  a                                   { color: $meta_color;
+  a                                   { opacity: .7;
+                                        color: #fff;
                                         cursor: pointer;
-    &:hover                           { color: #fff;
+    &:hover                           { opacity: 1;
     }
   }
 }

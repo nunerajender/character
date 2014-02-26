@@ -28,6 +28,11 @@ Start development server and open website in a browser.
 ### TODO
 
 * images app, which is integrated with blog and editor;
+  http://5minutenpause.com/blog/2013/09/04/multiple-file-upload-with-jquery-rails-4-and-paperclip/
+  http://blueimp.github.io/jQuery-File-Upload/basic-plus.html
+  https://github.com/blueimp/jQuery-File-Upload
+  http://tympanus.net/Development/ProgressButtonStyles/
+  http://tympanus.net/Development/FullscreenOverlayStyles/index5.html
 * forms: hide errors when update is succesful; as an option we can close the details view on save;
 * hotkeys: character and editor;
 * no page refresh on login;

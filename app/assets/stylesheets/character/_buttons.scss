@@ -20,20 +20,27 @@ a                                     { text-decoration: none;
 
 .chr-list-header .new,
 .chr-list-header .search,
+.chr-details-header .close,
 .chr-details-header .save             { float: right;
 }
 
 .chr-list-header                      {
-  .new, .search                       { margin-left: 10px;
+  .new, .search                       { margin-left: 23px;
   }
 }
 
 .chr-details-header .save             { margin-top: -5px;
 }
+.chr-details-header .close            { margin-top: 2px;
+                                        margin-left: 20px;
+}
 
 .chr-details.update                   {
   .chr-details-header                 { padding: 12px 25px;
     .save                             { margin-top: 7px;
+    }
+    .close                            { margin-top: 14px;
+                                        margin-left: 20px;
     }
   }
 }

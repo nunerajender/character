@@ -40,9 +40,16 @@ chr.blogPosts = (opts) ->
       if not $content.parent().hasClass 'update'
         $('#details').addClass('fullscreen')
 
+      # featured image upload
+      $('#blog_post_featured_image_upload').on 'click', (e) ->
+        alert 'kuku'
+
     $(document).on 'chr-posts-details-content.closed', (e, $content) ->
       # disable subtitle update
       $('.chr-blog-post-body').off 'keyup'
 
       # disable fullscreen mode
       $('#details').removeClass('fullscreen')
+
+      # featured image upload
+      $('#blog_post_featured_image_upload').off 'click'

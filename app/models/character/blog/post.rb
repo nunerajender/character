@@ -9,9 +9,9 @@ class Character::Blog::Post
   # attributes
   field :title
   field :body_html
-  mount_uploader :featured_image, Character::Blog::FeaturedImageUploader
-  field :published_at, type: Date
-  field :published,    type: Boolean, default: false
+  field :featured_image, type: Hash, default: { 'url' => '', 'chr_thumbnail_url' => '' }
+  field :published_at,   type: Date
+  field :published,      type: Boolean, default: false
   field :subtitle, default: ''
   field :keywords, default: ''
 
@@ -32,12 +32,8 @@ class Character::Blog::Post
   index({ published: 1, date: -1 })
 
   # helpers
-  def has_featured_image?
-    not ( featured_image.to_s.ends_with?('_old_') or featured_image.to_s.empty? )
-  end
-
   def chr_thumbnail_url
-    has_featured_image? ? featured_image.chr_list_thumbnail.url : ''
+    featured_image['chr_thumbnail_url']
   end
 
   def updated_ago

@@ -5,12 +5,12 @@
 #
 @Character.Generic.ListHeaderView = Backbone.Marionette.ItemView.extend
   template: -> "<aside id=list_search class=chr-list-search>
-                  <i class='fa fa-search'></i>
+                  <i class='chr-icon icon-search icon-flip'></i>
                   <input type=search placeholder='Search...' />
-                  <a id=list_search_hide href='#'><i class='fa fa-times'></i></a>
+                  <a id=list_search_hide href='#'><i class='chr-icon icon-close'></i></a>
                 </aside>
-                <a id=list_search_show class=search title='Search' href='#'><i class='fa fa-search'></i></a>
-                <a id=new class=new title='Create new item' href='#'><i class='fa fa-plus'></i></a>
+                <a id=list_search_show class=search title='Search' href='#'><i class='chr-icon icon-search'></i></a>
+                <a id=new class=new title='Create new item' href='#'><i class='chr-icon icon-plus'></i></a>
                 <div class=scope><span id=list_title class=title></span></div>"
 
   ui:

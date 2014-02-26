@@ -3,6 +3,7 @@
 #= require ./modules/generic/module
 #= require ./modules/settings/module
 #= require ./modules/blog/module
+#= require ./modules/images/module
 
 @Character ||= {}
 @Character.Plugins ||= {}

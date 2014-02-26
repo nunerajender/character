@@ -1,0 +1,21 @@
+
+
+.chr-icon                             { background-size: contain;
+                                        background-repeat: no-repeat;
+                                        background-position: top left;
+                                        display: inline-block;
+                                        width: 20px;
+                                        height: 20px;
+  &.icon-flip                         { -webkit-transform:scaleX(-1);
+                                        -moz-transform:scaleX(-1);
+                                        -ms-transform:scaleX(-1);
+                                        -o-transform:scaleX(-1);
+                                        transform:scaleX(-1);
+  }
+  &.icon-search                       { background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.999 19.999" enable-background="new 0 0 19.999 19.999" xml:space="preserve"><path fill="#fff" d="M19.706,18.292l-7.106-7.106C13.476,10.018,14,8.572,14,7c0-3.866-3.134-7-7-7S0,3.134,0,7c0,3.866,3.134,7,7,7c1.572,0,3.018-0.525,4.186-1.399l7.106,7.106c0.181,0.181,0.431,0.293,0.707,0.293c0.552,0,1-0.448,1-1C19.999,18.723,19.887,18.473,19.706,18.292z M6.999,11.999c-2.761,0-5-2.239-5-5s2.239-5,5-5s5,2.239,5,5S9.761,11.999,6.999,11.999z"/></svg>');
+  }
+  &.icon-plus                         { background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path fill="#fff" d="M19,9h-8V1c0-0.552-0.448-1-1-1S9,0.448,9,1v8H1c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1h8v8c0,0.552,0.448,1,1,1 s1-0.448,1-1v-8h8c0.552,0,1-0.448,1-1C20,9.448,19.552,9,19,9z"/></svg>');
+  }
+  &.icon-close                        { background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path fill="#fff" d="M19.79,18.293L11.498,10l8.293-8.293l0,0C19.971,1.526,20.083,1.276,20.083,1c0-0.552-0.448-1-1-1c-0.276,0-0.526,0.112-0.707,0.293l-8.293,8.293L1.79,0.293l0,0C1.609,0.112,1.359,0,1.083,0c-0.552,0-1,0.448-1,1c0,0.276,0.112,0.526,0.293,0.707L8.669,10l-8.293,8.293C0.195,18.474,0.083,18.724,0.083,19c0,0.552,0.448,1,1,1c0.276,0,0.526-0.112,0.707-0.293l0,0l8.293-8.293l8.293,8.293C18.557,19.888,18.807,20,19.083,20c0.552,0,1-0.448,1-1C20.083,18.724,19.971,18.474,19.79,18.293L19.79,18.293z"/></svg>');
+  }
+}

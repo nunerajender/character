@@ -9,6 +9,7 @@
                                         background-color: $header_color;
                                         padding: 0 25px;
                                         box-sizing: border-box;
+                                        z-index: 1;
   &.active                            { display: block;
   }
   input                               { background-color: transparent;
@@ -17,6 +18,10 @@
                                         width: 80%;
                                         @include input-placeholder { color: $meta_color; @include font; }
                                         @include no-focus-border;
+                                        position: relative;
+                                        top: -4px;
+                                        font-size: 14px;
+                                        margin-left: 5px;
   }
   a                                   { float: right;
   }

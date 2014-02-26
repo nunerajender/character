@@ -1,17 +1,7 @@
 <div class='chr-form-small'>
   <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
 
-    <% if @object.has_featured_image? %>
-      <div class='input image-upload'>
-        <label class='text'>Featured image</label>
-        <%= image_tag @object.featured_image.chr_list_thumbnail.url %>
-        <%= f.input :featured_image, label: false, as: :file %>
-        <%= f.input :remove_featured_image, as: :boolean, label: 'Remove featured image' %>
-      </div>
-    <% else %>
-      <%= f.input :featured_image, as: :file %>
-    <% end %>
-
+    <%= f.input :featured_image %>
     <%= f.input :keywords, placeholder: 'Split with comma' %>
 
     <% if Character::Blog::Category.all.size > 0 %>
@@ -30,6 +20,9 @@
 </div>
 
 <article class='blog-post'>
+  <figure>
+    <button id='blog_post_featured_image_upload'>Image</button>
+  </figure>
 
   <header>
     <h1 class='character-editor'
