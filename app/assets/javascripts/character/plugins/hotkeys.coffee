@@ -16,4 +16,4 @@ $ ->
 
       # close details view
       else
-        window?.closeDetailsView()
+        window.closeDetailsView?()
