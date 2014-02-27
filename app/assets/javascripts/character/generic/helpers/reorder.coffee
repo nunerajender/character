@@ -2,10 +2,10 @@
 # REORDER LIST ITEMS
 # ---------------------------------------------------------
 
-@Character.Generic.Plugins.stopReorder = (el) ->
+@Character.Generic.Helpers.stopReorder = (el) ->
   el.sortable( "destroy" )
 
-@Character.Generic.Plugins.startReorder = (el, collection) ->
+@Character.Generic.Helpers.startReorder = (el, collection) ->
   updateModelPosition = ($el, position) ->
     object_id = $el.attr('data-id')
     object    = collection.get(object_id)

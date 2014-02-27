@@ -88,7 +88,7 @@
       success: (data) =>
         @renderContent(data)
       error: (xhr, ajaxOptions, thrownError) =>
-        chr.execute('error', xhr)
+        chr.execute('showError', xhr)
 
   renderContent: (html) ->
     if @ui
@@ -97,8 +97,8 @@
       @ui.form = @ui.content.find('form.simple_form')
 
       if @ui.form.length
-        # start form related plugins
-        Character.Generic.Plugins.startDateSelect(@ui.form)
+        # start form related helpers
+        Character.Generic.Helpers.startDateSelect(@ui.form)
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -111,7 +111,7 @@
 
   onSave: ->
     if @ui.form.length
-      Character.Generic.Plugins.serializeDataInputs(@ui.content, @ui.form)
+      Character.Generic.Helpers.serializeDataInputs(@ui.content, @ui.form)
 
       # include fields to properly update item in a list and sort
       params = _.clone(@collection.options.constantParams)
@@ -124,7 +124,7 @@
           @headerView.updateState('saving')
           return true
         error: (xhr) =>
-          chr.execute('error', xhr)
+          chr.execute('showError', xhr)
           @headerView.updateState()
         success: (responseText, statusText, xhr, $form) =>
           @headerView.updateState()
@@ -159,8 +159,8 @@
     if @ui
 
       if @ui.form
-        # Stop form related plugins
-        Character.Generic.Plugins.stopDateSelect(@ui.form)
+        # Stop form related helpers
+        Character.Generic.Helpers.stopDateSelect(@ui.form)
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])

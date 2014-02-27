@@ -185,7 +185,7 @@
       @selectItem(@selected_item_id)
 
     if @collection.options.reorder
-      Character.Generic.Plugins.startReorder(@$el, @collection)
+      Character.Generic.Helpers.startReorder(@$el, @collection)
 
   selectItem: (id) ->
     @selected_item_id = id
@@ -198,4 +198,4 @@
 
   onClose: ->
     if @collection.options.reorder
-      Character.Generic.Plugins.stopReorder(@$el)
+      Character.Generic.Helpers.stopReorder(@$el)

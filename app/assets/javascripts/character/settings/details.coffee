@@ -23,7 +23,7 @@
       type: 'get'
       url:  "#{ chr.options.url }/settings/#{ @options.moduleName }"
       success: (data) => @renderContent(data)
-      error: (xhr) => chr.execute('error', xhr)
+      error: (xhr) => chr.execute('showError', xhr)
 
 
   renderContent: (html) ->
@@ -58,7 +58,7 @@
           @updateState('Saving')
           return true
         error: (xhr) =>
-          chr.execute('error', xhr)
+          chr.execute('showError', xhr)
           @updateState()
         success: (responseText, statusText, xhr, $form) =>
           if @onSaved

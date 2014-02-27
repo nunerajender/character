@@ -5,7 +5,7 @@
 #= require_tree ./helpers
 
 @Character.Generic ||= {}
-@Character.Generic.Plugins ||= {}
+@Character.Generic.Helpers ||= {}
 
 #
 # Marionette.js Router Documentation

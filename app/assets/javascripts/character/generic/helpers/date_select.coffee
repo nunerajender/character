@@ -2,7 +2,7 @@
 # DATE SELECT (rails fix)
 # ---------------------------------------------------------
 
-@Character.Generic.Plugins.startDateSelect = ($form)->
+@Character.Generic.Helpers.startDateSelect = ($form)->
   updateDateValue = ($wrapper, $input) ->
     selects = $wrapper.children('select')
 
@@ -41,5 +41,5 @@
     updateDateValue($parentDiv, $hiddenInput)
 
 
-@Character.Generic.Plugins.stopDateSelect = ($form) ->
+@Character.Generic.Helpers.stopDateSelect = ($form) ->
   $form.find('.chr-date-dmy select').off 'change'

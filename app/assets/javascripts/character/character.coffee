@@ -1,5 +1,4 @@
 #= require_self
-#= require_tree ./plugins
 #= require ./generic/module
 #= require ./settings/module
 #= require ./blog/module
@@ -50,8 +49,33 @@ characterApi =
       chr.content.show(layout)
       $('#content').attr('class', "chr-content #{name}")
 
-  error: (response) ->
-    Character.Plugins.error(response)
+  showError: (response) ->
+    $container = $('#character')
+    $overlay   = $('#chr_error')
+
+    if $overlay.length == 0
+      $container.after """<div id='chr_error' class='chr-error'>
+                            <div id='chr_error_message' class='chr-error-message'></div>
+                            <button id='chr_error_close' type='button' class='chr-error-close'>
+                              <i class='chr-icon icon-close'></i>
+                            </button>
+                          </div>"""
+      $overlay = $('#chr_error')
+
+    entityMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '/': '&#x2F;' }
+    escapeHtml = (string) -> String(string).replace(/[&<>"'\/]/g, (s) -> entityMap[s])
+    responseText = escapeHtml(response.responseText)
+
+    $('#chr_error_message').html """<iframe srcdoc='#{ responseText }'></iframe>"""
+    $('#chr_error_close').on 'click', -> chr.execute('hideError')
+
+    $overlay.addClass('open')
+    $container.addClass('error-open')
+
+  hideError: ->
+    $('#chr_error').removeClass('open')
+    $('#character').removeClass('error-open')
+    $('#chr_error_close').off 'click'
 
 _.map characterApi, (method, name) => @chr.commands.setHandler(name, method)
 
@@ -81,7 +105,7 @@ _.map characterApi, (method, name) => @chr.commands.setHandler(name, method)
 
       # close error dialog
       else if $('#chr_error').hasClass 'open'
-        window.hideErrorOverlay()
+        chr.execute('hideError')
 
       # close details view
       else
