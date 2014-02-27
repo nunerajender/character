@@ -8,6 +8,7 @@ $ ->
   $container.after """<div id='chr_images' class='chr-images'>
                         <div class='chr-images-dialog'>
                           <header class='chr-images-header'>
+                            <span class='title'>Images</span>
                             <button id='chr_images_close' type='button' class='chr-images-close'><i class='chr-icon icon-close-alt'></i></button>
                           </header>
                           <section class='chr-images-grid'></section>
