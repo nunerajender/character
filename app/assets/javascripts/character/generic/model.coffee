@@ -1,5 +1,4 @@
 
-
 #
 # Backbone.js Model Documentation
 # http://backbonejs.org/#Model

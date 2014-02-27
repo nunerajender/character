@@ -2,8 +2,10 @@
 #= require ./model
 #= require ./layout
 #= require ./details
+#= require_tree ./helpers
 
 @Character.Generic ||= {}
+@Character.Generic.Plugins ||= {}
 
 #
 # Marionette.js Router Documentation

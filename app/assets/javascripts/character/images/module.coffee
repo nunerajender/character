@@ -1,4 +1,7 @@
 
+
+@Character.Image ||= {}
+
 @Character.Plugins.images = ->
   window.showImagesOverlay()
 

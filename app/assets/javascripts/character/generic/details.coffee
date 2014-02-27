@@ -97,7 +97,8 @@
       @ui.form = @ui.content.find('form.simple_form')
 
       if @ui.form.length
-        chr.execute('startFormPlugins', @ui.form)
+        # start form related plugins
+        Character.Generic.Plugins.startDateSelect(@ui.form)
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -110,7 +111,7 @@
 
   onSave: ->
     if @ui.form.length
-      chr.execute('beforeFormSubmit', @ui)
+      Character.Generic.Plugins.serializeDataInputs(@ui.content, @ui.form)
 
       # include fields to properly update item in a list and sort
       params = _.clone(@collection.options.constantParams)
@@ -156,7 +157,10 @@
   onClose: ->
     window.closeDetailsView = null
     if @ui
+
       if @ui.form
-        chr.execute('stopFormPlugins', @ui.form)
+        # Stop form related plugins
+        Character.Generic.Plugins.stopDateSelect(@ui.form)
+
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])

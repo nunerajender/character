@@ -1,11 +1,11 @@
 # ---------------------------------------------------------
-# LIST REORDER
+# REORDER LIST ITEMS
 # ---------------------------------------------------------
 
-@Character.Plugins.stopListReorder = (el) ->
+@Character.Generic.Plugins.stopReorder = (el) ->
   el.sortable( "destroy" )
 
-@Character.Plugins.startListReorder = (el, collection) ->
+@Character.Generic.Plugins.startReorder = (el, collection) ->
   updateModelPosition = ($el, position) ->
     object_id = $el.attr('data-id')
     object    = collection.get(object_id)

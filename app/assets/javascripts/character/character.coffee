@@ -1,9 +1,9 @@
 #= require_self
 #= require_tree ./plugins
-#= require ./modules/generic/module
-#= require ./modules/settings/module
-#= require ./modules/blog/module
-#= require ./modules/images/module
+#= require ./generic/module
+#= require ./settings/module
+#= require ./blog/module
+#= require ./images/module
 
 @Character ||= {}
 @Character.Plugins ||= {}
@@ -26,17 +26,6 @@ _.mixin(_.str.exports())
 @chr.addRegions
   menu:    '#menu'
   content: '#content'
-
-@chr.on "initialize:before", (@options) -> # maps options!
-
-@chr.on "initialize:after", ->
-  if Backbone.history
-    Backbone.history.start()
-
-  if location.hash == ''
-    location.hash = $('#menu a:eq(1)').attr('href')
-
-  $(document).bind 'drop dragover', (e) -> e.preventDefault()
 
 characterApi =
   addMenuItem: (path, icon, title) ->
@@ -64,15 +53,36 @@ characterApi =
   error: (response) ->
     Character.Plugins.error(response)
 
-  beforeFormSubmit: (ui) ->
-    Character.Plugins.serializeDataInputs(ui.content, ui.form)
-
-  startFormPlugins: ($form) ->
-    Character.Plugins.startDateSelect($form)
-    Character.Plugins.startDrawerHelper($form)
-
-  stopFormPlugins: ($form) ->
-    Character.Plugins.stopDateSelect($form)
-    Character.Plugins.stopDrawerHelper($form)
-
 _.map characterApi, (method, name) => @chr.commands.setHandler(name, method)
+
+
+@chr.on "initialize:before", (@options) -> # maps options!
+
+
+@chr.on "initialize:after", ->
+  # start history
+  if Backbone.history
+    Backbone.history.start()
+
+  # jump to first menu item when login to admin
+  if location.hash == ''
+    location.hash = $('#menu a:eq(1)').attr('href')
+
+  # disable default action for browser when drop image to window
+  $(document).bind 'drop dragover', (e) -> e.preventDefault()
+
+  # hotkeys
+  $(document).on 'keyup', (e) ->
+    # ESC
+    if e.keyCode == 27
+      # close images dialog
+      if $('#chr_images').hasClass 'open'
+        window.hideImagesOverlay()
+
+      # close error dialog
+      else if $('#chr_error').hasClass 'open'
+        window.hideErrorOverlay()
+
+      # close details view
+      else
+        window.closeDetailsView?()
