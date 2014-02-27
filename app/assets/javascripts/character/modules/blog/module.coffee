@@ -32,8 +32,8 @@ chr.blogPosts = (opts) ->
     $(document).on 'chr-posts-details-content.rendered', (e, $content) ->
       # auto scroll to hide secondary info
       $detailsView = $('#details_content')
-      $content.find('.blog-post').css { 'min-height': $detailsView.height() - 84 - 66 }
-      $detailsView.scrollTop(153)
+      $content.find('.blog-post').css { 'min-height': $(window).height() }
+      $detailsView.scrollTop($content.find('form').innerHeight())
 
       # update subtitle to be first passage of the body text
       $subtitleField = $('#character_blog_post_subtitle')
