@@ -33,6 +33,7 @@ a                                     { text-decoration: none;
 }
 .chr-details-header .close            { margin-top: 2px;
                                         margin-left: 20px;
+                                        display: none; // close details view button
 }
 
 .chr-details.update                   {

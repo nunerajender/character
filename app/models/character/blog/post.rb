@@ -32,8 +32,12 @@ class Character::Blog::Post
   index({ published: 1, date: -1 })
 
   # helpers
-  def chr_thumbnail_url
-    featured_image['chr_thumbnail_url']
+  def featured_image_url
+    featured_image ? featured_image['url'] : ''
+  end
+
+  def chr_featured_thumbnail_url
+    featured_image ? featured_image['chr_thumbnail_url'] : ''
   end
 
   def updated_ago

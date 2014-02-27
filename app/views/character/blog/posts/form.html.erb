@@ -1,7 +1,11 @@
 <div class='chr-form-small'>
   <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
 
-    <%= f.input :featured_image %>
+    <%= f.simple_fields_for :featured_image do |ff| %>
+      <%= ff.input :url, as: :hidden, input_html: { value: @object.featured_image_url } %>
+      <%= ff.input :chr_thumbnail_url, as: :hidden, input_html: { value: @object.chr_featured_thumbnail_url } %>
+    <% end %>
+
     <%= f.input :keywords, placeholder: 'Split with comma' %>
 
     <% if Character::Blog::Category.all.size > 0 %>
@@ -19,11 +23,10 @@
   <% end %>
 </div>
 
-<article class='blog-post'>
-  <figure>
-    <button id='blog_post_featured_image_upload'>Image</button>
-  </figure>
+<figure class='character-image-upload'
+        data-image-url='<%= @object.featured_image["url"] %>'></figure>
 
+<article class='blog-post'>
   <header>
     <h1 class='character-editor'
         data-input-name='character_blog_post[title]'

@@ -36,6 +36,8 @@ _.mixin(_.str.exports())
   if location.hash == ''
     location.hash = $('#menu a:eq(1)').attr('href')
 
+  $(document).bind 'drop dragover', (e) -> e.preventDefault()
+
 characterApi =
   addMenuItem: (path, icon, title) ->
     $menuItems = $('#menu_items')
@@ -67,12 +69,10 @@ characterApi =
 
   startFormPlugins: ($form) ->
     Character.Plugins.startDateSelect($form)
-    Character.Plugins.startImagesHelper($form)
     Character.Plugins.startDrawerHelper($form)
 
   stopFormPlugins: ($form) ->
     Character.Plugins.stopDateSelect($form)
-    Character.Plugins.stopImagesHelper($form)
     Character.Plugins.stopDrawerHelper($form)
 
 _.map characterApi, (method, name) => @chr.commands.setHandler(name, method)

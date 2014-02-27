@@ -6,7 +6,7 @@ chr.blogPosts = (opts) ->
     listItem:
       titleField:   'title'
       metaField:    'updated_ago'
-      thumbField:   'chr_thumbnail_url'
+      thumbField:   'chr_featured_thumbnail_url'
     modelName:      'Character-Blog-Post'
     listSearch:     true
     listScopes:
@@ -30,6 +30,11 @@ chr.blogPosts = (opts) ->
       $('.blog-post .content').children().first().text()
 
     $(document).on 'chr-posts-details-content.rendered', (e, $content) ->
+      # auto scroll to hide secondary info
+      $detailsView = $('#details_content')
+      $content.find('.blog-post').css { 'min-height': $detailsView.height() - 84 - 66 }
+      $detailsView.scrollTop(153)
+
       # update subtitle to be first passage of the body text
       $subtitleField = $('#character_blog_post_subtitle')
       $subtitleField.val(getSubtitleValue())
@@ -41,8 +46,26 @@ chr.blogPosts = (opts) ->
         $('#details').addClass('fullscreen')
 
       # featured image upload
-      $('#blog_post_featured_image_upload').on 'click', (e) ->
-        alert 'kuku'
+      $content.find('.character-image-upload').each (index, el) ->
+        # check if data-image-url attribute set
+        imageUrl = $(el).attr('data-image-url')
+        if imageUrl != ''
+          $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
+
+        $(el).fileupload
+          url: '/admin/Character-Image'
+          paramName: 'character_image[image]'
+          dataType:  'json'
+          dropZone:  $(el)
+          done: (e, data) ->
+            imageUrl = data.result.image.image.url
+            thumbUrl = data.result.image.image.chr_thumb_small.url
+
+            $('#character_blog_post_featured_image_url').val(imageUrl)
+            $('#character_blog_post_featured_image_chr_thumbnail_url').val(thumbUrl)
+
+            $(el).find('img').remove()
+            $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
 
     $(document).on 'chr-posts-details-content.closed', (e, $content) ->
       # disable subtitle update
@@ -52,4 +75,4 @@ chr.blogPosts = (opts) ->
       $('#details').removeClass('fullscreen')
 
       # featured image upload
-      $('#blog_post_featured_image_upload').off 'click'
+      $content.find('.character-image-upload').fileupload('destroy')
