@@ -33,6 +33,9 @@ Start development server and open website in a browser.
   https://github.com/blueimp/jQuery-File-Upload
   http://tympanus.net/Development/ProgressButtonStyles/
   http://tympanus.net/Development/FullscreenOverlayStyles/index5.html
+* image upload spin;
+* hover effect while image drop;
+* jump to edit after create new;
 * forms: hide errors when update is succesful; as an option we can close the details view on save;
 * hotkeys: character and editor;
 * no page refresh on login;
@@ -42,7 +45,6 @@ Start development server and open website in a browser.
 ### Tools
 
 * Figure out if we can build apps easier on a top of http://harpjs.com
-* Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms
 * Nice autocompletion tool: http://ichord.github.io/At.js/
 * For touch devices (no need for jQuery UI): http://pornel.net/slip/
@@ -51,6 +53,7 @@ Start development server and open website in a browser.
 * For user input: https://github.com/loadfive/knwl.js
 * Touch guestures: http://eightmedia.github.io/hammer.js/
 * Spinner: http://viduthalai1947.github.io/loaderskit/
+* Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
 * On item actions support: http://github.hubspot.com/tether/docs/welcome/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide

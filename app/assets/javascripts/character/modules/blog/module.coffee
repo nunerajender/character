@@ -52,6 +52,10 @@ chr.blogPosts = (opts) ->
         if imageUrl != ''
           $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
 
+        # image select on click
+        $(el).on 'click', (e) -> Character.Plugins.images()
+
+        # drag'n'drop upload
         $(el).fileupload
           url: '/admin/Character-Image'
           paramName: 'character_image[image]'
@@ -75,4 +79,4 @@ chr.blogPosts = (opts) ->
       $('#details').removeClass('fullscreen')
 
       # featured image upload
-      $content.find('.character-image-upload').fileupload('destroy')
+      $content.find('.character-image-upload').off('click').fileupload('destroy')

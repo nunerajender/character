@@ -7,13 +7,19 @@
   escapeHtml = (string) -> String(string).replace(/[&<>"'\/]/g, (s) -> entityMap[s])
   responseText = escapeHtml(response.responseText)
 
-  $('#error_message').html("""<iframe srcdoc='#{ responseText }'></iframe>""")
+  $('#chr_error_message').html("""<iframe srcdoc='#{ responseText }'></iframe>""")
   window.showErrorOverlay()
 
 $ ->
   $container = $('#character')
-  $overlay   = $('#error')
-  $closeBttn = $('#error_close')
+
+  $container.after """<div id='chr_error' class='chr-error'>
+                        <div id='chr_error_message' class='chr-error-message'></div>
+                        <button id='chr_error_close' type='button' class='chr-error-close'><i class='chr-icon icon-close'></i></button>
+                      </div>"""
+
+  $overlay   = $('#chr_error')
+  $closeBttn = $('#chr_error_close')
 
   window.showErrorOverlay = ->
     $overlay.addClass('open')
@@ -23,4 +29,4 @@ $ ->
     $overlay.removeClass('open')
     $container.removeClass('error-open')
 
-  $closeBttn.on 'click', -> window.hideErrorOverlay()
+  $closeBttn.on 'click', window.hideErrorOverlay

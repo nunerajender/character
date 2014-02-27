@@ -39,10 +39,9 @@
                                         color: #fff;
                                         top: 0;
                                         right: 0;
-                                        font-size: 32px;
                                         font-weight: 300;
                                         border: none;
-                                        padding: 0 0 8px;
+                                        padding: 3px 0 0;
                                         @include no-focus-border;
   &:hover                             { background-color: darken(#C52F24, 5%);
   }
