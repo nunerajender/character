@@ -5,7 +5,6 @@
 #= require ./images/module
 
 @Character ||= {}
-@Character.Plugins ||= {}
 
 _.mixin(_.str.exports())
 
@@ -26,7 +25,7 @@ _.mixin(_.str.exports())
   menu:    '#menu'
   content: '#content'
 
-characterApi =
+API =
   addMenuItem: (path, icon, title) ->
     $menuItems = $('#menu_items')
     $menuItems.append """<li>
@@ -67,17 +66,21 @@ characterApi =
     responseText = escapeHtml(response.responseText)
 
     $('#chr_error_message').html """<iframe srcdoc='#{ responseText }'></iframe>"""
-    $('#chr_error_close').on 'click', -> chr.execute('hideError')
+    $('#chr_error_close').on 'click', -> chr.execute('closeError')
 
     $overlay.addClass('open')
     $container.addClass('error-open')
 
-  hideError: ->
+  closeError: ->
     $('#chr_error').removeClass('open')
     $('#character').removeClass('error-open')
     $('#chr_error_close').off 'click'
 
-_.map characterApi, (method, name) => @chr.commands.setHandler(name, method)
+  closeDetailsView: ->
+    Backbone.history.navigate('#/' + chr.currentPath, { trigger: true })
+
+
+_.map API, (method, name) => @chr.commands.setHandler(name, method)
 
 
 @chr.on "initialize:before", (@options) -> # maps options!
@@ -99,14 +102,11 @@ _.map characterApi, (method, name) => @chr.commands.setHandler(name, method)
   $(document).on 'keyup', (e) ->
     # ESC
     if e.keyCode == 27
-      # close images dialog
       if $('#chr_images').hasClass 'open'
-        window.hideImagesOverlay()
+        chr.execute('closeImages')
 
-      # close error dialog
       else if $('#chr_error').hasClass 'open'
-        chr.execute('hideError')
+        chr.execute('closeError')
 
-      # close details view
       else
-        window.closeDetailsView?()
+        chr.execute('closeDetailsView')

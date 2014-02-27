@@ -53,7 +53,7 @@ chr.blogPosts = (opts) ->
           $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
 
         # image select on click
-        $(el).on 'click', (e) -> Character.Plugins.images()
+        $(el).on 'click', (e) -> chr.execute('showImages')
 
         # drag'n'drop upload
         $(el).fileupload

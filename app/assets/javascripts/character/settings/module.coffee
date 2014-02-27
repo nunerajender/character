@@ -32,6 +32,7 @@ chr.module 'settings', (module) ->
     @module = @options.module
 
   index: ->
+    @module.layout.details.close()
     chr.execute('showModule', @module)
     chr.currentPath = "settings"
 

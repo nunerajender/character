@@ -70,8 +70,6 @@
     @DetailsHeaderView = @module.DetailsHeaderView
     @router            = @module.router
 
-    window.closeDetailsView = => @router.navigate('/' + chr.currentPath, { trigger: true })
-
   onRender: ->
     @headerView = new @DetailsHeaderView
       model:     @model
