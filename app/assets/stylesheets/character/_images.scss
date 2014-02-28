@@ -2,7 +2,7 @@
 // IMAGES
 //---------------------------------------------------------
 
-.character-image-upload               { border: 2px dashed $list_border_color;
+.character-image-upload               { border: 3px dashed $list_border_color;
                                         border-radius: 10px;
                                         height: 80px;
                                         margin: 20px auto 0;
@@ -16,17 +16,24 @@
                                         margin-top: 15px;
                                         margin-left: -25px;
   }
-                                        opacity: .5;
-  &:hover                             { opacity: 1;
+  &:hover                             { border-color: $secondary_color;
+    &:before                          { color: $secondary_color;
+    }
   }
 }
 
 .character-image                      { height: auto;
   img                                 { width: 100%;
+                                        display: block;
   }
-  &.character-image-upload            { border: none;
+  &.character-image-upload            { border: 3px solid #fff;
+                                        border-radius: 0;
                                         opacity: 1;
+                                        padding: 1px;
     &:before                          { content: '';
+    }
+    &:hover                           { border-color: $secondary_color;
+                                        @include single-transition(border-color, .2s);
     }
   }
 }
@@ -41,16 +48,29 @@
                                         left: 0;
                                         background-color: rgba(255,255,255, .7);
                                         z-index: 2;
+
   // effects
                                         visibility: hidden;
                                         opacity: 0;
+                                        @include single-transition(opacity, 0.2s);
+  &.open                              { visibility: visible;
+                                        opacity: 1;
+                                        @include single-transition(opacity, 0.4s);
+  }
+
+  // effects
+  .chr-images-dialog                  { visibility: hidden;
+                                        opacity: 0;
+                                        // TODO: refactor with compass
                                         -webkit-transform: scale(0.9);
                                         transform: scale(0.9);
                                         -webkit-transition: -webkit-transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
                                         transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+  }
 
-  &.open                              { visibility: visible;
+  &.open .chr-images-dialog           { visibility: visible;
                                         opacity: 1;
+                                        // TODO: refactor with compass
                                         -webkit-transform: scale(1);
                                         transform: scale(1);
                                         -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
@@ -125,5 +145,6 @@
   }
   li.selected                         { border-color: $secondary_color;
                                         box-shadow: inset 0 0 1px 1px #fff;
+                                        @include single-transition(border-color, .2s);
   }
 }

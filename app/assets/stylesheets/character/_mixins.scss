@@ -2,6 +2,9 @@
 // MIXINS
 //---------------------------------------------------------
 
+@import "compass/reset/utilities";
+@import "compass/css3/transition";
+
 @mixin font                           { font-family: 'Open Sans', sans-serif;
                                         font-weight: $font_regular;
 }
@@ -15,9 +18,6 @@
 @mixin scrollable                     { overflow: hidden;
                                         overflow-y: auto;
 }
-
-@import "compass/reset/utilities";
-
 
 @mixin reset-list                     { margin: 0;
                                         padding: 0;

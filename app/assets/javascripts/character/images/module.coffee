@@ -71,6 +71,7 @@
 
   show: (@callback, @multipleSelection) ->
     @$el.addClass('open')
+    $('#chr_images_grid li.selected').removeClass 'selected'
 
   hide: ->
     @$el.removeClass('open')
