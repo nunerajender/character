@@ -37,20 +37,23 @@
                     </header>
                     <section id=chr_images_grid class='chr-images-grid'></section>
                     <footer class='chr-images-footer'>
-                      <button id=chr_images_insert class='chr-image-button-insert'>Insert</button>
-                      <button id='chr_images_cancel'>Cancel</button>
+                      <button id=chr_images_insert class='button right'>Insert</button>
+                      <div class='button'>
+                        <input id=chr_images_upload class='chr-images-upload' type='file' name='character_image[image]' multiple='' />
+                        Upload files...
+                      </div>
                     </footer>
                   </div>"""
 
   ui:
     dialog:      '#chr_images_dialog'
+    uploadInput: '#chr_images_upload'
     listContent: '#chr_images_grid'
 
   regions:
     listContent: '#chr_images_grid'
 
   events:
-    'click #chr_images_cancel': 'hide'
     'click #chr_images_close':  'hide'
     'click #chr_images_insert': 'insert'
 
@@ -61,7 +64,7 @@
     @list = new Character.Images.ListView({ collection: @options.collection })
     @listContent.show(@list)
 
-    @ui.listContent.fileupload
+    @ui.uploadInput.fileupload
       url: '/admin/Character-Image'
       paramName: 'character_image[image]'
       dataType:  'json'

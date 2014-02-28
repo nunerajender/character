@@ -110,9 +110,11 @@
                                         box-sizing: border-box;
                                         background-color: #fff;
 
-  button                              { float: right;
-                                        margin-left: 10px;
-                                        background: transparent;
+  .right                              { float: right;
+  }
+
+  .button                             { background: transparent;
+                                        text-align: center;
                                         color: #9ca1ab;
                                         font-size: 12px;
                                         font-weight: $font_semi_bold;
@@ -120,10 +122,22 @@
                                         border-radius: 4px;
                                         width: 120px;
                                         padding: 6px 0;
+                                        box-sizing: border-box;
                                         @include no-focus-border;
-  }
-  button.chr-image-button-insert      { color: $secondary_color;
+                                        cursor: pointer;
+                                        position: relative;
+                                        overflow: hidden;
+    &:hover                           { color: $secondary_color;
                                         border-color: $secondary_color;
+    }
+  }
+
+  .chr-images-upload                  { @include position(0px, 0px, auto, auto);
+                                        width: 156px;
+                                        height: 34px;
+                                        //opacity: 0;
+                                        cursor: pointer;
+                                        padding-left: 120px;
   }
 }
 
@@ -142,9 +156,12 @@
                                         border: 3px solid #f9fafb;
                                         background-repeat: no-repeat;
                                         background-position: top left;
+    &:hover                           { border-color: $list_border_color;
+                                        box-shadow: inset 0 0 1px 1px #fff;
+    }
   }
   li.selected                         { border-color: $secondary_color;
                                         box-shadow: inset 0 0 1px 1px #fff;
-                                        @include single-transition(border-color, .2s);
+                                        @include single-transition(border-color, .4s);
   }
 }
