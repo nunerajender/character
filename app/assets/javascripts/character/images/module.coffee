@@ -30,7 +30,7 @@
   id:        'chr_images'
   className: 'chr-images'
 
-  template: -> """<div class='chr-images-dialog'>
+  template: -> """<div id=chr_images_dialog class='chr-images-dialog'>
                     <header class='chr-images-header'>
                       <span class='title'>Images</span>
                       <button id='chr_images_close' type='button' class='chr-images-close'><i class='chr-icon icon-close-alt'></i></button>
@@ -42,6 +42,10 @@
                     </footer>
                   </div>"""
 
+  ui:
+    dialog:      '#chr_images_dialog'
+    listContent: '#chr_images_grid'
+
   regions:
     listContent: '#chr_images_grid'
 
@@ -51,12 +55,22 @@
     'click #chr_images_insert': 'insert'
 
   onRender: ->
+    dialogWidth = Math.floor(($(window).width() - 322) / 176 ) * 176 + 20
+    @ui.dialog.css { 'margin-left': dialogWidth / -2, 'width': dialogWidth }
+
     @list = new Character.Images.ListView({ collection: @options.collection })
     @listContent.show(@list)
 
+    @ui.listContent.fileupload
+      url: '/admin/Character-Image'
+      paramName: 'character_image[image]'
+      dataType:  'json'
+      dropZone:  @ui.listContent
+      done: (e, data) => # TODO: prosess multiple file uploads here
+        @collection.add([data.result]) # TODO: fix sorting issue
+
   show: (@callback, @multipleSelection) ->
     @$el.addClass('open')
-    @options.collection.fetchPage(1)
 
   hide: ->
     @$el.removeClass('open')
@@ -77,6 +91,9 @@ chr.module 'images', (module) ->
     @collection = new Character.Generic.Collection()
     @collection.options =
       collectionUrl: "#{ chr.options.url }/Character-Image"
+    @collection.sortField = 'created_at'
+    @collection.sortDirection = 'desc'
+    @collection.fetchPage(1)
 
     @layout = new Character.Images.Layout({ collection: @collection })
     $('#character').after(@layout.render().$el)
