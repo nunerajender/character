@@ -102,11 +102,28 @@
                                         padding: 6px 0;
                                         @include no-focus-border;
   }
-  button.chr-image-button-select      { color: $secondary_color;
+  button.chr-image-button-insert      { color: $secondary_color;
                                         border-color: $secondary_color;
   }
 }
 
-.chr-images-grid                      {
-
+.chr-images-grid                      { @include position(0, 52px, 0, 72px);
+                                        overflow: hidden;
+                                        overflow-y: scroll;
+  ul                                  { @include reset-list;
+                                        padding: 10px;
+                                        display: inline-block;
+  }
+  li                                  { float: left;
+                                        cursor: pointer;
+                                        margin: 7px;
+                                        width: 156px;
+                                        height: 156px;
+                                        border: 3px solid #f9fafb;
+                                        background-repeat: no-repeat;
+                                        background-position: top left;
+  }
+  li.selected                         { border-color: $secondary_color;
+                                        box-shadow: inset 0 0 1px 1px #fff;
+  }
 }

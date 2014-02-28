@@ -47,7 +47,7 @@ Start development server and open website in a browser.
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms
 * Nice autocompletion tool: http://ichord.github.io/At.js/
-* For touch devices (no need for jQuery UI): http://pornel.net/slip/
+* For touch devices (no need for jQuery UI): http://pornel.net/slip/ http://pornel.net/slip/
 * Scrolling on iPad: http://iscrolljs.com/
 * Add to blog: https://github.com/jansepar/picturefill
 * For user input: https://github.com/loadfive/knwl.js
@@ -57,3 +57,4 @@ Start development server and open website in a browser.
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
 * On item actions support: http://github.hubspot.com/tether/docs/welcome/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
+* Email template: https://github.com/leemunroe/html-email-template

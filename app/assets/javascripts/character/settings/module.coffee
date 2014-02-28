@@ -59,7 +59,6 @@ chr.settingsModule = (title, options={}) ->
   chr.module "settings.#{options.moduleName}", ->
     @options = options
 
-
 #
 # Helpers
 #
@@ -119,3 +118,19 @@ $(document).on 'chr-blog_categories-details-content.closed', (e, $content) ->
   $list = $content.find('.sortable-list')
   if $list.length
     $list.sortable( "destroy" )
+
+
+# ---------------------------------------------------------
+# SETTINGS
+# ---------------------------------------------------------
+
+chr.settingsAdmins = ->
+  chr.settingsModule('Admins')
+
+chr.settingsBlog = (titleMenu = 'Blog') ->
+  chr.settingsModule 'Blog Settings',
+    titleMenu: titleMenu
+
+chr.settingsBlogCategories = (titleMenu = 'Categories') ->
+  chr.settingsModule 'Blog Categories',
+    titleMenu: titleMenu

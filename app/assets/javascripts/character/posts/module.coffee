@@ -1,3 +1,6 @@
+# ---------------------------------------------------------
+# BLOG POSTS
+# ---------------------------------------------------------
 
 chr.blogPosts = (opts) ->
   moduleOpts =
@@ -45,6 +48,13 @@ chr.blogPosts = (opts) ->
       if not $content.parent().hasClass 'update'
         $('#details').addClass('fullscreen')
 
+      updateFeaturedImage = ($el, imageUrl, thumbUrl) ->
+        $('#character_blog_post_featured_image_url').val(imageUrl)
+        $('#character_blog_post_featured_image_chr_thumbnail_url').val(thumbUrl)
+
+        $el.find('img').remove()
+        $el.addClass('character-image').append("<img src='#{ imageUrl }' />")
+
       # featured image upload
       $content.find('.character-image-upload').each (index, el) ->
         # check if data-image-url attribute set
@@ -52,8 +62,14 @@ chr.blogPosts = (opts) ->
         if imageUrl != ''
           $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
 
-        # image select on click
-        $(el).on 'click', (e) -> chr.execute('showImages')
+        # select from gallery on click
+        $(el).on 'click', (e) ->
+          chr.execute 'showImages', false, (images) ->
+            model = images[0]
+            if model
+              imageUrl = model.get('image').image.url
+              thumbUrl = model.get('image').image.chr_thumb_small.url
+              updateFeaturedImage($(el), imageUrl, thumbUrl)
 
         # drag'n'drop upload
         $(el).fileupload
@@ -64,12 +80,8 @@ chr.blogPosts = (opts) ->
           done: (e, data) ->
             imageUrl = data.result.image.image.url
             thumbUrl = data.result.image.image.chr_thumb_small.url
+            updateFeaturedImage($(el), imageUrl, thumbUrl)
 
-            $('#character_blog_post_featured_image_url').val(imageUrl)
-            $('#character_blog_post_featured_image_chr_thumbnail_url').val(thumbUrl)
-
-            $(el).find('img').remove()
-            $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
 
     $(document).on 'chr-posts-details-content.closed', (e, $content) ->
       # disable subtitle update
