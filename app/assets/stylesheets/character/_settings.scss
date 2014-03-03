@@ -33,7 +33,6 @@
                                         @include input-placeholder { color: #cbd0d3; }
                                         width: 100%;
                                         padding-left: 37px;
-                                        box-sizing: border-box;
     }
   }
 
@@ -71,7 +70,6 @@
     input                             { padding-left: 37px;
                                         padding-right: 37px;
                                         margin-bottom: 0;
-                                        box-sizing: border-box;
     }
   }
   .action_sort                        { position: relative;

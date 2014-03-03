@@ -49,7 +49,6 @@ b, strong                             { font-weight: $font_bold;
 
 .chr-list-header,
 .chr-details-header                   { background: $header_color;
-                                        box-sizing: border-box;
                                         height: 71px;
                                         border-bottom: 1px solid $header_border_color;
 
@@ -74,7 +73,7 @@ b, strong                             { font-weight: $font_bold;
                                         padding: 23px 25px 27px;
 }
 
-.chr-details-header                   { @include position(0, 0, 0, inherit);
+.chr-details-header                   { @include position(0, 0, 0, inherit, 3);
                                         padding: 23px 25px 27px;
 }
 
@@ -101,7 +100,7 @@ b, strong                             { font-weight: $font_bold;
   a                                   { background: $list_item_color;
                                         border-bottom: 1px solid $list_border_color;
                                         display: block;
-                                        height: 80px - 20px * 2;
+                                        height: 80px;
                                         padding: 20px 25px;
   }
 

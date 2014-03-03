@@ -59,7 +59,7 @@ chr.blogPosts = (opts) ->
       $content.find('.character-image-upload').each (index, el) ->
         # check if data-image-url attribute set
         imageUrl = $(el).attr('data-image-url')
-        if imageUrl != ''
+        if imageUrl and imageUrl != ''
           $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
 
         # select from gallery on click

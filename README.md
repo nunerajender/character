@@ -44,6 +44,9 @@ Start development server and open website in a browser.
 
 ### Tools
 
+* On item actions support: http://github.hubspot.com/tether/docs/welcome/
+
+
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms
 * Nice autocompletion tool: http://ichord.github.io/At.js/
@@ -55,6 +58,5 @@ Start development server and open website in a browser.
 * Spinner: http://viduthalai1947.github.io/loaderskit/
 * Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
-* On item actions support: http://github.hubspot.com/tether/docs/welcome/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
 * Email template: https://github.com/leemunroe/html-email-template
