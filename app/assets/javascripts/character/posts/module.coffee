@@ -2,8 +2,81 @@
 # BLOG POSTS
 # ---------------------------------------------------------
 
-chr.blogPosts = (opts) ->
+@Character.Posts = {}
+
+#
+# Marionette.js Layout Documentation
+# https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
+# character/generic/details.coffee
+@Character.Posts.DetailsLayout = Character.Generic.DetailsLayout.extend
+  updateFeaturedImage: (imageData) ->
+    imageUrl = imageData.image.url
+    thumbUrl = imageData.image.chr_thumb_small.url
+
+    @ui.featuredImageInput.val(imageUrl)
+    @ui.featuredThumbInput.val(thumbUrl)
+
+    @ui.featuredImageUploader.children('img').remove()
+    @ui.featuredImageUploader.addClass('character-image').append("<img src='#{ imageUrl }' />")
+
+  getSubtitleValue: ->
+    # TODO: add case when image is posted first or nothing is posted
+    @ui.postContent.children().first().text()
+
+  _bindSubtitleUpdate: ->
+    # update subtitle to be first passage of the body text
+    @ui.subtitleField.val(@getSubtitleValue())
+    @ui.postContent.on 'keyup', => @ui.subtitleField.val(@getSubtitleValue())
+
+  _toggleFullscreen: ->
+    # show fullscreen if post is not published
+    if not @ui.publishedCheckbox.is(':checked')
+      @$el.parent().addClass('fullscreen')
+
+  _hideForm: ->
+    @ui.content.find('.blog-post').css { 'min-height': $(window).height() }
+    @ui.content.scrollTop @ui.form.innerHeight()
+
+  _bindFeaturedImageUploader: ->
+    imageUrl = @ui.featuredImageUploader.attr('data-image-url')
+    if imageUrl and imageUrl != ''
+      @ui.featuredImageUploader.addClass('character-image').append("<img src='#{ imageUrl }' />")
+
+    @ui.featuredImageUploader.on 'click', (e) =>
+      chr.execute 'showImages', false, (images) =>
+        model = images[0]
+        if model
+          @updateFeaturedImage(model.get('image'))
+
+    @ui.featuredImageUploader.fileupload
+      url: '/admin/Character-Image'
+      paramName: 'character_image[image]'
+      dataType:  'json'
+      dropZone:  @ui.featuredImageUploader
+      done: (e, data) => @updateFeaturedImage(data.result.image)
+
+  afterRenderContent: ->
+    @ui.featuredImageUploader = $('#character_post_featured_image_uploader')
+    @ui.featuredImageInput    = $('#character_blog_post_featured_image_url')
+    @ui.featuredThumbInput    = $('#character_blog_post_featured_image_chr_thumbnail_url')
+    @ui.publishedCheckbox     = $('#character_blog_post_published')
+    @ui.subtitleField         = $('#character_blog_post_subtitle')
+    @ui.postContent           = @ui.content.find('.blog-post .content')
+
+    @_toggleFullscreen()
+    @_hideForm()
+    @_bindSubtitleUpdate()
+    @_bindFeaturedImageUploader()
+
+  afterOnClose: ->
+    @ui.postContent.off 'keyup'
+    @$el.parent().removeClass('fullscreen')
+    @ui.featuredImageUploader.off('click').fileupload('destroy')
+
+
+chr.postsModule = (opts) ->
   moduleOpts =
+    implementation: Character.Posts
     menuIcon:       'rss'
     menuTitle:      'Posts'
     listItem:
@@ -25,70 +98,3 @@ chr.blogPosts = (opts) ->
   _(moduleOpts).extend(opts)
 
   chr.genericModule('Post', moduleOpts)
-
-  # update subtitle value when blog post body changes
-  $ ->
-    getSubtitleValue = ->
-      # TODO: add case when image is posted first or nothing is posted
-      $('.blog-post .content').children().first().text()
-
-    $(document).on 'chr-posts-details-content.rendered', (e, $content) ->
-      # auto scroll to hide secondary info
-      $detailsView = $('#details_content')
-      $content.find('.blog-post').css { 'min-height': $(window).height() }
-      $detailsView.scrollTop($content.find('form').innerHeight())
-
-      # update subtitle to be first passage of the body text
-      $subtitleField = $('#character_blog_post_subtitle')
-      $subtitleField.val(getSubtitleValue())
-      $('.chr-blog-post-body').on 'keyup', ->
-        $subtitleField.val(getSubtitleValue())
-
-      # when new post or post not yet published show fullscreen mode
-      if not $content.parent().hasClass 'update'
-        $('#details').addClass('fullscreen')
-
-      updateFeaturedImage = ($el, imageUrl, thumbUrl) ->
-        $('#character_blog_post_featured_image_url').val(imageUrl)
-        $('#character_blog_post_featured_image_chr_thumbnail_url').val(thumbUrl)
-
-        $el.find('img').remove()
-        $el.addClass('character-image').append("<img src='#{ imageUrl }' />")
-
-      # featured image upload
-      $content.find('.character-image-upload').each (index, el) ->
-        # check if data-image-url attribute set
-        imageUrl = $(el).attr('data-image-url')
-        if imageUrl and imageUrl != ''
-          $(el).addClass('character-image').append("<img src='#{ imageUrl }' />")
-
-        # select from gallery on click
-        $(el).on 'click', (e) ->
-          chr.execute 'showImages', false, (images) ->
-            model = images[0]
-            if model
-              imageUrl = model.get('image').image.url
-              thumbUrl = model.get('image').image.chr_thumb_small.url
-              updateFeaturedImage($(el), imageUrl, thumbUrl)
-
-        # drag'n'drop upload
-        $(el).fileupload
-          url: '/admin/Character-Image'
-          paramName: 'character_image[image]'
-          dataType:  'json'
-          dropZone:  $(el)
-          done: (e, data) ->
-            imageUrl = data.result.image.image.url
-            thumbUrl = data.result.image.image.chr_thumb_small.url
-            updateFeaturedImage($(el), imageUrl, thumbUrl)
-
-
-    $(document).on 'chr-posts-details-content.closed', (e, $content) ->
-      # disable subtitle update
-      $('.chr-blog-post-body').off 'keyup'
-
-      # disable fullscreen mode
-      $('#details').removeClass('fullscreen')
-
-      # featured image upload
-      $content.find('.character-image-upload').off('click').fileupload('destroy')

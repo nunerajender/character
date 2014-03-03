@@ -8,7 +8,7 @@
   .chr-layout .right                  { width: 75%;
   }
   .chr-list-item                      {
-    a                                 { height: 60px - 20px * 2;
+    a                                 { height: 60px;
     }
     &:before                          { margin: 15px 25px 0 0;
     }
@@ -18,7 +18,7 @@
 // ADMINS
 .chr-details-content.admins           { @include font;
   form                                { padding: 60px;
-                                        max-width: 540px;
+                                        max-width: 600px;
                                         margin: 0 auto;
   }
 

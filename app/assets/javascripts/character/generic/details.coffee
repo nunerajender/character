@@ -90,6 +90,8 @@
 
   renderContent: (html) ->
     if @ui
+      @beforeRenderContent?()
+
       @ui.content.html(html)
 
       @ui.form = @ui.content.find('form.simple_form')
@@ -101,7 +103,7 @@
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
 
-      @afterContentRendered?()
+      @afterRenderContent?()
 
   events:
     'click #save':   'onSave'
@@ -109,6 +111,8 @@
 
   onSave: ->
     if @ui.form.length
+      @beforeOnSave?()
+
       Character.Generic.Helpers.serializeDataInputs(@ui.content, @ui.form)
 
       # include fields to properly update item in a list and sort
@@ -119,6 +123,7 @@
       @ui.form.ajaxSubmit
         data: params
         beforeSubmit: (arr, $form, options) =>
+          @beforeFormSubmit?(arr, $form, options)
           @headerView.updateState('saving')
           return true
         error: (xhr) =>
@@ -127,6 +132,7 @@
         success: (responseText, statusText, xhr, $form) =>
           @headerView.updateState()
           @updateModel(responseText)
+          @afterFormSubmitSuccess?(responseText, statusText, xhr, $form)
 
     return false
 
@@ -155,6 +161,7 @@
   onClose: ->
     window.closeDetailsView = null
     if @ui
+      @beforeOnClose?()
 
       if @ui.form
         # Stop form related helpers
@@ -162,3 +169,5 @@
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
+
+      @afterOnClose?()

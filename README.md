@@ -60,3 +60,15 @@ Start development server and open website in a browser.
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
 * Email template: https://github.com/leemunroe/html-email-template
+
+## API
+
+### Character.Generic.DetailsView
+
+- @beforeRenderContent()
+- @afterRenderContent()
+- @beforeOnSave()
+- @beforeFormSubmit(arr, $form, options)
+- @afterFormSubmitSuccess(responseText, statusText, xhr, $form)
+- @beforeOnClose()
+- @afterOnClose()

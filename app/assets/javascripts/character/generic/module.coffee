@@ -82,7 +82,7 @@ chr.genericModule = (name, options={}) ->
   options.modelName  ?= name
   options.modelSlug  ?= _.underscored(name)
 
-  options.implementation ?= Character.Generic
+  options.implementation ?= {}
 
   # list scopes
   if options.listScopes
@@ -116,7 +116,7 @@ chr.genericModule = (name, options={}) ->
 
   chr.module options.moduleName, (module) ->
 
-    module = _(module).extend(options.implementation)
+    module = _(module).extend(Character.Generic, options.implementation)
 
     module.on 'start', ->
 

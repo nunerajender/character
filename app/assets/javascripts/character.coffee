@@ -68,6 +68,9 @@ API =
       chr.content.show(layout)
       $('#content').attr('class', "chr-content #{name}")
 
+  closeDetailsView: ->
+    Backbone.history.navigate('#/' + chr.currentPath, { trigger: true })
+
   showError: (response) ->
     $container = $('#character')
     $overlay   = $('#chr_error')
@@ -95,10 +98,6 @@ API =
     $('#chr_error').removeClass('open')
     $('#character').removeClass('error-open')
     $('#chr_error_close').off 'click'
-
-  closeDetailsView: ->
-    Backbone.history.navigate('#/' + chr.currentPath, { trigger: true })
-
 
 _.map API, (method, name) => @chr.commands.setHandler(name, method)
 
