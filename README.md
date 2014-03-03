@@ -9,9 +9,6 @@ Add gems to the ```Gemfile```:
 
     # ORM
     gem 'mongoid', github: 'mongoid/mongoid'
-    gem 'bson_ext'
-
-    # File uploader
     gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
     gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
 

@@ -37,7 +37,7 @@
 
   <section class='character-editor content'
            data-input-name='character_blog_post[body_html]'
-           data-options="placeholder:'Type text here...';insertImages:true;targetBlanks:true;buttons:'bold italic underline anchor header1 header2 quote'"
+           data-options="placeholder:'Write your post';insertImages:true;targetBlanks:true;buttons:'bold italic underline anchor header1 header2 quote'"
   ><%= @object.body_html.try(:html_safe) %></section>
 
 </article>

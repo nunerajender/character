@@ -8,7 +8,7 @@ class Character::Blog::Post
 
   # attributes
   field :title
-  field :body_html
+  field :body_html, default: '<p>Write your post</p>'
   field :featured_image, type: Hash, default: { 'url' => '', 'chr_thumbnail_url' => '' }
   field :published_at,   type: Date
   field :published,      type: Boolean, default: false
