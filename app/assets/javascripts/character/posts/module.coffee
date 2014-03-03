@@ -29,9 +29,9 @@
     @ui.postContent.on 'keyup', => @ui.subtitleField.val(@getSubtitleValue())
 
   _toggleFullscreen: ->
-    # show fullscreen if post is not published
-    if not @ui.publishedCheckbox.is(':checked')
-      @$el.parent().addClass('fullscreen')
+    # TODO: show fullscreen when editor is activated for body
+    #if not @ui.publishedCheckbox.is(':checked')
+    #  @$el.parent().addClass('fullscreen')
 
   _hideForm: ->
     @ui.content.find('.blog-post').css { 'min-height': $(window).height() }
