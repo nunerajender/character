@@ -12,7 +12,7 @@ $header_font: "Myriad Pro", 'Verdana', 'sans-serif';
                                         max-width: 700px;
                                         margin: 0 auto;
                                         padding: 20px;
-                                        @import "posts/_typography";
+                                        @import "application/default/_typography";
 }
 
 .character-post-featured-image-upload { border: 3px dashed $list_border_color;

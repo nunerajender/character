@@ -23,7 +23,7 @@ module Character
         copy_file "admin.scss", "app/assets/stylesheets/admin.scss"
 
         insert_into_file  "app/assets/stylesheets/application.css",
-                          " *= require posts/default\n",
+                          " *= require application/default\n",
                           :after => " *= require_self\n"
       end
 

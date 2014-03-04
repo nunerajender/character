@@ -4,7 +4,9 @@
                                         color: $base_color;
 }
 
-.posts-index, .posts-show             { font-family: $base_font;
+.pages-show,
+.posts-index,
+.posts-show                           { font-family: $base_font;
                                         color: $base_color;
                                         max-width: 700px;
                                         margin: 0 auto;

@@ -5,7 +5,8 @@ $base_font:   'Georgia';
 $code_font:   'Monaco', 'Courier New', 'Courier', 'monospace';
 $header_font: 'Myriad Pro', 'Verdana', 'sans-serif';
 
-@import "_layout";
+@import "default/_layout";
 
-.posts-show                           { @import "_typography";
+.pages-show,
+.posts-show                           { @import "default/_typography";
 }
