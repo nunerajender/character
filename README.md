@@ -11,7 +11,8 @@
 * source view for pages and posts;
 * update tests;
 
-## Setup new (Rails 4)[#] project
+
+## Setup new [Rails 4](http://rubyonrails.org) project
 
     rails new ProjectName -T -O
 
@@ -27,7 +28,6 @@ Run bundle and run generators:
 
     bundle ; rails g mongoid:config ; rails g character:install
 
-Start development server and open website in a browser.
 
 ## Routes
 
@@ -60,11 +60,11 @@ Start development server and open website in a browser.
 
 ## API
 
-### (Character.Generic.DetailsView)[#] and (@Character.Settings.DetailsView)[#]
+### [Character.Generic.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/generic/details.coffee) and [@Character.Settings.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/settings/details.coffee)
 
 These are blank methods that could be overriden to extend view functionality.
 
-Example of usage: (character/posts/module.coffee)[#]
+Overriding ```Character.Generic.DetailsView``` example: [character/posts/module.coffee](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/posts/module.coffee)
 
 - @beforeRenderContent()
 - @afterRenderContent()
