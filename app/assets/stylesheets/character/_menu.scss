@@ -26,7 +26,7 @@
   .browserid_logout                   { padding: 0;
     &:before                          { content: 'Sign out';
                                         width: 90px;
-                                        height: 71px - 25px;
+                                        height: 71px;
                                         background: rgba(0,0,0, .75);
                                         color: #fff;
                                         font-weight: $font_semi_bold;

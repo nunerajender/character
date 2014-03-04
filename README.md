@@ -57,6 +57,7 @@ Example of usage: (character/posts/module.coffee)[#]
 
 * replace blog posts with just posts
 * auto save posts
+* optimize image size for posts
 * image uploading improvements, progressbar, on drop style
   http://tympanus.net/Development/ProgressButtonStyles/
 * jump to edit after create new;
