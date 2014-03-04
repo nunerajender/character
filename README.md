@@ -1,5 +1,16 @@
-# Character 0.9
+# Character 0.9-alpha
 
+### TODO
+
+* fix settings;
+* fix pages;
+* optimize image size for posts;
+* auto save posts;
+* save changes on cmd+s;
+* image uploading improvements, progressbar, on drop style, order;
+  http://tympanus.net/Development/ProgressButtonStyles/
+* forms: hide errors when update is succesful;
+* update tests;
 
 ## Setup new (Rails 4)[#] project
 
@@ -83,21 +94,9 @@ Example of usage: (character/posts/module.coffee)[#]
 * Email template: https://github.com/leemunroe/html-email-template
 * Dropdown and select box: http://github.hubspot.com/tether/docs/welcome/
 
-### TODO
+## Future Features
 
-
-
-* replace blog posts with just posts
-
-
-
-* auto save posts
-* optimize image size for posts
-* image uploading improvements, progressbar, on drop style
-  http://tympanus.net/Development/ProgressButtonStyles/
-* jump to edit after create new;
-* forms: hide errors when update is succesful; as an option we can close the details view on save;
-* hotkeys: character and editor;
+* preload forms on hover
+* remove blink when new object created
 * no page refresh on login;
-* update tests
 * posterous posting options via email (https://posthaven.com/)

@@ -37,7 +37,6 @@
     if not @options.deletable
       @ui.actionDelete.hide()
 
-  # TODO: update this method
   updateState: (state) ->
     if @ui
       if state == 'saving'
@@ -45,8 +44,9 @@
         @ui.actionSave.html 'Saving...'
       else
         setTimeout ( =>
-          @ui.actionSave.removeClass('disabled')
-          @ui.actionSave.html('Save')
+          # need these checks when create new object, view is recreated
+          @ui.actionSave.removeClass?('disabled')
+          @ui.actionSave.html?('Save')
         ), 500
 
 
@@ -68,7 +68,6 @@
   initialize: ->
     @module            = @options.module
     @DetailsHeaderView = @module.DetailsHeaderView
-    @router            = @module.router
 
   onRender: ->
     @headerView = new @DetailsHeaderView
@@ -97,7 +96,7 @@
       @ui.form = @ui.content.find('form.simple_form')
 
       if @ui.form.length
-        # start form related helpers
+        # form related helpers
         Character.Generic.Helpers.startDateSelect(@ui.form)
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
@@ -137,7 +136,7 @@
     return false
 
   updateModel: (resp) ->
-    # when response is a string, that means form with errors returned
+    # string means form errors returned
     if typeof(resp) == 'string'
       return @renderContent(resp)
 
@@ -146,14 +145,15 @@
       @model.set(resp)
       @collection.sort()
     else
-      @collection.fetchPage(1)
+      @collection.fetchPage 1, ->
+        Backbone.history.navigate("#/#{chr.currentPath}/edit/#{resp._id}", { trigger: true })
 
   onDelete: ->
-    if confirm("""Are you sure about deleting "#{ @model.getTitle() }"?""")
+    if confirm("""Delete "#{ @model.getTitle() }"?""")
       @close()
       @model.destroy
-        success: =>
-          @router.navigate(chr.currentPath)
+        success: ->
+          Backbone.history.navigate("#/#{chr.currentPath}", { trigger: true })
         error: (model, response, options) ->
           chr.execute('error', response)
     return false
@@ -164,7 +164,7 @@
       @beforeOnClose?()
 
       if @ui.form
-        # Stop form related helpers
+        # form related helpers
         Character.Generic.Helpers.stopDateSelect(@ui.form)
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
