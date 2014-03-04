@@ -34,8 +34,9 @@
     #  @$el.parent().addClass('fullscreen')
 
   _hideForm: ->
-    @ui.post.css { 'min-height': $(window).height() }
-    @ui.content.scrollTop @ui.form.innerHeight() + 1
+    editableAreaHeight = $(window).height() - 71 - @ui.featuredImageUploader.outerHeight(true)
+    @ui.post.css { 'min-height': editableAreaHeight }
+    @ui.content.scrollTop @ui.form.parent().outerHeight(true)
 
   _bindFeaturedImageUploader: ->
     imageUrl = @ui.featuredImageUploader.attr('data-image-url')

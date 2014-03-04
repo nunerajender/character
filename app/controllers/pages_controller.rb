@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   end
 
   def show
-    @object = Character::Page.find(path: params[:path])
+    @object = Character::Page.find_by(path: params[:path])
   end
 end

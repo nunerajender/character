@@ -3,7 +3,6 @@
 ### TODO
 
 * fix settings;
-* fix pages;
 * optimize image size for posts;
 * auto save posts;
 * save changes on cmd+s;

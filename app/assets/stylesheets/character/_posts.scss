@@ -36,6 +36,13 @@ $header_font: "Myriad Pro", 'Verdana', 'sans-serif';
   }
 }
 
+//---------------------------------------------------------
+// POST FORM
+//---------------------------------------------------------
+
+.posts .chr-form-scrolled-up          { padding-bottom: 60px;
+}
+
 .character_post_category_id           { float: left;
                                         margin-right: 10px;
 }
@@ -46,15 +53,6 @@ $header_font: "Myriad Pro", 'Verdana', 'sans-serif';
 
 .character_post_published             { float: right;
                                         margin-top: 22px;
-}
-
-.character .posts .chr-form-small     { background-color: #f7f7f7;
-                                        border-bottom: 1px solid $list_border_color;
-}
-
-.new_character_post,
-.edit_character_post                  { padding-top: 20px!important;
-                                        max-width: 700px!important;
 }
 
 //---------------------------------------------------------

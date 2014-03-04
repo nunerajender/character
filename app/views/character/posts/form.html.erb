@@ -1,4 +1,4 @@
-<div class='chr-form-small'>
+<div class='chr-form-small chr-form-scrolled-up'>
   <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
 
     <%= f.simple_fields_for :featured_image do |ff| %>
@@ -39,5 +39,4 @@
            data-input-name='character_post[body_html]'
            data-options="placeholder:'Write your post';insertImages:true;targetBlanks:true;buttons:'bold italic underline anchor header1 header2 quote'"
   ><%= @object.body_html.try(:html_safe) %></section>
-
 </article>
