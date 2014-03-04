@@ -2,13 +2,12 @@
 
 ### TODO
 
-* auto save posts;
 * save changes on cmd+s;
 * image uploading improvements, progressbar, on drop style, order;
   http://tympanus.net/Development/ProgressButtonStyles/
 * forms: hide errors when update is succesful;
 * source view for pages and posts;
-* update tests;
+* update icons;
 
 
 ## Setup new [Rails 4](http://rubyonrails.org) project
@@ -92,6 +91,8 @@ These are blank methods that could be overriden to extend view functionality. Ex
 
 ## Future Features
 
+* update tests;
+* ? auto save posts;
 * preload forms on hover
 * remove blink when new object created
 * no page refresh on login;
