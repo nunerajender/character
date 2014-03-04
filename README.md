@@ -7,13 +7,11 @@
 
 Add gems to the ```Gemfile```:
 
-    # ORM
-    gem 'mongoid', github: 'mongoid/mongoid'
+    # ORM + Character
+    gem 'mongoid',             github: 'mongoid/mongoid'
     gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
     gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
-
-    # Character
-    gem 'character', github: 'slate-studio/character'
+    gem 'character',           github: 'slate-studio/character'
 
 Run bundle and run generators:
 
@@ -21,28 +19,24 @@ Run bundle and run generators:
 
 Start development server and open website in a browser.
 
+## API
 
-### TODO
+### (Character.Generic.DetailsView)[#]
 
-* images app, which is integrated with blog and editor;
-  http://5minutenpause.com/blog/2013/09/04/multiple-file-upload-with-jquery-rails-4-and-paperclip/
-  http://blueimp.github.io/jQuery-File-Upload/basic-plus.html
-  https://github.com/blueimp/jQuery-File-Upload
-  http://tympanus.net/Development/ProgressButtonStyles/
-  http://tympanus.net/Development/FullscreenOverlayStyles/index5.html
-* image upload spin;
-* hover effect while image drop;
-* jump to edit after create new;
-* forms: hide errors when update is succesful; as an option we can close the details view on save;
-* hotkeys: character and editor;
-* no page refresh on login;
-* posterous posting options via email (https://posthaven.com/);
+These are blank methods that could be overriden to extend view functionality.
+
+Example of usage: (character/posts/module.coffee)[#]
+
+- @beforeRenderContent()
+- @afterRenderContent()
+- @beforeOnSave()
+- @beforeFormSubmit(arr, $form, options)
+- @afterFormSubmitSuccess(responseText, statusText, xhr, $form)
+- @beforeOnClose()
+- @afterOnClose()
 
 
-### Tools
-
-* On item actions support: http://github.hubspot.com/tether/docs/welcome/
-
+### Tools that could be useful
 
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms
@@ -57,15 +51,16 @@ Start development server and open website in a browser.
 * Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
 * Email template: https://github.com/leemunroe/html-email-template
+* Dropdown and select box: http://github.hubspot.com/tether/docs/welcome/
 
-## API
+### TODO
 
-### Character.Generic.DetailsView
-
-- @beforeRenderContent()
-- @afterRenderContent()
-- @beforeOnSave()
-- @beforeFormSubmit(arr, $form, options)
-- @afterFormSubmitSuccess(responseText, statusText, xhr, $form)
-- @beforeOnClose()
-- @afterOnClose()
+* replace blog posts with just posts
+* auto save posts
+* image uploading improvements, progressbar, on drop style
+  http://tympanus.net/Development/ProgressButtonStyles/
+* jump to edit after create new;
+* forms: hide errors when update is succesful; as an option we can close the details view on save;
+* hotkeys: character and editor;
+* no page refresh on login;
+* posterous posting options via email (https://posthaven.com/)
