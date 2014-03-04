@@ -2,8 +2,6 @@
 
 ### TODO
 
-* fix settings;
-
 * optimize image size for posts;
 * auto save posts;
 * save changes on cmd+s;

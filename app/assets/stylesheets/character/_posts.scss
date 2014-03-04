@@ -54,37 +54,3 @@ $header_font: "Myriad Pro", 'Verdana', 'sans-serif';
 .character_post_published             { float: right;
                                         margin-top: 22px;
 }
-
-//---------------------------------------------------------
-// POST CATEGORIES
-//---------------------------------------------------------
-
-.chr-details-content.post_categories  {
-  .chr-icon                           { color: #d1d6e0;
-                                        position: absolute;
-                                        margin-top: 21px;
-  }
-  .fa                                 { color: #d1d6e0;
-                                        font-size: 22px;
-                                        padding: 21px 20px 0 0;
-                                        position: absolute;
-  }
-  a:hover .fa,
-  a:hover .chr-icon                   { color: #414d64;
-  }
-  .category                           {
-    input                             { padding-left: 37px;
-                                        padding-right: 37px;
-                                        margin-bottom: 0;
-    }
-  }
-  .action_sort                        { position: relative;
-                                        float: right;
-                                        margin-right: -40px;
-                                        left: -45px;
-                                        padding: 21px 0px;
-                                        cursor: pointer;
-    &:hover                           { color: #414d64;
-    }
-  }
-}
