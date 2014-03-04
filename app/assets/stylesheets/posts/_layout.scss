@@ -1,10 +1,10 @@
 
 
-.blog-post-link                       { text-decoration: none;
+.post-link                            { text-decoration: none;
                                         color: $base_color;
 }
 
-.blog-index, .blog-post               { font-family: $base_font;
+.posts-index, .posts-show             { font-family: $base_font;
                                         color: $base_color;
                                         max-width: 700px;
                                         margin: 0 auto;
@@ -12,10 +12,10 @@
                                         -webkit-font-smoothing: antialiased;
 }
 
-.blog-index .item h3                  { font-family: $header_font; font-size: 26px;
+.posts-index .item h3                  { font-family: $header_font; font-size: 26px;
                                         margin-bottom: 0;
 }
 
-.blog-index .item p                   { font-size: 18px; line-height: 1.5;
+.posts-index .item p                   { font-size: 18px; line-height: 1.5;
                                         margin: 0 0 2em;
 }

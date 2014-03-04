@@ -1,0 +1,12 @@
+//---------------------------------------------------------
+// PAGES
+//---------------------------------------------------------
+
+.character .pages .chr-form-small     { background-color: #f7f7f7;
+                                        border-bottom: 1px solid $list_border_color;
+}
+
+.new_character_page,
+.edit_character_page                  { padding-top: 20px!important;
+                                        max-width: 700px!important;
+}

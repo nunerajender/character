@@ -8,8 +8,8 @@
 
     <%= f.input :keywords, placeholder: 'Split with comma' %>
 
-    <% if Character::Blog::Category.all.size > 0 %>
-      <%= f.input :category_id, include_blank: true, collection: Character::Blog::Category.all %>
+    <% if Character::PostCategory.all.size > 0 %>
+      <%= f.input :category_id, include_blank: true, collection: Character::PostCategory.all %>
     <% end %>
 
     <%= f.input :published_at, as: :date, wrapper_html: { class: 'chr-date-dmy' },
@@ -24,19 +24,19 @@
 </div>
 
 <figure id='character_post_featured_image_uploader'
-        class='character-image-upload'
+        class='character-post-featured-image-upload'
         data-image-url='<%= @object.featured_image_url %>'></figure>
 
-<article class='blog-post'>
+<article class='posts-show'>
   <header>
     <h1 class='character-editor'
-        data-input-name='character_blog_post[title]'
+        data-input-name='character_post[title]'
         data-options="placeholder:'Post Title ';disableReturn:true;disableToolbar:true;disableInsert:true;"
     ><%= @object.title %></h1>
   </header>
 
   <section class='character-editor content'
-           data-input-name='character_blog_post[body_html]'
+           data-input-name='character_post[body_html]'
            data-options="placeholder:'Write your post';insertImages:true;targetBlanks:true;buttons:'bold italic underline anchor header1 header2 quote'"
   ><%= @object.body_html.try(:html_safe) %></section>
 

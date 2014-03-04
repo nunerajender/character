@@ -10,7 +10,7 @@
           <%= image_tag user.gravatar_url(62), width: '62px', height: '62px' %>
         <% end %>
 
-        <a class='action_delete' data-item-class='admin' href='#'><i class='fa fa-times'></i></a>
+        <a class='action_delete' data-item-class='admin' href='#'><i class='chr-icon icon-close-alt'></i></a>
         <%= f.input :email, as: :email, required: true, label: false, placeholder: 'Admins e-mail' %>
         <%= f.input :_destroy, as: :hidden, value: false %>
       <% end %>
@@ -19,7 +19,7 @@
 
   <div id='template' class='admin'>
     <%= form.simple_fields_for "[]", @model.new do |f| %>
-      <i class='fa fa-plus'></i>
+      <i class='chr-icon icon-plus-alt'></i>
       <a class='action_delete' data-item-class='admin' href='#' style='display:none;'><i class='fa fa-times'></i></a>
       <%= f.input :email, required: true, as: :email, label: false, placeholder: 'Add new admin' %>
     <% end %>

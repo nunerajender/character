@@ -1,7 +1,7 @@
-# Character
+# Character 0.9
 
 
-## Setup new project (Rails 4)
+## Setup new (Rails 4)[#] project
 
     rails new ProjectName -T -O
 
@@ -19,6 +19,35 @@ Run bundle and run generators:
 
 Start development server and open website in a browser.
 
+## Routes
+
+- mount_character_instance
+- mount_posts_at
+- mount_pages_at
+
+## Admin Modules
+
+- chr.genericModule()
+- chr.postsModule()
+- chr.pagesModule()
+- chr.settingsModule()
+- chr.settingsWebsite()
+- chr.settingsPostCategories()
+- chr.settingsAdmins()
+
+## Models
+
+- Character::Post
+- Character::PostCategory
+- Character::Page
+- Character::Image
+- Character::Settings::Variable
+- Character::User
+
+## Helpers
+
+- Character::SitemapGeneratorHelper
+
 ## API
 
 ### (Character.Generic.DetailsView)[#]
@@ -35,6 +64,7 @@ Example of usage: (character/posts/module.coffee)[#]
 - @beforeOnClose()
 - @afterOnClose()
 
+## Character Instances
 
 ### Tools that could be useful
 
@@ -55,7 +85,12 @@ Example of usage: (character/posts/module.coffee)[#]
 
 ### TODO
 
+
+
 * replace blog posts with just posts
+
+
+
 * auto save posts
 * optimize image size for posts
 * image uploading improvements, progressbar, on drop style
@@ -64,4 +99,5 @@ Example of usage: (character/posts/module.coffee)[#]
 * forms: hide errors when update is succesful; as an option we can close the details view on save;
 * hotkeys: character and editor;
 * no page refresh on login;
+* update tests
 * posterous posting options via email (https://posthaven.com/)

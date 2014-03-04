@@ -1,14 +1,14 @@
-module FlatPageHelper
+module PageHelper
   def inline_editable(template_content_key, placeholder='', default_content='')
     if @object
       if placeholder.empty?
         placeholder = template_content_key + '...'
       end
 
-      flat_page = @object
+      page = @object
       class_underscore = @object.class.name.underscore.gsub('/', '_')
 
-      content = flat_page.template_content[template_content_key]
+      content = page.template_content[template_content_key]
       content ||= default_content
 
       if @form_action_url
@@ -28,10 +28,10 @@ module FlatPageHelper
         placeholder = template_content_key + '...'
       end
 
-      flat_page  = @object
+      page = @object
       class_underscore = @object.class.name.underscore.gsub('/', '_')
 
-      content = flat_page.template_content[template_content_key]
+      content = page.template_content[template_content_key]
       content ||= default_content
 
       if @form_action_url

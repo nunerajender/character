@@ -1,4 +1,4 @@
-<% @model = Character::Blog::Category %>
+<% @model = Character::PostCategory %>
 
 <div class='chr-form-large'>
   <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
@@ -20,7 +20,7 @@
 
     <div id='template' class='category'>
       <i class='action_sort fa fa-sort' style='display: none;'></i>
-      <i class='fa fa-plus'></i>
+      <i class='chr-icon icon-plus-alt'></i>
       <a class='action_delete' data-item-class='category' href='#' style='display: none;'><i class='fa fa-trash-o'></i></a>
       <%= form.simple_fields_for "[]", @model.new do |f| %>
         <%= f.input :title, label: false, placeholder: 'Add new category', required: true, input_html: { autocomplete: 'off' } %>

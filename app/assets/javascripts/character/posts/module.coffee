@@ -1,5 +1,5 @@
 # ---------------------------------------------------------
-# BLOG POSTS
+# POSTS
 # ---------------------------------------------------------
 
 @Character.Posts = {}
@@ -34,8 +34,8 @@
     #  @$el.parent().addClass('fullscreen')
 
   _hideForm: ->
-    @ui.content.find('.blog-post').css { 'min-height': $(window).height() }
-    @ui.content.scrollTop @ui.form.innerHeight()
+    @ui.post.css { 'min-height': $(window).height() }
+    @ui.content.scrollTop @ui.form.innerHeight() + 1
 
   _bindFeaturedImageUploader: ->
     imageUrl = @ui.featuredImageUploader.attr('data-image-url')
@@ -57,11 +57,12 @@
 
   afterRenderContent: ->
     @ui.featuredImageUploader = $('#character_post_featured_image_uploader')
-    @ui.featuredImageInput    = $('#character_blog_post_featured_image_url')
-    @ui.featuredThumbInput    = $('#character_blog_post_featured_image_chr_thumbnail_url')
-    @ui.publishedCheckbox     = $('#character_blog_post_published')
-    @ui.subtitleField         = $('#character_blog_post_subtitle')
-    @ui.postContent           = @ui.content.find('.blog-post .content')
+    @ui.featuredImageInput    = $('#character_post_featured_image_url')
+    @ui.featuredThumbInput    = $('#character_post_featured_image_chr_thumbnail_url')
+    @ui.publishedCheckbox     = $('#character_post_published')
+    @ui.subtitleField         = $('#character_post_subtitle')
+    @ui.post                  = @ui.content.find('.posts-show')
+    @ui.postContent           = @ui.post.find('.content')
 
     @_toggleFullscreen()
     @_hideForm()
@@ -83,7 +84,7 @@ chr.postsModule = (opts) ->
       titleField:   'title'
       metaField:    'updated_ago'
       thumbField:   'chr_featured_thumbnail_url'
-    modelName:      'Character-Blog-Post'
+    modelName:      'Character-Post'
     listSearch:     true
     listScopes:
       default:

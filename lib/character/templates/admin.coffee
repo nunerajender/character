@@ -2,11 +2,11 @@
 
 # Modules =================================================
 
-chr.blogPosts()
-chr.flatPages()
+chr.postsModule()
+chr.pagesModule()
 
 # Settings Modules ========================================
 
-chr.settingsBlog()
-chr.settingsBlogCategories()
+chr.settingsWebsite()
+chr.settingsPostCategories()
 chr.settingsAdmins()

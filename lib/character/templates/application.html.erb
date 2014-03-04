@@ -5,7 +5,7 @@
 
     <%= display_meta_tags title: 'Website Title' %>
 
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://<%= @blog_domain %><%= blog_feed_path %>.rss" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://<%= @domain %><%= posts_feed_path %>.rss" />
 
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>

@@ -2,6 +2,26 @@
 #= require ./layout
 #= require ./details
 
+# ---------------------------------------------------------
+# SETTINGS
+# ---------------------------------------------------------
+
+chr.settingsAdmins = ->
+  chr.settingsModule('Admins')
+
+chr.settingsWebsite = (titleMenu = 'Website') ->
+  chr.settingsModule 'Website Settings',
+    titleMenu: titleMenu
+
+chr.settingsPostCategories = (titleMenu = 'Categories') ->
+  chr.settingsModule 'Post Categories',
+    titleMenu: titleMenu
+
+
+# ---------------------------------------------------------
+# IMPLEMENTATION
+# ---------------------------------------------------------
+
 @Character.Settings ||= {}
 
 #
@@ -32,7 +52,7 @@ chr.module 'settings', (module) ->
     @module = @options.module
 
   index: ->
-    @module.layout.details.close()
+    @module.layout.details?.close()
     chr.execute('showModule', @module)
     chr.currentPath = "settings"
 
@@ -58,6 +78,8 @@ chr.settingsModule = (title, options={}) ->
 
   chr.module "settings.#{options.moduleName}", ->
     @options = options
+
+# TODO: Refactor these
 
 #
 # Helpers
@@ -118,19 +140,3 @@ $(document).on 'chr-blog_categories-details-content.closed', (e, $content) ->
   $list = $content.find('.sortable-list')
   if $list.length
     $list.sortable( "destroy" )
-
-
-# ---------------------------------------------------------
-# SETTINGS
-# ---------------------------------------------------------
-
-chr.settingsAdmins = ->
-  chr.settingsModule('Admins')
-
-chr.settingsBlog = (titleMenu = 'Blog') ->
-  chr.settingsModule 'Blog Settings',
-    titleMenu: titleMenu
-
-chr.settingsBlogCategories = (titleMenu = 'Categories') ->
-  chr.settingsModule 'Blog Categories',
-    titleMenu: titleMenu

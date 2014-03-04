@@ -2,31 +2,12 @@
 // IMAGES
 //---------------------------------------------------------
 
-.character-image-upload               { border: 3px dashed $list_border_color;
-                                        border-radius: 10px;
-                                        height: 80px;
-                                        margin: 20px auto 0;
-                                        cursor: pointer;
-  &:before                            { content: '\f03e';
-                                        font-family: FontAwesome;
-                                        color: $list_border_color;
-                                        position: absolute;
-                                        left: 50%;
-                                        font-size: 48px;
-                                        margin-top: 13px;
-                                        margin-left: -25px;
-  }
-  &:hover                             { border-color: $secondary_color;
-    &:before                          { color: $secondary_color;
-    }
-  }
-}
-
 .character-image                      { height: auto;
                                         margin: 20px auto 0;
   img                                 { width: 100%;
                                         display: block;
   }
+  // TODO: update
   &.character-image-upload            { border: 3px solid #fff;
                                         border-radius: 0;
                                         opacity: 1;

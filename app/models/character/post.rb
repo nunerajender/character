@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Character::Blog::Post
+class Character::Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
@@ -8,7 +8,7 @@ class Character::Blog::Post
 
   # attributes
   field :title
-  field :body_html, default: '<p>Write your post</p>'
+  field :body_html
   field :featured_image, type: Hash, default: { 'url' => '', 'chr_thumbnail_url' => '' }
   field :published_at,   type: Date
   field :published,      type: Boolean, default: false
@@ -16,7 +16,7 @@ class Character::Blog::Post
   field :keywords, default: ''
 
   # relations
-  belongs_to :category, class_name: "Character::Blog::Category"
+  belongs_to :category, class_name: "Character::PostCategory"
 
   # slugs and search
   slug      :title, history: true

@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Character::Blog::Category
+class Character::PostCategory
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
@@ -7,10 +7,10 @@ class Character::Blog::Category
 
   # attributes
   field :title
-  field :_position, type: Float, default: ->{ (Character::Blog::Category.all.first.try(:_position) || 1000) + 10 }
+  field :_position, type: Float, default: ->{ (Character::PostCategory.all.first.try(:_position) || 1000) + 10 }
 
   # relations
-  has_many :posts, class_name: 'Character::Blog::Post'
+  has_many :posts, class_name: 'Character::Post'
 
   # slugs
   slug :title, history: true

@@ -19,7 +19,7 @@ Admin Settings:
   Logo:
     type: string
     description: Company logo
-    default_value: 'character/character.jpg'
+    default_value: 'character/logo.jpg'
 
   Login Background:
     type: file
@@ -28,27 +28,27 @@ Admin Settings:
 
 # END
 
-# Blog Settings
+# Website Settings
 
-Blog Settings:
+Website Settings:
   Domain:
     type: string
-    description: Website domain
-    default_value: www.blog.com
+    description: 'Website domain is used in links.'
+    default_value: www.website.com
 
   Title:
     type: string
-    description: Blog title
-    default_value: Blog
+    description: Title for the website is used by search engines.
+    default_value: Website
 
   Description:
     type: text
-    description: Blog description for search engines
-    default_value: 'This is default blog description, please update it.'
+    description: What this website is about? This is used by search engines.
+    default_value: 'This website is built with character.'
 
   Keywords:
     type: string
-    description: Keywords split by comma
+    description: Split keywords with comma
     default_value: ''
 
 # END

@@ -1,0 +1,21 @@
+<% set_meta_tags  title:       @title,
+                  description: @description,
+                  keywords:    @keywords,
+                  canonical:   "//#{ @domain }#{ posts_index_path }",
+                  open_graph:  { type:        'blog',
+                                 title:       @title,
+                                 description: @description,
+                                 url:         "//#{ @domain }#{ posts_index_path }" } %>
+
+<section class='posts-index'>
+  <% @posts.each do |p| %>
+
+    <article class='item'>
+      <%= link_to posts_show_path(p), rel: 'bookmark', class: 'post-link' do %>
+        <h3><%= p.title %></h3>
+        <p><%= p.subtitle.html_safe %></p>
+      <% end %>
+    </article>
+
+  <% end %>
+</section>
