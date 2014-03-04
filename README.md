@@ -60,11 +60,9 @@ Run bundle and run generators:
 
 ## API
 
-### [Character.Generic.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/generic/details.coffee) and [@Character.Settings.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/settings/details.coffee)
+**[Character.Generic.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/generic/details.coffee) and [Character.Settings.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/settings/details.coffee)**
 
-These are blank methods that could be overriden to extend view functionality.
-
-Overriding ```Character.Generic.DetailsView``` example: [character/posts/module.coffee](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/posts/module.coffee)
+These are blank methods that could be overriden to extend view functionality. Example of ```Character.Generic.DetailsView``` override: [character/posts/module.coffee](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/posts/module.coffee)
 
 - @beforeRenderContent()
 - @afterRenderContent()
