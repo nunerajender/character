@@ -3,12 +3,14 @@
 ### TODO
 
 * fix settings;
+
 * optimize image size for posts;
 * auto save posts;
 * save changes on cmd+s;
 * image uploading improvements, progressbar, on drop style, order;
   http://tympanus.net/Development/ProgressButtonStyles/
 * forms: hide errors when update is succesful;
+* source view for pages and posts;
 * update tests;
 
 ## Setup new (Rails 4)[#] project
@@ -60,7 +62,7 @@ Start development server and open website in a browser.
 
 ## API
 
-### (Character.Generic.DetailsView)[#]
+### (Character.Generic.DetailsView)[#] and (@Character.Settings.DetailsView)[#]
 
 These are blank methods that could be overriden to extend view functionality.
 

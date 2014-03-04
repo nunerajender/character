@@ -1,25 +1,12 @@
 #= require_self
 #= require ./layout
 #= require ./details
+#= require ./_admins
+#= require ./_categories
+#= require ./_website
 
 # ---------------------------------------------------------
 # SETTINGS
-# ---------------------------------------------------------
-
-chr.settingsAdmins = ->
-  chr.settingsModule('Admins')
-
-chr.settingsWebsite = (titleMenu = 'Website') ->
-  chr.settingsModule 'Website Settings',
-    titleMenu: titleMenu
-
-chr.settingsPostCategories = (titleMenu = 'Categories') ->
-  chr.settingsModule 'Post Categories',
-    titleMenu: titleMenu
-
-
-# ---------------------------------------------------------
-# IMPLEMENTATION
 # ---------------------------------------------------------
 
 @Character.Settings ||= {}
@@ -78,65 +65,3 @@ chr.settingsModule = (title, options={}) ->
 
   chr.module "settings.#{options.moduleName}", ->
     @options = options
-
-# TODO: Refactor these
-
-#
-# Helpers
-#
-
-@newSettingsItem = ($input, $list) ->
-  $item = $('#template').clone()
-  $item.removeAttr('id')
-  $item.html $item.html().replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
-
-  if $list.length then $list.append($item) else $('#template').before($item)
-
-  $item.find('input').val($input.val())
-  $item.find('.fa-plus').hide()
-  $item.find('.action_delete').show()
-  $item.find('.action_sort').show()
-  $input.val('')
-
-#
-# Admin Settings
-# Feature: add new admin list item
-#
-
-$(document).on 'chr-admins-details-content.rendered', (e, $content) ->
-  $('.objects_email input').on 'keyup', (e) ->
-    if e.which == 13
-      newSettingsItem($(e.currentTarget))
-
-$(document).on 'chr-admins-details-content.closed', (e, $content) ->
-  $('.objects_email input').off 'keyup'
-
-#
-# Categories Settings
-# Feature: add new category list item & reorder categories
-#
-$(document).on 'chr-blog_categories-details-content.rendered', (e, $content) ->
-  $list = $content.find('.sortable-list')
-
-  $('.objects_title input').on 'keyup', (e) ->
-    if e.which == 13
-      newSettingsItem($(e.currentTarget), $list)
-
-  options =
-    delay:  150
-    items:  '> .category'
-    handle: '.action_sort'
-    update: (e, ui) =>
-      # TODO: seems like this could be done much simpler with regex
-      positionFields = _.select $list.find("input[type=hidden]"), (f) ->
-        _( $(f).attr('name') ).endsWith('[_position]')
-      _.each positionFields, (el, index, list) ->
-        $(el).val(positionFields.length - index)
-
-  $list.sortable(options).disableSelection()
-
-$(document).on 'chr-blog_categories-details-content.closed', (e, $content) ->
-  $('.objects_title input').off 'keyup'
-  $list = $content.find('.sortable-list')
-  if $list.length
-    $list.sortable( "destroy" )

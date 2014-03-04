@@ -20,7 +20,7 @@
   <div id='template' class='admin'>
     <%= form.simple_fields_for "[]", @model.new do |f| %>
       <i class='chr-icon icon-plus-alt'></i>
-      <a class='action_delete' data-item-class='admin' href='#' style='display:none;'><i class='fa fa-times'></i></a>
+      <a class='action_delete' data-item-class='admin' href='#' style='display:none;'><i class='chr-icon icon-close-alt'></i></a>
       <%= f.input :email, required: true, as: :email, label: false, placeholder: 'Add new admin' %>
     <% end %>
   </div>

@@ -9,7 +9,7 @@
         <%= form.simple_fields_for "[]", category do |f| %>
           <div class='category'>
             <i class='action_sort fa fa-sort'></i>
-            <a class='action_delete' data-item-class='category' href='#'><i class='fa fa-trash-o'></i></a>
+            <a class='action_delete' data-item-class='category' href='#'><i class='chr-icon icon-close-alt'></i></a>
             <%= f.input :title, label: false, placeholder: 'Category title', required: true %>
             <%= f.input :_destroy, as: :hidden, value: false %>
             <%= f.input :_position, as: :hidden %>
@@ -21,7 +21,7 @@
     <div id='template' class='category'>
       <i class='action_sort fa fa-sort' style='display: none;'></i>
       <i class='chr-icon icon-plus-alt'></i>
-      <a class='action_delete' data-item-class='category' href='#' style='display: none;'><i class='fa fa-trash-o'></i></a>
+      <a class='action_delete' data-item-class='category' href='#' style='display: none;'><i class='chr-icon icon-close-alt'></i></a>
       <%= form.simple_fields_for "[]", @model.new do |f| %>
         <%= f.input :title, label: false, placeholder: 'Add new category', required: true, input_html: { autocomplete: 'off' } %>
         <%= f.input :_position, as: :hidden %>

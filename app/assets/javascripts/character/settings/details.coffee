@@ -28,6 +28,8 @@
 
   renderContent: (html) ->
     if @ui
+      @beforeRenderContent?()
+
       @ui.content.html(html)
 
       @ui.form            = @ui.content.find('form')
@@ -39,7 +41,7 @@
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @options.moduleName }-details-content.rendered", [ @ui.content ])
 
-      @afterFormRendered?()
+      @afterRenderContent?()
 
 
   events:
@@ -49,25 +51,23 @@
 
   onSave: (e) ->
     if not $(e.currentTarget).hasClass('disabled')
+      @beforeOnSave?()
 
       # this does not allow to submit template fields (Safari fix)
       @ui.newItemTemplate.remove()
 
       @ui.form.ajaxSubmit
         beforeSubmit: (arr, $form, options) =>
+          @beforeFormSubmit?(arr, $form, options)
           @updateState('Saving')
           return true
+        success: (responseText, statusText, xhr, $form) =>
+          @updateState()
+          @renderContent(responseText)
+          @afterFormSubmitSuccess?(responseText, statusText, xhr, $form)
         error: (xhr) =>
           chr.execute('showError', xhr)
           @updateState()
-        success: (responseText, statusText, xhr, $form) =>
-          if @onSaved
-            @onSaved responseText, =>
-              @updateState()
-              @renderContent(responseText)
-          else
-            @updateState()
-            @renderContent(responseText)
 
     return false
 
@@ -101,5 +101,9 @@
 
   onClose: ->
     if @ui
+      @beforeOnClose?()
+
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @options.moduleName }-details-content.closed", [ @ui.content ])
+
+      @afterOnClose?()
