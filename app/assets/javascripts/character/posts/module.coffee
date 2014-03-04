@@ -10,7 +10,7 @@
 # character/generic/details.coffee
 @Character.Posts.DetailsLayout = Character.Generic.DetailsLayout.extend
   updateFeaturedImage: (imageData) ->
-    imageUrl = imageData.image.url
+    imageUrl = imageData.image.regular.url
     thumbUrl = imageData.image.chr_thumb_small.url
 
     @ui.featuredImageInput.val(imageUrl)

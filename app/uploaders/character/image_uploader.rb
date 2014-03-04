@@ -5,6 +5,11 @@ class Character::ImageUploader < CarrierWave::Uploader::Base
     "uploads/character/images/#{ model.id }"
   end
 
+  # used for blog posts
+  version :regular do
+    process resize_to_fit: [800, 600]
+  end
+
   # used for thumbnails in the list view
   version :chr_thumb_small do
     process resize_to_fill: [56, 56]

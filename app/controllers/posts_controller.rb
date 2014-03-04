@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     render text: 'Not found.', status: 404, layout: false
   end
 
-  before_filter :set_blog_parameters
+  before_filter :set_website_settings
 
   def index
     @posts = Character::Post.published
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   private
 
-  def set_blog_parameters
+  def set_website_settings
     settings     = ::Settings.group('Website Settings')
     @domain      = settings['Domain'].value
     @title       = settings['Title'].value
