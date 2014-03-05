@@ -6,8 +6,8 @@
 * image uploading improvements, progressbar, on drop style, order;
   http://tympanus.net/Development/ProgressButtonStyles/
 * forms: hide errors when update is succesful;
-* source view for pages and posts (on hotkey);
 * update icons (generate custom font for character);
+* source view for pages and posts (on hotkey);
 
 ## Setup new [Rails 4](http://rubyonrails.org) project
 
@@ -55,6 +55,11 @@ Run bundle and run generators:
 
 - Character::SitemapGeneratorHelper
 
+## Shortcuts
+
+- CMD+s — save
+- CMD+e — toggle fullscreen
+
 ## API
 
 **[Character.Generic.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/generic/details.coffee) and [Character.Settings.DetailsView](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/settings/details.coffee)**
@@ -91,7 +96,7 @@ These are blank methods that could be overriden to extend view functionality. Ex
 ## Future Features
 
 * update tests;
-* ? auto save posts;
+* auto save post changes;
 * preload forms on hover
 * remove blink when new object created
 * no page refresh on login;

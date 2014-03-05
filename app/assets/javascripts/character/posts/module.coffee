@@ -28,11 +28,6 @@
     @ui.subtitleField.val(@getSubtitleValue())
     @ui.postContent.on 'keyup', => @ui.subtitleField.val(@getSubtitleValue())
 
-  _toggleFullscreen: ->
-    # TODO: show fullscreen when editor is activated for body
-    #if not @ui.publishedCheckbox.is(':checked')
-    #  @$el.parent().addClass('fullscreen')
-
   _hideForm: ->
     editableAreaHeight = $(window).height() - 71 - @ui.featuredImageUploader.outerHeight(true)
     @ui.post.css { 'min-height': editableAreaHeight }
@@ -65,14 +60,12 @@
     @ui.post                  = @ui.content.find('.posts-show')
     @ui.postContent           = @ui.post.find('.content')
 
-    @_toggleFullscreen()
     @_hideForm()
     @_bindSubtitleUpdate()
     @_bindFeaturedImageUploader()
 
   afterOnClose: ->
     @ui.postContent.off 'keyup'
-    @$el.parent().removeClass('fullscreen')
     @ui.featuredImageUploader.off('click').fileupload('destroy')
 
 

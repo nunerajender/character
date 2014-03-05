@@ -74,10 +74,8 @@
     @DetailsHeaderView = @module.DetailsHeaderView
 
   onRender: ->
-    window.shortcuts.register_combo
-      keys: 'meta s'
-      is_exclusive: true
-      on_keyup: (event) => @onSave()
+    window.shortcuts.register_combo { keys: 'meta s', is_exclusive: true, on_keyup: (event) => @onSave() }
+    window.shortcuts.register_combo { keys: 'meta e', is_exclusive: true, on_keyup: (event) => @_toggleFullscreen() }
 
     @headerView = new @DetailsHeaderView
       model:     @model
@@ -168,6 +166,7 @@
     if @ui
       @beforeOnClose?()
 
+      @$el.parent().removeClass('fullscreen')
       window.shortcuts.unregister_combo 'meta s'
 
       if @ui.form
@@ -178,3 +177,6 @@
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
 
       @afterOnClose?()
+
+  _toggleFullscreen: ->
+    @$el.parent().toggleClass('fullscreen')
