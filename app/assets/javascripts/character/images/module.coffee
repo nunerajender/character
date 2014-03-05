@@ -67,18 +67,18 @@
       done: (e, data) => # TODO: prosess multiple file uploads here
         @collection.add([data.result]) # TODO: fix sorting issue
 
-    # TODO: this is hack to prevent blinking when use dragenter/dragleave
-    @ui.listContent.on 'dragenter',  => @ui.listContent.addClass('dragover')
-    @ui.listContent.on 'mouseleave', => @ui.listContent.removeClass('dragover')
-
   show: (@callback, @multipleSelection) ->
     @$el.addClass('open')
     @ui.listContent.find('.selected').removeClass('selected')
     @ui.insertButton.addClass('disabled')
     @ui.listContent.removeClass('dragover')
 
+    $(document).on 'dragenter', => @ui.listContent.addClass('dragover')
+    $(document).on 'mousemove', => @ui.listContent.removeClass('dragover')
+
   hide: ->
     @$el.removeClass('open')
+    $(document).off 'dragenter, mousemove'
 
   _insert: ->
     if not @ui.insertButton.hasClass 'disabled'
