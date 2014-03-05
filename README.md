@@ -2,8 +2,9 @@
 
 ### TODO
 
-* image uploading improvements, progressbar, on drop style, order;
+* image uploading improvements: progressbar, order;
   http://tympanus.net/Development/ProgressButtonStyles/
+
 * forms: hide errors when update is succesful;
 * update icons (generate custom font for character);
 * source view for pages and posts (on hotkey);
@@ -23,7 +24,6 @@ Add gems to the ```Gemfile```:
 Run bundle and run generators:
 
     bundle ; rails g mongoid:config ; rails g character:install
-
 
 ## Routes
 
