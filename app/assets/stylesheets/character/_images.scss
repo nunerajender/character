@@ -106,7 +106,13 @@
                                         cursor: pointer;
                                         position: relative;
                                         overflow: hidden;
-    &:hover                           { color: $secondary_color;
+    &:first-child                     { margin-left: 10px;
+    }
+
+    &.disabled                        { background-color: #e6e9f0;
+    }
+
+    &:not(.disabled):hover            { color: $secondary_color;
                                         border-color: $secondary_color;
     }
   }

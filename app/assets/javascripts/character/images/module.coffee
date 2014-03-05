@@ -11,15 +11,6 @@
     @$el.css 'background-image', "url(#{ thumbUrl })"
     @$el.attr 'data-id', @model.id
 
-  events:
-    'click': 'select'
-
-  select: ->
-    if not chr.images.options.multipleSelection
-      @$el.parent().find('.selected').removeClass 'selected'
-
-    @$el.toggleClass 'selected'
-
 
 @Character.Images.ListView = Backbone.Marionette.CollectionView.extend
   tagName: 'ul'
@@ -38,6 +29,7 @@
                     <section id=chr_images_grid class='chr-images-grid'></section>
                     <footer class='chr-images-footer'>
                       <button id=chr_images_insert class='button right'>Insert</button>
+                      <button id=chr_images_cancel class='button right'>Cancel</button>
                       <div class='button'>
                         <input id=chr_images_upload class='chr-images-upload' type='file' name='character_image[image]' multiple='' />
                         Upload files...
@@ -46,16 +38,19 @@
                   </div>"""
 
   ui:
-    dialog:      '#chr_images_dialog'
-    uploadInput: '#chr_images_upload'
-    listContent: '#chr_images_grid'
+    dialog:       '#chr_images_dialog'
+    uploadInput:  '#chr_images_upload'
+    listContent:  '#chr_images_grid'
+    insertButton: '#chr_images_insert'
 
   regions:
     listContent: '#chr_images_grid'
 
   events:
-    'click #chr_images_close':  'hide'
-    'click #chr_images_insert': 'insert'
+    'click #chr_images_close':   'hide'
+    'click #chr_images_cancel':  'hide'
+    'click #chr_images_insert':  '_insert'
+    'click #chr_images_grid li': '_selectImage'
 
   onRender: ->
     dialogWidth = Math.floor(($(window).width() - 322) / 176 ) * 176 + 20
@@ -74,19 +69,30 @@
 
   show: (@callback, @multipleSelection) ->
     @$el.addClass('open')
-    $('#chr_images_grid li.selected').removeClass 'selected'
+    @ui.listContent.find('.selected').removeClass 'selected'
+    @ui.insertButton.addClass 'disabled'
 
   hide: ->
     @$el.removeClass('open')
 
-  insert: ->
-    if @callback
-      selectedModels = _.collect $('#chr_images_grid li.selected'), (el) =>
-        id = $(el).attr('data-id')
-        @options.collection.get(id)
+  _insert: ->
+    if not @ui.insertButton.hasClass 'disabled'
+      if @callback
+        selectedModels = _.collect $('#chr_images_grid li.selected'), (el) =>
+          id = $(el).attr('data-id')
+          @options.collection.get(id)
 
-      @callback(selectedModels)
-    @hide()
+        @callback(selectedModels)
+      @hide()
+
+  _selectImage: (e) ->
+    $el = $(e.currentTarget)
+
+    if not chr.images.options.multipleSelection
+      @ui.listContent.find('.selected').removeClass 'selected'
+
+    $el.toggleClass 'selected'
+    @ui.insertButton.removeClass 'disabled'
 
 
 # module initialization

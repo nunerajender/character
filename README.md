@@ -2,7 +2,6 @@
 
 ### TODO
 
-* image dialog cancel button;
 * image uploading improvements, progressbar, on drop style, order;
   http://tympanus.net/Development/ProgressButtonStyles/
 * forms: hide errors when update is succesful;
