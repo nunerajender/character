@@ -103,6 +103,20 @@ _.map API, (method, name) => @chr.commands.setHandler(name, method)
 
 
 @chr.on "initialize:before", (@options) -> # maps options!
+  # shortcuts
+  window.shortcuts = new window.keypress.Listener()
+
+  # close dialogs and details view on esc
+  window.shortcuts.register_combo
+    keys: 'esc'
+    is_exclusive: true
+    on_keyup: (event) ->
+      if $('#chr_images').hasClass 'open'
+        chr.execute('hideImages')
+      else if $('#chr_error').hasClass 'open'
+        chr.execute('closeError')
+      else
+        chr.execute('closeDetailsView')
 
 
 @chr.on "initialize:after", ->
@@ -116,16 +130,3 @@ _.map API, (method, name) => @chr.commands.setHandler(name, method)
 
   # disable default action for browser when drop image to window
   $(document).bind 'drop dragover', (e) -> e.preventDefault()
-
-  # hotkeys
-  $(document).on 'keyup', (e) ->
-    # ESC
-    if e.keyCode == 27
-      if $('#chr_images').hasClass 'open'
-        chr.execute('hideImages')
-
-      else if $('#chr_error').hasClass 'open'
-        chr.execute('closeError')
-
-      else
-        chr.execute('closeDetailsView')

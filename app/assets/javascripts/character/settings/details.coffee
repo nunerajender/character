@@ -15,6 +15,9 @@
     content:         '#details_content'
     actionSave:      '#save'
 
+  events:
+    'click #save':          'onSave'
+    'click .action_delete': 'deleteItem'
 
   onRender: ->
     @ui.title.html(@options.titleDetails)
@@ -35,22 +38,21 @@
       @ui.form            = @ui.content.find('form')
       @ui.newItemTemplate = @ui.content.find('#template')
 
+      # enable save action if form found
       if @ui.form.length
         @ui.actionSave.show()
+        window.shortcuts.register_combo
+          keys: 'meta s'
+          is_exclusive: true
+          on_keyup: (event) => @onSave()
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @options.moduleName }-details-content.rendered", [ @ui.content ])
 
       @afterRenderContent?()
 
-
-  events:
-    'click #save':          'onSave'
-    'click .action_delete': 'deleteItem'
-
-
   onSave: (e) ->
-    if not $(e.currentTarget).hasClass('disabled')
+    if not @ui.actionSave.hasClass('disabled')
       @beforeOnSave?()
 
       # this does not allow to submit template fields (Safari fix)
@@ -102,6 +104,8 @@
   onClose: ->
     if @ui
       @beforeOnClose?()
+
+      window.shortcuts.unregister_combo 'meta s'
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @options.moduleName }-details-content.closed", [ @ui.content ])

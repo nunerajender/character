@@ -2,13 +2,12 @@
 
 ### TODO
 
-* save changes on cmd+s;
+* image dialog cancel button;
 * image uploading improvements, progressbar, on drop style, order;
   http://tympanus.net/Development/ProgressButtonStyles/
 * forms: hide errors when update is succesful;
-* source view for pages and posts;
-* update icons;
-
+* source view for pages and posts (on hotkey);
+* update icons (generate custom font for character);
 
 ## Setup new [Rails 4](http://rubyonrails.org) project
 

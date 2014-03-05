@@ -65,11 +65,20 @@
   ui:
     content: '#details_content'
 
+  events:
+    'click #save':   'onSave'
+    'click #delete': 'onDelete'
+
   initialize: ->
     @module            = @options.module
     @DetailsHeaderView = @module.DetailsHeaderView
 
   onRender: ->
+    window.shortcuts.register_combo
+      keys: 'meta s'
+      is_exclusive: true
+      on_keyup: (event) => @onSave()
+
     @headerView = new @DetailsHeaderView
       model:     @model
       title:     "New #{ @options.objectName }"
@@ -103,10 +112,6 @@
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
 
       @afterRenderContent?()
-
-  events:
-    'click #save':   'onSave'
-    'click #delete': 'onDelete'
 
   onSave: ->
     if @ui.form.length
@@ -162,6 +167,8 @@
     window.closeDetailsView = null
     if @ui
       @beforeOnClose?()
+
+      window.shortcuts.unregister_combo 'meta s'
 
       if @ui.form
         # form related helpers

@@ -100,7 +100,7 @@ b, strong                             { font-weight: $font_bold;
   a                                   { background: $list_item_color;
                                         border-bottom: 1px solid $list_border_color;
                                         display: block;
-                                        height: 80px;
+                                        height: 81px;
                                         padding: 20px 25px;
   }
 
@@ -128,6 +128,7 @@ b, strong                             { font-weight: $font_bold;
                                         margin-right: 20px;
                                         float: left;
                                         display: none;
+                                        margin-top: -1px;
   }
 
   &.has-thumbnail .thumbnail          { display: inline-block;
