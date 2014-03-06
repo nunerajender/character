@@ -10,9 +10,10 @@
 # character/generic/details.coffee
 @Character.Pages.DetailsLayout = Character.Generic.DetailsLayout.extend
   _hideForm: ->
-    editableAreaHeight = $(window).height() - 71
-    @ui.page.css { 'min-height': editableAreaHeight }
-    @ui.content.scrollTop @ui.form.parent().outerHeight(true)
+    if @ui.form.parent().hasClass 'chr-form-scrolled-up'
+      editableAreaHeight = $(window).height() - 71
+      @ui.page.css { 'min-height': editableAreaHeight }
+      @ui.content.scrollTop @ui.form.parent().outerHeight(true)
 
   afterRenderContent: ->
     @ui.page = @ui.content.find('.pages-show')

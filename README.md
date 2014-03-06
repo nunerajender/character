@@ -2,6 +2,9 @@
 
 ### TODO
 
+* drop to window, not zone
+* featured image for post
+* templates in folder with instance name
 * image uploading improvements: progressbar, order;
   http://tympanus.net/Development/ProgressButtonStyles/
 
@@ -31,7 +34,7 @@ Run bundle and run generators:
 - mount_posts_at
 - mount_pages_at
 
-## Admin Modules
+## Modules
 
 - chr.genericModule()
 - chr.postsModule()
@@ -56,7 +59,7 @@ Run bundle and run generators:
 
 ## Shortcuts
 
-- CMD+s — save
+- CMD+s — save changes
 - CMD+e — toggle fullscreen
 
 ## API
@@ -73,9 +76,18 @@ These are blank methods that could be overriden to extend view functionality. Ex
 - @beforeOnClose()
 - @afterOnClose()
 
-## Character Instances
+## Instances
 
-### Tools that could be useful
+## Future Features
+
+* update tests;
+* auto save post changes;
+* preload forms on hover
+* remove blink when new object created
+* no page refresh on login;
+* posterous posting options via email (https://posthaven.com/)
+
+### Tools
 
 * Figure out if we can build apps easier on a top of http://harpjs.com
 * See if we can make use of this: https://github.com/elclanrs/jq-idealforms
@@ -91,12 +103,3 @@ These are blank methods that could be overriden to extend view functionality. Ex
 * Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
 * Email template: https://github.com/leemunroe/html-email-template
 * Dropdown and select box: http://github.hubspot.com/tether/docs/welcome/
-
-## Future Features
-
-* update tests;
-* auto save post changes;
-* preload forms on hover
-* remove blink when new object created
-* no page refresh on login;
-* posterous posting options via email (https://posthaven.com/)

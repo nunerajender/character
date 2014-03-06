@@ -9,15 +9,16 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 # character/generic/details.coffee
 @Character.Posts.DetailsLayout = Character.Generic.DetailsLayout.extend
+  setBackgroundImage: (imageUrl) ->
+    @ui.featuredImageUploader.addClass('has-image')
+    @ui.featuredImageUploader.css({ 'background-image': "url(#{ imageUrl })" })
+
   updateFeaturedImage: (imageData) ->
     imageUrl = imageData.image.regular.url
     thumbUrl = imageData.image.chr_thumb_small.url
-
     @ui.featuredImageInput.val(imageUrl)
     @ui.featuredThumbInput.val(thumbUrl)
-
-    @ui.featuredImageUploader.children('img').remove()
-    @ui.featuredImageUploader.addClass('character-image').append("<img src='#{ imageUrl }' />")
+    @setBackgroundImage(imageUrl)
 
   getSubtitleValue: ->
     # TODO: add case when image is posted first or nothing is posted
@@ -29,27 +30,21 @@
     @ui.postContent.on 'keyup', => @ui.subtitleField.val(@getSubtitleValue())
 
   _hideForm: ->
-    editableAreaHeight = $(window).height() - 71 - @ui.featuredImageUploader.outerHeight(true)
-    @ui.post.css { 'min-height': editableAreaHeight }
-    @ui.content.scrollTop @ui.form.parent().outerHeight(true)
+    if @ui.form.parent().hasClass 'chr-form-scrolled-up'
+      editableAreaHeight = $(window).height() - 71 - @ui.featuredImageUploader.outerHeight(true)
+      @ui.post.css { 'min-height': editableAreaHeight }
+      @ui.content.scrollTop @ui.form.parent().outerHeight(true)
 
   _bindFeaturedImageUploader: ->
     imageUrl = @ui.featuredImageUploader.attr('data-image-url')
     if imageUrl and imageUrl != ''
-      @ui.featuredImageUploader.addClass('character-image').append("<img src='#{ imageUrl }' />")
+      @setBackgroundImage(imageUrl)
 
     @ui.featuredImageUploader.on 'click', (e) =>
       chr.execute 'showImages', false, (images) =>
         model = images[0]
         if model
           @updateFeaturedImage(model.get('image'))
-
-    @ui.featuredImageUploader.fileupload
-      url: '/admin/Character-Image'
-      paramName: 'character_image[image]'
-      dataType:  'json'
-      dropZone:  @ui.featuredImageUploader
-      done: (e, data) => @updateFeaturedImage(data.result.image)
 
   afterRenderContent: ->
     @ui.featuredImageUploader = $('#character_post_featured_image_uploader')
@@ -66,7 +61,7 @@
 
   afterOnClose: ->
     @ui.postContent.off 'keyup'
-    @ui.featuredImageUploader.off('click').fileupload('destroy')
+    @ui.featuredImageUploader.off('click')
 
 
 chr.postsModule = (opts) ->
