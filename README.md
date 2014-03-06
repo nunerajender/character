@@ -1,17 +1,5 @@
 # Character 0.9-alpha
 
-### TODO
-
-* drop to window, not zone
-* featured image for post
-* templates in folder with instance name
-* image uploading improvements: progressbar, order;
-  http://tympanus.net/Development/ProgressButtonStyles/
-
-* forms: hide errors when update is succesful;
-* update icons (generate custom font for character);
-* source view for pages and posts (on hotkey);
-
 ## Setup new [Rails 4](http://rubyonrails.org) project
 
     rails new ProjectName -T -O
@@ -77,15 +65,6 @@ These are blank methods that could be overriden to extend view functionality. Ex
 - @afterOnClose()
 
 ## Instances
-
-## Future Features
-
-* update tests;
-* auto save post changes;
-* preload forms on hover
-* remove blink when new object created
-* no page refresh on login;
-* posterous posting options via email (https://posthaven.com/)
 
 ### Tools
 
