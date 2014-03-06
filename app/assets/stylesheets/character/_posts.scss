@@ -48,7 +48,7 @@ $header_font: "Myriad Pro", 'Verdana', 'sans-serif';
                                         position: absolute;
                                         left: 50%;
                                         font-size: 48px;
-                                        margin-top: 17px;
+                                        margin-top: 20px;
                                         margin-left: -330px;
   }
   &:hover                             { border-color: $secondary_color;
@@ -57,17 +57,28 @@ $header_font: "Myriad Pro", 'Verdana', 'sans-serif';
   }
 
   &.has-image                         { box-shadow: inset 0 0 1px 0px rgba(0,0,0,.5);
-    &:before                          { content: '';
-    }
-
-    // Preview on hover
                                         margin: -1px -1px 20px -1px;
                                         @include single-transition(height, .2s, .25s);
-    &:hover                           { height: 244px;
-                                        @include single-transition(height, .2s, .25s);
+    &:before                          { content: '';
     }
+  }
+
+  .remove                             { font-size: 24px;
+                                        color: rgba(255,255,255,.7);
+                                        margin: 12px 25px;
+                                        float: right;
+                                        opacity: .0;
   }
 }
 
+.character-post-featured-image-upload.has-image.select,
+.character-post-featured-image-upload.has-image:hover,
 .fullscreen .character-post-featured-image-upload.has-image { height: 244px;
+                                                              @include single-transition(height, .2s, .25s);
+  .remove                             { opacity: 1;
+                                        @include single-transition(opacity, .2s, .45s);
+
+    &:hover                           { color: #fff;
+    }
+  }
 }

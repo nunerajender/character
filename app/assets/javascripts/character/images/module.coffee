@@ -47,8 +47,8 @@
     listContent: '#chr_images_grid'
 
   events:
-    'click #chr_images_close':   'hide'
-    'click #chr_images_cancel':  'hide'
+    'click #chr_images_close':   '_cancel'
+    'click #chr_images_cancel':  '_cancel'
     'click #chr_images_insert':  '_insert'
     'click #chr_images_grid li': '_selectImage'
 
@@ -79,6 +79,10 @@
   hide: ->
     @$el.removeClass('open')
     $(document).off 'dragenter, mousemove'
+
+  _cancel: ->
+    @callback?([])
+    @hide()
 
   _insert: ->
     if not @ui.insertButton.hasClass 'disabled'

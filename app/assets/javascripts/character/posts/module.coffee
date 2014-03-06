@@ -9,25 +9,25 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 # character/generic/details.coffee
 @Character.Posts.DetailsLayout = Character.Generic.DetailsLayout.extend
-  setBackgroundImage: (imageUrl) ->
+  _setBackgroundImage: (imageUrl) ->
     @ui.featuredImageUploader.addClass('has-image')
     @ui.featuredImageUploader.css({ 'background-image': "url(#{ imageUrl })" })
 
-  updateFeaturedImage: (imageData) ->
+  _updateFeaturedImage: (imageData) ->
     imageUrl = imageData.image.regular.url
     thumbUrl = imageData.image.chr_thumb_small.url
     @ui.featuredImageInput.val(imageUrl)
     @ui.featuredThumbInput.val(thumbUrl)
-    @setBackgroundImage(imageUrl)
+    @_setBackgroundImage(imageUrl)
 
-  getSubtitleValue: ->
+  _getSubtitleValue: ->
     # TODO: add case when image is posted first or nothing is posted
     @ui.postContent.children().first().text()
 
   _bindSubtitleUpdate: ->
     # update subtitle to be first passage of the body text
-    @ui.subtitleField.val(@getSubtitleValue())
-    @ui.postContent.on 'keyup', => @ui.subtitleField.val(@getSubtitleValue())
+    @ui.subtitleField.val(@_getSubtitleValue())
+    @ui.postContent.on 'keyup', => @ui.subtitleField.val(@_getSubtitleValue())
 
   _hideForm: ->
     if @ui.form.parent().hasClass 'chr-form-scrolled-up'
@@ -35,16 +35,30 @@
       @ui.post.css { 'min-height': editableAreaHeight }
       @ui.content.scrollTop @ui.form.parent().outerHeight(true)
 
+  _removeFeaturedImage: ->
+    @ui.featuredImageInput.val('')
+    @ui.featuredThumbInput.val('')
+    @ui.featuredImageUploader.removeClass('has-image').css({ 'background-image': "" })
+
+  _bindRemove: ->
+    @ui.removeButton = $("<i class='remove fa fa-trash-o'></i>")
+    @ui.removeButton.appendTo(@ui.featuredImageUploader)
+    @ui.removeButton.on 'click', (e) => @_removeFeaturedImage() ; false
+
   _bindFeaturedImageUploader: ->
     imageUrl = @ui.featuredImageUploader.attr('data-image-url')
     if imageUrl and imageUrl != ''
-      @setBackgroundImage(imageUrl)
+      @_setBackgroundImage(imageUrl)
 
     @ui.featuredImageUploader.on 'click', (e) =>
+      @ui.featuredImageUploader.addClass 'select'
       chr.execute 'showImages', false, (images) =>
-        model = images[0]
-        if model
-          @updateFeaturedImage(model.get('image'))
+        if images.length > 0
+          model = images[0]
+          if model
+            @_updateFeaturedImage(model.get('image'))
+
+        @ui.featuredImageUploader.removeClass 'select'
 
   afterRenderContent: ->
     @ui.featuredImageUploader = $('#character_post_featured_image_uploader')
@@ -58,6 +72,7 @@
     @_hideForm()
     @_bindSubtitleUpdate()
     @_bindFeaturedImageUploader()
+    @_bindRemove()
 
   afterOnClose: ->
     @ui.postContent.off 'keyup'
