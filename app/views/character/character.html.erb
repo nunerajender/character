@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag @character_instance.stylesheet_filename, :media => 'all' %>
     <style>
     .chr-logo  { background-image: url('<%= image_path(@character_instance.logo) %>'); }
-    .chr-login { background-image: url("<%= @character_instance.login_background %>"); }
+    .chr-login { background-image: url("<%= image_path(@character_instance.login_background) %>"); }
     </style>
 
     <!-- Javascripts -->

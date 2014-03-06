@@ -8,6 +8,7 @@
 # Marionette.js Layout Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 # character/generic/details.coffee
+#
 @Character.Pages.DetailsLayout = Character.Generic.DetailsLayout.extend
   _hideForm: ->
     if @ui.form.parent().hasClass 'chr-form-scrolled-up'

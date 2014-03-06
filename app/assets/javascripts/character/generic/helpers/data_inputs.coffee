@@ -13,7 +13,9 @@
           value = $(el).html().trim()
 
         $hiddenInput = $form.find("input[name='#{ dataInputName }']")
-        if $hiddenInput.length
-          $hiddenInput.val(value)
-        else
-          $form.append("<input type='hidden' name='#{ dataInputName }' value='#{ value }' />")
+
+        if $hiddenInput.length == 0
+          $hiddenInput = $("<input type='hidden' name='#{ dataInputName }'>")
+          $hiddenInput.appendTo($form)
+
+        $hiddenInput.val(value)

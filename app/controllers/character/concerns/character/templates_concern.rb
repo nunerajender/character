@@ -6,8 +6,8 @@ module Character::TemplatesConcern
       template_folder = model_class.name.underscore.to_s.pluralize
       template_folder.gsub!('character/', '')
 
-      generic_template_folder    = "character/#{ template_folder }"
-      instance_template_folder = "character/#{ character_instance.name }/#{ template_folder }"
+      generic_template_folder  = "character/#{ template_folder }"
+      instance_template_folder = "#{ character_instance.name }/#{ template_folder }"
 
       if    template_exists?("form", instance_template_folder, false)
         "#{ instance_template_folder }/form"
