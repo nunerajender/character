@@ -52,34 +52,6 @@
     'click #chr_images_insert':  '_insert'
     'click #chr_images_grid li': '_selectImage'
 
-  onRender: ->
-    dialogWidth = Math.floor(($(window).width() - 322) / 176 ) * 176 + 20
-    @ui.dialog.css { 'margin-left': dialogWidth / -2, 'width': dialogWidth }
-
-    @list = new Character.Images.ListView({ collection: @options.collection })
-    @listContent.show(@list)
-
-    @ui.uploadInput.fileupload
-      url: '/admin/Character-Image'
-      paramName: 'character_image[image]'
-      dataType:  'json'
-      dropZone:  @ui.listContent
-      done: (e, data) => # TODO: prosess multiple file uploads here
-        @collection.add([data.result]) # TODO: fix sorting issue
-
-  show: (@callback, @multipleSelection) ->
-    @$el.addClass('open')
-    @ui.listContent.find('.selected').removeClass('selected')
-    @ui.insertButton.addClass('disabled')
-    @ui.listContent.removeClass('dragover')
-
-    $(document).on 'dragenter', => @ui.listContent.addClass('dragover')
-    $(document).on 'mousemove', => @ui.listContent.removeClass('dragover')
-
-  hide: ->
-    @$el.removeClass('open')
-    $(document).off 'dragenter, mousemove'
-
   _cancel: ->
     @callback?([])
     @hide()
@@ -103,6 +75,32 @@
     $el.toggleClass 'selected'
     @ui.insertButton.removeClass 'disabled'
 
+  onRender: ->
+    dialogWidth = Math.floor(($(window).width() - 322) / 176 ) * 176 + 20
+    @ui.dialog.css { 'margin-left': dialogWidth / -2, 'width': dialogWidth }
+
+    @list = new Character.Images.ListView({ collection: @options.collection })
+    @listContent.show(@list)
+
+    @ui.uploadInput.fileupload
+      url: '/admin/Character-Image'
+      paramName: 'character_image[image]'
+      dataType:  'json'
+      done: (e, data) => # TODO: prosess multiple file uploads here
+        @collection.add([data.result]) # TODO: fix sorting issue
+
+  show: (@callback, @multipleSelection) ->
+    @$el.addClass('open')
+    @ui.listContent.find('.selected').removeClass('selected')
+    @ui.insertButton.addClass('disabled')
+    @ui.listContent.removeClass('dragover')
+
+    $(document).on 'dragenter', => @ui.listContent.addClass('dragover')
+    $(document).on 'mousemove', => @ui.listContent.removeClass('dragover')
+
+  hide: ->
+    @$el.removeClass('open')
+    $(document).off 'dragenter, mousemove'
 
 # module initialization
 chr.module 'images', (module) ->
