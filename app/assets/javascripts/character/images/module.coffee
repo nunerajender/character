@@ -6,11 +6,19 @@
 
   template: (item) -> ''
 
-  onRender: ->
-    thumbUrl = @model.get('image').image.chr_thumb.url
-    @$el.css 'background-image', "url(#{ thumbUrl })"
-    @$el.attr 'data-id', @model.id
+  modelEvents:
+    'change':  'render'
+    'destroy': 'remove'
 
+  onRender: ->
+    image = @model.get('image')
+    if image
+      thumbUrl = image.image.chr_thumb.url
+      @$el.css('background-image', "url(#{ thumbUrl })")
+      @$el.attr('data-id', @model.id)
+      @$el.removeClass('placeholder')
+    else
+      @$el.addClass('placeholder')
 
 @Character.Images.ListView = Backbone.Marionette.CollectionView.extend
   tagName: 'ul'
@@ -52,6 +60,9 @@
     'click #chr_images_insert':  '_insert'
     'click #chr_images_grid li': '_selectImage'
 
+  initialize: ->
+    @uploads = {}
+
   _cancel: ->
     @callback?([])
     @hide()
@@ -69,6 +80,9 @@
   _selectImage: (e) ->
     $el = $(e.currentTarget)
 
+    if $el.hasClass('placeholder')
+      return
+
     if not chr.images.options.multipleSelection
       @ui.listContent.find('.selected').removeClass 'selected'
 
@@ -82,12 +96,15 @@
     @list = new Character.Images.ListView({ collection: @options.collection })
     @listContent.show(@list)
 
+    # https://github.com/blueimp/jQuery-File-Upload/wiki/Options
     @ui.uploadInput.fileupload
       url: '/admin/Character-Image'
       paramName: 'character_image[image]'
       dataType:  'json'
-      done: (e, data) => # TODO: prosess multiple file uploads here
-        @collection.add([data.result]) # TODO: fix sorting issue
+      add: (e, data) =>
+        model = new Character.Generic.Model({ created_at: (new Date()).toISOString() })
+        @collection.add(model)
+        data.submit().done (data, result) -> model.set(data)
 
   show: (@callback, @multipleSelection) ->
     @$el.addClass('open')
