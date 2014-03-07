@@ -21,12 +21,15 @@
     newAction:     '#new'
 
   events:
-    'click #list_search_hide':  'hideSearch'
-    'click #list_search_show':  'showSearch'
-    'keyup #list_search input': 'onKeyup'
-    'click #list_title':        'toggleScopesMenu'
+    'click #list_search_hide':  '_hideSearch'
+    'click #list_search_show':  '_showSearch'
+    'keyup #list_search input': '_onKeyup'
+    'click #list_title':        '_toggleScopesMenu'
 
-  onKeyup: (e) ->
+  _toggleScopesMenu: ->
+    @ui.scopes.toggleClass 'show'
+
+  _onKeyup: (e) ->
     if @searchTypeTimeout
       clearTimeout(@searchTypeTimeout)
 
@@ -42,19 +45,43 @@
     else
       @searchTypeTimeout = setTimeout(search, 800)
 
-  showSearch: ->
+  _showSearch: ->
     @ui.search.addClass('active')
     @ui.searchInput.focus()
     false
 
-  hideSearch: ->
+  _hideSearch: ->
     @ui.search.removeClass('active')
     @ui.searchInput.val('')
     @collection.setSearchQuery()
     @collection.fetchPage(1)
     false
 
+  _addScopesDropdown: ->
+    if @scopes and _(@scopes).keys().length > 0
+      if not @ui.scopes
+        @ui.scopes = $('<ul />')
+        @ui.scopes.append """<li><a href='#{ @path }'>#{ @options.listTitle }</a></li>"""
+
+        _.each @scopes, (scope, key) =>
+          @ui.scopes.append """<li><a href='#{ @path }/#{ scope.slug }'>#{ scope.title }</a></li>"""
+
+        @ui.title.after(@ui.scopes).addClass('dropdown')
+
+      @_setActiveScopeLink()
+      @_hideScopesDropdown()
+
+  _setActiveScopeLink: ->
+    currentScopeTitle = @ui.title.html()
+    @ui.scopes.find('a').each (i, el) ->
+      if $(el).html() == currentScopeTitle then $(el).addClass('active') else $(el).removeClass('active')
+
+  _hideScopesDropdown: ->
+    @ui.scopes.removeClass('show')
+
   onRender: ->
+    @beforeOnRender?()
+
     @collection = @options.module.collection
     @scopes     = @options.listScopes
     @path       = "#/#{ @options.moduleName }"
@@ -67,9 +94,15 @@
     else
       @ui.searchShow.hide()
 
-    @afterOnRender() if @afterOnRender
+    @afterOnRender?()
+
+  onClose: ->
+    @beforeOnClose?()
+    @afterOnClose?()
 
   update: (scopeSlug) ->
+    @beforeUpdate?()
+
     title = @options.listTitle
     path  = @path
 
@@ -81,31 +114,10 @@
 
     @ui.newAction.attr('href', path + "/new")
 
-    @addScopesDropdown()
+    @_addScopesDropdown()
 
-  addScopesDropdown: ->
-    if @scopes and _(@scopes).keys().length > 0
-      if not @ui.scopes
-        @ui.scopes = $('<ul />')
-        @ui.scopes.append """<li><a href='#{ @path }'>#{ @options.listTitle }</a></li>"""
+    @afterUpdate?()
 
-        _.each @scopes, (scope, key) =>
-          @ui.scopes.append """<li><a href='#{ @path }/#{ scope.slug }'>#{ scope.title }</a></li>"""
-
-        @ui.title.after(@ui.scopes).addClass('dropdown')
-
-      # update active scope link
-      currentScopeTitle = @ui.title.html()
-      @ui.scopes.find('a').each (i, el) ->
-        if $(el).html() == currentScopeTitle then $(el).addClass('active') else $(el).removeClass('active')
-
-      # hide scopes menu
-      @ui.scopes.removeClass 'show'
-
-  toggleScopesMenu: ->
-    @ui.scopes.toggleClass 'show'
-
-  onClose: ->
 
 #
 # Marionette.js Item View Documentation
