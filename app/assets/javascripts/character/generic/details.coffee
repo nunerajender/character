@@ -4,8 +4,8 @@
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
 #
 @Character.Generic.DetailsHeaderView = Backbone.Marionette.ItemView.extend
-  template: -> "<a id=close class=close href='#'><i class='chr-icon icon-close'></i></a>
-                <button id=save class=save title='Save changes'>Save</button>
+  template: -> "<button id=save class='save invert' title='Save changes'>Save</button>
+                <button id=cancel class=cancel title='Cancel changes'>Cancel</button>
                 <div id=details_title class=title></div>
                 <a id=delete class=delete href='#' title='Delete this item'>
                   <i class='fa fa-trash-o'></i>
@@ -15,7 +15,6 @@
   ui:
     title:        '#details_title'
     meta:         '#details_meta'
-    actionClose:  '#close'
     actionSave:   '#save'
     actionDelete: '#delete'
 
@@ -32,7 +31,6 @@
       title = @options.title
 
     @ui.title.html(title)
-    @ui.actionClose.attr 'href', '#/' + chr.currentPath
 
     if not @options.deletable
       @ui.actionDelete.hide()
@@ -66,6 +64,7 @@
     content: '#details_content'
 
   events:
+    'click #cancel': 'onCancel'
     'click #save':   'onSave'
     'click #delete': 'onDelete'
 
@@ -177,6 +176,9 @@
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
 
       @afterOnClose?()
+
+  onCancel: ->
+    Backbone.history.navigate("#/#{chr.currentPath}", { trigger: true })
 
   _toggleFullscreen: ->
     @$el.parent().toggleClass('fullscreen')

@@ -5,7 +5,6 @@
 a                                     { text-decoration: none;
 }
 
-.chr-list-header button,
 .chr-details-header button            { background: $header_color;
                                         color: #fff;
                                         font-size: 12px;
@@ -14,13 +13,20 @@ a                                     { text-decoration: none;
                                         border-radius: 4px;
                                         width: 120px;
                                         padding: 6px 0;
-  &:hover                             { background-color: $header_border_color;
+                                        height: 33px;
+  &:not(.invert):hover                { border: 3px solid #fff;
+                                        padding-top: 5px;
+  }
+  &.invert                            { background-color: #fff;
+                                        color: $header_color;
+    &:hover                           { color: $secondary_color;
+    }
   }
 }
 
 .chr-list-header .new,
 .chr-list-header .search,
-.chr-details-header .close,
+.chr-details-header .cancel,
 .chr-details-header .save             { float: right;
 }
 
@@ -29,19 +35,19 @@ a                                     { text-decoration: none;
   }
 }
 
-.chr-details-header .save             { margin-top: -5px;
-}
-.chr-details-header .close            { margin-top: 2px;
-                                        margin-left: 20px;
-                                        display: none; // close details view button
+.chr-details                          {
+  .save                               { margin-top: -4px;
+  }
+  .cancel                             { margin-top: -4px;
+                                        margin-right: 10px;
+  }
 }
 
 .chr-details.update                   {
   .chr-details-header                 { padding: 12px 25px;
     .save                             { margin-top: 7px;
     }
-    .close                            { margin-top: 14px;
-                                        margin-left: 20px;
+    .cancel                           { margin-top: 7px;
     }
   }
 }
