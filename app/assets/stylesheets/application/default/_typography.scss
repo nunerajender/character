@@ -1,4 +1,5 @@
-// default typography based on normalize.css
+// default typography based on normalize.css, it's included in application/default.scss
+// some tips could be taken from here: https://raw.github.com/devinhunt/typebase.css/master/typebase.css
 
 $text_size: 22px!default;
 $text_margin: 20px!default;
@@ -8,12 +9,12 @@ h1                                    { font-family: $header_font; font-size: $t
                                         margin-bottom: 0;
 }
 
-h3                                    { font-size: $text_size*1.65; font-weight: normal; font-style: italic; line-height: 1.2;
-                                        margin: $text_margin/2 0 $text_margin;
+h2                                    { font-family: $header_font; font-size: $text_size*1.28; font-weight: 700;
+                                        margin-bottom: $text_margin;
 }
 
-h4                                    { font-family: $header_font; font-size: $text_size*1.28; font-weight: 700;
-                                        margin-bottom: $text_margin;
+h3                                    { font-size: $text_size*1.65; font-weight: normal; font-style: italic; line-height: 1.2;
+                                        margin: $text_margin/2 0 $text_margin;
 }
 
 li, blockquote, p                     { font-size: $text_size; line-height: 1.5;
@@ -32,8 +33,9 @@ ol                                    { padding-left: $text_margin*1.5;
 ol, ul                                { margin: $text_margin 0;
 }
 
-pre                                   { font-family: $code_font; font-size: $text_size*0.73;
+code, pre                             { font-family: $code_font; font-size: $text_size*0.73;
                                         background: rgba(0,0,0,0.05%);
                                         margin: $text_margin 0;
                                         padding: $text_margin;
+                                        vertical-align: bottom;
 }
