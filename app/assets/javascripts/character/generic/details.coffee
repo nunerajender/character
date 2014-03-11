@@ -64,55 +64,17 @@
     content: '#details_content'
 
   events:
-    'click #cancel': 'onCancel'
-    'click #save':   'onSave'
-    'click #delete': 'onDelete'
+    'click #cancel': '_cancel'
+    'click #save':   '_save'
+    'click #delete': '_delete'
 
   initialize: ->
     @module            = @options.module
     @DetailsHeaderView = @module.DetailsHeaderView
 
-  onRender: ->
-    window.shortcuts.register_combo { keys: 'meta s', is_exclusive: true, on_keyup: (event) => @onSave() }
-    window.shortcuts.register_combo { keys: 'meta e', is_exclusive: true, on_keyup: (event) => @_toggleFullscreen() }
-
-    @headerView = new @DetailsHeaderView
-      model:     @model
-      title:     "New #{ @options.objectName }"
-      deletable: @options.deletable
-
-    @header.show(@headerView)
-
-    if @model then @$el.addClass('update')
-
-    $.ajax
-      type: 'get'
-      url:  @options.formUrl
-      success: (data) =>
-        @renderContent(data)
-      error: (xhr, ajaxOptions, thrownError) =>
-        chr.execute('showError', xhr)
-
-  renderContent: (html) ->
-    if @ui
-      @beforeRenderContent?()
-
-      @ui.content.html(html)
-
-      @ui.form = @ui.content.find('form.simple_form')
-
-      if @ui.form.length
-        # form related helpers
-        Character.Generic.Helpers.startDateSelect(@ui.form)
-
-      $(document).trigger("chr-details-content.rendered", [ @ui.content ])
-      $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
-
-      @afterRenderContent?()
-
-  onSave: ->
+  _save: ->
     if @ui.form.length
-      @beforeOnSave?()
+      @beforeSave?()
 
       Character.Generic.Helpers.serializeDataInputs(@ui.content, @ui.form)
 
@@ -132,15 +94,15 @@
           @headerView.updateState()
         success: (responseText, statusText, xhr, $form) =>
           @headerView.updateState()
-          @updateModel(responseText)
+          @_updateModel(responseText)
           @afterFormSubmitSuccess?(responseText, statusText, xhr, $form)
 
     return false
 
-  updateModel: (resp) ->
+  _updateModel: (resp) ->
     # string means form errors returned
     if typeof(resp) == 'string'
-      return @renderContent(resp)
+      return @_renderContent(resp)
 
     # assuming response is json
     if @model
@@ -150,7 +112,7 @@
       @collection.fetchPage 1, ->
         Backbone.history.navigate("#/#{chr.currentPath}/edit/#{resp._id}", { trigger: true })
 
-  onDelete: ->
+  _delete: ->
     if confirm("""Delete "#{ @model.getTitle() }"?""")
       @close()
       @model.destroy
@@ -159,6 +121,50 @@
         error: (model, response, options) ->
           chr.execute('error', response)
     return false
+
+  _cancel: ->
+    Backbone.history.navigate("#/#{chr.currentPath}", { trigger: true })
+
+  _toggleFullscreen: ->
+    @$el.parent().toggleClass('fullscreen')
+
+  _renderContent: (html) ->
+    if @ui
+      @beforeRenderContent?()
+
+      @ui.content.html(html)
+
+      @ui.form = @ui.content.find('form.simple_form')
+
+      if @ui.form.length
+        # form related helpers
+        Character.Generic.Helpers.startDateSelect(@ui.form)
+
+      $(document).trigger("chr-details-content.rendered", [ @ui.content ])
+      $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
+
+      @afterRenderContent?()
+
+  onRender: ->
+    window.shortcuts.register_combo { keys: 'meta s', is_exclusive: true, on_keyup: (event) => @_save() }
+    window.shortcuts.register_combo { keys: 'meta e', is_exclusive: true, on_keyup: (event) => @_toggleFullscreen() }
+
+    @headerView = new @DetailsHeaderView
+      model:     @model
+      title:     "New #{ @options.objectName }"
+      deletable: @options.deletable
+
+    @header.show(@headerView)
+
+    if @model then @$el.addClass('update')
+
+    $.ajax
+      type: 'get'
+      url:  @options.formUrl
+      success: (data) =>
+        @_renderContent(data)
+      error: (xhr, ajaxOptions, thrownError) =>
+        chr.execute('showError', xhr)
 
   onClose: ->
     window.closeDetailsView = null
@@ -176,9 +182,3 @@
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
 
       @afterOnClose?()
-
-  onCancel: ->
-    Backbone.history.navigate("#/#{chr.currentPath}", { trigger: true })
-
-  _toggleFullscreen: ->
-    @$el.parent().toggleClass('fullscreen')
