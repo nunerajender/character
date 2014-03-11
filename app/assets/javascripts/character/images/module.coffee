@@ -16,9 +16,9 @@
       thumbUrl = image.image.chr_thumb.url
       @$el.css('background-image', "url(#{ thumbUrl })")
       @$el.attr('data-id', @model.id)
-      @$el.removeClass('placeholder')
+      @$el.removeClass('placeholder csspinner double-up')
     else
-      @$el.addClass('placeholder')
+      @$el.addClass('placeholder csspinner double-up')
 
 @Character.Images.ListView = Backbone.Marionette.CollectionView.extend
   tagName: 'ul'

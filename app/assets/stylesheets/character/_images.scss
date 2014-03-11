@@ -151,14 +151,15 @@
     &.placeholder                      { border-color: $list_border_color;
                                         border-style: dashed;
                                         border-radius: 8px;
-        &:before                      { font-family: FontAwesome;
-                                        font-size: 40px;
-                                        color: $list_border_color;
-                                        content: '\f0ed';
-                                        position: relative;
-                                        left: 56px;
-                                        top: 52px;
-       }
+       //  &:before                      { font-family: FontAwesome;
+       //                                  font-size: 40px;
+       //                                  color: $list_border_color;
+       //                                  content: '\f0ed';
+       //                                  position: relative;
+       //                                  left: 56px;
+       //                                  top: 52px;
+       //                                  display: none;
+       // }
     }
   }
 
@@ -182,4 +183,10 @@
                                         justify-content: center;
    }
   }
+}
+
+.placeholder.csspinner.double-up:after { border-color: $secondary_color;
+}
+
+.placeholder.csspinner:before         { background-color: transparent;
 }
