@@ -38,6 +38,9 @@
                            <a href='#/settings/#{ name }' class='#{ name }'><div class='title'>#{ title }</div></a>
                          </li>"""
 
-  setActiveMenuItem: (path) ->
+  unsetActiveMenuItem: ->
     @ui.list.find('.active').removeClass('active')
+
+  setActiveMenuItem: (path) ->
+    @unsetActiveMenuItem()
     @ui.list.find("a.#{ path }").parent().addClass('active')

@@ -50,7 +50,7 @@
 
 #
 # Marionette.js Layout Documentation
-# https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.itemview.md
+# https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md
 #
 @Character.Generic.DetailsLayout = Backbone.Marionette.Layout.extend
   className: 'chr-details'
@@ -78,10 +78,11 @@
 
       Character.Generic.Helpers.serializeDataInputs(@ui.content, @ui.form)
 
-      # include fields to properly update item in a list and sort
-      params = _.clone(@collection.options.constantParams)
-      if @collection.sortField
-        params.f = _([ params.f, @collection.sortField ]).uniq().join(',')
+      if @collection
+        # include fields to properly update item in a list and sort
+        params = _.clone(@collection.options.constantParams)
+        if @collection.sortField
+          params.f = _([ params.f, @collection.sortField ]).uniq().join(',')
 
       @ui.form.ajaxSubmit
         data: params
@@ -157,6 +158,8 @@
     @header.show(@headerView)
 
     if @model then @$el.addClass('update')
+
+    @beforeContentRequest?()
 
     $.ajax
       type: 'get'

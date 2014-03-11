@@ -1,3 +1,3 @@
 Character.configure do |config|
-  config.title = 'Admin'
+  config.title = 'Website Admin'
 end

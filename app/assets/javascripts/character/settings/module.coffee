@@ -42,11 +42,16 @@ chr.module 'settings', (module) ->
     @module.layout.details?.close()
     chr.execute('showModule', @module)
     chr.currentPath = "settings"
+    @module.layout.unsetActiveMenuItem()
 
   edit: (settingsModuleName) ->
     @index()
 
-    options = @module.submodules[settingsModuleName].options
+    # this is required to work with generic details view
+    options         = @module.submodules[settingsModuleName].options
+    options.module  = @module.submodules[settingsModuleName]
+    options.formUrl = "#{ chr.options.url }/settings/#{ settingsModuleName }"
+
     detailsView = new options.detailsViewClass(options)
 
     @module.layout.details.show(detailsView)
@@ -61,7 +66,9 @@ chr.settingsModule = (title, options={}) ->
   options.titleDetails ?= title
   options.moduleName   ?= _.underscored(title)
 
-  options.detailsViewClass ?= Character.Settings.DetailsView
+  options.detailsViewClass       ?= Character.Settings.DetailsLayout
+  options.detailsHeaderViewClass ?= Character.Settings.DetailsHeaderView
 
-  chr.module "settings.#{options.moduleName}", ->
+  chr.module "settings.#{options.moduleName}", (module) ->
+    module.DetailsHeaderView = options.detailsHeaderViewClass
     @options = options

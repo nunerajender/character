@@ -56,6 +56,7 @@ Run bundle and run generators:
 
 These are blank methods that could be overriden to extend view functionality. Example of ```Character.Generic.DetailsView``` override: [character/posts/module.coffee](https://github.com/slate-studio/character/blob/master/app/assets/javascripts/character/posts/module.coffee)
 
+- @beforeContentRequest()
 - @beforeRenderContent()
 - @afterRenderContent()
 - @beforeSave()

@@ -2,7 +2,7 @@
 # SETTINGS CATEGORIES
 # ---------------------------------------------------------
 
-@Character.Settings.CategoriesView = Character.Settings.DetailsView.extend
+@Character.Settings.CategoriesLayout = Character.Settings.DetailsLayout.extend
   newItem: ->
     $item = @ui.template.clone()
 
@@ -38,18 +38,38 @@
 
     @ui.list.sortable(options).disableSelection()
 
+  _bindDelete: ->
+    @ui.content.on 'click', '.action_delete', (e) ->
+      itemCls = $(e.currentTarget).attr('data-item-class')
+      item    = $(e.currentTarget).closest(".#{ itemCls }")
+
+      # TODO: query could be optimized with one regex
+      destroy_field = _.find item.find("input[type=hidden]"), (f) ->
+        name = $(f).attr('name') ; _(name).endsWith('[_destroy]')
+
+      if destroy_field
+        $(destroy_field).attr('value', 'true')
+        item.replaceWith(destroy_field)
+      else
+        item.remove()
+      false
+
   afterRenderContent: ->
     @ui.template   = $('#template')
     @ui.titleInput = @ui.template.find('.objects_title input')
     @ui.list       = @ui.content.find('.sortable-list')
     @_bindEnter()
     @_bindReorder()
+    @_bindDelete()
 
   afterOnClose: ->
     @ui.titleInput.off 'keydown'
     @ui.list.sortable('destroy')
 
+  beforeSave: ->
+    @ui.template.remove()
+
 chr.settingsPostCategories = (titleMenu = 'Categories') ->
   chr.settingsModule 'Post Categories',
     titleMenu: titleMenu
-    detailsViewClass: Character.Settings.CategoriesView
+    detailsViewClass: Character.Settings.CategoriesLayout
