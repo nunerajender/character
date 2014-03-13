@@ -42,12 +42,13 @@
   new: (listScope) ->
     @index(listScope)
     detailsLayout = new @module.DetailsLayout
-      model:      no
-      collection: @collection
-      objectName: @options.objectName
-      module:     @module
-      formUrl:    "#{ chr.options.url }/#{ @options.modelName }/new"
-      fullscreen: @options.fullscreen
+      model:         no
+      collection:    @collection
+      objectName:    @options.objectName
+      module:        @module
+      formUrl:       "#{ chr.options.url }/#{ @options.modelName }/new"
+      fullscreen:    @options.fullscreen
+      editorOptions: @options.editorOptions
     @module.layout.details.show(detailsLayout)
 
   edit: (listScope, id) ->
@@ -55,12 +56,13 @@
       @module.layout.list.selectItem(id)
       doc = @collection.get(id)
       detailsLayout = new @module.DetailsLayout
-        model:      doc
-        collection: @collection
-        formUrl:    "#{ chr.options.url }/#{ @options.modelName }/#{ id }/edit"
-        deletable:  @options.deletable
-        module:     @module
-        fullscreen: @options.fullscreen
+        model:         doc
+        collection:    @collection
+        formUrl:       "#{ chr.options.url }/#{ @options.modelName }/#{ id }/edit"
+        deletable:     @options.deletable
+        module:        @module
+        fullscreen:    @options.fullscreen
+        editorOptions: @options.editorOptions
       @module.layout.details.show(detailsLayout)
     )
 
@@ -77,9 +79,11 @@ chr.genericModule = (name, options={}) ->
   options.listReorder      ?= false
   options.listItemsPerPage ?= 25
 
-  options.newItems   ?= true
-  options.deletable  ?= true
-  options.fullscreen ?= true
+  options.newItems      ?= true
+  options.deletable     ?= true
+  options.fullscreen    ?= true
+  options.editorOptions ?= {}
+
   options.moduleName ?= _.underscored(_.pluralize(name))
   options.objectName ?= name
   options.modelName  ?= name

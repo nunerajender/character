@@ -134,12 +134,14 @@
       @beforeRenderContent?()
 
       @ui.content.html(html)
-
       @ui.form = @ui.content.find('form.simple_form')
+
+      beforeFormHelpersStart?()
 
       if @ui.form.length
         # form related helpers
         Character.Generic.Helpers.startDateSelect(@ui.form)
+        Character.Generic.Helpers.startEditor(@ui.content, @options.editorOptions)
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -186,6 +188,7 @@
       if @ui.form
         # form related helpers
         Character.Generic.Helpers.stopDateSelect(@ui.form)
+        Character.Generic.Helpers.stopEditor(@ui.content)
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])

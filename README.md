@@ -58,6 +58,7 @@ These are blank methods that could be overriden to extend view functionality. Ex
 
 - @beforeContentRequest()
 - @beforeRenderContent()
+- @beforeFormHelpersStart()
 - @afterRenderContent()
 - @beforeSave()
 - @beforeFormSubmit(arr, $form, options)

@@ -34,6 +34,6 @@
 
   <section class='character-editor content'
            data-input-name='character_post[body_html]'
-           data-options="placeholder:'Write your post';insertImages:true;targetBlanks:true;buttons:'bold italic underline anchor header1 header2 quote'"
+           data-options="placeholder:'Write your post';insertImages:true;targetBlanks:true;"
   ><%= @object.body_html.try(:html_safe) %></section>
 </article>
