@@ -24,6 +24,8 @@
   tagName: 'ul'
   itemView: Character.Images.ListItemView
 
+  initialize: ->
+    @listenTo(@collection, 'sort', @render, @)
 
 @Character.Images.Layout = Backbone.Marionette.Layout.extend
   id:        'chr_images'
