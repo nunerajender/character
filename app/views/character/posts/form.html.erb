@@ -6,8 +6,6 @@
       <%= ff.input :chr_thumbnail_url, as: :hidden, input_html: { value: @object.chr_featured_thumbnail_url } %>
     <% end %>
 
-    <%= f.input :keywords, placeholder: 'Split with comma' %>
-
     <% if Character::PostCategory.all.size > 0 %>
       <%= f.input :category_id, include_blank: true, collection: Character::PostCategory.all %>
     <% end %>

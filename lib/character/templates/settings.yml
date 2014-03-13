@@ -46,9 +46,4 @@ Website Settings:
     description: What this website is about? This is used by search engines.
     default_value: 'This website is built with character.'
 
-  Keywords:
-    type: string
-    description: Split keywords with comma
-    default_value: ''
-
 # END

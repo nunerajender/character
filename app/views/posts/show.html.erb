@@ -1,12 +1,11 @@
 <% set_meta_tags  title:       @post.title,
                   description: @post.subtitle,
-                  keywords:    @post.keywords,
-                  canonical:   "http://#{ @domain }#{ posts_show_path(@post.slug) }",
-                  :og => {
-                    :title  => @post.title,
-                    :type   => 'article',
-                    :url    => "http://#{ @domain }#{ posts_show_path(@post.slug) }",
-                    :image  => @post.featured_image_url } %>
+                  canonical:   "//#{ @domain }#{ posts_show_path(@post) }",
+                  open_graph:  { type:        'article',
+                                 title:       @post.title,
+                                 description: @post.subtitle,
+                                 url:         "//#{ @domain }#{ posts_show_path(@post) }",
+                                 image:       @post.featured_image_url } %>
 
 <article class='posts-show'>
   <header>

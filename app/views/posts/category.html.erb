@@ -1,11 +1,10 @@
 <% set_meta_tags  title:       "#{ @category.title } | #{ @title }",
-                  description: @description,
-                  keywords:    @keywords,
-                  canonical:   "//#{ @domain }#{ posts_index_path }",
+                  description: @description, # use same description as website
+                  canonical:   "//#{ @domain }#{ posts_category_path(@category) }",
                   open_graph:  { type:        'blog',
-                                 title:       @title,
-                                 description: @description,
-                                 url:         "//#{ @domain }#{ posts_index_path }" } %>
+                                 title:       "#{ @category.title } | #{ @title }",
+                                 description: @description, # use same description as website
+                                 url:         "//#{ @domain }#{ posts_category_path(@category) }" } %>
 
 <section class='posts-index'>
   <% @posts.each do |p| %>

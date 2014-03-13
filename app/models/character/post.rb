@@ -8,19 +8,19 @@ class Character::Post
 
   # attributes
   field :title
-  field :body_html
+  field :subtitle,       default: ''
   field :featured_image, type: Hash, default: { 'url' => '', 'chr_thumbnail_url' => '' }
-  field :published_at,   type: Date
-  field :published,      type: Boolean, default: false
-  field :subtitle, default: ''
-  field :keywords, default: ''
+  field :body_html
+
+  field :published,    type: Boolean, default: false
+  field :published_at, type: Date
 
   # relations
   belongs_to :category, class_name: "Character::PostCategory"
 
   # slugs and search
   slug      :title, history: true
-  search_in :title, :keywords, :body_html, :category => :title
+  search_in :title, :body_html, :category => :title
 
   # scopes
   default_scope     -> { order_by(published_at: :desc) }

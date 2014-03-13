@@ -16,6 +16,5 @@ class PagesController < ApplicationController
     @domain      = settings['Domain'].value
     @title       = settings['Title'].value
     @description = settings['Description'].value
-    @keywords    = settings['Keywords'].value
   end
 end
