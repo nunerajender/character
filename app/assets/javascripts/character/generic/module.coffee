@@ -59,6 +59,7 @@
         formUrl:    "#{ chr.options.url }/#{ @options.modelName }/#{ id }/edit"
         deletable:  @options.deletable
         module:     @module
+        fullscreen: @options.fullscreen
       @module.layout.details.show(detailsLayout)
     )
 
@@ -77,6 +78,7 @@ chr.genericModule = (name, options={}) ->
 
   options.newItems   ?= true
   options.deletable  ?= true
+  options.fullscreen ?= true
   options.moduleName ?= _.underscored(_.pluralize(name))
   options.objectName ?= name
   options.modelName  ?= name

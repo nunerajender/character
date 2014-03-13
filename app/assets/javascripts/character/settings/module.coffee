@@ -48,9 +48,10 @@ chr.module 'settings', (module) ->
     @index()
 
     # this is required to work with generic details view
-    options         = @module.submodules[settingsModuleName].options
-    options.module  = @module.submodules[settingsModuleName]
-    options.formUrl = "#{ chr.options.url }/settings/#{ settingsModuleName }"
+    options            = @module.submodules[settingsModuleName].options
+    options.module     = @module.submodules[settingsModuleName]
+    options.formUrl    = "#{ chr.options.url }/settings/#{ settingsModuleName }"
+    options.fullscreen = false
 
     detailsView = new options.detailsViewClass(options)
 

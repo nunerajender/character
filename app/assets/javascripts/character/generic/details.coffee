@@ -148,7 +148,9 @@
 
   onRender: ->
     window.shortcuts.register_combo { keys: 'meta s', is_exclusive: true, on_keyup: (event) => @_save() }
-    window.shortcuts.register_combo { keys: 'meta e', is_exclusive: true, on_keyup: (event) => @_toggleFullscreen() }
+
+    if @options.fullscreen
+      window.shortcuts.register_combo { keys: 'meta e', is_exclusive: true, on_keyup: (event) => @_toggleFullscreen() }
 
     @headerView = new @DetailsHeaderView
       model:     @model
@@ -174,8 +176,12 @@
     if @ui
       @beforeOnClose?()
 
-      @$el.parent().removeClass('fullscreen')
+      # unbind save
       window.shortcuts.unregister_combo 'meta s'
+
+      # unbind fullscreen
+      @$el.parent().removeClass('fullscreen')
+      window.shortcuts.unregister_combo 'meta e'
 
       if @ui.form
         # form related helpers
