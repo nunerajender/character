@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   def category
     @category = Character::PostCategory.find(params[:slug])
     @posts    = @category.posts.published
-    render 'index'
   end
 
   def show

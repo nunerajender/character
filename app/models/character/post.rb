@@ -24,12 +24,13 @@ class Character::Post
 
   # scopes
   default_scope     -> { order_by(published_at: :desc) }
-  scope :published, -> { where(published: true) }
+  scope :published, -> { where(published: true).lte(published_at: Date.today.to_s) }
+  scope :scheduled, -> { where(published: true).gt(published_at: Date.today.to_s) }
   scope :drafts,    -> { where(published: false) }
 
   # indexes
   index({ slug: 1 })
-  index({ published: 1, date: -1 })
+  index({ published: 1, published_at: -1 })
 
   # helpers
   def featured_image_url
