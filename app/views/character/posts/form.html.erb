@@ -3,7 +3,6 @@
 
     <%= f.simple_fields_for :featured_image do |ff| %>
       <%= ff.input :url, as: :hidden, input_html: { value: @object.featured_image_url } %>
-      <%= ff.input :chr_thumbnail_url, as: :hidden, input_html: { value: @object.chr_featured_thumbnail_url } %>
     <% end %>
 
     <% if Character::PostCategory.all.size > 0 %>

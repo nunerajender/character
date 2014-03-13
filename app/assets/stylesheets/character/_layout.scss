@@ -33,13 +33,6 @@ b, strong                             { font-weight: $font_bold;
 
 .chr-layout .fullscreen               { background: rgba(0,0,0,0.05);
                                         width: 100%;
-  .chr-details-header,
-  .chr-details-content                { left: 45px;
-  }
-  .chr-details-header                 { border-left: 1px solid $header_border_color;
-  }
-  .chr-details-content                { border-left: 1px solid $list_border_color;
-  }
 }
 
 .chr-list,

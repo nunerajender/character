@@ -9,7 +9,7 @@ class Character::Post
   # attributes
   field :title
   field :subtitle,       default: ''
-  field :featured_image, type: Hash, default: { 'url' => '', 'chr_thumbnail_url' => '' }
+  field :featured_image, type: Hash, default: { 'url' => '' }
   field :body_html
 
   field :published,    type: Boolean, default: false
@@ -35,10 +35,6 @@ class Character::Post
   # helpers
   def featured_image_url
     featured_image ? featured_image['url'] : ''
-  end
-
-  def chr_featured_thumbnail_url
-    featured_image ? featured_image['chr_thumbnail_url'] : ''
   end
 
   def updated_ago

@@ -87,7 +87,6 @@ chr.postsModule = (opts) ->
     listItem:
       titleField:   'title'
       metaField:    'updated_ago'
-      thumbField:   'chr_featured_thumbnail_url'
     modelName:      'Character-Post'
     listSearch:     true
     listScopes:
