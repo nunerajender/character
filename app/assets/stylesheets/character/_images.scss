@@ -148,7 +148,7 @@
                                         box-shadow: inset 0 0 1px 1px #fff;
     }
 
-    &.placeholder                      { border-color: $list_border_color;
+    &.placeholder                     { border-color: $list_border_color;
                                         border-style: dashed;
                                         border-radius: 8px;
        //  &:before                      { font-family: FontAwesome;
@@ -185,7 +185,7 @@
   }
 }
 
-.placeholder.csspinner.double-up:after { border-color: $secondary_color;
+.placeholder.csspinner.double-up:after { border-color: $list_border_color;
 }
 
 .placeholder.csspinner:before         { background-color: transparent;
