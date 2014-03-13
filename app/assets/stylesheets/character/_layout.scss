@@ -105,6 +105,7 @@ b, strong                             { font-weight: $font_bold;
   }
 
   &.active a                          { background: $list_item_active_color;
+                                        border-bottom: 2px solid $secondary_color;
   }
 
   // Default list item layout
