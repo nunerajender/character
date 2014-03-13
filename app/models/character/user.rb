@@ -19,7 +19,8 @@ class Character::User
 
   def gravatar_url(size)
     hash = Digest::MD5.hexdigest(email)
-    "http://www.gravatar.com/avatar/#{ hash }?s=#{ size }&d=mm"
+    # http://robohash.org
+    "http://robohash.org/bgset_bg2/#{hash}?gravatar=hashed&size=#{size}x#{size}"
   end
 
   def chr_thumbnail_url
