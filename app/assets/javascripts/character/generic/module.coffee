@@ -47,6 +47,7 @@
       objectName: @options.objectName
       module:     @module
       formUrl:    "#{ chr.options.url }/#{ @options.modelName }/new"
+      fullscreen: @options.fullscreen
     @module.layout.details.show(detailsLayout)
 
   edit: (listScope, id) ->
