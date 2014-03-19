@@ -27,7 +27,8 @@
     'click #list_title':        '_toggleScopesMenu'
 
   _toggleScopesMenu: ->
-    @ui.scopes.toggleClass 'show'
+    if @ui.scopes
+      @ui.scopes.toggleClass 'show'
 
   _onKeyup: (e) ->
     if @searchTypeTimeout

@@ -95,6 +95,7 @@ chr.genericModule = (name, options={}) ->
   if options.listScopes
     if options.listScopes.default
       listDefaultOrderBy = options.listScopes.default.orderBy
+      listDefaultWhere   = options.listScopes.default.where
       delete options.listScopes['default']
 
     _(options.listScopes).each (scope, slug) ->
@@ -106,6 +107,7 @@ chr.genericModule = (name, options={}) ->
     listDefaultOrderBy = '_position:desc'
 
   listDefaultOrderBy ?= options.listDefaultOrderBy
+  listDefaultWhere   ?= options.listDefaultWhere
 
   # include model fields
   imf = options.includeModelFields || []
@@ -129,6 +131,7 @@ chr.genericModule = (name, options={}) ->
 
       @collection = new @Collection()
       @collection.options =
+        where:            listDefaultWhere
         orderBy:          listDefaultOrderBy
         modelSlug:        options.modelSlug
         collectionUrl:    options.collectionUrl || "#{ chr.options.url }/#{ options.modelName }"

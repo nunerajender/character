@@ -54,6 +54,9 @@
     params.p = @page
     params.q = @searchQuery
     params.o = @orderBy
+    if @options.where
+      [name, value] = @options.where.split('=')
+      params["where__#{name}"] = value
 
     _.extend(params, @filter)
     _.extend(params, @options.constantParams)
