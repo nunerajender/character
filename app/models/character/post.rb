@@ -4,7 +4,7 @@ class Character::Post
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Search
-  include ActionView::Helpers::DateHelper
+  include UpdatedAgo
 
   # attributes
   field :title
@@ -35,9 +35,5 @@ class Character::Post
   # helpers
   def featured_image_url
     featured_image ? featured_image['url'] : ''
-  end
-
-  def updated_ago
-    "updated #{time_ago_in_words(updated_at)} ago"
   end
 end
