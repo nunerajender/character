@@ -78,6 +78,7 @@ chr.genericModule = (name, options={}) ->
   options.listSearch       ?= false
   options.listReorder      ?= false
   options.listItemsPerPage ?= 25
+  options.listItem         ?= {}
 
   options.newItems      ?= true
   options.deletable     ?= true
@@ -116,9 +117,9 @@ chr.genericModule = (name, options={}) ->
   #  - options.listItem.titleField
   #  - options.listItem.metaField
   #  - options.listItem.thumbField
-  imf.push( options.listItem.titleField )
-  imf.push( options.listItem.metaField )
-  imf.push( options.listItem.thumbField )
+  imf.push( options.listItem.titleField ) if options.listItem.titleField
+  imf.push( options.listItem.metaField )  if options.listItem.metaField
+  imf.push( options.listItem.thumbField ) if options.listItem.thumbField
 
   options.includeModelFields = _.uniq(_.compact(imf))
 
