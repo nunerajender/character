@@ -15,6 +15,12 @@
   }
 }
 
+.chr-settings-file-upload             {
+  label.file                          { margin-bottom: 0; }
+  a                                   { color: $secondary_color; }
+  .input                              { margin-top: 5px; }
+}
+
 //---------------------------------------------------------
 // SETTINGS ADMINS
 //---------------------------------------------------------

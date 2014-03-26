@@ -17,7 +17,7 @@
 
 Admin Settings:
   Logo:
-    type: string
+    type: file
     description: Company logo
     default_value: 'character/logo.jpg'
 

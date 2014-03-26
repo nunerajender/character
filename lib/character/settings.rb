@@ -40,9 +40,21 @@ module Settings
 
     def value
       value = @stored_object.value || @default_value
-      # support for rails assets
-      if @type == 'file' and not value.empty? and not value.include? '//'
-        return ActionController::Base.helpers.asset_path(value)
+
+      if @type == 'file'
+        if @stored_object.has_file_uploaded?
+          # return uploaded file
+          return @stored_object.file.to_s
+        elsif value.include? '//'
+          # return direct link to file
+          return value
+        elsif value.empty?
+          # return empty string
+          return value
+        else
+          # return rails asset
+          return ActionController::Base.helpers.asset_path(value)
+        end
       else
         return value
       end

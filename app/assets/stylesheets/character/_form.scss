@@ -21,20 +21,18 @@
                                           margin: 0 auto;
   }
 
-  .input                                {
-    & > label.email,
-    & > label.tel,
-    & > label.file,
-    & > label.date,
-    & > label.string,
-    & > label.text,
-    & > label.url,
-    & > label.radio_buttons,
-    & > label.select                    { color: #a1a7b2;
+  label.email,
+  label.tel,
+  label.file,
+  label.date,
+  label.string,
+  label.text,
+  label.url,
+  label.radio_buttons,
+  label.select                          { color: #a1a7b2;
                                           font-weight: $font_semi_bold;
                                           display: block;
                                           margin-bottom: 5px;
-    }
   }
 
   .radio label.radio_buttons,
