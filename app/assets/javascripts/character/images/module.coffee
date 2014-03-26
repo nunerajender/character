@@ -12,8 +12,9 @@
 
   onRender: ->
     image = @model.get('image')
+
     if image
-      thumbUrl = image.image.chr_thumb.url
+      thumbUrl = image.chr_thumb.url
       @$el.css('background-image', "url(#{ thumbUrl })")
       @$el.attr('data-id', @model.id)
       @$el.removeClass('placeholder csspinner double-up')
@@ -114,12 +115,12 @@
     @ui.insertButton.addClass('disabled')
     @ui.listContent.removeClass('dragover')
 
-    $(document).on 'dragenter', => @ui.listContent.addClass('dragover')
-    $(document).on 'mousemove', => @ui.listContent.removeClass('dragover')
+    $(document).on 'dragenter', '#chr_images', => @ui.listContent.addClass('dragover')
+    $(document).on 'mousemove', '#chr_images', => @ui.listContent.removeClass('dragover')
 
   hide: ->
     @$el.removeClass('open')
-    $(document).off 'dragenter, mousemove'
+    $(document).off 'dragenter, mousemove', '#chr_images'
 
 # module initialization
 chr.module 'images', (module) ->
