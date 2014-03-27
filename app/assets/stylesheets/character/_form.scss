@@ -21,6 +21,17 @@
                                           margin: 0 auto;
   }
 
+  .input .error                         { position: absolute;
+                                          line-height: 2.4;
+                                          margin-left: .5em;
+                                          font-size: 1em;
+                                          color: $error_color;
+  }
+
+  .input.field_with_errors              {
+    input, textarea                     { border-color: $error_color; }
+  }
+
   label.email,
   label.tel,
   label.file,
