@@ -8,7 +8,7 @@ module Character::ParamsConcern
     if val.is_a?(Hash)
       map = {} ; map[attr_name] = []
 
-      if val.first[0] == "0"
+      if val.first[0] == val.first[0].to_i.to_s # check if key is an integer which means we have an array of nested objects
         val.first[1].each { |arr_value_key, arr_value_value| map[attr_name] << attr_name_or_map(arr_value_key, arr_value_value) }
       else
         val.each { |hsh_key, hsh_value| map[attr_name] << attr_name_or_map(hsh_key, hsh_value) }
