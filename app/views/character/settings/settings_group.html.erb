@@ -22,6 +22,13 @@
                        placeholder: object.description,
                        wrapper_class: f.object.name.parameterize,
                        input_html: { value: object.value, rows: 3 } %>
+        <% when "redactor" %>
+          <%= f.input :value,
+                       as: :text,
+                       label: f.object.name,
+                       placeholder: object.description,
+                       wrapper_class: f.object.name.parameterize,
+                       input_html: { value: object.value, rows: 3, class: 'character-redactor' } %>
         <% else %>
           <%= f.input :value,
                        label: f.object.name,

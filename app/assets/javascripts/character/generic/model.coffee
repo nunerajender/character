@@ -113,9 +113,6 @@
 
 
   sortBy: (iterator, context) ->
-    # console.log @sortDirection
-    # console.log @sortField
-
     obj = @models
     direction = @sortDirection
 

@@ -142,6 +142,7 @@
         # form related helpers
         Character.Generic.Helpers.startDateSelect(@ui.form)
         Character.Generic.Helpers.startEditor(@ui.content, @options.editorOptions)
+        Character.Generic.Helpers.startRedactor(@ui.content, @options.redactorOptions)
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -189,6 +190,7 @@
         # form related helpers
         Character.Generic.Helpers.stopDateSelect(@ui.form)
         Character.Generic.Helpers.stopEditor(@ui.content)
+        Character.Generic.Helpers.stopRedactor(@ui.content)
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])
