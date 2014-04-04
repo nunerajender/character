@@ -8,4 +8,13 @@
                                         margin: 0 auto;
                                         padding: 20px;
                                         @import "application/default/_typography";
+
+  .redactor_editor                    { border: none;
+                                        padding-top: 20px;
+  }
+  .redactor_toolbar li                { font-size: inherit;
+  }
+  .redactor_box                       { margin-top: 40px;
+                                        min-height: 200px;
+  }
 }

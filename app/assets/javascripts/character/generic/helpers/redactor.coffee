@@ -2,11 +2,11 @@
 # REDACTOR
 # ---------------------------------------------------------
 
-@Character.Generic.Helpers.startRedactor = ($content, editorOptions) ->
+@Character.Generic.Helpers.startRedactor = ($content, redactorOptions) ->
   if $.fn.redactor
-    options = { viewSelector: '#details_content' }
-    _(options).extend(editorOptions)
-    $content.find('.character-redactor').redactor()
+    options = {}
+    _(options).extend(redactorOptions)
+    $content.find('.character-redactor').redactor(options)
 
 @Character.Generic.Helpers.stopRedactor = ($content) ->
   if $.fn.redactor

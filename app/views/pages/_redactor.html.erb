@@ -1,0 +1,7 @@
+<%# WARNING: @object variable should point page object %>
+
+<textarea id='redactor' class='character-redactor'>
+  <% if @object.template_content.has_key? 'body' %>
+    <%= @object.template_content['body'].html_safe %>
+  <% end %>
+</textarea>

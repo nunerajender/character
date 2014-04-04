@@ -30,6 +30,11 @@ chr.pagesModule = (opts) ->
     listItem:
       titleField:   'title'
       metaField:    'updated_ago'
+    redactorOptions:
+      toolbarFixed:          true
+      toolbarFixedTarget:    '#details_content'
+      toolbarFixedTopOffset: -198
+      initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_page[template_content][body]')
   _(moduleOpts).extend(opts)
 
   chr.genericModule('Page', moduleOpts)
