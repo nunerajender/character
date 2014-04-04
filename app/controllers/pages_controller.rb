@@ -1,20 +1,12 @@
 class PagesController < ApplicationController
-  rescue_from Mongoid::Errors::DocumentNotFound do |exception|
-    render text: 'Not found.', status: 404, layout: false
-  end
+  include WebsiteSettings
 
-  before_filter :set_website_settings
+  rescue_from Mongoid::Errors::DocumentNotFound do |exception|
+    render text: 'Page not found.', status: 404, layout: false
+  end
 
   def show
+    # TODO: this doesn't trigger PAGE NOT FOUND for some reason
     @object = Character::Page.find_by(path: params[:path])
-  end
-
-  private
-
-  def set_website_settings
-    settings     = ::Settings.group('Website Settings')
-    @domain      = settings['Domain'].value
-    @title       = settings['Title'].value
-    @description = settings['Description'].value
   end
 end

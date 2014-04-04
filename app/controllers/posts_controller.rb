@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  rescue_from Mongoid::Errors::DocumentNotFound do |exception|
-    render text: 'Not found.', status: 404, layout: false
-  end
+  include WebsiteSettings
 
-  before_filter :set_website_settings
+  rescue_from Mongoid::Errors::DocumentNotFound do |exception|
+    render text: 'Post not found.', status: 404, layout: false
+  end
 
   def index
     @posts = Character::Post.published
@@ -25,14 +25,5 @@ class PostsController < ApplicationController
       format.rss { render :layout => false }
       format.all { head :not_found }
     end
-  end
-
-  private
-
-  def set_website_settings
-    settings     = ::Settings.group('Website Settings')
-    @domain      = settings['Domain'].value
-    @title       = settings['Title'].value
-    @description = settings['Description'].value
   end
 end

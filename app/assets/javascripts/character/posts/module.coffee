@@ -14,8 +14,8 @@
     @ui.featuredImageUploader.css({ 'background-image': "url(#{ imageUrl })" })
 
   _updateFeaturedImage: (imageData) ->
-    imageUrl = imageData.regular.url
-    thumbUrl = imageData.chr_thumb_small.url
+    imageUrl = imageData.image.regular.url
+    thumbUrl = imageData.image.chr_thumb_small.url
     @ui.featuredImageInput.val(imageUrl)
     @ui.featuredThumbInput.val(thumbUrl)
     @_setBackgroundImage(imageUrl)

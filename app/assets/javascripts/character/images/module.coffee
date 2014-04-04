@@ -14,7 +14,7 @@
     image = @model.get('image')
 
     if image
-      thumbUrl = image.chr_thumb.url
+      thumbUrl = image.image.chr_thumb.url
       @$el.css('background-image', "url(#{ thumbUrl })")
       @$el.attr('data-id', @model.id)
       @$el.removeClass('placeholder csspinner double-up')
