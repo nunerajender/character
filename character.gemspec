@@ -43,14 +43,16 @@ Gem::Specification.new do |gem|
   # pagination
   gem.add_runtime_dependency 'kaminari'
 
-  # blog backend
+  # blog
   # gem.add_runtime_dependency 'mongoid' <- for now you have to pick github version manually for Rails 4
   gem.add_runtime_dependency 'mongoid_slug'
   gem.add_runtime_dependency 'mongoid_search'
   gem.add_runtime_dependency 'mini_magick'
-
-  # blog seo
   gem.add_runtime_dependency 'meta-tags'
+
+  # analytics
+  gem.add_runtime_dependency 'google-api-client'
+  gem.add_runtime_dependency 'd3-rails'
 
   # testing
   gem.add_development_dependency 'rspec-rails'

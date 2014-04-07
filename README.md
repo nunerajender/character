@@ -68,6 +68,13 @@ These are blank methods that could be overriden to extend view functionality. Ex
 
 ## Instances
 
+## Analytics
+
+- ```GA_APP_NAME```
+- ```GA_PROFILE_ID```
+- ```GA_SERVICE_ACCOUNT_EMAIL```
+- ```GA_KEY_FILE_NAME```
+
 ### Tools
 
 * Figure out if we can build apps easier on a top of http://harpjs.com
