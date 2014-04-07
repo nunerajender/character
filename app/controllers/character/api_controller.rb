@@ -78,6 +78,11 @@ class Character::ApiController < ActionController::Base
 
     # result
     item_objects = @objects.map { |o| build_json_object(o) }
+
+    puts "\n\n\n"
+    puts item_objects.to_json
+    puts "\n\n\n"
+
     render json: item_objects
   end
 

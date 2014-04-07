@@ -1,0 +1,15 @@
+//---------------------------------------------------------
+// REDACTOR
+//---------------------------------------------------------
+
+.posts-show,
+.pages-show                           {
+  .redactor_editor                    { border: none;
+                                        padding-top: 20px;
+  }
+  .redactor_toolbar li                { font-size: inherit;
+  }
+  .redactor_box                       { margin-top: 40px;
+                                        min-height: 200px;
+  }
+}

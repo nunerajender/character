@@ -1,10 +1,10 @@
 <% set_meta_tags  title:       @title,
                   description: @description,
-                  canonical:   "//#{ @domain }#{ posts_index_path }",
+                  canonical:   "http://#{ @domain }#{ posts_index_path }",
                   open_graph:  { type:        'blog',
                                  title:       @title,
                                  description: @description,
-                                 url:         "//#{ @domain }#{ posts_index_path }" } %>
+                                 url:         "http://#{ @domain }#{ posts_index_path }" } %>
 
 <section class='posts-index'>
   <% @posts.each do |p| %>

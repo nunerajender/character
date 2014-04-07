@@ -13,9 +13,9 @@
     @ui.featuredImageUploader.addClass('has-image')
     @ui.featuredImageUploader.css({ 'background-image': "url(#{ imageUrl })" })
 
-  _updateFeaturedImage: (imageData) ->
-    imageUrl = imageData.image.regular.url
-    thumbUrl = imageData.image.chr_thumb_small.url
+  _updateFeaturedImage: (image) ->
+    imageUrl = image.regular.url
+    thumbUrl = image.chr_thumb_small.url
     @ui.featuredImageInput.val(imageUrl)
     @ui.featuredThumbInput.val(thumbUrl)
     @_setBackgroundImage(imageUrl)
@@ -98,6 +98,11 @@ chr.postsModule = (opts) ->
       drafts:
         where:      'published=false'
         orderBy:    'published_at:desc'
+    redactorOptions:
+      toolbarFixed:          true
+      toolbarFixedTarget:    '#details_content'
+      toolbarFixedTopOffset: -110
+      initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_post[body_html]')
 
   _(moduleOpts).extend(opts)
 

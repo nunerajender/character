@@ -1,11 +1,11 @@
 <% set_meta_tags  title:       @post.title,
                   description: @post.subtitle,
-                  canonical:   "//#{ @domain }#{ posts_show_path(@post) }",
+                  canonical:   "http://#{ @domain }#{ posts_show_path(@post) }",
                   open_graph:  { type:        'article',
                                  title:       @post.title,
                                  description: @post.subtitle,
-                                 url:         "//#{ @domain }#{ posts_show_path(@post) }",
-                                 image:       @post.featured_image_url } %>
+                                 url:         "http://#{ @domain }#{ posts_show_path(@post) }",
+                                 image:       'http:' + @post.featured_image_url } %>
 
 <article class='posts-show'>
   <header>
