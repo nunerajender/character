@@ -16,6 +16,7 @@ require 'mongoid_slug'
 require 'mongoid_search'
 require 'meta_tags'
 require 'mini_magick'
+require 'mongoid/carrierwave_serialization_patch'
 
 # character
 require 'character/settings'
