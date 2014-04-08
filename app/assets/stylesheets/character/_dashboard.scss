@@ -1,0 +1,96 @@
+//---------------------------------------------------------
+// DASHBOARD
+//---------------------------------------------------------
+
+.dashboard-chart-select               { position: absolute;
+                                        margin-left: 30px;
+                                        margin-top: 28px;
+}
+
+.dashboard-view                       { @include position(0, 71px, 0, 0);
+                                        overflow: auto;
+                                        background-color: #fafbfc;
+}
+
+.dashboard-chart-visitors             { padding: 40px 20px;
+                                        background-color: #fff;
+                                        border-bottom: 1px solid #d1d6e0;
+                                        min-height: 394px;
+  &:before                            { content: 'Visitors';
+                                        display: block;
+                                        text-transform: uppercase;
+                                        @include font;
+                                        font-weight: $font_bold;
+                                        font-size: 14px;
+                                        text-align: center;
+                                        margin-top: -12px;
+  }
+}
+
+// .dashboard-highlights                 { @include reset-list;
+//                                         //border-top: 1px solid #d1d6e0;
+//                                         border-bottom: 1px solid #d1d6e0;
+//                                         display: inline-block;
+//                                         width: 100%;
+//                                         background-color: #fff;
+//   li                                  { float: left;
+//                                         display: block;
+//                                         width: 33.3333%;
+//                                         height: 128px;
+//                                         border-right: 1px solid #d1d6e0;
+//                                         padding: 20px;
+//                                         text-align: center;
+//     &:last-child                      { border-right: 0;
+//     }
+//     .value                            { color: #414d64;
+//                                         font-size: 42px;
+//                                         @include font;
+//                                         font-weight: $font_bold;
+//     }
+//     small                             { color: #a8aebb;
+//                                         font-size: 16px;
+//                                         @include font;
+//                                         font-weight: $font_bold;
+//                                         display: block;
+//     }
+//   }
+// }
+
+.dashboard-info                       { display: inline-block;
+                                        width: 100%;
+                                        margin-bottom: 60px;
+                                        border-bottom: 1px solid #d1d6e0;
+  .left                               { float: left;
+                                        width: 50%;
+                                        border-right: 1px solid #d1d6e0;
+                                        min-height: 400px;
+  }
+  .right                              { float: right;
+                                        width: 50%;
+  }
+  header                              { border-bottom: 1px solid #d1d6e0;
+                                        padding: 20px;
+                                        text-transform: uppercase;
+                                        @include font;
+                                        font-weight: $font_bold;
+                                        font-size: 14px;
+                                        color: #414d64;
+    select                            { float: right;
+    }
+  }
+  aside                               { float: right;
+                                        color: #14181a;
+  }
+  .row                                { padding: 12px 30px 12px 20px;
+                                        color: #909699;
+                                        font-size: 12px;
+                                        font-weight: $font_bold;
+    &:nth-child(even)                 { background: #f5f7fa;
+    }
+  }
+  .title                              { color: #414d64;
+  }
+  .outline                            { margin-top: 10px;
+                                        margin-left: 10px;
+  }
+}

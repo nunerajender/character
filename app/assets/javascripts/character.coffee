@@ -23,6 +23,7 @@
 #= require ./character/posts/module
 #= require ./character/images/module
 #= require ./character/pages/module
+#= require ./character/dashboard/module
 
 @Character ||= {}
 

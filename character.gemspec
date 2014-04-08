@@ -52,7 +52,6 @@ Gem::Specification.new do |gem|
 
   # analytics
   gem.add_runtime_dependency 'google-api-client'
-  gem.add_runtime_dependency 'd3-rails'
 
   # testing
   gem.add_development_dependency 'rspec-rails'
