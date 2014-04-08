@@ -6,8 +6,8 @@ class Character::Page
 
   # attributes
   field :title
-  field :path # no leading '/', please
-  field :template_name, default: 'default'
+  field :path
+  field :template_name, default: 'redactor'
   field :template_content, type: Hash,  default: {}
 
   # indexes
