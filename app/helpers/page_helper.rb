@@ -44,4 +44,24 @@ module PageHelper
       end
     end
   end
+
+  def redactor(template_content_key, default_content='')
+    if @object
+      page = @object
+      class_underscore = @object.class.name.underscore.gsub('/', '_')
+
+      content = page.template_content[template_content_key]
+      content ||= default_content
+
+      if @form_action_url
+        """<textarea id='redactor' class='character-redactor'>#{ content }</textarea>""".html_safe
+      else
+        content.html_safe
+      end
+    end
+  end
+
+  def settings(group, name)
+    ::Settings.group(group)[name].value
+  end
 end

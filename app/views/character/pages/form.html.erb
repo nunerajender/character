@@ -4,6 +4,8 @@
     <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
       <%= f.input :title %>
       <%= f.input :path %>
+      <%= f.input :template_name %>
+      <%= f.input :hidden, as: :boolean %>
     <% end %>
   </div>
 

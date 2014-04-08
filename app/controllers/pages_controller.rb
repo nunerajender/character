@@ -7,6 +7,6 @@ class PagesController < ApplicationController
 
   def show
     # TODO: this doesn't trigger PAGE NOT FOUND for some reason
-    @object = Character::Page.find_by(path: params[:path])
+    @object = Character::Page.find_by(path: '/' + (params[:path] || ''))
   end
 end

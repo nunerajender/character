@@ -33,7 +33,7 @@ chr.pagesModule = (opts) ->
     redactorOptions:
       toolbarFixed:          true
       toolbarFixedTarget:    '#details_content'
-      toolbarFixedTopOffset: -198
+      toolbarFixedTopOffset: -305
       initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_page[template_content][body]')
   _(moduleOpts).extend(opts)
 

@@ -33,7 +33,7 @@ module ActionDispatch::Routing
 
     def mount_pages_at(mount_location)
       scope mount_location do
-        get '/:path' => 'pages#show', as: :pages_show
+        get '/:path' => 'pages#show', as: :pages_show, :constraints => {:path => /.*/}
       end
     end
   end
