@@ -8,19 +8,19 @@ module Reports
     field :visitors, type: Integer, default: 0
 
     def update_report!
-      ga        = GoogleAnalytics.new()
-      yesterday = Date.yesterday.strftime("%Y-%m-%d")
-      today     = Date.today.strftime("%Y-%m-%d")
-      visitors  = ga.visitors(yesterday, today)
+      previous_report = self.previous_report
+      current_report  = self
 
-      yesterday_report = Reports::AnalyticsDaily.update_report_for(Date.yesterday)
-      today_report     = this
+      date1    = previous_report.report_date.strftime("%Y-%m-%d")
+      date2    = current_report.report_date.strftime("%Y-%m-%d")
+      ga       = ::GoogleAnalytics.new()
+      visitors = ga.visitors(date1, date2)
 
-      yesterday_report.visitors = visitors[yesterday]
-      today_report.visitors     = visitors[today]
+      previous_report.visitors = visitors[date1]
+      current_report.visitors  = visitors[date2]
 
-      yesterday_report.save!
-      today_report.save!
+      previous_report.save!
+      current_report.save!
     end
   end
 end

@@ -70,10 +70,18 @@ These are blank methods that could be overriden to extend view functionality. Ex
 
 ## Analytics
 
+* Create a new project (```GA_APP_NAME```) at: [https://console.developers.google.com/project](https://console.developers.google.com/project)
+* Enable Analytics under **APIs & auth** -> **APIs** -> Analytics API
+* Create another client under **Credentials**
+* Download and put **key-file** (```GA_KEY_FILE_NAME```) to your projects ```config``` folder
+* Go to you (Analytics)[www.google.com/analytics] account and add the **Service account** email address to your account (```GA_SERVICE_ACCOUNT_EMAIL```). It should be something like ```something-long@developer.gserviceaccount.com```.
+
+Set all variables in server environment:
+
 - ```GA_APP_NAME```
-- ```GA_PROFILE_ID```
 - ```GA_SERVICE_ACCOUNT_EMAIL```
 - ```GA_KEY_FILE_NAME```
+- ```GA_PROFILE_ID```
 
 ### Tools
 

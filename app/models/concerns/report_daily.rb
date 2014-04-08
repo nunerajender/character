@@ -17,6 +17,10 @@ module ReportDaily
     DateTime.new(report_date.year, report_date.month, report_date.day, 23, 59, 59)
   end
 
+  def previous_report
+    self.class.where(report_date: report_date - 1.day).first
+  end
+
   module ClassMethods
     def update_report_for(date)
       report = self.find_or_create_by(report_date: date)
