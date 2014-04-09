@@ -1,4 +1,4 @@
-# Character 0.9-alpha
+# Character Rails Admin
 
 ## Setup new [Rails 4](http://rubyonrails.org) project
 
