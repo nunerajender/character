@@ -99,17 +99,18 @@
     @list = new Character.Images.ListView({ collection: @options.collection })
     @listContent.show(@list)
 
+  show: (@callback, @multipleSelection) ->
     # https://github.com/blueimp/jQuery-File-Upload/wiki/Options
     @ui.uploadInput.fileupload
-      url: '/admin/Character-Image'
-      paramName: 'character_image[image]'
-      dataType:  'json'
+      url:              '/admin/Character-Image'
+      paramName:        'character_image[image]'
+      dataType:         'json'
+      acceptFileTypes:  /(\.|\/)(gif|jpe?g|png)$/i
       add: (e, data) =>
         model = new Character.Generic.Model({ created_at: (new Date()).toISOString() })
         @collection.add(model)
         data.submit().done (data, result) -> model.set(data)
 
-  show: (@callback, @multipleSelection) ->
     @$el.addClass('open')
     @ui.listContent.find('.selected').removeClass('selected')
     @ui.insertButton.addClass('disabled')

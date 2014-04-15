@@ -1,10 +1,19 @@
 module Character::InstanceConcern
   extend ActiveSupport::Concern
 
+  included do
+    before_filter :set_instance_name
+  end
+
+  private
+
+  def set_instance_name
+    @character_instance_name ||= (/\/([^\/&]+)/.match request.path)[1]
+  end
+
   def character_instance
     @character_instance ||= begin
-      name = (/\/([^\/&]+)/.match request.path)[1]
-      Character.instances[name]
+      Character.instances[@character_instance_name]
     end
   end
 

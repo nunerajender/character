@@ -21,6 +21,8 @@ module Character::TemplatesConcern
   end
 
   def form_action_url(object)
+    form_attributes_namespace()
+
     if object.persisted?
       "/#{ character_instance.name }/#{ model_slug }/#{ object.id }"
     else

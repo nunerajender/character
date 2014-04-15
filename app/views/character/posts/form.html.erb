@@ -35,12 +35,4 @@
   <textarea id='redactor' class='character-redactor'>
     <%= @object.body_html.try(:html_safe) %>
   </textarea>
-
-  <!--
-
-  <section class='character-editor content'
-           data-input-name='character_post[body_html]'
-           data-options="placeholder:'Write your post';insertImages:true;targetBlanks:true;"
-  ><%= @object.body_html.try(:html_safe) %></section>
-  -->
 </article>

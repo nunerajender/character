@@ -73,9 +73,9 @@
     @DetailsHeaderView = @module.DetailsHeaderView
 
   _save: ->
-    if @ui.form.length
-      @beforeSave?()
+    @beforeSave?()
 
+    if @ui.form.length
       Character.Generic.Helpers.serializeDataInputs(@ui.content, @ui.form)
 
       if @collection
