@@ -1,4 +1,6 @@
-# Character 0.9-alpha
+# Character Rails Admin
+
+![Character Image](http://character.s3.amazonaws.com/character1.jpg)
 
 ## Setup new [Rails 4](http://rubyonrails.org) project
 
