@@ -3,7 +3,7 @@ class Character::Page
   include Mongoid::Timestamps
   include UpdatedAgo
   include Orderable
-  include Hidable
+  include Hideable
 
   # attributes
   field :title

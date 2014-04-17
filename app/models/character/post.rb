@@ -5,7 +5,7 @@ class Character::Post
   include Mongoid::Slug
   include Mongoid::Search
   include UpdatedAgo
-  include Hidable
+  include Hideable
 
   # attributes
   field :title,     default: ''
