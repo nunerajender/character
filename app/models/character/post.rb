@@ -5,15 +5,15 @@ class Character::Post
   include Mongoid::Slug
   include Mongoid::Search
   include UpdatedAgo
+  include Hidable
 
   # attributes
-  field :title
-  field :subtitle,       default: ''
-  field :featured_image, type: Hash, default: { 'url' => '' }
-  field :body_html
+  field :title,     default: ''
+  field :subtitle,  default: ''
+  field :body_html, default: ''
 
-  field :published,    type: Boolean, default: false
-  field :published_at, type: Date
+  field :featured_image, type: Hash, default: { 'url' => '' }
+  field :published_at,   type: DateTime
 
   # relations
   belongs_to :category, class_name: "Character::PostCategory"
@@ -24,13 +24,13 @@ class Character::Post
 
   # scopes
   default_scope     -> { order_by(published_at: :desc) }
-  scope :published, -> { where(published: true).lte(published_at: Date.today.to_s) }
-  scope :scheduled, -> { where(published: true).gt(published_at: Date.today.to_s) }
-  scope :drafts,    -> { where(published: false) }
+  scope :published, -> { where(hidden: false).lte(published_at: DateTime.now) }
+  scope :scheduled, -> { where(hidden: false).gt(published_at: DateTime.now) }
+  scope :drafts,    -> { where(hidden: true) }
 
   # indexes
   index({ slug: 1 })
-  index({ published: 1, published_at: -1 })
+  index({ hidden: 1, published_at: -1 })
 
   # helpers
   def featured_image_url

@@ -9,14 +9,15 @@
       <%= f.input :category_id, label: 'Posted in', include_blank: true, collection: Character::PostCategory.all %>
     <% end %>
 
-    <%= f.input :published_at, as: :date, wrapper_html: { class: 'chr-date-dmy' },
+    <%#= f.input :published_at, as: :date, wrapper_html: { class: 'chr-date-dmy' },
                 order: [:day, :month, :year], start_year: Date.today.year - 5, end_year: Date.today.year + 1 %>
 
-    <%= f.input :published, as: :boolean, labels: %w( Draft Published ) %>
+    <%= f.input :published_at %>
 
     <%= f.input :title,     as: :hidden %>
     <%= f.input :subtitle,  as: :hidden %>
     <%= f.input :body_html, as: :hidden %>
+    <%= f.input :hidden, as: :hidden %>
   <% end %>
 </div>
 

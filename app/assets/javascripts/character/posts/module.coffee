@@ -67,7 +67,7 @@
     @ui.publishedCheckbox     = $('#character_post_published')
     @ui.subtitleField         = $('#character_post_subtitle')
     @ui.post                  = @ui.content.find('.posts-show')
-    @ui.postContent           = @ui.post.find('.content')
+    @ui.postContent           = @ui.post.find('.redactor_editor:eq(0)')
 
     @_hideForm()
     @_bindSubtitleUpdate()
