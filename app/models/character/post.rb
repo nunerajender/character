@@ -13,7 +13,7 @@ class Character::Post
   field :body_html, default: ''
 
   field :featured_image, type: Hash, default: { 'url' => '' }
-  field :published_at,   type: DateTime
+  field :published_at,   type: DateTime, default: -> { DateTime.now }
 
   # relations
   belongs_to :category, class_name: "Character::PostCategory"
