@@ -93,15 +93,15 @@ chr.postsModule = (opts) ->
       default:
         orderBy:    'published_at:desc'
       published:
-        where:      'published=true'
+        where:      'hidden=false'
         orderBy:    'published_at:desc'
       drafts:
-        where:      'published=false'
+        where:      'hidden=true'
         orderBy:    'published_at:desc'
     redactorOptions:
       toolbarFixed:          true
       toolbarFixedTarget:    '#details_content'
-      toolbarFixedTopOffset: -110
+      toolbarFixedTopOffset: -120
       initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_post[body_html]')
 
   _(moduleOpts).extend(opts)

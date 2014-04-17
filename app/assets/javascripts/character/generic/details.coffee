@@ -6,6 +6,7 @@
 @Character.Generic.DetailsHeaderView = Backbone.Marionette.ItemView.extend
   template: -> "<button id=save class='save invert' title='Save changes'>Save</button>
                 <button id=cancel class=cancel title='Cancel changes'>Cancel</button>
+                <span id=published class=published><i class='fa fa-eye'></i><i class='fa fa-eye-slash'></i></span>
                 <div id=details_title class=title></div>
                 <a id=delete class=delete href='#' title='Delete this item'>
                   <i class='fa fa-trash-o'></i>
@@ -13,20 +14,31 @@
                 <span id=details_meta class=meta></span>"
 
   ui:
-    title:        '#details_title'
-    meta:         '#details_meta'
-    actionSave:   '#save'
-    actionDelete: '#delete'
+    title:           '#details_title'
+    meta:            '#details_meta'
+    actionSave:      '#save'
+    actionCancel:    '#cancel'
+    actionPublished: '#published'
+    actionDelete:    '#delete'
 
   initialize: ->
     if @model
       @listenTo(@model, 'change', @render, @)
+
+  togglePublished: ($input) ->
+    @ui.actionPublished.toggleClass 'off'
+    $input.val @ui.actionPublished.hasClass('off')
 
   onRender: ->
     if @model
       title = @model.getTitle()
       updatedFromNow = moment(@model.get('updated_at')).fromNow()
       @ui.meta.html("updated #{ updatedFromNow }")
+
+      if @model.has('hidden')
+        @ui.actionPublished.show()
+        @ui.actionPublished.addClass 'off' if @model.get('hidden')
+
     else
       title = @options.title
 
@@ -64,13 +76,19 @@
     content: '#details_content'
 
   events:
-    'click #cancel': '_cancel'
-    'click #save':   '_save'
-    'click #delete': '_delete'
+    'click #cancel':    '_cancel'
+    'click #save':      '_save'
+    'click #delete':    '_delete'
+    'click #published': '_togglePublished'
 
   initialize: ->
     @module            = @options.module
     @DetailsHeaderView = @module.DetailsHeaderView
+
+  _togglePublished: ->
+    hiddenInput = _.find @ui.form.find('input[type=hidden]'), (input) -> _( $(input).attr('name') ).endsWith '[hidden]'
+    if hiddenInput
+      @headerView.togglePublished($(hiddenInput))
 
   _save: ->
     @beforeSave?()

@@ -2,19 +2,15 @@
 // POST FORM
 //---------------------------------------------------------
 
-.posts .chr-form-scrolled-up          { padding-bottom: 60px;
+.posts .chr-form-scrolled-up          { //padding-bottom: 60px;
 }
 
-.character_post_category_id           { float: left;
-                                        margin-right: 10px;
+.character_post_category_id           { margin-right: 10px;
+                                        width: 40%;
+                                        float: right;
 }
 
-.character_post_published_at          { float: left;
-                                        margin-right: 30px;
-}
-
-.character_post_published             { float: right;
-                                        margin-top: 22px;
+.character_post_published_at          { width: 40%;
 }
 
 .character-post-featured-image-upload { margin: 0;

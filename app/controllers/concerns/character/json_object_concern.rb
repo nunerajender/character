@@ -16,6 +16,7 @@ module Character::JsonObjectConcern
       end
 
       @object_fields << :_position if model_class.fields.keys.include? '_position'
+      @object_fields << :hidden    if model_class.fields.keys.include? 'hidden'
       @object_fields << :created_at
       @object_fields << :updated_at
 
