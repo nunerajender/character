@@ -35,24 +35,26 @@ class Character::SettingsController < ActionController::Base
     class_name  = params[:class_name]
     model_class = class_name.constantize
 
-    params[:objects].first.each_pair do |id_or_slug, attributes|
-      begin
-        object = model_class.find id_or_slug
-      rescue Mongoid::Errors::DocumentNotFound
-        object = model_class.new
+    if not params[:objects].nil?
+      params[:objects].first.each_pair do |id_or_slug, attributes|
+        begin
+          object = model_class.find id_or_slug
+        rescue Mongoid::Errors::DocumentNotFound
+          object = model_class.new
+        end
+
+        if attributes[:_destroy] == 'true'
+          object.destroy
+        else
+          object.update_attributes(attributes)
+          @objects << object
+        end
       end
 
-      if attributes[:_destroy] == 'true'
-        object.destroy
-      else
-        object.update_attributes(attributes)
-        @objects << object
+      # Hack: this helps to save new objects using unique ids
+      @objects.each do |o|
+        o.new_record = false if o.new_record
       end
-    end
-
-    # Hack: this helps to save new objects using unique ids
-    @objects.each do |o|
-      o.new_record = false if o.new_record
     end
 
     render @template
