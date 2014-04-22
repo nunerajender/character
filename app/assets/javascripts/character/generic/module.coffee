@@ -92,7 +92,6 @@ chr.genericModule = (name, options={}) ->
   options.moduleName ?= _.underscored(_.pluralize(name))
   options.objectName ?= name
   options.modelName  ?= name
-  options.modelSlug  ?= _.underscored(name)
 
   options.implementation ?= {}
 
@@ -138,7 +137,6 @@ chr.genericModule = (name, options={}) ->
       @collection.options =
         where:            listDefaultWhere
         orderBy:          listDefaultOrderBy
-        modelSlug:        options.modelSlug
         collectionUrl:    options.collectionUrl || "#{ chr.options.url }/#{ options.modelName }"
         scopes:           options.listScopes
         reorder:          options.listReorder
