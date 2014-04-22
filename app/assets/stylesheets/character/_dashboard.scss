@@ -2,21 +2,21 @@
 // DASHBOARD
 //---------------------------------------------------------
 
-.dashboard-chart-select               { position: absolute;
-                                        margin-left: 30px;
-                                        margin-top: 28px;
-}
-
 .dashboard-view                       { @include position(0, 71px, 0, 0);
                                         overflow: auto;
                                         background-color: #fafbfc;
 }
 
-.dashboard-chart-visitors             { padding: 40px 20px;
+.dashboard-chart-select               { position: absolute;
+                                        margin-left: 30px;
+                                        margin-top: 28px;
+}
+
+.dashboard-chart                      { padding: 40px 20px;
                                         background-color: #fff;
                                         border-bottom: 1px solid #d1d6e0;
                                         min-height: 394px;
-  &:before                            { content: 'Visitors';
+  &:before                            { content: attr(data-title);
                                         display: block;
                                         text-transform: uppercase;
                                         @include font;

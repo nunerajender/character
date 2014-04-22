@@ -1,5 +1,5 @@
 namespace :analytics do
-  desc "Update daily report"
+  desc "Update analytics daily report"
   task :daily => :environment do
     Reports::AnalyticsDaily.update_report_for_today()
   end
