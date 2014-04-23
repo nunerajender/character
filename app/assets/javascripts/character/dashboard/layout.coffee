@@ -33,7 +33,7 @@
     Character.Dashboard.Charts[chartName](@ui)
 
   onRender: ->
-     _.chain(Character.Dashboard.Charts).keys().each (key) =>
+    _.chain(Character.Dashboard.Charts).keys().each (key) =>
       title = _(key).capitalize()
       @ui.chartSelect.append("<option value=#{key}>#{title}</option>")
 

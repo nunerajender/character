@@ -14,7 +14,6 @@
 #= require backbone.marionette
 
 #= require moment
-#= require browserid
 #= require character_editor
 
 #= require_self

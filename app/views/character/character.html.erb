@@ -13,8 +13,7 @@
     .chr-login { background-image: url("<%= image_path(@character_instance.login_background) %>"); }
     </style>
 
-    <!-- Javascripts -->
-    <%= javascript_include_tag @character_instance.javascript_filename %>
+    <%= javascript_include_tag 'browserid' %>
     <%= setup_browserid debug: false %>
     <%= csrf_meta_tags %>
   </head>
@@ -40,6 +39,8 @@
         </nav>
         <div id='content' class='chr-content'></div>
       </div>
+
+      <%= javascript_include_tag @character_instance.javascript_filename %>
     <% else %>
 
       <% if @browserid_email %>
