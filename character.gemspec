@@ -34,7 +34,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'font-awesome-rails'
 
   # authentication
-  gem.add_runtime_dependency 'browserid-auth-rails', '~> 0.5.6'
+  gem.add_runtime_dependency 'browserid-auth-rails', '~> 0.5.7'
 
   # forms
   gem.add_runtime_dependency 'simple_form'

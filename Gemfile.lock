@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    character (0.9.8.23)
-      browserid-auth-rails (~> 0.5.6)
+    character (0.9.8.25)
+      browserid-auth-rails (~> 0.5.7)
       character_editor
       compass-rails
       font-awesome-rails
@@ -43,7 +43,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    browserid-auth-rails (0.5.6)
+    browserid-auth-rails (0.5.7)
       jquery-rails
       railties (>= 3.2)
     builder (3.0.4)
