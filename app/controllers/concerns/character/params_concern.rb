@@ -15,6 +15,9 @@ module Character::ParamsConcern
       end
 
       return map
+    elsif val.is_a?(Array)
+      map = {} ; map[attr_name] = []
+      return map
     else
       return attr_name
     end
