@@ -4,8 +4,7 @@
       <%= f.input name %>
     <% end %>
 
-    <% if @object.class.fields.keys.include? '_position' %>
-      <%= f.input :_position, as: :hidden %>
-    <% end %>
+    <%= f.input :_position, as: :hidden if @object.class.fields.keys.include? '_position' %>
+    <%= f.input :hidden, as: :hidden if @object.class.fields.keys.include? 'hidden' %>
   <% end %>
 </div>

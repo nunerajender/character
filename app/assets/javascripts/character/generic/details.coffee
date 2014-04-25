@@ -147,6 +147,20 @@
   _toggleFullscreen: ->
     @$el.parent().toggleClass('fullscreen')
 
+  _bindReorderableItems: ->
+    @ui.reorderableItems = @ui.form.find('.sortable-list')
+    options =
+      delay:  150
+      items:  '> .fields'
+      update: (e, ui) =>
+        # # TODO: seems like this could be done much simpler with regex
+        positionFields = _.select @ui.reorderableItems.find("input[type=hidden]"), (f) ->
+          _( $(f).attr('name') ).endsWith('[_position]')
+        _.each positionFields, (el, index, list) ->
+          $(el).val(positionFields.length - index)
+
+    @ui.reorderableItems.sortable(options).disableSelection()
+
   _renderContent: (html) ->
     if @ui
       @beforeRenderContent?()
@@ -161,6 +175,7 @@
         Character.Generic.Helpers.startDateSelect(@ui.form)
         Character.Generic.Helpers.startEditor(@ui.content, @options.editorOptions)
         Character.Generic.Helpers.startRedactor(@ui.content, @options.redactorOptions)
+        @_bindReorderableItems()
 
       $(document).trigger("chr-details-content.rendered", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.rendered", [ @ui.content ])
@@ -209,6 +224,7 @@
         Character.Generic.Helpers.stopDateSelect(@ui.form)
         Character.Generic.Helpers.stopEditor(@ui.content)
         Character.Generic.Helpers.stopRedactor(@ui.content)
+        @ui.reorderableItems.sortable('destroy') if @ui.reorderableItems
 
       $(document).trigger("chr-details-content.closed", [ @ui.content ])
       $(document).trigger("chr-#{ @module.moduleName }-details-content.closed", [ @ui.content ])

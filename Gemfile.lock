@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    character (0.9.8.25)
+    character (0.9.8.26)
       browserid-auth-rails (~> 0.5.7)
       character_editor
       compass-rails

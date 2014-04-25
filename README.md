@@ -1,8 +1,10 @@
 # Character Rails Admin
 
+Have you heard of **Django Admin**, **Wordpress**, **Rails Active Admin**, **Locomotive**? Yeah?! — Those are all awesome... and **Character** is BETTER!
+
 ![Character Image](http://character.s3.amazonaws.com/character1.jpg)
 
-## Setup new [Rails 4](http://rubyonrails.org) project
+## Setup new [Rails 4.1](http://rubyonrails.org) project
 
     rails new ProjectName -T -O
 
@@ -11,18 +13,27 @@ Add gems to the ```Gemfile```:
     # ORM + Character
     gem 'mongoid',             github: 'mongoid/mongoid'
     gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
-    gem 'mongoid-grid_fs',     github: 'ahoward/mongoid-grid_fs'
     gem 'character',           github: 'slate-studio/character'
 
 Run bundle and run generators:
 
     bundle ; rails g mongoid:config ; rails g character:install
 
+
 ## Routes
+
+After character generator finishes it's dirty business, in ```/config/routes.rb``` you see:
+
+    mount_character_instance 'admin'
+
+This line mounts character instance **admin** to ```/admin``` path and make character app accessible there. There are also two optional helpers ```mount_posts_at``` and ```mount_pages_at```, they mount default controllers to routes as well. Remove them if no need in **posts** or **pages** app.
+
+Instance name **admin** could be changed, so you can use something different. This option is here for the case when a few character instances are required.
 
 - mount_character_instance
 - mount_posts_at
 - mount_pages_at
+
 
 ## Modules
 
@@ -34,6 +45,42 @@ Run bundle and run generators:
 - chr.settingsPostCategories()
 - chr.settingsAdmins()
 
+
+## Forms
+
+To have custom form implementation for model, create ```form.html``` in ```/app/views/admin/model_names/``` — replace *admin* (default) with character instance name (if needed) and *model_names* with pluralized models name.
+
+**Generic** form template looks like this:
+
+    <div class='chr-form-small'>
+      <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
+        <%= f.input :name %>
+      <% end %>
+    </div>
+
+Checkout [Simple Form](https://github.com/plataformatec/simple_form) reference for all options (there are tons of them) which are available here. **No need to include SUBMIT button in form!**
+
+If you want to make model **hideable** include ```include Hideable``` in model and add hidden field to your form:
+
+    <%= f.input :hidden, as: :hidden %>
+
+Form **inline** elements could be added with this code (images example):
+
+    <div class='chr-form-nested chr-form-nested-images sortable-list'>
+      <%= f.fields_for :images do |ff| %>
+        <%= ff.link_to_remove "Remove" %>
+        <%= image_tag ff.object.image.small.url %>
+        <%= ff.input :title, placeholder: 'Image title' %>
+        <%= ff.input :image %>
+        <%= ff.input :_position, as: :hidden %>
+      <% end %>
+      <%= f.link_to_add "Add an Image", :images %>
+    </div>
+
+- This template is based on [Nested Forms](https://github.com/ryanb/nested_form) gem by Ryan Bates.
+- Including ```sortable-list``` class and ```<%= ff.input :_position, as: :hidden %>``` make inline objects reorderable. - Example above uses ```chr-form-nested-images``` class for image line items predefined styles.
+
+
 ## Models
 
 - Character::Post
@@ -43,14 +90,25 @@ Run bundle and run generators:
 - Character::Settings::Variable
 - Character::User
 
+
+## Concerns
+
+- UpdatedAgo
+- CreatedAgo
+- Orderable
+- Hideable
+
+
 ## Helpers
 
 - Character::SitemapGeneratorHelper
+
 
 ## Shortcuts
 
 - CMD+s — save changes
 - CMD+e — toggle fullscreen
+
 
 ## API
 
@@ -68,7 +126,9 @@ These are blank methods that could be overriden to extend view functionality. Ex
 - @beforeOnClose()
 - @afterOnClose()
 
+
 ## Instances
+
 
 ## Analytics
 
@@ -85,19 +145,10 @@ Set all variables in server environment:
 - ```GA_KEY_FILE_NAME```
 - ```GA_PROFILE_ID```
 
-### Tools
 
-* Figure out if we can build apps easier on a top of http://harpjs.com
-* See if we can make use of this: https://github.com/elclanrs/jq-idealforms
-* Nice autocompletion tool: http://ichord.github.io/At.js/
-* For touch devices (no need for jQuery UI): http://pornel.net/slip/ http://pornel.net/slip/
-* Scrolling on iPad: http://iscrolljs.com/
-* Add to blog: https://github.com/jansepar/picturefill
-* For user input: https://github.com/loadfive/knwl.js
-* Touch guestures: http://eightmedia.github.io/hammer.js/
-* Spinner: http://viduthalai1947.github.io/loaderskit/
-* Maybe we can include spinner in autoform generator: http://xixilive.github.io/jquery-spinner
-* Blog post layout templates: http://adobe-webplatform.github.io/css-regions-polyfill/
-* Might be used for subscription thing: http://andyatkinson.com/projects/promoSlide
-* Email template: https://github.com/leemunroe/html-email-template
-* Dropdown and select box: http://github.hubspot.com/tether/docs/welcome/
+## Settings
+
+
+## Reports
+
+(to be continued...)
