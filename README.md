@@ -1,6 +1,6 @@
 # Character Rails Admin
 
-Have you heard of **Django Admin**, **Wordpress**, **Rails Active Admin**, **Locomotive**? Yeah?! — Those are all awesome... and **Character** is BETTER!
+Have you heard of [Django](https://www.djangoproject.com/), [Wordpress](https://wordpress.org/), [Active Admin](http://activeadmin.info/), [Locomotive](http://locomotivecms.com/)? Yeah?! — Those are all awesome... and **Character** is BETTER!
 
 ![Character Image](http://character.s3.amazonaws.com/character1.jpg)
 
@@ -26,9 +26,9 @@ After character generator finishes it's dirty business, in ```/config/routes.rb`
 
     mount_character_instance 'admin'
 
-This line mounts character instance **admin** to ```/admin``` path and make character app accessible there. There are also two optional helpers ```mount_posts_at``` and ```mount_pages_at```, they mount default controllers to routes as well. Remove them if no need in **posts** or **pages** app.
+This mounts character instance **admin** to ```/admin``` path and make character app accessible there. There are also two optional helpers ```mount_posts_at``` and ```mount_pages_at```, they mount default controllers to routes as well. Remove them if no need in **posts** or **pages** app.
 
-Instance name **admin** could be changed, so you can use something different. This option is here for the case when a few character instances are required.
+Instance name **admin** could be changed, and you can use something different. This option is here for the case when a few character instances are required.
 
 - mount_character_instance
 - mount_posts_at
@@ -48,9 +48,11 @@ Instance name **admin** could be changed, so you can use something different. Th
 
 ## Forms
 
-To have custom form implementation for model, create ```form.html``` in ```/app/views/admin/model_names/``` — replace *admin* (default) with character instance name (if needed) and *model_names* with pluralized models name.
+To have custom form implementation for model, create ```form.html``` in ```/app/views/admin/model_names/``` — replace *model_names* with pluralized models name and if needed character instance name *admin* (default).
 
-**Generic** form template looks like this:
+### Generic form template
+
+Generic form template looks like this:
 
     <div class='chr-form-small'>
       <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
@@ -58,13 +60,21 @@ To have custom form implementation for model, create ```form.html``` in ```/app/
       <% end %>
     </div>
 
-Checkout [Simple Form](https://github.com/plataformatec/simple_form) reference for all options (there are tons of them) which are available here. **No need to include SUBMIT button in form!**
+Checkout [Simple Form](https://github.com/plataformatec/simple_form) reference for all options (there are tons of them) which are available here.
 
-If you want to make model **hideable** include ```include Hideable``` in model and add hidden field to your form:
+**No need to include SUBMIT button in form!**
+
+### Hideable
+
+If you want to make model hideable include ```include Hideable``` in model and add hidden field to your form:
 
     <%= f.input :hidden, as: :hidden %>
 
-Form **inline** elements could be added with this code (images example):
+This will add an eye button trigger in the admin header, which allows to switch state for model.
+
+### Inline forms
+
+Form inline elements could be added with this code (images example):
 
     <div class='chr-form-nested chr-form-nested-images sortable-list'>
       <%= f.fields_for :images do |ff| %>
@@ -77,8 +87,9 @@ Form **inline** elements could be added with this code (images example):
       <%= f.link_to_add "Add an Image", :images %>
     </div>
 
-- This template is based on [Nested Forms](https://github.com/ryanb/nested_form) gem by Ryan Bates.
-- Including ```sortable-list``` class and ```<%= ff.input :_position, as: :hidden %>``` make inline objects reorderable. - Example above uses ```chr-form-nested-images``` class for image line items predefined styles.
+- This template is based on [Nested Forms](https://github.com/ryanb/nested_form) gem by Ryan Bates, checkout docs for implementation details.
+- Including ```sortable-list``` class and ```<%= ff.input :_position, as: :hidden %>``` make inline objects reorderable.
+- This example uses ```chr-form-nested-images``` class for layout styling.
 
 
 ## Models
