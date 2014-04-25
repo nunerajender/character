@@ -24,20 +24,6 @@
 
         false
 
-  _bindReorder: ->
-    options =
-      delay:  150
-      items:  '> .category'
-      handle: '.action_sort'
-      update: (e, ui) =>
-        # TODO: seems like this could be done much simpler with regex
-        positionFields = _.select @ui.list.find("input[type=hidden]"), (f) ->
-          _( $(f).attr('name') ).endsWith('[_position]')
-        _.each positionFields, (el, index, list) ->
-          $(el).val(positionFields.length - index)
-
-    @ui.list.sortable(options).disableSelection()
-
   _bindDelete: ->
     @ui.content.on 'click', '.action_delete', (e) ->
       itemCls = $(e.currentTarget).attr('data-item-class')
@@ -57,14 +43,11 @@
   afterRenderContent: ->
     @ui.template   = $('#template')
     @ui.titleInput = @ui.template.find('.objects_title input')
-    @ui.list       = @ui.content.find('.sortable-list')
     @_bindEnter()
-    @_bindReorder()
     @_bindDelete()
 
   afterOnClose: ->
     @ui.titleInput.off 'keydown'
-    @ui.list.sortable('destroy')
 
   beforeSave: ->
     @ui.template.remove()
