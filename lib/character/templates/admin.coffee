@@ -8,5 +8,6 @@ chr.pagesModule()
 # Settings Modules ========================================
 
 chr.settingsWebsite()
+chr.settingsRedirects()
 chr.settingsPostCategories()
 chr.settingsAdmins()

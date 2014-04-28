@@ -7,11 +7,14 @@
     $item = @ui.template.clone()
 
     $item.removeAttr('id')
-    $item.html $item.html().replace(/objects\[\]\[\]/g, "objects[][#{ new Date().getTime() }]")
+
+    objectId = new Date().getTime()
+    $item.find('[name]').each (idx, el) ->
+      newName = $(el).attr('name').replace(/objects\[\]\[\]/g, "objects[][#{ objectId }]")
+      $(el).attr('name', newName)
 
     @ui.template.before($item)
 
-    $item.find('input').val @ui.emailInput.val()
     $item.find('.icon-plus-alt').hide()
     $item.find('.action_delete').show()
     $item.find('.action_sort').show()

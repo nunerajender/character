@@ -44,6 +44,7 @@ Instance name **admin** could be changed, and you can use something different. T
 - chr.settingsWebsite()
 - chr.settingsPostCategories()
 - chr.settingsAdmins()
+- chr.settingsRedirects()
 
 
 ## Forms
@@ -100,6 +101,7 @@ Form inline elements could be added with this code (images example):
 - Character::Image
 - Character::Settings::Variable
 - Character::User
+- Character::Redirect
 
 
 ## Concerns
@@ -163,3 +165,8 @@ Set all variables in server environment:
 ## Reports
 
 (to be continued...)
+
+
+## Redirects
+
+Redirects app allows to quickly setup 301/302 redirects for the website.

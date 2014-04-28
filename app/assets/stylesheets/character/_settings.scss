@@ -22,7 +22,7 @@
 }
 
 //---------------------------------------------------------
-// SETTINGS ADMINS
+// ADMINS
 //---------------------------------------------------------
 
 .chr-details-content.admins           { @include font;
@@ -65,7 +65,7 @@
 }
 
 //---------------------------------------------------------
-// SETTINGS POST CATEGORIES
+// CATEGORIES
 //---------------------------------------------------------
 
 .chr-details-content.post_categories  {
@@ -95,5 +95,40 @@
                                         cursor: pointer;
     &:hover                           { color: #414d64;
     }
+  }
+}
+
+//---------------------------------------------------------
+// REDIRECTS
+//---------------------------------------------------------
+
+.chr-details-content.redirects        {
+  .objects_destination input,
+  .objects_path input                 { font-size: 18px;
+                                        padding: 5px 10px;
+                                        border-bottom: none;
+                                        margin-bottom: 0;
+  }
+  .objects_path                       { float: left;
+                                        width: 500px;
+  }
+  .objects_type                       { float: right;
+    select                            { margin: 0;
+                                        position: relative;
+                                        bottom: -5px;
+    }
+  }
+  .objects_destination input          { border-top: 1px solid #e6e9f0;
+                                        padding-right: 60px;
+  }
+  .action_add                         { @include button;
+                                        margin-top: 10px;
+                                        float: right;
+  }
+  .action_delete                      { position: absolute;
+                                        margin-left: -35px;
+                                        margin-top: 25px;
+  }
+  .fields                             { margin-bottom: 10px;
   }
 }

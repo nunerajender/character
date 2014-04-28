@@ -1,0 +1,32 @@
+<% @model = Character::Redirect %>
+
+<div class='chr-form-large'>
+  <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
+    <%= hidden_field_tag :class_name, @model.to_s %>
+
+    <div>
+      <% @model.all.each do |redirect| %>
+        <%= form.simple_fields_for "[]", redirect do |f| %>
+          <div class='fields'>
+            <a class='action_delete' data-item-class='fields' href='#'><i class='chr-icon icon-close-alt'></i></a>
+            <%= f.input :path, label: false, placeholder: 'Path', required: true %>
+            <%= f.input :type, collection: @model::TYPE_CHOICES, include_blank: false, required: true, label: false %>
+            <%= f.input :destination, label: false, placeholder: 'Redirect to', required: true %>
+            <%= f.input :_destroy, as: :hidden, value: false %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <p style='margin: 30px 0 5px;'><strong>New Redirect</strong></p>
+    <div id='template' class='fields'>
+      <a class='action_delete' data-item-class='fields' href='#' style='display: none;'><i class='chr-icon icon-close-alt'></i></a>
+      <%= form.simple_fields_for "[]", @model.new do |f| %>
+        <%= f.input :path, label: false, placeholder: 'Path', required: true %>
+        <%= f.input :type, collection: @model::TYPE_CHOICES, include_blank: false, required: true, label: false %>
+        <%= f.input :destination, label: false, placeholder: 'Redirect to', required: true %>
+      <% end %>
+      <a href='#' class='action_add'>Add</a>
+    </div>
+  <% end %>
+</div>

@@ -20,21 +20,7 @@
                                         border: 1px solid $list_border_color;
 }
 
-.chr-form-nested > a                  { background: #fff;
-                                        display: block;
-                                        text-align: center;
-                                        font-size: 12px;
-                                        font-weight: $font_semi_bold;
-                                        color: #9ca1ab;
-                                        border: 2px solid $list_border_color;
-                                        border-radius: 4px;
-                                        width: 120px;
-                                        padding: 6px 0;
-                                        height: 33px;
-  &:hover                             { border: 3px solid $secondary_color;
-                                        padding-top: 5px;
-                                        color: $secondary_color;
-  }
+.chr-form-nested > a                  { @include button;
 }
 
 .chr-form-nested.chr-form-nested-images {

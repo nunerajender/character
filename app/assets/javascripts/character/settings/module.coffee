@@ -4,6 +4,7 @@
 #= require ./_admins
 #= require ./_categories
 #= require ./_website
+#= require ./_redirects
 
 # ---------------------------------------------------------
 # SETTINGS

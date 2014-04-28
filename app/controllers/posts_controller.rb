@@ -1,9 +1,6 @@
 class PostsController < ApplicationController
   include WebsiteSettings
-
-  rescue_from Mongoid::Errors::DocumentNotFound do |exception|
-    render text: 'Post not found.', status: 404, layout: false
-  end
+  include NotFound
 
   def index
     @posts = Character::Post.published
