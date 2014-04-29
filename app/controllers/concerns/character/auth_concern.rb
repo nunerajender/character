@@ -2,7 +2,16 @@ module Character::AuthConcern
   extend ActiveSupport::Concern
 
   included do
-    force_ssl if Rails.env.production?
+
+    force_ssl if: :ssl_required?
+
+    def ssl_required?
+      if Rails.env.production?
+        character_instance.force_ssl
+      else
+        false
+      end
+    end
 
     def auto_login!
       if ( character_instance.development_auto_login and Rails.env.development? ) or Rails.env.test?

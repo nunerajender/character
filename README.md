@@ -142,6 +142,18 @@ These are blank methods that could be overriden to extend view functionality. Ex
 
 ## Instances
 
+Initializers for different instances are in ```config/initializers/character.rb```:
+
+    Character.configure do |config|
+      config.title = 'Project Title | Admin'
+    end
+
+Options:
+
+- @title                  = 'Character'
+- @user_model             = 'Character::User'
+- @development_auto_login = false
+- @force_ssl              = true
 
 ## Analytics
 

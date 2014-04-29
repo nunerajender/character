@@ -13,6 +13,7 @@ module Character
                   :stylesheet_filename,
 
                   :development_auto_login,
+                  :force_ssl,
 
                   # defined in config/settings.yml
                   :settings,
@@ -24,6 +25,7 @@ module Character
       @title                  = 'Character'
       @user_model             = 'Character::User'
       @development_auto_login = false
+      @force_ssl              = true
     end
 
     def title
