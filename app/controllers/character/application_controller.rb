@@ -5,8 +5,6 @@ class Character::ApplicationController < ActionController::Base
   include Character::InstanceConcern
   include Character::AuthConcern
 
-  force_ssl
-
   before_filter :authenticate_user
 
   layout false
