@@ -13,7 +13,7 @@
       newName = $(el).attr('name').replace(/objects\[\]\[\]/g, "objects[][#{ objectId }]")
       $(el).attr('name', newName)
 
-    @ui.reorderableItems.append($item)
+    @ui.reorderableItems.prepend($item)
 
     $item.find('.icon-plus-alt').hide()
     $item.find('.action_delete').show()

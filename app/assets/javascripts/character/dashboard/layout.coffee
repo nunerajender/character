@@ -25,10 +25,7 @@
     chart:       '#dashboard_chart'
     chartSelect: '#dashboard_chart_select'
 
-  events:
-    'change #dashboard_chart_select': 'chartSelect'
-
-  chartSelect: (e) ->
+  _selectChart: ->
     chartName = @ui.chartSelect.val()
     Character.Dashboard.Charts[chartName](@ui)
 
@@ -36,6 +33,14 @@
     _.chain(Character.Dashboard.Charts).keys().each (key) =>
       title = _(key).capitalize()
       @ui.chartSelect.append("<option value=#{key}>#{title}</option>")
+
+    # TODO: after getting back to this layout from other app events declared in layout doesn't work
+    # so doing this right here:
+    @ui.chartSelect.on 'change', (e) => @_selectChart()
+
+  afterOnClose: ->
+    @ui.chartSelect.off 'change'
+
 
   updateScope: (chartName, callback) ->
     chartName ?= 'visitors'

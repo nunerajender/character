@@ -66,6 +66,7 @@ API =
       $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
 
       chr.content.show(layout)
+
       $('#content').attr('class', "chr-content #{name}")
 
   closeDetailsView: ->
