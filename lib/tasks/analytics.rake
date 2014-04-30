@@ -1,4 +1,9 @@
 namespace :analytics do
+  desc "Update analytics daily report"
+  task :daily => :environment do
+    Reports::AnalyticsDaily.update_report_for_today()
+  end
+
   desc "Generate reports for last month"
   task :last_month => :environment do
     date1    = 1.month.ago.to_date.strftime("%Y-%m-%d")

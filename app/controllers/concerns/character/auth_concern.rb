@@ -9,7 +9,7 @@ module Character::AuthConcern
       if Rails.env.production?
         character_instance.force_ssl
       else
-        false
+       false
       end
     end
 
