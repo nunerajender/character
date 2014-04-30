@@ -13,9 +13,12 @@
 }
 
 .dashboard-chart-options              { position: absolute;
-                                        top: 28px;
+                                        top: 23px;
                                         right: 30px;
-  input                               { width: 100px;
+                                        color: #a1a7b2;
+  input                               { @include input;
+                                        width: 130px;
+                                        font-size: 12px;
   }
   select                              { margin-right: 10px;
   }

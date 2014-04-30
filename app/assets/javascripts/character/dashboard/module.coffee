@@ -28,6 +28,7 @@
     path = @options.moduleName + ( if scope then "/#{ scope }" else '' )
     if chr.currentPath != path
       chr.currentPath = path
+      @module.layout.setDateRange()
       @module.layout.updateScope(scope, callback)
     else
       callback?()

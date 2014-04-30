@@ -4,6 +4,17 @@
 
 @import "compass/utilities/general/clearfix";
 
+@mixin input                            { margin-bottom: 20px;
+                                          border: 1px solid #e6e9f0;
+                                          border-radius: 4px;
+                                          padding: 6px 4px;
+                                          width: 100%;
+                                          box-shadow: 0px 0px 3px 0px #e6e9f0;
+                                          @include no-focus-border;
+  &:focus                               { border-color: lighten($header_color, 25%);
+  }
+}
+
 .chr-form-small                         { @include font;
                                           font-size: 12px;
                                           color: #474a4c;
@@ -63,15 +74,7 @@
   input[type=tel],
   input[type=text],
   input[type=url],
-  input[type=email],                    { margin-bottom: 20px;
-                                          border: 1px solid #e6e9f0;
-                                          border-radius: 4px;
-                                          padding: 6px 4px;
-                                          width: 100%;
-                                          box-shadow: 0px 0px 3px 0px #e6e9f0;
-                                          @include no-focus-border;
-    &:focus                             { border-color: lighten($header_color, 25%);
-    }
+  input[type=email],                    { @include input;
   }
 
   textarea                              { min-height: 52px;
