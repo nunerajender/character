@@ -12,13 +12,11 @@
                     <select id=dashboard_chart_select class='dashboard-chart-select'></select>
                     <div id=dashboard_chart class='dashboard-chart'></div>
 
-                    <!--
-                    <section class='dashboard-info'>
-                      <div class='left'></div>
-                      <div class='right'></div>
-                    </section>
-                    -->
+                    <div id=dashboard_footer></div>
                   </div>"""
+
+  regions:
+    footer: '#dashboard_footer'
 
   ui:
     view:        '#dashboard_view'
@@ -38,8 +36,12 @@
     # so doing this right here:
     @ui.chartSelect.on 'change', (e) => @_selectChart()
 
-  afterOnClose: ->
+    @afterRenderContent?()
+
+  onClose: ->
     @ui.chartSelect.off 'change'
+
+    @afterOnClose?()
 
 
   updateScope: (chartName, callback) ->
