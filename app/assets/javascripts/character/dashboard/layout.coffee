@@ -10,6 +10,18 @@
   template: -> """<header class="chr-details-header"><div class="title">Dashboard</div></header>
                   <div id=dashboard_view class='dashboard-view'>
                     <select id=dashboard_chart_select class='dashboard-chart-select'></select>
+
+                    <aside class='dashboard-chart-options'>
+                      <select id=dashboard_chart_type_select>
+                        <option>Day</option>
+                        <option>Week</option>
+                        <option>Month</option>
+                      </select>
+                      <input id=dashboard_chart_date_from value='-1.month' />
+                      —
+                      <input id=dashboard_chart_date_to   value='today' />
+                    </aside>
+
                     <div id=dashboard_chart class='dashboard-chart'></div>
 
                     <div id=dashboard_footer></div>

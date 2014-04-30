@@ -12,6 +12,15 @@
                                         margin-top: 28px;
 }
 
+.dashboard-chart-options              { position: absolute;
+                                        top: 28px;
+                                        right: 30px;
+  input                               { width: 100px;
+  }
+  select                              { margin-right: 10px;
+  }
+}
+
 .dashboard-chart                      { padding: 40px 20px;
                                         background-color: #fff;
                                         border-bottom: 1px solid #d1d6e0;
