@@ -5,12 +5,30 @@
 .posts-show,
 .pages-show                           {
   .redactor_editor                    { border: none;
-                                        padding-top: 20px;
+                                        padding: 10px 0px 0px;
   }
   .redactor_toolbar li                { font-size: inherit;
   }
-  .redactor_box                       { margin-top: 40px;
+  .redactor_box                       { margin-top: 13px;
                                         min-height: 400px;
-                                        margin-bottom: 200px;
   }
+}
+
+.chr-redactor-toolbar                 { position: absolute;
+                                        width: 100%;
+                                        left: 0;
+                                        top: 71px;
+                                        visibility: hidden;
+                                        padding: 0 25px;
+                                        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                                        background-color: #fff;
+  &.visible                           { visibility: visible;
+  }
+  .redactor_toolbar.redactor-toolbar-external { border: 0;
+  }
+}
+
+.character .redactor_box textarea     { background-color: #fff;
+                                        color: #444;
+                                        padding-top: 10px;
 }

@@ -31,10 +31,10 @@ chr.pagesModule = (opts) ->
       titleField:   'title'
       metaField:    'updated_ago'
     redactorOptions:
-      toolbarFixed:          true
-      toolbarFixedTarget:    '#details_content'
-      toolbarFixedTopOffset: -270
-      initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_page[template_content][body]')
+      toolbarExternal: '#redactor_toolbar'
+      focusCallback: -> $('#redactor_toolbar').addClass 'visible'
+      blurCallback:  -> $('#redactor_toolbar').removeClass 'visible'
+      initCallback:  -> $('.redactor_character-redactor').attr('data-input-name', 'character_page[template_content][body]')
   _(moduleOpts).extend(opts)
 
   chr.genericModule('Page', moduleOpts)

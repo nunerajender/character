@@ -2,6 +2,8 @@ namespace :analytics do
   desc "Update analytics daily report"
   task :daily => :environment do
     Reports::AnalyticsDaily.update_report_for_today()
+    Reports::AnalyticsWeekly.update_current_report()
+    Reports::AnalyticsMonthly.update_current_report()
   end
 
   desc "Generate reports for last month"

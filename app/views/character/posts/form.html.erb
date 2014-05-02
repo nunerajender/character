@@ -33,7 +33,7 @@
     ><%= @object.title %></h1>
   </header>
 
-  <textarea id='redactor' class='character-redactor'>
+  <textarea id='redactor' class='character-redactor' placeholder='Type text here...'>
     <%= @object.body_html.try(:html_safe) %>
   </textarea>
 </article>

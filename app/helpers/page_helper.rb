@@ -54,7 +54,7 @@ module PageHelper
       content ||= default_content
 
       if @form_action_url
-        """<textarea id='redactor' class='character-redactor'>#{ content }</textarea>""".html_safe
+        """<textarea id='redactor' class='character-redactor'  placeholder='Type text here...'>#{ content }</textarea>""".html_safe
       else
         content.html_safe
       end

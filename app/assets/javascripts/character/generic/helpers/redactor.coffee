@@ -18,7 +18,9 @@ RedactorPlugins.gallery =
 
 @Character.Generic.Helpers.startRedactor = ($content, redactorOptions) ->
   if $.fn.redactor
+    $('#details_header').prepend "<div id='redactor_toolbar' class='chr-redactor-toolbar'></div>"
     options =
+      pastePlainText: true
       plugins: [ 'gallery' ]
       buttons: ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'video', 'file', 'table', 'link', 'alignment', 'horizontalrule']
     _(options).extend(redactorOptions)
@@ -27,3 +29,4 @@ RedactorPlugins.gallery =
 @Character.Generic.Helpers.stopRedactor = ($content) ->
   if $.fn.redactor
     $content.find('.character-redactor').redactor('destroy')
+    $('#redactor_toolbar').remove()
