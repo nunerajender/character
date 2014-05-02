@@ -100,8 +100,8 @@ chr.postsModule = (opts) ->
         orderBy:    'published_at:desc'
     redactorOptions:
       toolbarExternal: '#redactor_toolbar'
-      focusCallback: -> $('#redactor_toolbar').addClass 'visible'
-      blurCallback:  -> $('#redactor_toolbar').removeClass 'visible'
+      focusCallback: -> $('#details').addClass('chr-show-redactor-toolbar')
+      blurCallback:  -> $('#details').removeClass('chr-show-redactor-toolbar')
       initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_post[body_html]')
 
   _(moduleOpts).extend(opts)

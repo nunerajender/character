@@ -22,13 +22,33 @@
                                         padding: 0 25px;
                                         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                                         background-color: #fff;
-  &.visible                           { visibility: visible;
-  }
   .redactor_toolbar.redactor-toolbar-external { border: 0;
   }
 }
 
-.character .redactor_box textarea     { background-color: #fff;
+.chr-show-redactor-toolbar            {
+  .chr-redactor-toolbar               { visibility: visible;
+  }
+  .chr-details-content                { top: 104px;
+  }
+}
+
+// REDACTOR CUSTOMIZATION
+
+.character                            {
+  .redactor_box textarea              { background-color: #fff;
                                         color: #444;
                                         padding-top: 10px;
+  }
+
+  .redactor_toolbar li a:hover        { background-color: $secondary_color;
+  }
+  .redactor_toolbar li a:active,
+  .redactor_toolbar li a.redactor_act { background-color: $secondary_color;
+                                        color: #fff;
+  }
+  .redactor_dropdown                  { @include font;
+    a:hover                           { background-color: $list_color;
+    }
+  }
 }

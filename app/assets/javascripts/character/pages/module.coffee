@@ -32,8 +32,8 @@ chr.pagesModule = (opts) ->
       metaField:    'updated_ago'
     redactorOptions:
       toolbarExternal: '#redactor_toolbar'
-      focusCallback: -> $('#redactor_toolbar').addClass 'visible'
-      blurCallback:  -> $('#redactor_toolbar').removeClass 'visible'
+      focusCallback: -> $('#details').addClass('chr-show-redactor-toolbar')
+      blurCallback:  -> $('#details').removeClass('chr-show-redactor-toolbar')
       initCallback:  -> $('.redactor_character-redactor').attr('data-input-name', 'character_page[template_content][body]')
   _(moduleOpts).extend(opts)
 
