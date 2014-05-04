@@ -11,8 +11,11 @@
   }
   .redactor_box                       { margin-top: 13px;
                                         min-height: 400px;
+                                        margin-bottom: 100px;
   }
 }
+
+// CUSTOM TOOLBAR POSITION
 
 .chr-redactor-toolbar                 { position: absolute;
                                         width: 100%;
@@ -29,7 +32,7 @@
 .chr-show-redactor-toolbar            {
   .chr-redactor-toolbar               { visibility: visible;
   }
-  .chr-details-content                { top: 104px;
+  .chr-details-content                { //top: 104px;
   }
 }
 

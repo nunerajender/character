@@ -1,3 +1,3 @@
 module Character
-  VERSION = '0.9.8.33'
+  VERSION = '0.9.8.34'
 end
