@@ -18,12 +18,12 @@
 Admin Settings:
   Logo:
     type: file
-    description: Company logo
+    description: 'Company logo'
     default_value: 'character/logo.jpg'
 
   Login Background:
     type: file
-    description: Background for login page
+    description: 'Background for login page'
     default_value: ''
 
 # END
@@ -34,16 +34,21 @@ Website Settings:
   Domain:
     type: string
     description: 'Website domain is used in links.'
-    default_value: www.website.com
+    default_value: 'www.website.com'
 
   Title:
     type: string
-    description: Title for the website is used by search engines.
-    default_value: Website
+    description: 'Title for the website is used by search engines.'
+    default_value: 'Website'
 
   Description:
     type: text
-    description: What this website is about? This is used by search engines.
+    description: 'What this website is about? This is used by search engines.'
     default_value: 'This website is built with character.'
+
+  Google Analytics ID:
+    type: string
+    description: 'Something that looks like like: UA-38088276-3'
+    default_value: ''
 
 # END

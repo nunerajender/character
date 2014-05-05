@@ -3,12 +3,21 @@ class PostsController < ApplicationController
   include NotFound
 
   def index
+    page             = params[:page] || 1
+    @search          = params[:q] || ''
+    @kaminari_params = @search.empty? ? {} : { q: @search }
+
     @posts = Character::Post.published
+    @posts = @posts.search(@search) if not @search.empty?
+    @posts = @posts.page(page).per(10)
   end
 
   def category
+    page    = params[:page] || 1
+
     @category = Character::PostCategory.find(params[:slug])
-    @posts    = @category.posts.published
+    @posts = @category.posts.published
+    @posts = @posts.page(page).per(10)
   end
 
   def show

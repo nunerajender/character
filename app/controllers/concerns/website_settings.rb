@@ -9,6 +9,8 @@ module WebsiteSettings
       @domain      = settings['Domain'].value
       @title       = settings['Title'].value
       @description = settings['Description'].value
+      @ga_id       = settings['Google Analytics ID'].value
+      @ga_domain   = @domain.gsub('www.', '')
     end
   end
 end

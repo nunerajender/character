@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
         xml.description post.subtitle
         xml.pubDate post.published_at.to_s(:rfc822)
         xml.link 'http://' + @domain + posts_show_path(post)
-        xml.guid 'http://' + @domain + post_show_path(post)
+        xml.guid 'http://' + @domain + posts_show_path(post)
       end
     end
   end
