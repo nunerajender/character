@@ -4,7 +4,7 @@
 window.Character.Dashboard.Bar = {
   "width": 500,
   "height": 240,
-  "padding": {"top": 40, "left": 50, "bottom": 40, "right": 10},
+  "padding": {"top": 40, "left": 50, "bottom": 50, "right": 10},
   "data": [
     {
       "name": "table",

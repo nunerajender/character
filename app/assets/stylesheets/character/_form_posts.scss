@@ -15,9 +15,9 @@
 
 // FEATURED IMAGE
 
-.character-post-featured-image-upload { margin: 0;
+.character-post-featured-image-upload { display: none; // hide featured image by default
+                                        margin: 0 0 -40px;
                                         height: 82px;
-                                        display: none;
                                         cursor: pointer;
                                         background-position: center center;
                                         background-size: cover;

@@ -1,20 +1,11 @@
-<% set_meta_tags  title:       @title,
+<% set_meta_tags  title: @title,
                   description: @description,
-                  canonical:   "http://#{ @domain }#{ posts_index_path }",
-                  open_graph:  { type:        'blog',
-                                 title:       @title,
-                                 description: @description,
-                                 url:         "http://#{ @domain }#{ posts_index_path }" } %>
+                  canonical: "http://#{ @domain }#{ posts_index_path }",
+                  open_graph: { type: 'blog',
+                                title: @title,
+                                description: @description,
+                                url: "http://#{ @domain }#{ posts_index_path }" } %>
 
-<section class='posts-index'>
-  <% @posts.each do |p| %>
-
-    <article class='item'>
-      <%= link_to posts_show_path(p), rel: 'bookmark', class: 'post-link' do %>
-        <h3><%= p.title %></h3>
-        <p><%= p.subtitle.html_safe %></p>
-      <% end %>
-    </article>
-
-  <% end %>
-</section>
+<% @posts.each do |p| %>
+  <%= render partial: 'post', locals: { post: p } %>
+<% end %>

@@ -1,12 +1,7 @@
 //= require normalize
 
-$base_color:  #333332;
-$base_font:   'Georgia';
-$code_font:   'Monaco', 'Courier New', 'Courier', 'monospace';
-$header_font: 'Myriad Pro', 'Verdana', 'sans-serif';
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// apply a natural box layout model to all elements
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-@import "default/_layout";
-
-.pages-show,
-.posts-show                           { @import "default/_typography";
-}
+@import "character/_typography";

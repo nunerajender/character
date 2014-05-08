@@ -11,7 +11,7 @@ module NotFound
       if redirect
         redirect_to redirect.destination, status: redirect.type
       else
-        render 'errors/not_found', status: 404, layout: false
+        raise ActionController::RoutingError.new('Not Found')
       end
     end
   end

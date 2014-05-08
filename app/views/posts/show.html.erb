@@ -1,18 +1,10 @@
-<% set_meta_tags  title:       @post.title,
+<% set_meta_tags  title: @post.title,
                   description: @post.subtitle,
-                  canonical:   "http://#{ @domain }#{ posts_show_path(@post) }",
-                  open_graph:  { type:        'article',
-                                 title:       @post.title,
-                                 description: @post.subtitle,
-                                 url:         "http://#{ @domain }#{ posts_show_path(@post) }",
-                                 image:       'http:' + @post.featured_image_url } %>
+                  canonical: "http://#{ @domain }#{ posts_show_path(@post) }",
+                  open_graph: { type: 'article',
+                                title: @post.title,
+                                description: @post.subtitle,
+                                url: "http://#{ @domain }#{ posts_show_path(@post) }",
+                                image: @post.featured_image_url.empty? ? '' :  "http:#{ @post.featured_image_url }" } %>
 
-<article class='posts-show'>
-  <header>
-    <h1><%= link_to @post.title, posts_show_path(@post), rel: 'bookmark', class: 'post-link' %></h1>
-  </header>
-
-  <div class='content'>
-    <%= @post.body_html.html_safe %>
-  </div>
-</article>
+<%= render partial: 'post', locals: { post: @post } %>

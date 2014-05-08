@@ -19,7 +19,7 @@
     yDateFormat = "MMM D"
   else if layout.chartType() == 'month'
     reportModel = 'Reports-AnalyticsMonthly'
-    yDateFormat = "MMM YY"
+    yDateFormat = "MMM YYYY"
 
   fields      = [ 'visitors' ].join(',')
 

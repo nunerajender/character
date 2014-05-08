@@ -11,9 +11,6 @@
 
     <%= f.input :published_at %>
 
-    <%#= f.input :published_at, as: :date, wrapper_html: { class: 'chr-date-dmy' },
-                order: [:day, :month, :year], start_year: Date.today.year - 5, end_year: Date.today.year + 1 %>
-
     <%= f.input :title,     as: :hidden %>
     <%= f.input :subtitle,  as: :hidden %>
     <%= f.input :body_html, as: :hidden %>
@@ -25,13 +22,11 @@
         class='character-post-featured-image-upload'
         data-image-url='<%= @object.featured_image_url %>'></figure>
 
-<article class='posts-show'>
-  <header>
-    <h1 class='character-editor'
-        data-input-name='character_post[title]'
-        data-options="placeholder:'Post Title ';disableReturn:true;disableToolbar:true;disableInsert:true;"
-    ><%= @object.title %></h1>
-  </header>
+<article class='post'>
+  <h1 class='character-editor'
+      data-input-name='character_post[title]'
+      data-options="placeholder:'Post Title ';disableReturn:true;disableToolbar:true;disableInsert:true;"
+  ><%= @object.title %></h1>
 
   <textarea id='redactor' class='character-redactor' placeholder='Type text here...'>
     <%= @object.body_html.try(:html_safe) %>

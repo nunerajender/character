@@ -38,6 +38,8 @@ b, strong                             { font-weight: $font_bold;
 .chr-list,
 .chr-list-header,
 .chr-details-header                   { @include font;
+  a                                   { text-decoration: none;
+  }
 }
 
 .chr-list-header,

@@ -21,6 +21,7 @@ module Character
       def setup_assets
         copy_file "admin.coffee", "app/assets/javascripts/admin.coffee"
         copy_file "admin.scss", "app/assets/stylesheets/admin.scss"
+        copy_file "assets.rb", "config/initializers/assets.rb"
 
         insert_into_file  "app/assets/stylesheets/application.css",
                           " *= require application/default\n",
@@ -41,11 +42,11 @@ RUBY
         gsub_file 'app/assets/stylesheets/application.css', " *= require_tree .\n", ''
       end
 
-      def add_production_configuration
-        application(nil, env: "production") do
-          "config.assets.precompile += %w( admin.js admin.css )"
-        end
-      end
+      # def add_production_configuration
+      #   application(nil, env: "production") do
+      #     "config.assets.precompile += %w( admin.js admin.css )"
+      #   end
+      # end
     end
   end
 end

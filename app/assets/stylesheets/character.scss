@@ -4,9 +4,7 @@
 
 // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 // apply a natural box layout model to all elements
-*, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
- }
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 $primary_color:          #12a0ce!default;
 $secondary_color:        #1fc776!default;
