@@ -2,19 +2,6 @@
 // REDACTOR
 //---------------------------------------------------------
 
-.posts-show,
-.pages-show                           {
-  .redactor_editor                    { border: none;
-                                        padding: 10px 0px 0px;
-  }
-  .redactor_toolbar li                { font-size: inherit;
-  }
-  .redactor_box                       { margin-top: 13px;
-                                        min-height: 400px;
-                                        margin-bottom: 100px;
-  }
-}
-
 // CUSTOM TOOLBAR POSITION
 
 .chr-redactor-toolbar                 { position: absolute;

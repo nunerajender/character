@@ -6,15 +6,6 @@
                                  description: @description, # use same description as website
                                  url:         "http://#{ @domain }#{ posts_category_path(@category) }" } %>
 
-<section class='posts-index'>
-  <% @posts.each do |p| %>
-
-    <article class='item'>
-      <%= link_to posts_show_path(p), rel: 'bookmark', class: 'post-link' do %>
-        <h3><%= p.title %></h3>
-        <p><%= p.subtitle.html_safe %></p>
-      <% end %>
-    </article>
-
-  <% end %>
-</section>
+<% @posts.each do |p| %>
+  <%= render partial: 'post', locals: { post: p } %>
+<% end %>

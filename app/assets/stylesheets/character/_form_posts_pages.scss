@@ -1,9 +1,22 @@
 //---------------------------------------------------------
-// POST FORM
+// REDACTOR
 //---------------------------------------------------------
 
-.posts .chr-form-scrolled-up          { //padding-bottom: 60px;
+.post, .page                          { margin: 40px;
+  .redactor_editor                    { border: none;
+                                        padding: 0px;
+  }
+  // .redactor_toolbar li                { font-size: inherit;
+  // }
+  .redactor_box                       { margin-top: 13px;
+                                        min-height: 400px;
+                                        margin-bottom: 100px;
+  }
 }
+
+//---------------------------------------------------------
+// POST FORM
+//---------------------------------------------------------
 
 .character_post_category_id           { margin-right: 10px;
                                         width: 40%;
@@ -21,15 +34,14 @@
                                         cursor: pointer;
                                         background-position: center center;
                                         background-size: cover;
+                                        text-align: center;
 
   &:before                            { content: '\f03e';
                                         font-family: FontAwesome;
                                         color: $list_border_color;
-                                        position: absolute;
-                                        left: 50%;
+                                        position: relative;
                                         font-size: 48px;
-                                        margin-top: 20px;
-                                        margin-left: -330px;
+                                        top: 20px;
   }
   &:hover                             { border-color: $secondary_color;
     &:before                          { color: $secondary_color;

@@ -99,10 +99,11 @@ chr.postsModule = (opts) ->
         where:      'hidden=true'
         orderBy:    'published_at:desc'
     redactorOptions:
+      formattingTags: ['p', 'blockquote', 'pre', 'h2', 'h3']
       toolbarExternal: '#redactor_toolbar'
       focusCallback: -> $('#details').addClass('chr-show-redactor-toolbar')
-      blurCallback:  -> $('#details').removeClass('chr-show-redactor-toolbar')
-      initCallback:          -> $('.redactor_character-redactor').attr('data-input-name', 'character_post[body_html]')
+      blurCallback: -> $('#details').removeClass('chr-show-redactor-toolbar')
+      initCallback: -> $('.redactor_character-redactor').attr('data-input-name', 'character_post[body_html]')
 
   _(moduleOpts).extend(opts)
 
