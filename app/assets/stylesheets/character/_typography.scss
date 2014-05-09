@@ -5,17 +5,31 @@
 //---------------------------------------------------------
 
 $baseColor:  rgba(0,0,0,0.8);
+$linkColor:  #222;
 $baseFont:   'Georgia', serif;
 $headerFont: 'Myriad Pro', 'Verdana', sans-serif;
 $codeFont:   'Monaco', 'Courier New', 'Courier', 'monospace';
 
 // Typesetting variables. Edit these!
-$baseFontSize:   20px; // in pixels. This would result in 22px on desktop
+$baseFontSize:   20; // in pixels. This would result in 22px on desktop
 $baseLineHeight: 1.5; // how large the line height is as a multiple of font size
 $leading:        $baseLineHeight * 1em;
+$scale:          0.33;
+$h1:             $scale * 7.3;
+$h2:             $scale * 4.3;
+$h3:             $scale * 3.3;
+
+@mixin headerSize($fontSize)          {
+  $lineHeight: ceil(100 * $baseLineHeight * ceil($fontSize / $baseLineHeight) / $fontSize);
+  $margin: $lineHeight / 100;
+                                        font-size: $fontSize * 1em;
+                                        line-height: $lineHeight * 1%;
+                                        margin-top: $margin * 1em;
+                                        margin-bottom: $margin * 1em;
+}
 
 .post, .page                          { font-family: $baseFont;
-                                        font-size: $baseFontSize;
+                                        font-size: $baseFontSize * 1px;
                                         color: $baseColor;
                                         letter-spacing: 0.02em;
 
@@ -39,35 +53,44 @@ $leading:        $baseLineHeight * 1em;
 
   /* Headings */
 
-  h1, h2, h3, h4, h5, h6              { /* Change heading typefaces here */
+  h1, h2, h3                          { /* Change heading typefaces here */
                                         font-family: $headerFont;
-                                        margin-top: $leading;
-                                        margin-bottom: 0;
                                         line-height: $leading;
-                                        letter-spacing: -0.01em;
+                                        letter-spacing: 0em;
   }
-  $scale: 1.414;
-  h1                                  { font-size: $scale * 2em; // TODO: recalculate
-                                        line-height: 1.06em; // TODO: recalculate
-                                        //margin-top: 2 * $leading;
+  h1                                  { @include headerSize($h1);
+                                        margin-bottom: 0;
   }
-  h2                                  { font-size: $scale * 1.3em; // TODO: recalculate
-                                        //line-height: 2 * $leading; // TODO: recalculate
-                                        //margin-top: 2 * $leading;
+  h2                                  { @include headerSize($h2); }
+  h3                                  { @include headerSize($h3);
+                                        margin-bottom: 0;
   }
-  h3                                  { font-size: $scale * 1em; }
-  h4                                  { font-size: $scale / 3 * 1em; }
-  h5                                  { font-size: $scale / 4 * 1em; }
-  h6                                  { font-size: $scale / 5 * 1em; }
 
   /* Images */
   img                                 { max-width: 100%; }
 
   /* Links */
-  a                                   { text-decoration: none; }
+  a                                   { color: $linkColor;
+                                        background-clip: border-box;
+                                        background-image:linear-gradient(rgb(255, 255, 255) 50%, rgb(102, 102, 101) 50%);
+                                        background-position: 0 1em;
+                                        background-repeat: repeat-x;
+                                        background-size: 2px 2px;
+                                        text-decoration: none;
+                                        word-break: break-all;
+  }
 
   /* Paragraphs */
   p + p                               { text-indent: 1.5em; }
+
+  /* Smart line break */
+  p br                                { content: '';
+                                        display: block;
+                                        height: 1px;
+                                        line-height: 0;
+                                        padding: 0;
+                                        margin: $leading auto 0;
+  }
 
   /* Tables */
 
@@ -98,15 +121,4 @@ $leading:        $baseLineHeight * 1em;
                                         border-right-width: 0px;
                                         border-bottom-width: 0px;
   }
-
-  // /* Leading paragraph text */
-
-  // .lead {
-  //     font-size: $scale * 1rem;
-  // }
-  // /* Hug a the block above you */
-
-  // .hug {
-  //     margin-top: 0;
-  // }
 }
