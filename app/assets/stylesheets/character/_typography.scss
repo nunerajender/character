@@ -10,27 +10,23 @@ $headerFont: 'Myriad Pro', 'Verdana', sans-serif;
 $codeFont:   'Monaco', 'Courier New', 'Courier', 'monospace';
 
 // Typesetting variables. Edit these!
-$baseFontSize:   20; // in pixels. This would result in 22px on desktop
+$baseFontSize:   20px; // in pixels. This would result in 22px on desktop
 $baseLineHeight: 1.5; // how large the line height is as a multiple of font size
-$leading:        $baseLineHeight * 1rem;
-// Rate of growth for headings
-// I actually like this to be slightly smaller then the leading. Makes for tight headings.
-$scale:          1.414;
-
-html { font-size: $baseFontSize / 16 * 100%; }
+$leading:        $baseLineHeight * 1em;
 
 .post, .page                          { font-family: $baseFont;
-                                        letter-spacing: 0.02rem;
+                                        font-size: $baseFontSize;
                                         color: $baseColor;
+                                        letter-spacing: 0.02em;
 
   /* Copy & Lists */
 
   p                                   { line-height: $leading;
-                                        margin-top: $leading;
+                                        margin-top: 0;
                                         margin-bottom: 0;
   }
-  ul, ol                              { margin-top: $leading;
-                                        margin-bottom: $leading;
+  ul, ol                              { margin-top: 0;
+                                        margin-bottom: 0;
     li                                { line-height: $leading; }
     ul, ol                            { margin-top: 0;
                                         margin-bottom: 0;
@@ -48,20 +44,30 @@ html { font-size: $baseFontSize / 16 * 100%; }
                                         margin-top: $leading;
                                         margin-bottom: 0;
                                         line-height: $leading;
-                                        letter-spacing: -0.01rem;
+                                        letter-spacing: -0.01em;
   }
-  h1                                  { font-size: 3 * $scale * 1rem;
-                                        line-height: 3 * $leading;
-                                        margin-top: 2 * $leading;
+  $scale: 1.414;
+  h1                                  { font-size: $scale * 2em; // TODO: recalculate
+                                        line-height: 1.06em; // TODO: recalculate
+                                        //margin-top: 2 * $leading;
   }
-  h2                                  { font-size: 2 * $scale * 1rem;
-                                        line-height: 2 * $leading;
-                                        margin-top: 2 * $leading;
+  h2                                  { font-size: $scale * 1.3em; // TODO: recalculate
+                                        //line-height: 2 * $leading; // TODO: recalculate
+                                        //margin-top: 2 * $leading;
   }
-  h3                                  { font-size: 1 * $scale * 1rem; }
-  h4                                  { font-size: $scale / 2 * 1rem; }
-  h5                                  { font-size: $scale / 3 * 1rem; }
-  h6                                  { font-size: $scale / 4 * 1rem; }
+  h3                                  { font-size: $scale * 1em; }
+  h4                                  { font-size: $scale / 3 * 1em; }
+  h5                                  { font-size: $scale / 4 * 1em; }
+  h6                                  { font-size: $scale / 5 * 1em; }
+
+  /* Images */
+  img                                 { max-width: 100%; }
+
+  /* Links */
+  a                                   { text-decoration: none; }
+
+  /* Paragraphs */
+  p + p                               { text-indent: 1.5em; }
 
   /* Tables */
 
@@ -80,6 +86,19 @@ html { font-size: $baseFontSize / 16 * 100%; }
                                         vertical-align: bottom;
   }
 
+  /* Horizontal Line */
+
+  hr                                  { position: relative;
+                                        left: 50%;
+                                        width: 4em;
+                                        margin: 2.25em 0 2.25em -2em;
+                                        border-top-style: solid;
+                                        border-top-color: lighten($baseColor, 80%);
+                                        border-left-width: 0px;
+                                        border-right-width: 0px;
+                                        border-bottom-width: 0px;
+  }
+
   // /* Leading paragraph text */
 
   // .lead {
@@ -90,12 +109,4 @@ html { font-size: $baseFontSize / 16 * 100%; }
   // .hug {
   //     margin-top: 0;
   // }
-
-  /* Images */
-  img                                 { max-width: 100%;
-  }
-
-  /* Links */
-  a                                   { text-decoration: none;
-  }
 }

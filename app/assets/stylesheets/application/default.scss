@@ -12,6 +12,10 @@ html {
   // -ms-text-size-adjust: auto
   // -o-text-size-adjust: auto
   // text-size-adjust: auto
+
+  // taken from medium
+  -ms-text-size-adjust:100%;
+  -webkit-text-size-adjust:100%
 }
 
 @import "character/_typography";
