@@ -1,25 +1,24 @@
-//---------------------------------------------------------
-// PAGES & POSTS
-// Based on normalize.css & typebase.scss
-// https://raw.githubusercontent.com/devinhunt/typebase.css/master/src/typebase.scss
-//---------------------------------------------------------
+/*
+  TYPOGRAPHY sass mixin
+  Inspired by Medium.com, based on normalize.css & typebase.scss
+  https://raw.githubusercontent.com/devinhunt/typebase.css/master/src/typebase.scss
 
-$baseColor:  rgba(0,0,0,0.8);
-$linkColor:  #222;
-$baseFont:   'Georgia', serif;
-$headerFont: 'Myriad Pro', 'Verdana', sans-serif;
-$codeFont:   'Monaco', 'Courier New', 'Courier', 'monospace';
+  Usage:
 
-// Typesetting variables. Edit these!
-$baseFontSize:   20; // in pixels. This would result in 22px on desktop
-$baseLineHeight: 1.5; // how large the line height is as a multiple of font size
-$leading:        $baseLineHeight * 1em;
-$scale:          0.33;
-$h1:             $scale * 7.3;
-$h2:             $scale * 4.3;
-$h3:             $scale * 3.3;
+  @import typography( gba(0,0,0,0.8), // base font color
+                      #222,           // links color
+                      'Georgia',      // base font family
+                      'Myriad Pro',   // header font family
+                      'Monaco',       // code
+                      20,             // base font size
+                      1.5,            // base line height
+                      0.33 * 7.3,     // h1 size
+                      0.33 * 4.3,     // h2 size
+                      0.33 * 3.3      // h3 size
+                    );
+*/
 
-@mixin headerSize($fontSize)          {
+@mixin headerSize($fontSize, $baseLineHeight) {
   $lineHeight: ceil(100 * $baseLineHeight * ceil($fontSize / $baseLineHeight) / $fontSize);
   $margin: $lineHeight / 100;
                                         font-size: $fontSize * 1em;
@@ -28,19 +27,36 @@ $h3:             $scale * 3.3;
                                         margin-bottom: $margin * 1em;
 }
 
-.post, .page                          { font-family: $baseFont;
+@mixin typography( $baseColor:        rgba(0,0,0,0.8),
+                   $linkColor:        #222,
+                   $baseFontFamily:   'Georgia',
+                   $headerFontFamily: 'Myriad Pro',
+                   $codeFontFamily:   'Monaco',
+                   $baseFontSize:     20,
+                   $baseLineHeight:   1.5,
+                   $h1:               0.33 * 7.3,
+                   $h2:               0.33 * 4.3,
+                   $h3:               0.33 * 3.3 ) {
+
+  $leading: $baseLineHeight * 1em;
+
+  /* Container font settings */
+                                        font-family: $baseFontFamily;
                                         font-size: $baseFontSize * 1px;
                                         color: $baseColor;
                                         letter-spacing: 0.02em;
 
   /* Copy & Lists */
-
   p                                   { line-height: $leading;
-                                        margin-top: 0;
-                                        margin-bottom: 0;
+                                        margin-top: $leading;
+                                        margin-bottom: $leading;
   }
-  ul, ol                              { margin-top: 0;
-                                        margin-bottom: 0;
+
+  /* First passage after h3 */
+  h3 + p                              { margin-top: 0; }
+
+  ul, ol                              { margin-top: $leading;
+                                        margin-bottom: $leading;
     li                                { line-height: $leading; }
     ul, ol                            { margin-top: 0;
                                         margin-bottom: 0;
@@ -49,20 +65,21 @@ $h3:             $scale * 3.3;
   blockquote                          { line-height: $leading;
                                         margin-top: $leading;
                                         margin-bottom: $leading;
+                                        font-style: italic;
+                                        text-align: center;
   }
 
   /* Headings */
-
   h1, h2, h3                          { /* Change heading typefaces here */
-                                        font-family: $headerFont;
+                                        font-family: $headerFontFamily;
                                         line-height: $leading;
                                         letter-spacing: 0em;
   }
-  h1                                  { @include headerSize($h1);
+  h1                                  { @include headerSize($h1, $baseLineHeight);
                                         margin-bottom: 0;
   }
-  h2                                  { @include headerSize($h2); }
-  h3                                  { @include headerSize($h3);
+  h2                                  { @include headerSize($h2, $baseLineHeight); }
+  h3                                  { @include headerSize($h3, $baseLineHeight);
                                         margin-bottom: 0;
   }
 
@@ -71,6 +88,7 @@ $h3:             $scale * 3.3;
 
   /* Links */
   a                                   { color: $linkColor;
+                                        // TODO: test for other browsers
                                         background-clip: border-box;
                                         background-image:linear-gradient(rgb(255, 255, 255) 50%, rgb(102, 102, 101) 50%);
                                         background-position: 0 1em;
@@ -80,20 +98,7 @@ $h3:             $scale * 3.3;
                                         word-break: break-all;
   }
 
-  /* Paragraphs */
-  p + p                               { text-indent: 1.5em; }
-
-  /* Smart line break */
-  p br                                { content: '';
-                                        display: block;
-                                        height: 1px;
-                                        line-height: 0;
-                                        padding: 0;
-                                        margin: $leading auto 0;
-  }
-
   /* Tables */
-
   table                               { margin-top: $leading;
                                         border-spacing: 0px;
                                         border-collapse: collapse;
@@ -103,14 +108,12 @@ $h3:             $scale * 3.3;
   }
 
   /* Code blocks */
-
   code                                { // Forces text to constrain to the line-height.
                                         // Not ideal, but works.
                                         vertical-align: bottom;
   }
 
   /* Horizontal Line */
-
   hr                                  { position: relative;
                                         left: 50%;
                                         width: 4em;

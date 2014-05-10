@@ -18,8 +18,9 @@ html {
   -webkit-text-size-adjust:100%
 }
 
-@import "character/_typography";
+@import "character/typography";
 
-.page, .post                          { width: 700px;
+.page, .post                          { @include typography();
+                                        width: 700px;
                                         margin: 0 auto;
 }

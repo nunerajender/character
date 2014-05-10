@@ -2,8 +2,11 @@
 // REDACTOR
 //---------------------------------------------------------
 
+@import "typography";
+
 .character {
-  .post, .page                        { font-size: 18px;
+  .post, .page                        { @include typography();
+                                        font-size: 18px;
                                         padding: 40px;
                                         max-width: 780px;
                                         margin: 0 auto;
