@@ -1,0 +1,7 @@
+//---------------------------------------------------------
+// DEAFULT TYPOGRAPHY to be used in character
+//---------------------------------------------------------
+
+@import "typography";
+
+.character .post, .character .page    { @include typography(); }

@@ -5,17 +5,17 @@
 
   Usage:
 
-  @import typography( gba(0,0,0,0.8), // base font color
-                      #222,           // links color
-                      'Georgia',      // base font family
-                      'Myriad Pro',   // header font family
-                      'Monaco',       // code
-                      20,             // base font size
-                      1.5,            // base line height
-                      0.33 * 7.3,     // h1 size
-                      0.33 * 4.3,     // h2 size
-                      0.33 * 3.3      // h3 size
-                    );
+  @include typography( rgba(0,0,0,0.8), // base font color
+                       #222,            // links color
+                       'Georgia',       // base font family
+                       'Myriad Pro',    // header font family
+                       'Monaco',        // code
+                       20,              // base font size
+                       1.5,             // base line height
+                       0.33 * 7.3,      // h1 size
+                       0.33 * 4.3,      // h2 size
+                       0.33 * 3.3       // h3 size
+                     );
 */
 
 @mixin headerSize($fontSize, $baseLineHeight) {
@@ -25,6 +25,29 @@
                                         line-height: $lineHeight * 1%;
                                         margin-top: $margin * 1em;
                                         margin-bottom: $margin * 1em;
+                                        word-break: normal;
+}
+
+// TODO: test for other browsers
+@mixin mediumLinkUnderline($color)    { color: $color;
+                                        background-clip: border-box;
+                                        background-image: linear-gradient(rgb(255, 255, 255) 50%, $color 50%);
+                                        background-position: 0 1em;
+                                        background-repeat: repeat-x;
+                                        background-size: 2px 2px;
+                                        text-decoration: none;
+                                        word-break: break-all;
+}
+
+@mixin mediumHorizontalRule($color)   { position: relative;
+                                        left: 50%;
+                                        width: 4em;
+                                        margin: 2.25em 0 2.25em -2em;
+                                        border-top-style: solid;
+                                        border-top-color: $color;
+                                        border-left-width: 0px;
+                                        border-right-width: 0px;
+                                        border-bottom-width: 0px;
 }
 
 @mixin typography( $baseColor:        rgba(0,0,0,0.8),
@@ -87,15 +110,11 @@
   img                                 { max-width: 100%; }
 
   /* Links */
-  a                                   { color: $linkColor;
-                                        // TODO: test for other browsers
-                                        background-clip: border-box;
-                                        background-image:linear-gradient(rgb(255, 255, 255) 50%, rgb(102, 102, 101) 50%);
-                                        background-position: 0 1em;
-                                        background-repeat: repeat-x;
-                                        background-size: 2px 2px;
-                                        text-decoration: none;
-                                        word-break: break-all;
+  a                                   { @include mediumLinkUnderline($linkColor);
+  }
+
+  /* Horizontal Rule */
+  hr                                  { @include mediumHorizontalRule(lighten($baseColor, 80%));
   }
 
   /* Tables */
@@ -113,15 +132,12 @@
                                         vertical-align: bottom;
   }
 
-  /* Horizontal Line */
-  hr                                  { position: relative;
-                                        left: 50%;
-                                        width: 4em;
-                                        margin: 2.25em 0 2.25em -2em;
-                                        border-top-style: solid;
-                                        border-top-color: lighten($baseColor, 80%);
-                                        border-left-width: 0px;
-                                        border-right-width: 0px;
-                                        border-bottom-width: 0px;
+  pre                                 { font-family: $codeFontFamily;
+                                        font-size: .7em;
+                                        line-height: $leading;
+                                        margin-top: 0;
+                                        margin-bottom: 0;
+                                        padding: 1em 1.25em;
+                                        vertical-align: bottom;
   }
 }
