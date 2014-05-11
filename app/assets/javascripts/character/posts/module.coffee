@@ -66,7 +66,7 @@
     @ui.featuredThumbInput    = $('#character_post_featured_image_chr_thumbnail_url')
     @ui.publishedCheckbox     = $('#character_post_published')
     @ui.subtitleField         = $('#character_post_subtitle')
-    @ui.post                  = @ui.content.find('.posts-show')
+    @ui.post                  = @ui.content.find('.post')
     @ui.postContent           = @ui.post.find('.redactor_editor:eq(0)')
 
     @_hideForm()

@@ -17,7 +17,7 @@
       @ui.content.scrollTop @ui.form.parent().outerHeight(true)
 
   afterRenderContent: ->
-    @ui.page = @ui.content.find('.pages-show')
+    @ui.page = @ui.content.find('.page')
     @_hideForm()
 
 chr.pagesModule = (opts) ->
