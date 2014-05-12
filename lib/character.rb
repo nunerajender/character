@@ -6,6 +6,7 @@ require 'underscore-rails'
 require 'marionette-rails'
 require 'momentjs-rails'
 require 'character_editor'
+require 'rhythm'
 
 # backend
 require 'browserid-rails'

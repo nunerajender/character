@@ -18,9 +18,30 @@ html {
   -webkit-text-size-adjust:100%
 }
 
-@import "character/typography";
+@import "rhythm/typography";
 
-.page, .post                          { @include typography();
-                                        width: 700px;
+$baseColor:        rgba(0,0,0,0.8);
+$linkColor:        #222;
+$baseFontFamily:   'Georgia', serif;
+$headerFontFamily: 'Myriad Pro', sans-serif;
+$codeFontFamily:   'Monaco', monospace;
+$baseFontSize:     20;
+$baseLineHeight:   1.5;
+$h1:               0.33 * 7.3;
+$h2:               0.33 * 4.3;
+$h3:               0.33 * 3.3;
+
+@include typography( $baseColor,
+                     $linkColor,
+                     $baseFontFamily,
+                     $headerFontFamily,
+                     $codeFontFamily,
+                     $baseFontSize,
+                     $baseLineHeight,
+                     $h1,
+                     $h2,
+                     $h3 );
+
+.page, .post                          { width: 700px;
                                         margin: 0 auto;
 }
