@@ -20,7 +20,9 @@ RedactorPlugins.gallery =
   if $.fn.redactor
     $('#details_header').prepend "<div id='redactor_toolbar' class='chr-redactor-toolbar'></div>"
     options =
-      cleanup: false
+      formattingPre:  false
+      convertLinks:   false
+      cleanup:        false
       pastePlainText: true
       plugins: [ 'gallery' ]
       buttons: ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'video', 'file', 'table', 'link', 'alignment', 'horizontalrule']
