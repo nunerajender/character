@@ -116,6 +116,7 @@ b, strong                             { font-weight: $font_bold;
                                         font-weight: $font_bold;
                                         text-align: center;
                                         opacity: .7;
+                                        text-decoration: none;
   &:hover                             { opacity: 1;
   }
 }
@@ -634,6 +635,8 @@ b, strong                             { font-weight: $font_bold;
   &:focus                               { border-color: lighten($header_color, 25%);
   }
 }
+
+.chr-form-small a, .chr-form-large a    { text-decoration: none; }
 
 .chr-form-small                         { @include font;
                                           font-size: 12px;

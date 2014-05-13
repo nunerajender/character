@@ -49,8 +49,8 @@ API =
   addMenuItem: (path, icon, title) ->
     $menuItems = $('#menu_items')
     $menuItems.append """<li>
-                           <a href='#/#{ path }' class='chr-menu-item-#{ path }'>
-                             <i class='chr-menu-icon fa fa-#{ icon }'></i>#{ title }
+                           <a href='#/#{ path }' class='chr-menu-item-#{ path }' title='#{ title }'>
+                             <i class='chr-menu-icon fa fa-#{ icon }'></i><div class='chr-menu-title'>#{ title }</div>
                            </a>
                          </li>"""
 

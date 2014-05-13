@@ -30,12 +30,15 @@
       <div id='character' class='character <%= @character_instance.name %>-instance'>
         <nav id='menu' class='chr-menu'>
 
-          <%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout' do %>
+          <%= link_to "/#{ @character_instance.name }/logout?redirect=/#{ @character_instance.name }", class: 'browserid_logout', title: 'Sign out' do %>
             <%= image_tag @current_user.gravatar_url(36), class: 'chr-menu-user' %>
           <% end %>
 
           <ul id='menu_items'></ul>
-          <a href="#/settings" class="chr-menu-item-settings"><i class="chr-menu-icon fa fa-gears"></i> Settings</a>
+          <a href="#/settings" class="chr-menu-item-settings" title='Settings'>
+            <i class="chr-menu-icon fa fa-gears"></i>
+            <div class='chr-menu-title'>Settings</div>
+          </a>
         </nav>
         <div id='content' class='chr-content'></div>
       </div>
