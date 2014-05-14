@@ -23,5 +23,5 @@
   url = "/admin/#{reportModel}?f=#{fields}&where__report_date=$gte:#{ startDate },$lte:#{ stopDate }&o=report_date:asc&pp=40"
 
   $.get url, {}, (data) =>
-    d = _.map data, (row) -> { y: dateFormat(row.report_date), a: row.visitors }
+    d = _.map data, (r) -> { y: dateFormat(r.report_date), a: r.visitors }
     layout.drawBarChart title, color, d

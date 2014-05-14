@@ -31,6 +31,7 @@
 
   ui:
     view:         '#dashboard_view'
+    chart:        '#dashboard_chart'
     chartWrapper: '#dashboard_chart_wrapper'
     chartSelect:  '#dashboard_chart_select'
     typeSelect:   '#dashboard_chart_type_select'
@@ -84,7 +85,7 @@
   _selectType: -> @_selectDateTo()
 
   onRender: ->
-    @ui.chart = null
+    @currentChartType = ''
 
     _.chain(Character.Dashboard.Charts).keys().each (key) =>
       title = _(key).capitalize()
@@ -111,31 +112,44 @@
     @chartName ?= 'visitors'
     @_renderChart()
 
-  drawBarChart: (title, color, data) ->
-    @setChartTitle(title)
-
-    if @ui.chart
-      @ui.chart.options.barColors = [ color ]
-      @ui.chart.options.labels    = [ title ]
-      @ui.chart.setData data
-    else
-      # https://github.com/morrisjs/morris.js
-      options =
-        element:   'dashboard_chart'
-        data:      data
-        barColors: [ color ]
-        labels:    [ title ]
-        xkey:      'y'
-        ykeys:     [ 'a' ]
-        # styles
-        gridTextFamily: 'sans-serif'
-        gridTextColor:  '#a9b1b5'
-        gridTextSize:    11
-        barOpacity:      0.6
-        barSizeRatio:    .97
-        numLines:        6
-        gridStrokeWidth: 0.1
-      @ui.chart = Morris.Bar options
-
   setChartTitle: (title) ->
     @ui.chartWrapper.attr('data-title', title)
+
+  resetCurrentChart: ->
+    @ui.chart.html('')
+    @currentChart = null
+    @currentChartType = ''
+
+  drawBarChart: (title, color, data) ->
+    if data.length > 0
+      if @currentChartType == 'bar'
+        @currentChart.options.colors = [ color ]
+        @currentChart.options.labels = [ title ]
+        @currentChart.setData data
+      else
+        @resetCurrentChart()
+
+        options =
+          element:         'dashboard_chart'
+          data:            data
+          barColors:       [ color ]
+          labels:          [ title ]
+          xkey:            'y'
+          ykeys:           [ 'a' ]
+          # styles
+          hideHover:       true
+          gridTextFamily:  'sans-serif'
+          gridTextColor:   '#a9b1b5'
+          gridTextSize:    11
+          barOpacity:      0.6
+          barSizeRatio:    0.97
+          numLines:        6
+          gridStrokeWidth: 0.1
+
+        # https://github.com/morrisjs/morris.js
+        @currentChart = Morris.Bar options
+
+        @setChartTitle(title)
+        @currentChartType = 'bar'
+    else
+      @setChartTitle('No data')
