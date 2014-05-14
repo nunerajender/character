@@ -20,7 +20,9 @@
                       —
                       <input type=date id=dashboard_chart_date_to />
                     </aside>
-                    <div id=dashboard_chart class='dashboard-chart'></div>
+                    <div id=dashboard_chart_wrapper class='dashboard-chart-wrapper'>
+                      <div id=dashboard_chart></div>
+                    </div>
                     <div id=dashboard_footer></div>
                   </div>"""
 
@@ -28,12 +30,12 @@
     footer: '#dashboard_footer'
 
   ui:
-    view:        '#dashboard_view'
-    chart:       '#dashboard_chart'
-    chartSelect: '#dashboard_chart_select'
-    dateFrom:    '#dashboard_chart_date_from'
-    dateTo:      '#dashboard_chart_date_to'
-    typeSelect:  '#dashboard_chart_type_select'
+    view:         '#dashboard_view'
+    chartWrapper: '#dashboard_chart_wrapper'
+    chartSelect:  '#dashboard_chart_select'
+    typeSelect:   '#dashboard_chart_type_select'
+    dateFrom:     '#dashboard_chart_date_from'
+    dateTo:       '#dashboard_chart_date_to'
 
   _renderChart: ->
     Character.Dashboard.Charts[@chartName](@)
@@ -60,6 +62,8 @@
     @_renderChart()
 
   onRender: ->
+    @ui.chart = null
+
     _.chain(Character.Dashboard.Charts).keys().each (key) =>
       title = _(key).capitalize()
       @ui.chartSelect.append("<option value=#{key}>#{title}</option>")
@@ -84,3 +88,32 @@
   updateScope: (@chartName, callback) ->
     @chartName ?= 'visitors'
     @_renderChart()
+
+  drawBarChart: (title, color, data) ->
+    @setChartTitle(title)
+
+    if @ui.chart
+      @ui.chart.options.barColors = [ color ]
+      @ui.chart.options.labels    = [ title ]
+      @ui.chart.setData data
+    else
+      # https://github.com/morrisjs/morris.js
+      options =
+        element:   'dashboard_chart'
+        data:      data
+        barColors: [ color ]
+        labels:    [ title ]
+        xkey:      'y'
+        ykeys:     [ 'a' ]
+        # styles
+        gridTextFamily: 'sans-serif'
+        gridTextColor:  '#a9b1b5'
+        gridTextSize:    11
+        barOpacity:      0.6
+        barSizeRatio:    .97
+        numLines:        6
+        gridStrokeWidth: 0.1
+      @ui.chart = Morris.Bar options
+
+  setChartTitle: (title) ->
+    @ui.chartWrapper.attr('data-title', title)

@@ -1,5 +1,6 @@
-#= require d3
-#= require d3.vega
+#= require raphael
+#= require raphael.morris
+
 #= require_self
 #= require ./layout
 
