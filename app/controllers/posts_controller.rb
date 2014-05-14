@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def category
-    page    = params[:page] || 1
+    page = params[:page] || 1
 
     @category = Character::PostCategory.find(params[:slug])
     @posts = @category.posts.published
@@ -24,12 +24,12 @@ class PostsController < ApplicationController
     @post = Character::Post.find(params[:slug])
   end
 
-  def feed
-    @posts = Character::Post.published
+  def rss
+    page = params[:page] || 1
+    @posts = Character::Post.published.page(page).per(10)
 
     respond_to do |format|
-      format.rss { render :layout => false }
-      format.all { head :not_found }
+      format.all { render :layout => false, content_type: 'text/xml; charset=utf-8' }
     end
   end
 end

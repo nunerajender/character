@@ -24,10 +24,10 @@ module ActionDispatch::Routing
 
     def mount_posts_at(mount_location)
       scope mount_location do
-        get '/'               => 'posts#index',    as: :posts_index
-        get '/c/:slug'        => 'posts#category', as: :posts_category
-        get '/p/:slug'        => 'posts#show',     as: :posts_show
-        get '/feed(.:format)' => 'posts#feed',     as: :posts_feed
+        get '/'              => 'posts#index',    as: :posts_index
+        get '/c/:slug'       => 'posts#category', as: :posts_category
+        get '/p/:slug'       => 'posts#show',     as: :posts_show
+        get '/rss(.:format)' => 'posts#rss',     as: :posts_rss
       end
     end
 

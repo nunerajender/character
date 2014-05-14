@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <%= display_meta_tags title: 'Website' %>
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://<%= @domain %><%= posts_feed_path %>.rss" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://<%= @domain %><%= posts_rss_path %>" />
 
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
