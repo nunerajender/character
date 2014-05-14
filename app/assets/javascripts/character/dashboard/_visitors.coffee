@@ -5,13 +5,16 @@
 
   if layout.chartType() == 'day'
     reportModel = 'Reports-AnalyticsDaily'
-    yDateFormat = "MMM D"
+    dateFormat = (d) -> moment(d).format("MMM D")
   else if layout.chartType() == 'week'
     reportModel = 'Reports-AnalyticsWeekly'
-    yDateFormat = "MMM D"
+    dateFormat = (d) ->
+      weekStart = moment(d).format("MMM D")
+      weekEnd   = moment(d).add('days', 6).format("MMM D")
+      "#{weekStart} - #{weekEnd}"
   else if layout.chartType() == 'month'
     reportModel = 'Reports-AnalyticsMonthly'
-    yDateFormat = "MMM YYYY"
+    dateFormat = (d) -> moment(d).format("MMM YYYY")
 
   fields    = [ 'visitors' ].join(',')
   startDate = layout.dateFrom()
@@ -20,10 +23,5 @@
   url = "/admin/#{reportModel}?f=#{fields}&where__report_date=$gte:#{ startDate },$lte:#{ stopDate }&o=report_date:asc&pp=40"
 
   $.get url, {}, (data) =>
-    chartData = []
-    _.each data, (row, i) ->
-      chartData.push
-        y: moment(row.report_date).format(yDateFormat)
-        a: row.visitors
-
-    layout.drawBarChart title, color, chartData
+    d = _.map data, (row) -> { y: dateFormat(row.report_date), a: row.visitors }
+    layout.drawBarChart title, color, d

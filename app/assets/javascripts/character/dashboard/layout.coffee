@@ -40,6 +40,10 @@
   _renderChart: ->
     Character.Dashboard.Charts[@chartName](@)
 
+  _selectChart: ->
+    @chartName = @ui.chartSelect.val()
+    @_renderChart()
+
   chartType: -> @ui.typeSelect.val()
   dateFrom: -> @ui.dateFrom.val()
   dateTo: -> @ui.dateTo.val()
@@ -51,15 +55,33 @@
     @ui.dateFrom.val(fromDate)
     @ui.dateTo.val(toDate)
 
-  _selectChart: ->
-    @chartName = @ui.chartSelect.val()
+  _selectDateFrom: ->
+    fromDate = @dateFrom()
+
+    if @chartType() == 'day'
+      toDate = moment(fromDate).add('month', 1).format('YYYY-MM-DD')
+    else if @chartType() == 'week'
+      toDate = moment(fromDate).add('weeks', 30).format('YYYY-MM-DD')
+    else if @chartType() == 'month'
+      toDate = moment(fromDate).add('months', 30).format('YYYY-MM-DD')
+
+    @setDateRange(fromDate, toDate)
     @_renderChart()
 
-  _selectDate: ->
+  _selectDateTo: ->
+    toDate = @dateTo()
+
+    if @chartType() == 'day'
+      fromDate = moment(toDate).subtract('month', 1).format('YYYY-MM-DD')
+    else if @chartType() == 'week'
+      fromDate = moment(toDate).subtract('weeks', 30).format('YYYY-MM-DD')
+    else if @chartType() == 'month'
+      fromDate = moment(toDate).subtract('months', 30).format('YYYY-MM-DD')
+
+    @setDateRange(fromDate, toDate)
     @_renderChart()
 
-  _selectType: ->
-    @_renderChart()
+  _selectType: -> @_selectDateTo()
 
   onRender: ->
     @ui.chart = null
@@ -72,8 +94,8 @@
     # so doing this right here:
     @ui.chartSelect.on 'change', (e) => @_selectChart()
     @ui.typeSelect.on 'change', (e) => @_selectType()
-    @ui.dateFrom.on 'change', (e) => @_selectDate()
-    @ui.dateTo.on 'change', (e) => @_selectDate()
+    @ui.dateFrom.on 'change', (e) => @_selectDateFrom()
+    @ui.dateTo.on 'change', (e) => @_selectDateTo()
 
     @afterRenderContent?()
 
