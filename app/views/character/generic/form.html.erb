@@ -1,10 +1,8 @@
-<div class='chr-form-small'>
-  <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
-    <% @generic_form_fields.each do |name| %>
-      <%= f.input name %>
-    <% end %>
-
-    <%= f.input :_position, as: :hidden if @object.class.fields.keys.include? '_position' %>
-    <%= f.input :hidden, as: :hidden if @object.class.fields.keys.include? 'hidden' %>
+<%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
+  <% @generic_form_fields.each do |name| %>
+    <%= f.input name %>
   <% end %>
-</div>
+
+  <%= f.input :_position, as: :hidden if @object.class.fields.keys.include? '_position' %>
+  <%= f.input :hidden, as: :hidden if @object.class.fields.keys.include? 'hidden' %>
+<% end %>

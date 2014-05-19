@@ -55,11 +55,9 @@ To have custom form implementation for model, create ```form.html``` in ```/app/
 
 Generic form template looks like this:
 
-    <div class='chr-form-small'>
-      <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
-        <%= f.input :name %>
-      <% end %>
-    </div>
+    <%= simple_form_for @object, url: @form_action_url, method: :post do |f| %>
+      <%= f.input :name %>
+    <% end %>
 
 Checkout [Simple Form](https://github.com/plataformatec/simple_form) reference for all options (there are tons of them) which are available here.
 

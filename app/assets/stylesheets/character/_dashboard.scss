@@ -18,11 +18,11 @@
                                         right: 30px;
                                         color: #a1a7b2;
                                         z-index: 1;
+  select                              { margin-right: 10px;
+  }
   input                               { @include input;
                                         width: 130px;
                                         font-size: 12px;
-  }
-  select                              { margin-right: 10px;
   }
 }
 

@@ -22,10 +22,9 @@ module Character
         copy_file "admin.coffee", "app/assets/javascripts/admin.coffee"
         copy_file "admin.scss", "app/assets/stylesheets/admin.scss"
         copy_file "assets.rb", "config/initializers/assets.rb"
+        copy_file "application.scss", "app/assets/stylesheets/application.scss"
 
-        insert_into_file  "app/assets/stylesheets/application.css",
-                          " *= require application/default\n",
-                          :after => " *= require_self\n"
+        # TODO: remove application.css file
       end
 
       def add_routes

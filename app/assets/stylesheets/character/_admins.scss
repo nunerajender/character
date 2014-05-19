@@ -2,23 +2,11 @@
 // ADMINS
 //---------------------------------------------------------
 
-.chr-details-content.admins           { @include font;
-  form                                { padding: 60px;
-                                        max-width: 600px;
-                                        margin: 0 auto;
-  }
+.admins .simple_form                  {
 
-  .admin                              { border-bottom: 1px solid #edeff1;
-                                        margin-left: 62px + 20px;
-    input                             { color: #414d64;
-                                        font-size: 24px;
-                                        font-weight: $font_semi_bold;
-                                        padding: 25px 0;
-                                        border: none;
-                                        @include no-focus-border;
-                                        @include input-placeholder { color: #cbd0d3; }
-                                        width: 100%;
-                                        padding-left: 37px;
+  .admin                              { margin-left: 62px + 20px;
+    .input.email > input              { @include input-placeholder { color: #cbd0d3; }
+                                        padding-left: 1.5em;
     }
   }
 

@@ -1,27 +1,29 @@
 <% @model = @character_instance.user_model.constantize %>
 
-<%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
-  <%= hidden_field_tag :class_name, @model.to_s %>
+<div class='chr-form-large'>
+  <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
+    <%= hidden_field_tag :class_name, @model.to_s %>
 
-  <% (@objects || @model.all).each do |user| %>
-    <div class='admin'>
-      <%= form.simple_fields_for "[]", user do |f| %>
-        <%= link_to 'http://gravatar.com', title: 'Change picture', target: '_blank', class: 'picture' do %>
-          <%= image_tag user.gravatar_url(62), width: '62px', height: '62px' %>
+    <% (@objects || @model.all).each do |user| %>
+      <div class='admin'>
+        <%= form.simple_fields_for "[]", user do |f| %>
+          <%= link_to 'http://gravatar.com', title: 'Change picture', target: '_blank', class: 'picture' do %>
+            <%= image_tag user.gravatar_url(62), width: '62px', height: '62px' %>
+          <% end %>
+
+          <a class='action_delete' data-item-class='admin' href='#'><i class='chr-icon icon-close-alt'></i></a>
+          <%= f.input :email, as: :email, required: true, label: false, placeholder: 'Admins e-mail' %>
+          <%= f.input :_destroy, as: :hidden, value: false %>
         <% end %>
+      </div>
+    <% end %>
 
-        <a class='action_delete' data-item-class='admin' href='#'><i class='chr-icon icon-close-alt'></i></a>
-        <%= f.input :email, as: :email, required: true, label: false, placeholder: 'Admins e-mail' %>
-        <%= f.input :_destroy, as: :hidden, value: false %>
+    <div id='template' class='admin'>
+      <%= form.simple_fields_for "[]", @model.new do |f| %>
+        <i class='chr-icon icon-plus-alt'></i>
+        <a class='action_delete' data-item-class='admin' href='#' style='display:none;'><i class='chr-icon icon-close-alt'></i></a>
+        <%= f.input :email, required: true, as: :email, label: false, placeholder: 'Add new admin' %>
       <% end %>
     </div>
   <% end %>
-
-  <div id='template' class='admin'>
-    <%= form.simple_fields_for "[]", @model.new do |f| %>
-      <i class='chr-icon icon-plus-alt'></i>
-      <a class='action_delete' data-item-class='admin' href='#' style='display:none;'><i class='chr-icon icon-close-alt'></i></a>
-      <%= f.input :email, required: true, as: :email, label: false, placeholder: 'Add new admin' %>
-    <% end %>
-  </div>
-<% end %>
+</div>

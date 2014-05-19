@@ -2,7 +2,12 @@
 // CATEGORIES
 //---------------------------------------------------------
 
-.chr-details-content.post_categories  {
+.post_categories .simple_form         {
+  .category                           {
+    .input.string > input             { padding: .61em 1.5em;
+    }
+  }
+
   .chr-icon                           { color: #d1d6e0;
                                         position: absolute;
                                         margin-top: 21px;
@@ -14,12 +19,6 @@
   }
   a:hover .fa,
   a:hover .chr-icon                   { color: #414d64;
-  }
-  .category                           {
-    input                             { padding-left: 37px;
-                                        padding-right: 37px;
-                                        margin-bottom: 0;
-    }
   }
   .action_sort                        { position: relative;
                                         float: right;
