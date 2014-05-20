@@ -348,11 +348,19 @@ b, strong                             { font-weight: $font_bold;
 .chr-details-content                  { @include position(0, 71px, 0, 0, 1);
                                         @include scrollable;
                                         background-color: #fff;
-  .simple_form                        { @include font;
+  .simple_form                        { @include simple_form();
+                                        @include font;
                                         margin: 0 auto;
                                         padding: 60px;
-    a                                 { color: $secondary_color; }
+    // remove button for nested form images
+    .nested_form.images .remove_nested_fields {
+                                        @extend .chr-icon, .icon-close-alt;
+      &:before                        { content: ''; }
+    }
+
+    //a                                 { color: $secondary_color; }
   }
+
   .chr-form-scrolled-up               { background-color: #f7f7f7;
                                         border-bottom: 1px solid $list_border_color;
     > .simple_form                    { padding-top: 1.5em; padding-bottom: 0em; margin-bottom: 1.5em;

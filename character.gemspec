@@ -20,19 +20,18 @@ Gem::Specification.new do |gem|
   # Supress the warning about no rubyforge project
   gem.rubyforge_project = 'nowarning'
 
-  # frontend javascript
+  # javascript
   gem.add_runtime_dependency 'underscore-rails'
   gem.add_runtime_dependency 'marionette-rails'
-  ## this is used for items reordering
   gem.add_runtime_dependency 'jquery-ui-rails'
-  ## helpers
   gem.add_runtime_dependency 'momentjs-rails'
   gem.add_runtime_dependency 'character_editor'
-  gem.add_runtime_dependency 'rhythm'
 
   # css
+  gem.add_runtime_dependency 'rhythm'
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'font-awesome-rails'
+  gem.add_runtime_dependency 'simple_form_scss'
 
   # authentication
   gem.add_runtime_dependency 'browserid-auth-rails', '~> 0.5.7'

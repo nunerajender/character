@@ -7,6 +7,7 @@ require 'marionette-rails'
 require 'momentjs-rails'
 require 'character_editor'
 require 'rhythm'
+require 'simple_form_scss'
 
 # backend
 require 'browserid-rails'

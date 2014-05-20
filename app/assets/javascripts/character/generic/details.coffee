@@ -148,7 +148,7 @@
     @$el.parent().toggleClass('fullscreen')
 
   _bindReorderableItems: ->
-    @ui.reorderableItems = @ui.form.find('.sortable-list')
+    @ui.reorderableItems = @ui.form.find('.sortable')
     options =
       delay:  150
       items:  '> .fields'
