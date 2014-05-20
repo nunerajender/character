@@ -40,12 +40,6 @@ RUBY
         gsub_file 'app/assets/javascripts/application.js', "//= require_tree .\n", ''
         gsub_file 'app/assets/stylesheets/application.css', " *= require_tree .\n", ''
       end
-
-      # def add_production_configuration
-      #   application(nil, env: "production") do
-      #     "config.assets.precompile += %w( admin.js admin.css )"
-      #   end
-      # end
     end
   end
 end

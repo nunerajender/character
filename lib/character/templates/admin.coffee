@@ -1,5 +1,4 @@
 #= require character
-#= require redactor
 
 # Modules =================================================
 

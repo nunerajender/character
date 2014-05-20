@@ -15,6 +15,7 @@
 
 #= require moment
 #= require character_editor
+#= require redactor
 
 #= require_self
 #= require ./character/generic/module
