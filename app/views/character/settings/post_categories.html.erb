@@ -4,7 +4,7 @@
   <%= simple_form_for :objects, url: @action_url, method: :post do |form| %>
     <%= hidden_field_tag :class_name, @model.to_s %>
 
-    <div class='sortable-list'>
+    <div class='sortable'>
       <% @model.all.each do |category| %>
         <%= form.simple_fields_for "[]", category do |f| %>
           <div class='fields category'>
