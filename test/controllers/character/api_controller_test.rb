@@ -42,10 +42,10 @@ class Character::ApiControllerTest < ActionController::TestCase
   #   assert json_response.index(obj_1) < json_response.index(obj_2)
   # end
 
-  test "should show foo" do
-    get :show, model_slug: "Foo", id: @foo.id
-    assert_response :success
-  end
+  # test "should show foo" do
+  #   get :show, model_slug: "Foo", id: @foo.id
+  #   assert_response :success
+  # end
 
   # test "should get new" do
   #   get :new, model_slug: "Foo"
