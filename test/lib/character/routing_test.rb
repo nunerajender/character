@@ -5,9 +5,9 @@ class Character::RoutingTest < ActionDispatch::IntegrationTest
   #   assert_routing({ path: "/admin/Foo", method: "get" }, { controller: "character/api", action: "index", model_slug: "Foo"})
   # end
 
-  test "should have root for api:show" do
-    assert_routing({ path: "/admin/Foo/1", method: "get" }, { controller: "character/api", action: "show", model_slug: "Foo", id: "1"})
-  end
+  # test "should have root for api:show" do
+  #   assert_routing({ path: "/admin/Foo/1", method: "get" }, { controller: "character/api", action: "show", model_slug: "Foo", id: "1"})
+  # end
 
   # test "should have root for api:new" do
   #   assert_routing({ path: "/admin/Foo/new", method: "get" }, { controller: "character/api", action: "new", model_slug: "Foo", id: "new" })
