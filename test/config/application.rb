@@ -21,7 +21,6 @@ require "action_controller/railtie"
 # Workaround
 require 'jquery/rails'
 
-
 # Define the application and configuration
 module RbConfig
   class Application < ::Rails::Application
