@@ -10,8 +10,8 @@ ENV["RAILS_ENV"] = "test"
 
 require "active_model"
 require "action_controller/railtie"
-require "action_mailer/railtie"
-
+# require "action_mailer/railtie"
+require 'jquery/rails'
 # Define the application and configuration
 module RbConfig
   class Application < ::Rails::Application
@@ -48,5 +48,5 @@ Kaminari::Hooks.init
 require "character"
 
 RbConfig::Application.routes.draw do
-  mount_character
+  mount_character_instance
 end
