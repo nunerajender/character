@@ -21,6 +21,7 @@ require "action_controller/railtie"
 # Workaround
 require 'jquery/rails'
 
+
 # Define the application and configuration
 module RbConfig
   class Application < ::Rails::Application
@@ -58,19 +59,4 @@ require "character"
 
 RbConfig::Application.routes.draw do
   mount_character_instance
-end
-
-
-#
-# Models
-#
-
-class Foo
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name
-  field :published, type: Boolean, default: true
-
-  validates :name, length: { maximum: 6 }
 end

@@ -55,6 +55,7 @@ Gem::Specification.new do |gem|
 
   # testing
   gem.add_development_dependency 'minitest-rails'
+  gem.add_development_dependency 'minitest-reporters'
   gem.add_development_dependency 'database_cleaner'
   gem.add_development_dependency 'factory_girl_rails', '~> 4.0'
 end
