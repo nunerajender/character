@@ -1,4 +1,8 @@
 module Settings
+  # TODO: this module should be refactored
+  # - now we ping db to get every single value
+  # - need to cache all values in one request, so ping db once per request
+
   mattr_accessor :settings_file
   @@settings_file = "config/settings.yml"
 
