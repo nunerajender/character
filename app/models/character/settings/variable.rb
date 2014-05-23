@@ -11,6 +11,9 @@ class Character::Settings::Variable
   # uploaders
   mount_uploader :file, Character::Settings::FileUploader
 
+  # indexes
+  index({ group: 1, name: 1 })
+
   # helpers
   def has_file_uploaded?
     return false if file.to_s.empty?

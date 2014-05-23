@@ -4,15 +4,23 @@ module Settings
 
   def self.value(key)
     group_name, value_name = key.split('::')
-    group(group_name)[value_name].value
+    groups[group_name][value_name].value
   end
 
   def self.group(group_name)
-    group = {}
-    settings_from_yml[group_name].each do |name, attrs|
-      group[name] = Variable.new(group_name, name, attrs)
+    groups[group_name]
+  end
+
+  def self.groups
+    unless @groups
+      @groups = {}
+      settings_from_yml.keys.each do |group_name|
+        @groups[group_name] = settings_from_yml[group_name].map do |name, attrs|
+          [ name, Variable.new(group_name, name, attrs) ]
+        end.to_h
+      end
     end
-    group
+    @groups
   end
 
   def self.settings_from_yml
@@ -34,7 +42,11 @@ module Settings
   end
 
   class Variable
-    attr_accessor :type, :description, :default_value, :stored_object
+    attr_accessor :group,
+                  :name,
+                  :type,
+                  :description,
+                  :default_value
 
     def initialize(group, name, attrs)
       @group         = group
@@ -44,14 +56,18 @@ module Settings
       @default_value = attrs['default_value'] || ''
     end
 
+    def stored_object
+      Character::Settings::Variable.find_or_create_by(name: @name, group: @group)
+    end
+
     def value
-      @stored_object = Character::Settings::Variable.find_or_create_by(name: @name, group: @group)
-      value = @stored_object.value || @default_value
+      object = stored_object
+      value  = object.value || @default_value
 
       if @type == 'file'
-        if @stored_object.has_file_uploaded?
+        if object.has_file_uploaded?
           # return uploaded file
-          return @stored_object.file.to_s
+          return object.file.to_s
         elsif value.include? '//'
           # return direct link to file
           return value
@@ -62,11 +78,14 @@ module Settings
           # return rails asset
           return ActionController::Base.helpers.asset_path(value)
         end
+
       elsif @type == 'integer'
         return value.to_i
+
       elsif @type == 'float'
         return value.to_f
-      else
+
+      else # string
         return value
       end
     end

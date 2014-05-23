@@ -12,40 +12,46 @@
           <%= link_to object.value, object.value, target: '_blank' %>
           <%= f.input :file, as: :file, label: false %>
         </div>
+
       <% when "text" %>
         <%= f.input :value,
                      as: :text,
-                     label: f.object.name,
+                     label: object.name,
                      placeholder: object.description,
-                     wrapper_class: 'input ' + f.object.name.parameterize,
+                     wrapper_class: 'input ' + object.name.parameterize,
                      input_html: { value: object.value, rows: 3 } %>
+
       <% when "redactor" %>
         <%= f.input :value,
                      as: :text,
-                     label: f.object.name,
+                     label: object.name,
                      placeholder: object.description,
-                     wrapper_class: 'input ' + f.object.name.parameterize,
+                     wrapper_class: 'input ' + object.name.parameterize,
                      input_html: { value: object.value, rows: 3, class: 'character-redactor' } %>
+
       <% when "integer" %>
         <%= f.input :value,
                      as: :integer,
-                     label: f.object.name,
+                     label: object.name,
                      placeholder: object.description,
-                     wrapper_class: 'input ' + f.object.name.parameterize,
+                     wrapper_class: 'input ' + object.name.parameterize,
                      input_html: { value: object.value } %>
+
       <% when "float" %>
         <%= f.input :value,
                      as: :float,
-                     label: f.object.name,
+                     label: object.name,
                      placeholder: object.description,
-                     wrapper_class: 'input ' + f.object.name.parameterize,
+                     wrapper_class: 'input ' + object.name.parameterize,
                      input_html: { value: object.value } %>
+
       <% else %>
         <%= f.input :value,
-                     label: f.object.name,
+                     label: object.name,
                      placeholder: object.description,
-                     wrapper_class: 'input ' + f.object.name.parameterize,
+                     wrapper_class: 'input ' + object.name.parameterize,
                      input_html: { value: object.value } %>
+
       <% end %>
     <% end %>
 
