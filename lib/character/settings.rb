@@ -2,6 +2,19 @@ module Settings
   mattr_accessor :settings_file
   @@settings_file = "config/settings.yml"
 
+  def self.value(key)
+    group_name, value_name = key.split('::')
+    group(group_name)[value_name].value
+  end
+
+  def self.group(group_name)
+    group = {}
+    settings_from_yml[group_name].each do |name, attrs|
+      group[name] = Variable.new(group_name, name, attrs)
+    end
+    group
+  end
+
   def self.settings_from_yml
     unless @settings_from_yml
       settings_file = ::Rails.root.join(@@settings_file)
@@ -15,14 +28,6 @@ module Settings
     @settings_from_yml
   end
 
-  def self.group(group_name)
-    group = {}
-    settings_from_yml[group_name].each do |name, attrs|
-      group[name] = Variable.new(group_name, name, attrs)
-    end
-    group
-  end
-
   def self.stored_variables
     @stored_variables ||= Character::Settings::Variable.all
     Character::Settings::Variable.all
@@ -32,13 +37,15 @@ module Settings
     attr_accessor :type, :description, :default_value, :stored_object
 
     def initialize(group, name, attrs)
-      @type            = attrs['type']          || 'string'
-      @description     = attrs['description']   || ''
-      @default_value   = attrs['default_value'] || ''
-      @stored_object   = Character::Settings::Variable.find_or_create_by(name: name, group: group)
+      @group         = group
+      @name          = name
+      @type          = attrs['type']          || 'string'
+      @description   = attrs['description']   || ''
+      @default_value = attrs['default_value'] || ''
     end
 
     def value
+      @stored_object = Character::Settings::Variable.find_or_create_by(name: @name, group: @group)
       value = @stored_object.value || @default_value
 
       if @type == 'file'
@@ -55,6 +62,10 @@ module Settings
           # return rails asset
           return ActionController::Base.helpers.asset_path(value)
         end
+      elsif @type == 'integer'
+        return value.to_i
+      elsif @type == 'float'
+        return value.to_f
       else
         return value
       end

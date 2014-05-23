@@ -90,7 +90,7 @@ API =
     escapeHtml = (string) -> String(string).replace(/[&<>"'\/]/g, (s) -> entityMap[s])
     responseText = escapeHtml(response.responseText)
 
-    $('#chr_error_message').html """<iframe srcdoc='#{ responseText }'></iframe>"""
+    $('#chr_error_message').html "<pre>#{ responseText }</pre>"
     $('#chr_error_close').on 'click', -> chr.execute('closeError')
 
     $overlay.addClass('open')
