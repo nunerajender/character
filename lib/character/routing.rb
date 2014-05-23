@@ -17,7 +17,13 @@ module ActionDispatch::Routing
         get    '/:model_slug/:id/edit(.:format)',  to: 'api#edit'
         match  '/:model_slug(.:format)',           to: 'api#create', via: [ :post, :put, :patch ]
         post   '/:model_slug/:id(.:format)',       to: 'api#update'
-        patch  '/:model_slug/:id(.:format)',       to: 'api#patch'
+
+        # workaround for test environment, "patch" not working
+        # Maxim
+        # patch  '/:model_slug/:id(.:format)',       to: 'api#patch'
+        put  '/:model_slug/:id(.:format)',       to: 'api#patch'
+
+
         delete '/:model_slug/:id(.:format)',       to: 'api#destroy'
       end
     end
