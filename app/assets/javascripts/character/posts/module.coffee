@@ -31,9 +31,12 @@
 
   _hideForm: ->
     if @ui.form.parent().hasClass 'chr-form-scrolled-up'
-      editableAreaHeight = $(window).height() - 71 - @ui.featuredImageUploader.outerHeight(true)
+      headerHeight       = $('#details_header').outerHeight()
+      editableAreaHeight = $(window).height() - headerHeight
+      scrollTo           = @ui.post.offset().top - headerHeight + 1
+
       @ui.post.css { 'min-height': editableAreaHeight }
-      @ui.content.scrollTop @ui.form.parent().outerHeight(true)
+      @ui.content.scrollTop scrollTo
 
   _removeFeaturedImage: ->
     @ui.featuredImageInput.val('')

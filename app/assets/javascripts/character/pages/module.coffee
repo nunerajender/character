@@ -12,9 +12,12 @@
 @Character.Pages.DetailsLayout = Character.Generic.DetailsLayout.extend
   _hideForm: ->
     if @ui.form.parent().hasClass 'chr-form-scrolled-up'
-      editableAreaHeight = $(window).height() - 71
+      headerHeight       = $('#details_header').outerHeight()
+      editableAreaHeight = $(window).height() - headerHeight
+      scrollTo           = @ui.page.offset().top - headerHeight + 1
+
       @ui.page.css { 'min-height': editableAreaHeight }
-      @ui.content.scrollTop @ui.form.parent().outerHeight(true)
+      @ui.content.scrollTop scrollTo
 
   afterRenderContent: ->
     @ui.page = @ui.content.find('.page')
