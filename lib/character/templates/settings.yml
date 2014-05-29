@@ -57,11 +57,11 @@ Website:
 
 Layout:
   Header:
-    type: text
+    type: code
     description: ''
     default_value: "<h1>Project Title</h1><p><a href='/' title='Home'>Home</a>"
 
   Footer:
-    type: text
+    type: code
     description: ''
     default_value: '<p>© Project™ 2014. All rights reserved.</p>'
