@@ -1,7 +1,7 @@
 # ---------------------------------------------------------
-# SETTINGS WEBSITE
+# SETTINGS LAYOUT
 # ---------------------------------------------------------
 
-chr.settingsWebsite = (titleMenu = 'Website') ->
-  chr.settingsModule 'Website',
+chr.settingsLayout = (titleMenu = 'Layout') ->
+  chr.settingsModule 'Layout',
     titleMenu: titleMenu

@@ -15,7 +15,7 @@
 
 # Default Settings
 
-Admin Settings:
+Admin:
   Logo:
     type: file
     description: 'Company logo'
@@ -30,7 +30,7 @@ Admin Settings:
 
 # Website Settings
 
-Website Settings:
+Website:
   Domain:
     type: string
     description: 'Website domain is used in links.'
@@ -52,3 +52,16 @@ Website Settings:
     default_value: ''
 
 # END
+
+# Layout
+
+Layout:
+  Header:
+    type: text
+    description: ''
+    default_value: "<h1>Project Title</h1><p><a href='/' title='Home'>Home</a>"
+
+  Footer:
+    type: text
+    description: ''
+    default_value: '<p>© Project™ 2014. All rights reserved.</p>'

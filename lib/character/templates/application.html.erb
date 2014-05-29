@@ -1,8 +1,17 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js">
   <head>
-    <meta charset="utf-8" />
-    <%= display_meta_tags title: 'Website' %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <%= display_meta_tags title: @title,
+                          description: @description,
+                          canonical: "http://#{ @domain }",
+                          open_graph: { type: 'website',
+                                        title: @title,
+                                        description: @description,
+                                        url: "http://#{ @domain }" %>
+
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://<%= @domain %><%= posts_rss_path %>" />
 
     <%= stylesheet_link_tag "application" %>
@@ -10,7 +19,24 @@
   </head>
 
   <body>
+    <!--[if lt IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header class='header'>
+      <div class='container'>
+        <%= @header_html.html_safe %>
+      </div>
+    </header>
+
     <%= yield %>
+
+    <footer class='footer'>
+      <div class='container'>
+        <%= @footer_html.html_safe %>
+      </div>
+    </footer>
+
     <%= javascript_include_tag "application" %>
     <%= render partial: 'shared/google_analytics' %>
   </body>

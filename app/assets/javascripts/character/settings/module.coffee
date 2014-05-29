@@ -5,6 +5,7 @@
 #= require ./_categories
 #= require ./_website
 #= require ./_redirects
+#= require ./_layout
 
 # ---------------------------------------------------------
 # SETTINGS
