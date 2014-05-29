@@ -9,3 +9,10 @@
 <% @posts.each do |p| %>
   <%= render partial: 'post', locals: { post: p } %>
 <% end %>
+
+<nav class='pagination'>
+  <div class='container'>
+    <%= link_to_previous_page @posts, 'Newer Posts', params: @kaminari_params %>
+    <%= link_to_next_page @posts, 'Older Posts', params: @kaminari_params  %>
+  </div>
+</nav>

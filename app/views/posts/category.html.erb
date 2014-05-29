@@ -1,11 +1,18 @@
-<% set_meta_tags  title:       "#{ @category.title } | #{ @title }",
+<% set_meta_tags  title: "#{ @category.title } | #{ @title }",
                   description: @description, # use same description as website
-                  canonical:   "http://#{ @domain }#{ posts_category_path(@category) }",
-                  open_graph:  { type:        'blog',
-                                 title:       "#{ @category.title } | #{ @title }",
-                                 description: @description, # use same description as website
-                                 url:         "http://#{ @domain }#{ posts_category_path(@category) }" } %>
+                  canonical: "http://#{ @domain }#{ posts_category_path(@category) }",
+                  open_graph: { type: 'blog',
+                                title: "#{ @category.title } | #{ @title }",
+                                description: @description, # use same description as website
+                                url: "http://#{ @domain }#{ posts_category_path(@category) }" } %>
 
 <% @posts.each do |p| %>
   <%= render partial: 'post', locals: { post: p } %>
 <% end %>
+
+<nav class='pagination'>
+  <div class='container'>
+    <%= link_to_previous_page @posts, 'Newer Posts', params: @kaminari_params %>
+    <%= link_to_next_page @posts, 'Older Posts', params: @kaminari_params  %>
+  </div>
+</nav>
