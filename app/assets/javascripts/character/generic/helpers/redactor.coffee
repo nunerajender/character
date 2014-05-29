@@ -12,7 +12,10 @@ RedactorPlugins.gallery =
     @selectionSave()
     chr.execute 'showImages', true, (images) =>
       _.each images.reverse(), (model) =>
-        data = { filelink: model.get('image').regular.url, filename: '' }
+        # HACK: this workaround sometimes Rails includes image mount_uploader
+        image = model.get('image')
+        image = image.image if image.image
+        data = { filelink: image.regular.url, filename: '' }
         @imageInsert(data, false)
       @observeImages()
 

@@ -14,6 +14,9 @@
     image = @model.get('image')
 
     if image
+      # HACK: this workaround sometimes Rails includes image mount_uploader
+      image = image.image if image.image
+
       thumbUrl = image.chr_thumb.url
       @$el.css('background-image', "url(#{ thumbUrl })")
       @$el.attr('data-id', @model.id)
