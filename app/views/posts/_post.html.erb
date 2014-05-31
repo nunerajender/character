@@ -8,6 +8,9 @@
   </section>
 
   <footer class='post-footer'>
+    <% unless post.category.nil? %>
+      <%= link_to post.category.title, posts_category_path(post.category) %>
+    <% end %>
     <time><%= l post.published_at, format: :long %></time>
   </footer>
 </article>
