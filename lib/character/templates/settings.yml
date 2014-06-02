@@ -59,7 +59,7 @@ Layout:
   Header:
     type: code
     description: ''
-    default_value: "<h1>Project Title</h1><p><a href='/' title='Home'>Home</a>"
+    default_value: "<h1>Project Title</h1><p><a href='/' title='Home'>Home</a></p>"
 
   Footer:
     type: code
