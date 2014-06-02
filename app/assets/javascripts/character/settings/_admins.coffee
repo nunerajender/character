@@ -53,7 +53,7 @@
     @ui.content.off 'click', '.action_delete'
 
   beforeSave: ->
-    @ui.template.remove()
+    #@ui.template.remove()
 
 
 chr.settingsAdmins = ->

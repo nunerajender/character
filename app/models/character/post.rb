@@ -17,6 +17,7 @@ class Character::Post
 
   # relations
   belongs_to :category, class_name: "Character::PostCategory"
+  belongs_to :author,   class_name: "Character::PostAuthor"
 
   # slugs and search
   slug      :title, history: true

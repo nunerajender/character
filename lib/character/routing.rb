@@ -31,6 +31,7 @@ module ActionDispatch::Routing
     def mount_posts_at(mount_location)
       scope mount_location do
         get '/'              => 'posts#index',    as: :posts_index
+        get '/a/:slug'       => 'posts#author',   as: :posts_author
         get '/c/:slug'       => 'posts#category', as: :posts_category
         get '/p/:slug'       => 'posts#show',     as: :posts_show
         get '/rss(.:format)' => 'posts#rss',     as: :posts_rss

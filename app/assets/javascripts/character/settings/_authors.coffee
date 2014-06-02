@@ -1,8 +1,8 @@
 # ---------------------------------------------------------
-# SETTINGS REDIRECTS
+# SETTINGS AUTHORS
 # ---------------------------------------------------------
 
-@Character.Settings.RedirectsLayout = Character.Settings.DetailsLayout.extend
+@Character.Settings.AuthorsLayout = Character.Settings.DetailsLayout.extend
   _bindAdd: ->
     @ui.actionAdd.on 'click', (e) =>
       e.preventDefault()
@@ -50,7 +50,7 @@
   beforeSave: ->
     @ui.template.remove()
 
-chr.settingsRedirects = (titleMenu = 'Redirects') ->
-  chr.settingsModule 'Redirects',
+chr.settingsPostAuthors = (titleMenu = 'Authors') ->
+  chr.settingsModule 'Post Authors',
     titleMenu: titleMenu
-    detailsViewClass: Character.Settings.RedirectsLayout
+    detailsViewClass: Character.Settings.AuthorsLayout

@@ -9,12 +9,16 @@
       <%= f.input :category_id, label: 'Posted in', include_blank: true, collection: Character::PostCategory.all %>
     <% end %>
 
+    <% if Character::PostAuthor.all.size > 0 %>
+      <%= f.input :author_id, label: 'Author', include_blank: true, collection: Character::PostAuthor.all %>
+    <% end %>
+
     <%= f.input :published_at %>
 
     <%= f.input :title,     as: :hidden %>
     <%= f.input :subtitle,  as: :hidden %>
     <%= f.input :body_html, as: :hidden %>
-    <%= f.input :hidden, as: :hidden %>
+    <%= f.input :hidden,    as: :hidden %>
   <% end %>
 </div>
 

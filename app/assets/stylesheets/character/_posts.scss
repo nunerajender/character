@@ -38,11 +38,8 @@
 // POST FORM
 //---------------------------------------------------------
 
-.character_post_category_id           { margin-right: 10px;
-                                        width: 40%;
-                                        float: right;
-}
-
+.character_post_category_id select,
+.character_post_author_id select,
 .character_post_published_at          { width: 40%;
 }
 

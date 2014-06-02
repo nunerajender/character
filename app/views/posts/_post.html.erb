@@ -8,6 +8,7 @@
   </section>
 
   <footer class='post-footer'>
+    <!-- TODO: add author link -->
     <% unless post.category.nil? %>
       <%= link_to post.category.title, posts_category_path(post.category) %>
     <% end %>

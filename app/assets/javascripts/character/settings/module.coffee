@@ -6,6 +6,7 @@
 #= require ./_website
 #= require ./_redirects
 #= require ./_layout
+#= require ./_authors
 
 # ---------------------------------------------------------
 # SETTINGS

@@ -12,6 +12,14 @@ class PostsController < ApplicationController
     @posts = @posts.page(page).per(10)
   end
 
+  def author
+    page = params[:page] || 1
+
+    @author = Character::PostAuthor.find(params[:slug])
+    @posts = @author.posts.published
+    @posts = @posts.page(page).per(10)
+  end
+
   def category
     page = params[:page] || 1
 

@@ -1,24 +1,19 @@
 //---------------------------------------------------------
-// REDIRECTS
+// AUTHORS
 //---------------------------------------------------------
 
-.redirects .simple_form               {
-  .input.string.objects_destination > input,
-  .input.string.objects_path > input  { font-size: 1.2em;
+.post_authors .simple_form            {
+  .input.email.objects_email > input,
+  .input.string.objects_name > input  { font-size: 1.2em;
                                         border-bottom: none;
                                         margin-bottom: 0;
                                         padding: .3em .5em;
   }
-  .objects_path                       { float: left;
+  .objects_name                       { float: left;
                                         width: 30em;
   }
-  .input.string.objects_destination > input {
-                                        border-top: 1px solid #e6e9f0;
+  .input.email.objects_email > input  { border-top: 1px solid #e6e9f0;
                                         padding-right: 60px;
-  }
-  .input.select.objects_type          { float: right;
-                                        margin: 0;
-    select                            { position: relative; bottom: -5px; }
   }
   .action_add                         { @include button;
                                         margin-top: 4em;
