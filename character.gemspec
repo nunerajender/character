@@ -26,6 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'jquery-ui-rails'
   gem.add_runtime_dependency 'momentjs-rails'
   gem.add_runtime_dependency 'character_editor'
+  gem.add_runtime_dependency 'modernizr-rails'
 
   # css
   gem.add_runtime_dependency 'rhythm'

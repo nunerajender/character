@@ -2,36 +2,11 @@
 
 // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 // apply a natural box layout model to all elements
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-@import "rhythm/typography";
-
-$baseColor:        rgba(0,0,0,0.8);
-$linkColor:        #222;
-$baseFontFamily:   'Georgia', serif;
-$headerFontFamily: 'Myriad Pro', sans-serif;
-$codeFontFamily:   'Monaco', monospace;
-$baseFontSize:     20;
-$baseLineHeight:   1.5;
-$h1:               0.33 * 7.3;
-$h2:               0.33 * 4.3;
-$h3:               0.33 * 3.3;
+@import "application/settings";
 
 html                                  { // Make everything look a little nicer in webkit
                                         -webkit-font-smoothing: antialiased;
-
-  @include typography( $baseColor,
-                       $linkColor,
-                       $baseFontFamily,
-                       $headerFontFamily,
-                       $codeFontFamily,
-                       $baseFontSize,
-                       $baseLineHeight,
-                       $h1,
-                       $h2,
-                       $h3 );
+                                        @import "application/typography";
 }

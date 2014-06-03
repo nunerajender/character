@@ -17,7 +17,12 @@ Add gems to the ```Gemfile```:
 
 Run bundle and run generators:
 
-    bundle ; rails g mongoid:config ; rails g character:install
+    bundle ; rails g mongoid:config ; rails g character:bootstrap
+
+## TODO
+
+. Save unpublished post
+. Fix paste code issue for redactor.js + chrome
 
 
 ## Routes

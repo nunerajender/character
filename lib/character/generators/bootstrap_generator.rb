@@ -2,7 +2,7 @@ require 'rails/generators'
 
 module Character
   module Generators
-    class InstallGenerator < ::Rails::Generators::Base
+    class BootstrapGenerator < ::Rails::Generators::Base
       desc "Setup posts, pages and admin."
       source_root File.expand_path("../../templates", __FILE__)
 
@@ -25,6 +25,10 @@ module Character
         copy_file "application.scss", "app/assets/stylesheets/application.scss"
 
         # TODO: remove application.css file
+        # TODO: create application folder
+
+        copy_file "typography.scss", "app/assets/stylesheets/application/typography.scss"
+        copy_file "settings.scss", "app/assets/stylesheets/application/settings.scss"
       end
 
       def add_routes
@@ -38,7 +42,9 @@ RUBY
 
       def remove_assets_require_tree
         gsub_file 'app/assets/javascripts/application.js', "//= require_tree .\n", ''
-        gsub_file 'app/assets/stylesheets/application.css', " *= require_tree .\n", ''
+
+        # TODO: this file should be removed
+        # gsub_file 'app/assets/stylesheets/application.css', " *= require_tree .\n", ''
       end
     end
   end

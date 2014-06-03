@@ -1,0 +1,13 @@
+@import "rhythm/typography";
+@import "settings";
+
+@include typography( $baseColor,
+                     $linkColor,
+                     $baseFontFamily,
+                     $headerFontFamily,
+                     $codeFontFamily,
+                     $baseFontSize,
+                     $baseLineHeight,
+                     $h1,
+                     $h2,
+                     $h3 );

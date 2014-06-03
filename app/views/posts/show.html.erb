@@ -8,3 +8,7 @@
                                 image: @post.featured_image_url.empty? ? '' :  "http:#{ @post.featured_image_url }" } %>
 
 <%= render partial: 'post', locals: { post: @post } %>
+
+<nav class='navigation'>
+  <%= link_to 'Blog Home', posts_index_path %>
+</nav>

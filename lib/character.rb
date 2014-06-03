@@ -8,6 +8,7 @@ require 'momentjs-rails'
 require 'character_editor'
 require 'rhythm'
 require 'simple_form_scss'
+require 'modernizr-rails'
 
 # backend
 require 'browserid-rails'
@@ -26,4 +27,4 @@ require 'character/instance'
 require 'character/version'
 require 'character/engine'
 require 'character/routing'
-require 'character/generators/install_generator'
+require 'character/generators/bootstrap_generator'
