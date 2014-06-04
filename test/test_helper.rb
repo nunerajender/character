@@ -37,22 +37,12 @@ class ActiveSupport::TestCase
   end
 end
 
-class Foo
+class Product
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :name
+  field :title
   field :published, type: Boolean, default: true
 
-  validates :name, length: { maximum: 6 }
-end
-
-class Author
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name
-  field :published, type: Boolean, default: true
-
-  validates :name, length: { maximum: 6 }
+  validates :title, length: { maximum: 6 }
 end

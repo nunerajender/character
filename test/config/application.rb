@@ -15,8 +15,6 @@ require "action_view/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
-# require 'yaml'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -25,11 +23,12 @@ Bundler.require(*Rails.groups)
 module RbConfig
   class Application < ::Rails::Application
     config.eager_load = false
+
     # config.active_support.deprecation = :stderr
     # config.autoload_paths += %W(#{config.root}/app/controllers/concerns)
 
-    # path_secrets_config = File.join(File.dirname(__FILE__), "secrets.yml")
-    # config.secret_key_base = ::YAML.load(File.open(path_secrets_config))[Rails.env]['secret_key_base']
+    path_secrets_config = File.join(File.dirname(__FILE__), "secrets.yml")
+    config.secret_key_base = YAML.load(File.open(path_secrets_config))[Rails.env]['secret_key_base']
   end
 end
 
