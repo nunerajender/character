@@ -1,25 +1,58 @@
-require 'config/application'
+ENV['RAILS_ENV'] ||= "test"
 
-require "rails/test_help"
-require "minitest/rails"
+require 'config/application'
+require 'rails/test_help'
 
 require "database_cleaner"
 DatabaseCleaner.strategy = :truncation
 
+# There is no support of fixtures in Mongoid
 require "factory_girl"
 FactoryGirl.find_definitions
 
-require "minitest/reporters"
-Minitest::Reporters.use!
+# Allows you to focus on a few tests with ease without having to use
+# command-line arguments
+require 'minitest/focus'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in test/support/ and its subdirectories.
-Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
+# Color output
+require "minitest/reporters"
+Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+# Minitest::Reporters.use! Minitest::Reporters::DefaultReporter.new
 
 class ActiveSupport::TestCase
-  # Helper methods available in all tests
+  # ...
+
+  #
+  # Helper methods to be used by all tests
+  #
 
   def json_response
     ActiveSupport::JSON.decode @response.body
   end
+
+  def reset_instance_variables(class_obj)
+    class_obj.instance_variables.each do |var|
+      class_obj.instance_variable_set var, nil
+    end
+  end
+end
+
+class Foo
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :name
+  field :published, type: Boolean, default: true
+
+  validates :name, length: { maximum: 6 }
+end
+
+class Author
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :name
+  field :published, type: Boolean, default: true
+
+  validates :name, length: { maximum: 6 }
 end
