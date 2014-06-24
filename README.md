@@ -40,6 +40,11 @@ Instance name **admin** could be changed, and you can use something different. T
 - mount_pages_at
 
 
+## Running Automated Tests
+
+`$ bundle exec rake test`
+
+
 ## Modules
 
 - chr.genericModule()
