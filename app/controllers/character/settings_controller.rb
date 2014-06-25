@@ -37,17 +37,19 @@ class Character::SettingsController < ActionController::Base
 
     if not params[:objects].nil?
       params[:objects].first.each_pair do |id_or_slug, attributes|
-        begin
-          object = model_class.find id_or_slug
-        rescue Mongoid::Errors::DocumentNotFound
-          object = model_class.new
-        end
+        if attributes.size > 0
+          begin
+            object = model_class.find id_or_slug
+          rescue Mongoid::Errors::DocumentNotFound
+            object = model_class.new
+          end
 
-        if attributes[:_destroy] == 'true'
-          object.destroy
-        else
-          object.update_attributes(attributes)
-          @objects << object
+          if attributes[:_destroy] == 'true'
+            object.destroy
+          else
+            object.update_attributes(attributes)
+            @objects << object
+          end
         end
       end
 

@@ -100,7 +100,8 @@
 
     @afterRenderContent?()
 
-  onClose: ->
+  onDestroy: ->
+    # NOTE: seems to be never called in current implementation
     @ui.chartSelect.off 'change'
     @ui.typeSelect.off 'change'
     @ui.dateFrom.off 'change'

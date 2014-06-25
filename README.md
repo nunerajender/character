@@ -10,10 +10,9 @@ Have you heard of [Django](https://www.djangoproject.com/), [Wordpress](https://
 
 Add gems to the ```Gemfile```:
 
-    # ORM + Character
-    gem 'mongoid',             github: 'mongoid/mongoid'
+    # Mongoid ORM + Character
     gem 'carrierwave-mongoid', github: 'carrierwaveuploader/carrierwave-mongoid', require: 'carrierwave/mongoid'
-    gem 'character',           github: 'slate-studio/character'
+    gem 'character'
 
 Run bundle and run generators:
 

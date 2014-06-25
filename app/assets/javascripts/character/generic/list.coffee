@@ -97,7 +97,7 @@
 
     @afterOnRender?()
 
-  onClose: ->
+  onDestroy: ->
     @beforeOnClose?()
     @afterOnClose?()
 
@@ -209,6 +209,6 @@
     @selected_item_id = null
     @$el.find('li.active').removeClass('active')
 
-  onClose: ->
+  onDestroy: ->
     if @collection.options.reorder
       Character.Generic.Helpers.stopReorder(@$el)
