@@ -26,12 +26,12 @@
 
 @Character.Images.ListView = Backbone.Marionette.CollectionView.extend
   tagName: 'ul'
-  itemView: Character.Images.ListItemView
+  childView: Character.Images.ListItemView
 
   initialize: ->
     @listenTo(@collection, 'sort', @render, @)
 
-@Character.Images.Layout = Backbone.Marionette.Layout.extend
+@Character.Images.Layout = Backbone.Marionette.LayoutView.extend
   id:        'chr_images'
   className: 'chr-images'
 

@@ -64,7 +64,7 @@
 # Marionette.js Layout Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md
 #
-@Character.Generic.DetailsLayout = Backbone.Marionette.Layout.extend
+@Character.Generic.DetailsLayout = Backbone.Marionette.LayoutView.extend
   className: 'chr-details'
   template: -> "<header id=details_header class='chr-details-header'></header>
                 <section id=details_content class='chr-details-content'></section>"
@@ -133,7 +133,8 @@
 
   _delete: ->
     if confirm("""Delete "#{ @model.getTitle() }"?""")
-      @close()
+      # @close()
+      #@destroy()
       @model.destroy
         success: ->
           Backbone.history.navigate("#/#{chr.currentPath}", { trigger: true })
@@ -207,7 +208,7 @@
       error: (xhr, ajaxOptions, thrownError) =>
         chr.execute('showError', xhr)
 
-  onClose: ->
+  onDestroy: ->
     window.closeDetailsView = null
     if @ui
       @beforeOnClose?()

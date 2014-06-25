@@ -66,7 +66,7 @@ API =
       $menuEl.find('a.active').removeClass('active')
       $menuEl.find("a.chr-menu-item-#{name}").addClass('active')
 
-      chr.content.show(layout)
+      chr.content.show(layout, { preventDestroy: true })
 
       $('#content').attr('class', "chr-content #{name}")
 
@@ -104,7 +104,7 @@ API =
 _.map API, (method, name) => @chr.commands.setHandler(name, method)
 
 
-@chr.on "initialize:before", (@options) -> # maps options!
+@chr.on "before:start", (@options) -> # maps options!
   # shortcuts
   window.shortcuts = new window.keypress.Listener()
 
@@ -121,7 +121,7 @@ _.map API, (method, name) => @chr.commands.setHandler(name, method)
         chr.execute('closeDetailsView')
 
 
-@chr.on "initialize:after", ->
+@chr.on "start", ->
   # start history
   if Backbone.history
     Backbone.history.start()

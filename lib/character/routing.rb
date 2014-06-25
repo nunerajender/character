@@ -21,7 +21,7 @@ module ActionDispatch::Routing
         # workaround for test environment, "patch" not working
         # Maxim
         patch  '/:model_slug/:id(.:format)',       to: 'api#patch'
-        # Alex: you can't do this, Max
+        # Alex: I guess we need patch here
         #put  '/:model_slug/:id(.:format)',       to: 'api#patch'
 
 

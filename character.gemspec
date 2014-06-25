@@ -23,7 +23,6 @@ Gem::Specification.new do |gem|
 
   # automated tests
   gem.add_development_dependency 'rails', '~> 4.1.0'
-  gem.add_development_dependency 'mongoid', '4.0.0.beta1'
   gem.add_development_dependency 'database_cleaner'
   gem.add_development_dependency 'factory_girl_rails'
   gem.add_development_dependency 'minitest-reporters'
@@ -31,7 +30,7 @@ Gem::Specification.new do |gem|
 
   # javascript
   gem.add_runtime_dependency 'underscore-rails'
-  gem.add_runtime_dependency 'marionette-rails'
+  gem.add_runtime_dependency 'marionette-rails', '~> 2.0.0'
   gem.add_runtime_dependency 'jquery-ui-rails'
   gem.add_runtime_dependency 'momentjs-rails'
   gem.add_runtime_dependency 'character_editor'
@@ -45,6 +44,9 @@ Gem::Specification.new do |gem|
 
   # authentication
   gem.add_runtime_dependency 'browserid-auth-rails', '~> 0.5.7'
+
+  # orm
+  gem.add_runtime_dependency 'mongoid', '~> 4.0.0'
 
   # forms
   gem.add_runtime_dependency 'simple_form'
@@ -62,5 +64,4 @@ Gem::Specification.new do |gem|
 
   # analytics
   gem.add_runtime_dependency 'google-api-client'
-
 end

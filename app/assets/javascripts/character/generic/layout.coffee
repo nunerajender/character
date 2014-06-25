@@ -4,7 +4,7 @@
 # Marionette.js Layout Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md
 #
-@Character.Generic.Layout = Backbone.Marionette.Layout.extend
+@Character.Generic.Layout = Backbone.Marionette.LayoutView.extend
   className: 'chr-layout'
 
   template: -> "<div class='left'>
@@ -33,7 +33,7 @@
 
   closeDetails: ->
     @list.unselectCurrentItem()
-    @details.close()
+    @details.reset()
 
   updateListScope: (listScope, callback) ->
     @header.update(listScope)

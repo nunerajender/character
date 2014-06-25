@@ -42,7 +42,7 @@ chr.module 'settings', (module) ->
     @module = @options.module
 
   index: ->
-    @module.layout.details?.close()
+    @module.layout.details.reset()
     chr.execute('showModule', @module)
     chr.currentPath = "settings"
     @module.layout.unsetActiveMenuItem()

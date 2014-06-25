@@ -2,7 +2,7 @@
 # Marionette.js Layout Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md
 #
-@Character.Settings.Layout = Backbone.Marionette.Layout.extend
+@Character.Settings.Layout = Backbone.Marionette.LayoutView.extend
   tagName: 'section'
   className: 'chr-layout'
 

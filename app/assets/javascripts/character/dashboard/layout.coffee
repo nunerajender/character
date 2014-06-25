@@ -4,7 +4,7 @@
 # Marionette.js Layout Documentation
 # https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md
 #
-@Character.Dashboard.Layout = Backbone.Marionette.Layout.extend
+@Character.Dashboard.Layout = Backbone.Marionette.LayoutView.extend
   className: 'chr-module-generic'
 
   template: -> """<header class="chr-details-header"><div class="title">Dashboard</div></header>

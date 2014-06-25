@@ -176,7 +176,7 @@
     module: @options.module
 
   initialize: ->
-    @itemView  = @options.module.ListItemView
+    @childView  = @options.module.ListItemView
     @emptyView = @options.module.ListEmtpyView
 
     @listenTo(@collection, 'sort', @render, @)
