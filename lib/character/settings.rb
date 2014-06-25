@@ -8,7 +8,11 @@ module Settings
 
   def self.value(key)
     group_name, value_name = key.split('::')
-    groups[group_name][value_name].value
+    if groups.has_key? group_name and groups[group_name].has_key? value_name
+      groups[group_name][value_name].value
+    else
+      ''
+    end
   end
 
   def self.group(group_name)
