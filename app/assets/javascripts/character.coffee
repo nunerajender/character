@@ -1,8 +1,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.form
-#= require jquery.ui.sortable
-#= require jquery.ui.widget
+#= require jquery-ui/sortable
+#= require jquery-ui/widget
 #= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require jquery_nested_form
