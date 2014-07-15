@@ -48,6 +48,7 @@
                         <input id=chr_images_upload class='chr-images-upload' type='file' name='character_image[image]' multiple='' />
                         Upload files...
                       </div>
+                      <button id=chr_images_delete class='button chr-images-delete'>Delete</button>
                     </footer>
                   </div>"""
 
@@ -56,6 +57,7 @@
     uploadInput:  '#chr_images_upload'
     listContent:  '#chr_images_grid'
     insertButton: '#chr_images_insert'
+    deleteButton: '#chr_images_delete'
 
   regions:
     listContent: '#chr_images_grid'
@@ -65,6 +67,7 @@
     'click #chr_images_cancel':  '_cancel'
     'click #chr_images_insert':  '_insert'
     'click #chr_images_grid li': '_selectImage'
+    'click #chr_images_delete':  '_deleteImage'
 
   initialize: ->
     @uploads = {}
@@ -95,6 +98,21 @@
     $el.toggleClass 'selected'
     @ui.insertButton.removeClass 'disabled'
 
+    @ui.deleteButton.show()
+
+  _deleteImage: (e) ->
+    if confirm("""Delete selected image?""")
+      imageId = @ui.listContent.find('.selected').attr('data-id')
+      @removeImageModel(imageId)
+
+      @ui.deleteButton.hide()
+
+  removeImageModel: (id) ->
+    imageModel = @collection.get(id)
+    @collection.remove(imageModel)
+
+    $.post "#{ chr.options.url }/Character-Image/#{id}", { 'character_image[hidden]': 'true' }, ->
+
   onRender: ->
     dialogWidth = Math.floor(($(window).width() - 322) / 176 ) * 176 + 20
     @ui.dialog.css { 'margin-left': dialogWidth / -2, 'width': dialogWidth }
@@ -103,6 +121,8 @@
     @listContent.show(@list)
 
   show: (@callback, @multipleSelection) ->
+    @ui.deleteButton.hide()
+
     # https://github.com/blueimp/jQuery-File-Upload/wiki/Options
     @ui.uploadInput.fileupload
       url:              '/admin/Character-Image'
@@ -132,6 +152,8 @@ chr.module 'images', (module) ->
     @collection = new Character.Generic.Collection()
     @collection.options =
       collectionUrl: "#{ chr.options.url }/Character-Image"
+      where: 'hidden=false'
+
     @collection.sortField = 'created_at'
     @collection.sortDirection = 'desc'
     @collection.fetchPage(1)

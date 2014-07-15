@@ -1,6 +1,7 @@
 class Character::Image
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Hideable
 
   mount_uploader :image, Character::ImageUploader
 
