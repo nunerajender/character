@@ -35,3 +35,7 @@ $font_bold:      700!default;
 @import "character/authors";
 @import "character_editor";
 @import "redactor";
+
+// workarounds
+
+.safari .chr-layout .right { width: 65.1%; }

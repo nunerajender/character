@@ -25,6 +25,14 @@
 #= require ./character/pages/module
 #= require ./character/dashboard/module
 
+# Safari detection for CSS workarounds
+
+$ ->
+  ua = navigator.userAgent.toLowerCase()
+  if ua.indexOf('safari') != -1
+    unless ua.indexOf('chrome') > -1
+      $('body').addClass 'safari'
+
 @Character ||= {}
 
 _.mixin(_.str.exports())
