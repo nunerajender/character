@@ -96,9 +96,13 @@
       @ui.listContent.find('.selected').removeClass 'selected'
 
     $el.toggleClass 'selected'
-    @ui.insertButton.removeClass 'disabled'
 
-    @ui.deleteButton.show()
+    if @ui.listContent.find('.selected').length > 0
+      @ui.insertButton.removeClass 'disabled'
+      @ui.deleteButton.show()
+    else
+      @ui.insertButton.addClass 'disabled'
+      @ui.deleteButton.hide()
 
   _deleteImage: (e) ->
     if confirm("""Delete selected image?""")
