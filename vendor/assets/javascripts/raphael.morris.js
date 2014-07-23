@@ -127,8 +127,7 @@ Licensed under the BSD-2-Clause License.
         var offset, touch;
         touch = evt.originalEvent.touches[0] || evt.originalEvent.changedTouches[0];
         offset = _this.el.offset();
-        _this.fire('hover', touch.pageX - offset.left, touch.pageY - offset.top);
-        return touch;
+        return _this.fire('hovermove', touch.pageX - offset.left, touch.pageY - offset.top);
       });
       this.el.bind('click', function(evt) {
         var offset;
@@ -160,6 +159,7 @@ Licensed under the BSD-2-Clause License.
           return _this.timeoutId = window.setTimeout(_this.resizeHandler, 100);
         });
       }
+      this.el.css('-webkit-tap-highlight-color', 'rgba(0,0,0,0)');
       if (this.postInit) {
         this.postInit();
       }
@@ -663,9 +663,13 @@ Licensed under the BSD-2-Clause License.
     }
 
     Hover.prototype.update = function(html, x, y) {
-      this.html(html);
-      this.show();
-      return this.moveTo(x, y);
+      if (!html) {
+        return this.hide();
+      } else {
+        this.html(html);
+        this.show();
+        return this.moveTo(x, y);
+      }
     };
 
     Hover.prototype.html = function(content) {
@@ -1482,7 +1486,7 @@ Licensed under the BSD-2-Clause License.
     Bar.prototype.drawSeries = function() {
       var barWidth, bottom, groupWidth, idx, lastTop, left, leftPadding, numBars, row, sidx, size, spaceLeft, top, ypos, zeroPos;
       groupWidth = this.width / this.options.data.length;
-      numBars = this.options.stacked != null ? 1 : this.options.ykeys.length;
+      numBars = this.options.stacked ? 1 : this.options.ykeys.length;
       barWidth = (groupWidth * this.options.barSizeRatio - this.options.barGap * (numBars - 1)) / numBars;
       if (this.options.barSize) {
         barWidth = Math.min(barWidth, this.options.barSize);
@@ -1516,6 +1520,9 @@ Licensed under the BSD-2-Clause License.
                   left += sidx * (barWidth + this.options.barGap);
                 }
                 size = bottom - top;
+                if (this.options.verticalGridCondition && this.options.verticalGridCondition(row.x)) {
+                  this.drawBar(this.left + idx * groupWidth, this.top, groupWidth, Math.abs(this.top - this.bottom), this.options.verticalGridColor, this.options.verticalGridOpacity, this.options.barRadius);
+                }
                 if (this.options.stacked) {
                   top -= lastTop;
                 }

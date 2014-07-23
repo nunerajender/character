@@ -20,14 +20,6 @@ Gem::Specification.new do |gem|
   # Supress the warning about no rubyforge project
   gem.rubyforge_project = 'nowarning'
 
-
-  # automated tests
-  gem.add_development_dependency 'rails', '~> 4.1.0'
-  gem.add_development_dependency 'database_cleaner'
-  gem.add_development_dependency 'factory_girl_rails'
-  gem.add_development_dependency 'minitest-reporters'
-  gem.add_development_dependency 'minitest-focus'
-
   # javascript
   gem.add_runtime_dependency 'underscore-rails'
   gem.add_runtime_dependency 'marionette-rails', '~> 2.0.0'
@@ -37,9 +29,9 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'modernizr-rails'
 
   # css
-  gem.add_runtime_dependency 'rhythm'
   gem.add_runtime_dependency 'compass-rails'
   gem.add_runtime_dependency 'font-awesome-rails'
+  gem.add_runtime_dependency 'rhythm'
   gem.add_runtime_dependency 'simple_form_scss'
 
   # authentication
@@ -56,7 +48,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'kaminari'
 
   # blog
-  # gem.add_runtime_dependency 'mongoid' <- for now you have to pick github version manually for Rails 4
   gem.add_runtime_dependency 'mongoid_slug'
   gem.add_runtime_dependency 'mongoid_search'
   gem.add_runtime_dependency 'mini_magick'
@@ -64,4 +55,11 @@ Gem::Specification.new do |gem|
 
   # analytics
   gem.add_runtime_dependency 'google-api-client'
+
+  # automated tests
+  gem.add_development_dependency 'rails', '~> 4.1.2'
+  gem.add_development_dependency 'database_cleaner'
+  gem.add_development_dependency 'factory_girl_rails'
+  gem.add_development_dependency 'minitest-reporters'
+  gem.add_development_dependency 'minitest-focus'
 end
