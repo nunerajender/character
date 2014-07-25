@@ -4,6 +4,15 @@ Have you heard of [Django](https://www.djangoproject.com/), [Wordpress](https://
 
 ![Character Image](http://character.s3.amazonaws.com/character1.jpg)
 
+## TODO
+
+. Enable published/unpublished option for new posts (now post is published after first save);
+. Fix paste code issue for redactor.js + chrome (this is pain in the ass);
+. Add smart toolbar buttons customization for redactor.js;
+. Add JS validation on form save;
+. Fix fullscreen edit for Safari width workaround;
+. Fix focus jump after image insert / link edit in redactor.js;
+
 ## Setup new [Rails 4.1](http://rubyonrails.org) project
 
     rails new ProjectName -T -O
@@ -17,12 +26,6 @@ Add gems to the ```Gemfile```:
 Run bundle and run generators:
 
     bundle ; rails g mongoid:config ; rails g character:bootstrap
-
-## TODO
-
-. Save unpublished post
-. Fix paste code issue for redactor.js + chrome
-
 
 ## Routes
 
