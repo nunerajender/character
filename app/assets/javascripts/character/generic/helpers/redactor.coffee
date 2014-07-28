@@ -29,6 +29,8 @@ RedactorPlugins.gallery =
       pastePlainText: true
       plugins: [ 'gallery' ]
       buttons: ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'video', 'file', 'table', 'link', 'alignment', 'horizontalrule']
+    # TODO: required default options are overriden by options.redactorOptions
+    #       need to use something like customRedactorOptions
     _(options).extend(redactorOptions)
     $content.find('.character-redactor').redactor(options)
 
