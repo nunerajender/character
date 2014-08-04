@@ -6,18 +6,20 @@ Have you heard of [Django](https://www.djangoproject.com/), [Wordpress](https://
 
 ## TODO
 
-. Enable published/unpublished option for new posts (now post is published after first save);
-. Fix paste code issue for redactor.js + chrome (this is pain in the ass);
-. Add smart toolbar buttons customization for redactor.js;
-. Add JS validation on form save;
-. Fix fullscreen edit for Safari width workaround;
-. Fix focus jump after image insert / link edit in redactor.js;
-. redactor.js source view is too big in height;
-. redactor.js source view removes new lines from code;
-. fix upload icon while uploading;
-. fix default styles for blog: links do break words;
-. SVG icons do not work for Firefox;
-. In Firefox remove focus style - dotted border;
+* Enable published/unpublished option for new posts (now post is published after first save);
+* Fix paste code issue for redactor.js + chrome (this is pain in the ass);
+* Add smart toolbar buttons customization for redactor.js;
+* Add JS validation on form save;
+* Fix fullscreen edit for Safari width workaround;
+* Fix focus jump after image insert / link edit in redactor.js;
+* redactor.js source view is too big in height;
+* redactor.js source view removes new lines from code;
+* fix upload icon while uploading;
+* fix default styles for blog: links do break words;
+* SVG icons do not work for Firefox;
+* In Firefox remove focus style - dotted border;
+* Reset validation after succesful form submission;
+* Cache list all list views in DOM and save scrolling state for them, rerender only details;
 
 ## Setup new [Rails 4.1](http://rubyonrails.org) project
 
