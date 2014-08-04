@@ -18,17 +18,14 @@ Have you heard of [Django](https://www.djangoproject.com/), [Wordpress](https://
 * fix default styles for blog: links do break words;
 * SVG icons do not work for Firefox;
 * In Firefox remove focus style - dotted border;
-<<<<<<< HEAD
-* Reset validation after succesful form submission;
-* Cache list all list views in DOM and save scrolling state for them, rerender only details;
-=======
 * Add menu groups option to make one icon in menu for group of models (apps);
 * Admin app layout issue in Firefox;
 * Add expand button to details header;
 * Check SEO fields for blog post (Open Graph)
 * Add description field to page
 * Fix SEO title for page (Open Graph)
->>>>>>> 0b79db960a8e75b07cc7e88c11a4d140723885d0
+* Reset validation after succesful form submission;
+* Cache list all list views in DOM and save scrolling state for them, rerender only details;
 
 ## Setup new [Rails 4.1](http://rubyonrails.org) project
 
