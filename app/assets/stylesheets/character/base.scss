@@ -654,7 +654,7 @@ b, strong                             { font-weight: $font_bold;
                                         border-bottom: 1px solid #e6e9f0;
                                         box-shadow: none;
                                         border-radius: 0px;
-                                        padding: 1em inherit;
+                                        padding: 1em .3em;
         &:focus                       { border-color: #e6e9f0;
         }
       }

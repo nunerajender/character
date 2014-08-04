@@ -7,6 +7,7 @@ class Character::Page
 
   # attributes
   field :title
+  field :description
   field :path
   field :template_name,                     default: 'redactor'
   field :template_content,  type: Hash,     default: {}
