@@ -1,9 +1,9 @@
-<% set_meta_tags  title: @post.title,
-                  description: @post.subtitle,
+<% set_meta_tags  title: @post.seo_title || @post.title,
+                  description: @post.seo_description || @post.subtitle,
                   canonical: "http://#{ @domain }#{ posts_show_path(@post) }",
                   open_graph: { type: 'article',
-                                title: @post.title,
-                                description: @post.subtitle,
+                                title: @post.seo_title || @post.title,
+                                description: @post.seo_description || @post.subtitle,
                                 url: "http://#{ @domain }#{ posts_show_path(@post) }",
                                 image: @post.featured_image_url.empty? ? '' :  "http:#{ @post.featured_image_url }" } %>
 

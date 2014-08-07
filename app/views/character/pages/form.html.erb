@@ -3,7 +3,8 @@
   <div class='chr-form-small chr-form-scrolled-up'>
     <%= simple_nested_form_for @object, url: @form_action_url, method: :post do |f| %>
       <%= f.input :title %>
-      <%= f.input :description, as: :text %>
+      <%= f.input :seo_title %>
+      <%= f.input :seo_description, as: :text %>
       <%= f.input :path %>
       <%= f.input :template_name, collection: page_templates, include_blank: false %>
       <%= f.input :hidden, as: :hidden %>
@@ -19,7 +20,8 @@
   <div class='chr-form-small'>
     <%= simple_form_for @object, url: @form_action_url do |f| %>
         <%= f.input :title %>
-        <%= f.input :description, as: :text %>
+        <%= f.input :seo_title %>
+        <%= f.input :seo_description, as: :text %>
         <%= f.input :path %>
         <%= f.input :template_name, collection: page_templates, include_blank: false %>
         <%= f.input :hidden, as: :hidden %>

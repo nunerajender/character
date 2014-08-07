@@ -20,6 +20,7 @@ Have you heard of [Django](https://www.djangoproject.com/), [Wordpress](https://
 * Add expand button to details header;
 * Reset validation after succesful form submission;
 * Cache list all list views in DOM and save scrolling state for them, rerender only details;
+* Fix fontawesome for firefox;
 
 ## Setup new [Rails 4.1](http://rubyonrails.org) project
 

@@ -11,6 +11,8 @@ class Character::Post
   field :title,     default: ''
   field :subtitle,  default: ''
   field :body_html, default: ''
+  field :seo_title
+  field :seo_description
 
   field :featured_image, type: Hash, default: { 'url' => '' }
   field :published_at,   type: DateTime, default: -> { DateTime.now }
